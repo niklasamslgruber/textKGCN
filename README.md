@@ -8,6 +8,7 @@ This repository extends [Ken Gu's](https://github.com/codeKgu/Text-GCN) PyTorch 
 The code runs with `Python 3.6` and uses different dependency version than the base implementation.
  
 * `torch==1.6.0`
+* `torchvision==0.7.0`
 * `torch-cluster==1.5.7`
 * `torch-scatter==2.0.5`
 * `torch-sparse==0.6.7`
