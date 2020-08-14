@@ -1,11 +1,11 @@
 ---
-name: Bug
-about: Bugs
+name: Task
+about: Tasks which should be done
 title: ''
-labels: bug
+labels: task
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of the bug.
+**Describe the task**
+A clear and concise description of the task.
