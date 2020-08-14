@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Project specific files
+.idea/
+__pychache__/
+logs/
+save/
