@@ -4,6 +4,7 @@ from model_text_gnn import TextGNN
 from utils import parse_as_int_list
 import torch
 
+
 def create_model(dataset):
     sp = vars(FLAGS)["model"].split(':')
     name = sp[0]

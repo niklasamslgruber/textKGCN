@@ -1,7 +1,6 @@
 from config import FLAGS
 from model_factory import create_model
 from utils import get_root_path, create_dir_if_not_exists, get_ts, save, sorted_nicely
-
 import glob
 from os.path import join, getctime
 import torch
@@ -65,6 +64,7 @@ class Saver(object):
 
     def _open(self, f):
         return open(join(self.logdir, f), 'w')
+
 
 def get_model_info_as_str():
     rtn = []

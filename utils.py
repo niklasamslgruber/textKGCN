@@ -8,7 +8,6 @@ import re
 from socket import gethostname
 
 
-
 def get_root_path():
     return dirname(abspath(__file__))
 
@@ -94,6 +93,7 @@ def get_host():
     if host is not None:
         return host
     return gethostname()
+
 
 tstamp = None
 

@@ -1,7 +1,6 @@
 from eval import eval, MovingAverage
 from config import FLAGS, COMET_EXPERIMENT
 from model_factory import create_model
-
 from pprint import pprint
 import time
 import torch
@@ -38,7 +37,7 @@ def train(train_data, val_data, saver):
             pprint(eval_res_val)
             eval_res_val["loss"] = val_loss
             if COMET_EXPERIMENT:
-                COMET_EXPERIMENT.log_metrics(eval_res_val, prefix="validation", step=epoch+1)
+                COMET_EXPERIMENT.log_metrics(eval_res_val, prefix="validation", step=epoch + 1)
 
             if len(moving_avg.results) == 0 or moving_avg.best_result(eval_res_val[FLAGS.validation_metric]):
                 saver.save_trained_model(model, epoch + 1)

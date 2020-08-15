@@ -1,12 +1,13 @@
 import importlib
 from utils import get_host, get_user
-
+if importlib.util.find_spec('comet_ml'):
+    from comet_ml import Experiment
 import argparse
 import torch
 
 parser = argparse.ArgumentParser()
-COMET_ML_APP_KEY = 'YOUR_COMET_API_KEY'
-COMET_PROJECT_NAME = 'YOUR_COMET_PROJECT_NAME'
+COMET_ML_APP_KEY = 'oejg9R3qTUbSQohaBmMCNtE3h'
+COMET_PROJECT_NAME = 'textkgcn'
 
 """
 Most Relevant

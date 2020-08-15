@@ -3,7 +3,6 @@ from eval import eval
 from load_data import load_data
 from saver import Saver
 from train import train
-
 from pprint import pprint
 import torch
 
@@ -27,6 +26,7 @@ def main():
     pprint(eval_res)
     if COMET_EXPERIMENT:
         from comet_ml.utils import ConfusionMatrix
+
         def index_to_example(index):
             test_docs_ids = test_data.node_ids
             return raw_doc_list[test_docs_ids[index]]

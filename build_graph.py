@@ -129,7 +129,11 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
             doc_word_set.add(word)
 
     number_nodes = num_docs + len(vocab)
+    # adjacency matrix
     adj_mat = sp.csr_matrix((weight, (row, col)), shape=(number_nodes, number_nodes))
+    # Create GEXF graph
+    # nx_graph = nx.from_scipy_sparse_matrix(adj_mat, create_using=nx.MultiGraph)
+    # nx.write_gexf(nx_graph, 'test1.gexf')
     adj = adj_mat + adj_mat.T.multiply(adj_mat.T > adj_mat) - adj_mat.multiply(adj_mat.T > adj_mat)
     return adj
 
