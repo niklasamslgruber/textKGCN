@@ -8,7 +8,6 @@ import re
 from socket import gethostname
 
 
-
 def get_root_path():
     return dirname(abspath(__file__))
 
