@@ -1,5 +1,5 @@
 from eval import eval, MovingAverage
-from config import FLAGS, COMET_EXPERIMENT
+from config import FLAGS
 from model_factory import create_model
 
 from pprint import pprint
@@ -26,8 +26,6 @@ def train(train_data, val_data, saver):
         loss.backward()
         optimizer.step()
         loss = loss.item()
-        if COMET_EXPERIMENT:
-            COMET_EXPERIMENT.log_metric("loss", loss, epoch + 1)
         with torch.no_grad():
             val_loss, preds_val = model(pyg_graph, val_data)
             val_loss = val_loss.item()
@@ -38,8 +36,6 @@ def train(train_data, val_data, saver):
                 print("Val Results: ...")
                 pprint(eval_res_val)
             eval_res_val["loss"] = val_loss
-            if COMET_EXPERIMENT:
-                COMET_EXPERIMENT.log_metrics(eval_res_val, prefix="validation", step=epoch+1)
 
             if len(moving_avg.results) == 0 or moving_avg.best_result(eval_res_val[FLAGS.validation_metric]):
                 saver.save_trained_model(model, epoch + 1)
