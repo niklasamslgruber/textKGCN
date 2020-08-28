@@ -1,29 +1,31 @@
-import importlib
 from utils import get_host, get_user
-
 import argparse
 import torch
 
 parser = argparse.ArgumentParser()
 
 """
-Most Relevant
+Arguments
 """
+# Evaluation output
+parser.add_argument('--show_eval', default=False, action='store_true', help="show evaluation metrics")
 
-debug = False
-gpu = -1
+# Plotting
+parser.add_argument('--plot', default=False, action='store_true', help="save model output as plots")
 
-show_eval = False
-parser.add_argument('--show_eval', type=bool, default=show_eval)
+# Sampling
+word_window_size = 10
+parser.add_argument('--word_window_size', default=word_window_size, type=int, help=f"set window size (default: {word_window_size})", metavar='')
 
-plot = False
-parser.add_argument('--plot', default=plot)
+# Edge Weights
+parser.add_argument('--use_edge_weights', default=False, action='store_true', help="use edge weights for model")
+
+# Set FLAGS from command line
+FLAGS = parser.parse_args()
+
 
 """ 
-dataset:
- sentiment suffix for twitter means the negative classes of the original dataset are combined and the other classes are combined for sentiment analysis
- presplit suffix means training and test are predetermined in [dataset]_labels.txt
- small suffix means a very small dataset used for debugging
+Dataset
 """
 # dataset = 'twitter_asian_prejudice'
 # dataset = 'twitter_asian_prejudice_sentiment'
@@ -41,96 +43,63 @@ elif 'ag' in dataset:
 elif 'r8' in dataset:
     num_labels = 8
 
-parser.add_argument('--dataset', default=dataset)
-parser.add_argument('--random_seed', default=3)
+FLAGS.dataset = dataset
 
 
 """
-Model. Pt1
+Model
 """
-
-model = "text_gcn"
-
-model_params = {}
-parser.add_argument('--use_edge_weights', default=False)
-parser.add_argument('--init_type', default='one_hot_init')
-if model == 'text_gcn':
-    n = '--model'
-    pred_type = 'softmax'
-    node_embd_type = 'gcn'
-    layer_dim_list = [200, num_labels]  # Layer dimensions, (0): 200, (1): 4
-    num_layers = len(layer_dim_list)  # 2 Layers
-    class_weights = True
-    dropout = True
-    s = 'TextGNN:pred_type={},node_embd_type={},num_layers={},layer_dim_list={},act={},' \
+pred_type = 'softmax'
+node_embd_type = 'gcn'
+layer_dim_list = [200, num_labels]  # Layer dimensions, (0): 200, (1): 4
+num_layers = len(layer_dim_list)  # 2 Layers
+class_weights = True
+dropout = True
+s = 'textKGCN:pred_type={},node_embd_type={},num_layers={},layer_dim_list={},act={},' \
         'dropout={},class_weights={}'.format(
-        pred_type, node_embd_type, num_layers, "_".join([str(i) for i in layer_dim_list]), 'relu', dropout, class_weights
-    )
-    model_params = {
-        'pred_type': pred_type,
-        'node_embd':  node_embd_type,
-        'layer_dims': layer_dim_list,
-        'class_weights': class_weights,
-        'dropout': dropout
-    }
-    parser.add_argument(n, default=s)
-else:
-    raise NotImplementedError
+        pred_type, node_embd_type, num_layers, "_".join([str(i) for i in layer_dim_list]), 'relu', dropout, class_weights)
 
-print("{}: {}\n".format(model, model_params))
+model_params = {
+    'pred_type': pred_type,
+    'node_embd':  node_embd_type,
+    'layer_dims': layer_dim_list,
+    'class_weights': class_weights,
+    'dropout': dropout
+}
 
-"""
-Sampling
-"""
-word_window_size = 10
-parser.add_argument('--word_window_size', default=word_window_size)
-validation_window_size = 10
+print("{}: {}\n".format("textKGCN", model_params))
+FLAGS.model = s
+
 
 """
 Validation
 """
-parser.add_argument("--validation_window_size", default=validation_window_size)
-parser.add_argument("--validation_metric", default="accuracy",
-                    choices=["f1_weighted", "accuracy", "loss"])
-
-use_best_val_model_for_inference = True
-parser.add_argument('--use_best_val_model_for_inference', default=use_best_val_model_for_inference)
-
-"""
-Evaluation.
-"""
-tvt_ratio = [0.8, 0.1, 0.1]
-parser.add_argument('--tvt_ratio', default=tvt_ratio)
-parser.add_argument('--tvt_list', default=["train", "test", "val"])
+FLAGS.use_best_val_model_for_inference = True
+FLAGS.validation_window_size = 10
+FLAGS.validation_metric = 'accuracy'  # Choices: ["f1_weighted", "accuracy", "loss"]
 
 
 """
-Optimization.
+Evaluation
 """
-
-lr = 2e-2
-parser.add_argument('--lr', type=float, default=lr)
-
-
-device = str('cuda:{}'.format(gpu) if torch.cuda.is_available() and gpu != -1
-             else 'cpu')
-parser.add_argument('--device', default=device)
-
-
-num_epochs = 400
-num_epochs = 2 if debug else num_epochs
-parser.add_argument('--num_epochs', type=int, default=num_epochs)
-
+FLAGS.tvt_ratio = [0.8, 0.1, 0.1]
+FLAGS.tvt_list = ["train", "test", "val"]
 
 
 """
-Other info.
+Optimization
 """
-parser.add_argument('--user', default=get_user())
-
-parser.add_argument('--hostname', default=get_host())
-
-FLAGS = parser.parse_args()
-
+debug = False
+FLAGS.lr = 2e-2
+FLAGS.random_seed = 3
+FLAGS.num_epochs = 2 if debug else 400
 
 
+"""
+Other
+"""
+FLAGS.user = get_user()
+FLAGS.hostname = get_host()
+
+gpu = -1
+FLAGS.device = str('cuda:{}'.format(gpu) if torch.cuda.is_available() and gpu != -1 else 'cpu')

@@ -84,16 +84,13 @@ class TextDataset(object):
         rtn.append(li[left:])
         return rtn
 
-    def init_node_feats(self, type, device):
-        if type == 'one_hot_init':
-            num_nodes = self.graph.shape[0]
-            identity = sp.identity(num_nodes)
-            ind0, ind1, values = sp.find(identity)
-            inds = np.stack((ind0, ind1), axis=0)
-            self.node_feats = torch.sparse_coo_tensor(inds, values, device=device,
-                                                      dtype=torch.float)
-        else:
-            raise NotImplementedError
+    def init_node_feats(self, device):
+        num_nodes = self.graph.shape[0]
+        identity = sp.identity(num_nodes)
+        ind0, ind1, values = sp.find(identity)
+        inds = np.stack((ind0, ind1), axis=0)
+        self.node_feats = torch.sparse_coo_tensor(inds, values, device=device, dtype=torch.float)
+
 
     def get_pyg_graph(self, device):
         if not hasattr(self, "pyg_graph"):
