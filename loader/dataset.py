@@ -34,7 +34,6 @@ class TextDataset(object):
         self.word_id_map = word_id_map  # ID of each word
         self.docs = docs_dict  # Documents as {key: id, value: text}
         self.node_ids = list(self.docs.keys())  # Document IDs
-        print(f"Hallo: {len(self.node_ids)}")
         self.tvt = tvt
         self.train_test_split = train_test_split
 

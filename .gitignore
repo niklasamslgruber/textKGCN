@@ -131,7 +131,7 @@ dmypy.json
 # Project specific files
 .idea/
 __pychache__/
-logs/
-save/
-plots/
-data/
+_logs/
+_cache/
+_plots/
+_data/

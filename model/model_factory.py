@@ -1,6 +1,6 @@
 from config import FLAGS
 from collections import Counter
-from model_text_gnn import TextGNN
+from model.model_text_gnn import TextGNN
 from utils import parse_as_int_list
 import torch
 

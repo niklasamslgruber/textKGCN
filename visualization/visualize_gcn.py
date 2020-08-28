@@ -1,4 +1,4 @@
-from visualize_tsne import visualize, reduce_dimensions
+from visualization.visualize_tsne import visualize, reduce_dimensions
 import numpy as np
 
 
@@ -8,7 +8,7 @@ def plot(model):
         embeddings = layer.acted_embeddings
         reduced_emb = reduce_dimensions(embeddings)
         labels = generate_labels(embeddings)
-        visualize(reduced_emb, filename=f'plots/gcn/layer_{i}.png', labels=labels)
+        visualize(reduced_emb, filename=f'_plots/gcn/layer_{i}.png', labels=labels)
         i += 1
 
 

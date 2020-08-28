@@ -1,8 +1,8 @@
 from config import FLAGS
 from os.path import join
 from utils import get_save_path, load, save, get_corpus_path
-from build_graph import build_text_graph_dataset
-from dataset import TextDataset
+from model.build_graph import build_text_graph_dataset
+from loader.dataset import TextDataset
 import gc
 
 
