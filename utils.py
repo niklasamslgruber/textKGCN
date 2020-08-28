@@ -24,6 +24,10 @@ def get_save_path():
     return join(get_root_path(), 'save')
 
 
+def get_kg_data_path():
+    return join(get_data_path(), 'knowledge_graphs/Wikidata')
+
+
 def load(filepath, print_msg=True):
     fp = proc_filepath(filepath)
     if isfile(fp):
@@ -93,6 +97,7 @@ def get_host():
     if host is not None:
         return host
     return gethostname()
+
 
 tstamp = None
 

@@ -31,7 +31,7 @@ def eval(preds, dataset, test=False):
         one_hot_true[np.arange(y_true.size), y_true] = 1
         results["y_true"] = one_hot_true
         one_hot_pred = np.zeros((y_true.size, len(dataset.label_dict)))
-        one_hot_pred[np.arange(y_pred_label.size),y_pred_label] = 1
+        one_hot_pred[np.arange(y_pred_label.size), y_pred_label] = 1
         results["y_pred"] = one_hot_pred
     return results
 

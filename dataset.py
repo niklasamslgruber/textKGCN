@@ -13,10 +13,11 @@ class TextDataset(object):
             return
         self.name = name
         self.graph = sparse_graph
-        self.labels = labels
+        self.labels = labels  # Classification of each document
         if 'twitter_asian_prejudice' in name:
             if 'sentiment' not in name:
-                self.labels = ['discussion_of_eastasian_prejudice' if label =='counter_speech' else label for label in self.labels]
+                self.labels = ['discussion_of_eastasian_prejudice' if label == 'counter_speech' else label for label in
+                               self.labels]
             else:
                 if 'neutral' not in labels:
                     sentiment_labels = []
@@ -27,12 +28,13 @@ class TextDataset(object):
                         else:
                             sentiment_labels.append("negative")
                     self.labels = sentiment_labels
-        self.label_dict = {label: i for i, label in enumerate(list(set(self.labels)))}
-        self.label_inds = np.asarray([self.label_dict[label] for label in self.labels])
-        self.vocab = vocab
-        self.word_id_map = word_id_map
-        self.docs = docs_dict
-        self.node_ids = list(self.docs.keys())
+        self.label_dict = {label: i for i, label in enumerate(list(set(self.labels)))}  # Key of the labels
+        self.label_inds = np.asarray([self.label_dict[label] for label in self.labels])  # Classification of documents with label key
+        self.vocab = vocab  # All unique words
+        self.word_id_map = word_id_map  # ID of each word
+        self.docs = docs_dict  # Documents as {key: id, value: text}
+        self.node_ids = list(self.docs.keys())  # Document IDs
+        print(f"Hallo: {len(self.node_ids)}")
         self.tvt = tvt
         self.train_test_split = train_test_split
 
@@ -107,5 +109,3 @@ class TextDataset(object):
                 gx = self.node_feats
             self.pyg_graph = PyGSingleGraphData(x=gx, edge_index=edge_index, edge_attr=edge_weight, y=None)
         return self.pyg_graph
-
-

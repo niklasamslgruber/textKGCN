@@ -44,6 +44,7 @@ def build_text_graph_dataset(dataset, window_size):
         f.write(vocab_str)
         f.close()
     words_in_docs, word_doc_freq = build_word_doc_edges(doc_list)
+    print(f"Number of words: {len(words_in_docs)}")
     word_id_map = {word: i for i, word in enumerate(vocab)}
 
     sparse_graph = build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size)
@@ -113,6 +114,7 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
             doc_word_str = (i, word_id)
             doc_word_freq[doc_word_str] += 1
 
+    print(f"Number of docs: {len(doc_list)}")
     for i, doc_words in enumerate(doc_list):
         words = doc_words.split()
         doc_word_set = set()
@@ -159,5 +161,5 @@ def build_word_doc_edges(doc_list):
 
 
 if __name__ == "__main__":
-    dataset = 'twitter_asian_prejudice'
+    dataset = 'twitter_asian_prejudice_small'
     build_text_graph_dataset(dataset, 20)

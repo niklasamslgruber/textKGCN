@@ -133,5 +133,5 @@ dmypy.json
 __pychache__/
 logs/
 save/
-knowledge_graphs/data/
-knowledge_graphs/plots/
+plots/
+data/
