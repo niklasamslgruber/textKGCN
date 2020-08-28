@@ -8,7 +8,6 @@ import re
 from socket import gethostname
 
 
-
 def get_root_path():
     return dirname(abspath(__file__))
 
@@ -23,6 +22,10 @@ def get_corpus_path():
 
 def get_save_path():
     return join(get_root_path(), 'save')
+
+
+def get_kg_data_path():
+    return join(get_data_path(), 'knowledge_graphs/Wikidata')
 
 
 def load(filepath, print_msg=True):
@@ -94,6 +97,7 @@ def get_host():
     if host is not None:
         return host
     return gethostname()
+
 
 tstamp = None
 

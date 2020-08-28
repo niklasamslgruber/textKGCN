@@ -32,10 +32,11 @@ def train(train_data, val_data, saver):
             val_loss, preds_val = model(pyg_graph, val_data)
             val_loss = val_loss.item()
             eval_res_val = eval(preds_val, val_data)
-            print("Epoch: {:04d}, Train Loss: {:.5f}, Time: {:.5f}".format(epoch, loss, time.time() - t))
-            print("Val Loss: {:.5f}".format(val_loss))
-            print("Val Results: ...")
-            pprint(eval_res_val)
+            if FLAGS.show_eval:
+                print("Epoch: {:04d}, Train Loss: {:.5f}, Time: {:.5f}".format(epoch, loss, time.time() - t))
+                print("Val Loss: {:.5f}".format(val_loss))
+                print("Val Results: ...")
+                pprint(eval_res_val)
             eval_res_val["loss"] = val_loss
             if COMET_EXPERIMENT:
                 COMET_EXPERIMENT.log_metrics(eval_res_val, prefix="validation", step=epoch+1)

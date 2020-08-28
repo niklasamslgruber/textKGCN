@@ -20,6 +20,12 @@ parser.add_argument('--use_comet_ml', default=use_comet_ml)
 if use_comet_ml:
     parser.add_argument('--comet_api_key', default=COMET_ML_APP_KEY)
 
+show_eval = False
+parser.add_argument('--show_eval', type=bool, default=show_eval)
+
+plot = False
+parser.add_argument('--plot', default=plot)
+
 """ 
 dataset:
  sentiment suffix for twitter means the negative classes of the original dataset are combined and the other classes are combined for sentiment analysis
@@ -59,8 +65,8 @@ if model == 'text_gcn':
     n = '--model'
     pred_type = 'softmax'
     node_embd_type = 'gcn'
-    layer_dim_list = [200, num_labels]
-    num_layers = len(layer_dim_list)
+    layer_dim_list = [200, num_labels]  # Layer dimensions, (0): 200, (1): 4
+    num_layers = len(layer_dim_list)  # 2 Layers
     class_weights = True
     dropout = True
     s = 'TextGNN:pred_type={},node_embd_type={},num_layers={},layer_dim_list={},act={},' \

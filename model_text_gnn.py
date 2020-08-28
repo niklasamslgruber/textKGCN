@@ -80,6 +80,8 @@ class NodeEmbedding(nn.Module):
         self.in_dim = in_dim
         self.out_dim = out_dim
         self.type = type
+        self.raw_embeddings = []
+        self.acted_embeddings = []
         if type == 'gcn':
             self.conv = GCNConv(in_dim, out_dim)
             self.act = create_act(act, out_dim)
@@ -106,7 +108,10 @@ class NodeEmbedding(nn.Module):
                 x = self.conv(ins, pyg_graph.edge_index)
         else:
             x = self.conv(ins, pyg_graph.edge_index)
+
+        self.raw_embeddings = x
         x = self.act(x)
+        self.acted_embeddings = x
         return x
 
 

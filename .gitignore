@@ -133,3 +133,5 @@ dmypy.json
 __pychache__/
 logs/
 save/
+plots/
+data/

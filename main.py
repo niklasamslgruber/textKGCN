@@ -3,9 +3,9 @@ from eval import eval
 from load_data import load_data
 from saver import Saver
 from train import train
-
-from pprint import pprint
 import torch
+from pprint import pprint
+from visualize_gcn import plot
 
 
 def main():
@@ -18,15 +18,27 @@ def main():
             saved_model, model = train(train_data, val_data, saver)
     else:
         saved_model, model = train(train_data, val_data, saver)
+
+    assert model.num_layers == 2
+
+    if FLAGS.plot:
+        plot(model)
+
     with torch.no_grad():
         test_loss_model, preds_model = model(train_data.get_pyg_graph(device=FLAGS.device), test_data)
+
+    # Classification
     eval_res = eval(preds_model, test_data, True)
     y_true = eval_res.pop('y_true')
     y_pred = eval_res.pop('y_pred')
+
     print("Test...")
-    pprint(eval_res)
+    if FLAGS.show_eval:
+        pprint(eval_res)
+
     if COMET_EXPERIMENT:
         from comet_ml.utils import ConfusionMatrix
+
         def index_to_example(index):
             test_docs_ids = test_data.node_ids
             return raw_doc_list[test_docs_ids[index]]
