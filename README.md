@@ -23,6 +23,14 @@ The code runs with `Python 3.6` and uses different dependency version than the b
 $ python main.py
 ```
 
+###### Optional Arguments:
+* `--show_eval`: Prints all evaluation metrics to the console
+* `--plot`: Saves the GCN embeddings as a 2D t-SNE plot
+* `--word-window-size`: Specifies the window size used for the model (default: 10)
+* `--use_edge_weights`: Defines wether edge weights should be used 
+
+Other configuration options can be set in `config.py`.
+
 ### Base Paper
 > Graph Convolutional Networks for Text Classification. 
 > Liang Yao, Chengsheng Mao, Yuan Luo.
