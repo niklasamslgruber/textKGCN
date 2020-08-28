@@ -1,6 +1,6 @@
-from eval import eval, MovingAverage
+from evaluation.eval import eval, MovingAverage
 from config import FLAGS
-from model_factory import create_model
+from model.model_factory import create_model
 
 from pprint import pprint
 import time

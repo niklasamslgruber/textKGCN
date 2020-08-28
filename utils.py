@@ -13,7 +13,7 @@ def get_root_path():
 
 
 def get_data_path():
-    return join(get_root_path(), 'data')
+    return join(get_root_path(), '_data')
 
 
 def get_corpus_path():
@@ -21,7 +21,7 @@ def get_corpus_path():
 
 
 def get_save_path():
-    return join(get_root_path(), 'save')
+    return join(get_root_path(), '_cache')
 
 
 def get_kg_data_path():
@@ -46,7 +46,7 @@ def load_klepto(filepath, print_msg):
 
 def save(obj, filepath, print_msg=True):
     if type(obj) is not dict and type(obj) is not OrderedDict:
-        raise ValueError('Can only save a dict or OrderedDict'
+        raise ValueError('Can only _cache a dict or OrderedDict'
                          ' NOT {}'.format(type(obj)))
     fp = proc_filepath(filepath, ext='.klepto')
     create_dir_if_not_exists(dirname(filepath))

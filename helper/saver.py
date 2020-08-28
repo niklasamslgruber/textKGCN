@@ -1,5 +1,5 @@
 from config import FLAGS
-from model_factory import create_model
+from model.model_factory import create_model
 from utils import get_root_path, create_dir_if_not_exists, get_ts, save, sorted_nicely
 
 import glob
@@ -12,7 +12,7 @@ class Saver(object):
         model_str = self.get_model_str()
         self.logdir = join(
             get_root_path(),
-            'logs',
+            '_logs',
             '{}_{}'.format(model_str, get_ts()))
         create_dir_if_not_exists(self.logdir)
         self.model_info_f = self._open('model_info.txt')

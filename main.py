@@ -1,11 +1,11 @@
 from config import FLAGS
-from eval import eval
-from load_data import load_data
-from saver import Saver
-from train import train
+from evaluation.eval import eval
+from loader.load_data import load_data
+from helper.saver import Saver
+from model.train import train
 import torch
 from pprint import pprint
-from visualize_gcn import plot
+from visualization.visualize_gcn import plot
 
 
 def main():

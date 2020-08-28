@@ -1,6 +1,6 @@
 from enum import Enum
 import numpy as np
-from visualize_tsne import reduce_dimensions, visualize
+from visualization.visualize_tsne import reduce_dimensions, visualize
 from utils import get_kg_data_path
 
 
