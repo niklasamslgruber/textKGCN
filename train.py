@@ -8,8 +8,8 @@ import torch
 
 
 def train(train_data, val_data, saver):
-    train_data.init_node_feats(FLAGS.init_type, FLAGS.device)
-    val_data.init_node_feats(FLAGS.init_type, FLAGS.device)
+    train_data.init_node_feats(FLAGS.device)
+    val_data.init_node_feats(FLAGS.device)
     model = create_model(train_data)
     model = model.to(FLAGS.device)
     pytorch_total_params = sum(p.numel() for p in model.parameters())
