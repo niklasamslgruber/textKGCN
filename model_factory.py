@@ -46,5 +46,5 @@ def create_text_gnn(layer_info, dataset):
 
 
 model_ctors = {
-    'TextGNN': create_text_gnn,
+    'textKGCN': create_text_gnn,
 }
