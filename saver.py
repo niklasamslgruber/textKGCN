@@ -17,7 +17,7 @@ class Saver(object):
         create_dir_if_not_exists(self.logdir)
         self.model_info_f = self._open('model_info.txt')
         self._log_model_info()
-        self._save_conf_code()
+        # self._save_conf_code()  # Save config.py code
         print('Logging to {}'.format(self.logdir))
 
     def _log_model_info(self):
@@ -65,6 +65,7 @@ class Saver(object):
 
     def _open(self, f):
         return open(join(self.logdir, f), 'w')
+
 
 def get_model_info_as_str():
     rtn = []

@@ -5,8 +5,6 @@ import argparse
 import torch
 
 parser = argparse.ArgumentParser()
-COMET_ML_APP_KEY = 'YOUR_COMET_API_KEY'
-COMET_PROJECT_NAME = 'YOUR_COMET_PROJECT_NAME'
 
 """
 Most Relevant
@@ -14,11 +12,6 @@ Most Relevant
 
 debug = False
 gpu = -1
-use_comet_ml = True if importlib.util.find_spec('comet_ml') and not debug else False
-parser.add_argument('--use_comet_ml', default=use_comet_ml)
-
-if use_comet_ml:
-    parser.add_argument('--comet_api_key', default=COMET_ML_APP_KEY)
 
 show_eval = False
 parser.add_argument('--show_eval', type=bool, default=show_eval)
@@ -138,15 +131,6 @@ parser.add_argument('--user', default=get_user())
 parser.add_argument('--hostname', default=get_host())
 
 FLAGS = parser.parse_args()
-
-COMET_EXPERIMENT = None
-if FLAGS.use_comet_ml:
-    hyper_params = vars(FLAGS)
-    COMET_EXPERIMENT = Experiment(api_key=COMET_ML_APP_KEY, project_name=COMET_PROJECT_NAME)
-    COMET_EXPERIMENT.log_parameters(hyper_params)
-    COMET_EXPERIMENT.log_parameters(model_params)
-    print("Experiment url, ", COMET_EXPERIMENT.url)
-    COMET_EXPERIMENT.add_tag(FLAGS.dataset)
 
 
 
