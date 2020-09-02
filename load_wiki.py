@@ -12,7 +12,7 @@ class GraphItem:
         self.description = self.__get_description()
         self.labels = self.__get_labels()
         self.aliases = self.__get_aliases()
-        self.properties = self.__get_properties()
+        self.relations = self.__get_properties()
 
     def __str__(self):
         return f"Item for searchword `{self.search_word}`: \n" \
@@ -20,7 +20,7 @@ class GraphItem:
                f"Description: {self.description} \n" \
                f"Labels: {self.labels} \n" \
                f"Aliases: {self.aliases} \n" \
-               f"#Properties: {len(self.properties)}"
+               f"#Properties: {len(self.relations)}"
 
     def __get_description(self):
         try:
