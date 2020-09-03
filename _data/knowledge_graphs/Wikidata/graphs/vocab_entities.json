@@ -1,0 +1,139 @@
+{
+    "Q48340": {
+        "searchword": "cnn",
+        "id": "Q48340",
+        "title": "",
+        "wikiId": "",
+        "labels": "CNN",
+        "descriptions": "US news television channel",
+        "aliases": [
+            "Cable News Network",
+            "CNN USA",
+            "CNN/U.S.",
+            "CNN News",
+            "CNN.com"
+        ],
+        "relations": {
+            "P373": "CNN",
+            "P910": {
+                "entity-type": "item",
+                "numeric-id": 8787174,
+                "id": "Q8787174"
+            },
+            "P227": "4255515-2",
+            "P856": "https://www.cnn.com/",
+            "P214": "156628431",
+            "P646": "/m/0gsgr",
+            "P159": {
+                "entity-type": "item",
+                "numeric-id": 2798738,
+                "id": "Q2798738"
+            },
+            "P166": {
+                "entity-type": "item",
+                "numeric-id": 23011201,
+                "id": "Q23011201"
+            },
+            "P31": {
+                "entity-type": "item",
+                "numeric-id": 561068,
+                "id": "Q561068"
+            },
+            "P112": {
+                "entity-type": "item",
+                "numeric-id": 193368,
+                "id": "Q193368"
+            },
+            "P2002": "CNNPR",
+            "P17": {
+                "entity-type": "item",
+                "numeric-id": 30,
+                "id": "Q30"
+            },
+            "P452": {
+                "entity-type": "item",
+                "numeric-id": 11030,
+                "id": "Q11030"
+            },
+            "P571": {
+                "time": "+1980-01-01T00:00:00Z",
+                "timezone": 0,
+                "before": 0,
+                "after": 0,
+                "precision": 9,
+                "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+            },
+            "P2013": "CNN",
+            "P2267": "cnn",
+            "P1417": "topic/Cable-News-Network",
+            "P3221": "organization/cnn",
+            "P1296": "0242586",
+            "P2936": {
+                "entity-type": "item",
+                "numeric-id": 1860,
+                "id": "Q1860"
+            },
+            "P137": {
+                "entity-type": "item",
+                "numeric-id": 7855903,
+                "id": "Q7855903"
+            },
+            "P3417": "CNN-TV-network",
+            "P213": "0000 0004 0632 1120",
+            "P244": "n82251162",
+            "P1255": "vtls008804492",
+            "P271": "DA06706770",
+            "P1015": "90607119",
+            "P349": "00627903",
+            "P1670": "1003D4486",
+            "P950": "XX94893",
+            "P268": "12310853z",
+            "P269": "031995845",
+            "P409": "35370593",
+            "P691": "osa2010530989",
+            "P1451": {
+                "text": "This is CNN",
+                "language": "en"
+            },
+            "P4013": "cnn",
+            "P3065": "02-A000027150",
+            "P154": "CNN.svg",
+            "P355": {
+                "entity-type": "item",
+                "numeric-id": 15994987,
+                "id": "Q15994987"
+            },
+            "P4903": "arts-culture/cnn",
+            "P3984": "cnn",
+            "P2003": "cnn",
+            "P749": {
+                "entity-type": "item",
+                "numeric-id": 191715,
+                "id": "Q191715"
+            },
+            "P4725": "1905",
+            "P1830": {
+                "entity-type": "item",
+                "numeric-id": 12217473,
+                "id": "Q12217473"
+            },
+            "P127": {
+                "entity-type": "item",
+                "numeric-id": 7855903,
+                "id": "Q7855903"
+            },
+            "P3500": "146082",
+            "P6849": "cnn",
+            "P949": "000027358",
+            "P7306": "cnn",
+            "P1245": "1655816",
+            "P7818": "Cable_News_Network",
+            "P7859": "lccn-n82251162",
+            "P3919": {
+                "entity-type": "item",
+                "numeric-id": 30905721,
+                "id": "Q30905721"
+            }
+        }
+    }
+}

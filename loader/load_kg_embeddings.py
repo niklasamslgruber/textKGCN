@@ -17,6 +17,7 @@ def get_embeddings(node_type: GraphType, dimension: int = 50):
 
     number_of_items = get_number_of_items(node_type)
 
+    # Load binary files
     path = f'{get_kg_data_path()}/embeddings/dimension_{dimension}/transe/{node_type.value}2vec.bin'
     vec = np.memmap(path, dtype='float32', mode='r', shape=(number_of_items, dimension))
     print(f'Loaded {len(vec)} embeddings')
@@ -29,7 +30,6 @@ def get_number_of_items(node_type: GraphType):
 
 
 def main():
-    # Load binary files
     entity_embeddings = get_embeddings(node_type=GraphType.ENTITIES, dimension=50)
     embeddings = reduce_dimensions(entity_embeddings, fraction=0.00005)
     visualize(embeddings)
