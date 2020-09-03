@@ -1,0 +1,366 @@
+{
+    "P50": {
+        "searchword": "P50",
+        "id": "P50",
+        "title": "Property:P50",
+        "wikiId": "P50",
+        "labels": "author",
+        "descriptions": "main creator(s) of a written work (use on works, not humans); use P2093 when Wikidata item is unknown or does not exist",
+        "aliases": [
+            "written by",
+            "writer",
+            "writers",
+            "authors",
+            "author(s)",
+            "writer(s)",
+            "by",
+            "creator"
+        ],
+        "relations": {}
+    },
+    "P361": {
+        "searchword": "P361",
+        "id": "P361",
+        "title": "Property:P361",
+        "wikiId": "P361",
+        "labels": "part of",
+        "descriptions": "object of which the subject is a part (if this subject is already part of object A which is a part of object B, then please only make the subject part of object A). Inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670)).",
+        "aliases": [
+            "meronym of",
+            "section of",
+            "system of",
+            "subsystem of",
+            "subassembly of",
+            "merged into",
+            "contained within",
+            "assembly of",
+            "part of-property",
+            "merged with",
+            "component of",
+            "in",
+            "within",
+            "is part of",
+            "subgroup of",
+            "collateral branch of",
+            "cadet branch of",
+            "branch of"
+        ],
+        "relations": {}
+    },
+    "P3417": {
+        "searchword": "P3417",
+        "id": "P3417",
+        "title": "Property:P3417",
+        "wikiId": "P3417",
+        "labels": "Quora topic ID",
+        "descriptions": "identifier for a topic on Quora (English language version)",
+        "aliases": [
+            "planner culturel"
+        ],
+        "relations": {}
+    },
+    "P3241": {
+        "searchword": "P3241",
+        "id": "P3241",
+        "title": "Property:P3241",
+        "wikiId": "P3241",
+        "labels": "Catholic Encyclopedia ID",
+        "descriptions": "page of an article on newadvent.org",
+        "aliases": [],
+        "relations": {}
+    },
+    "P1343": {
+        "searchword": "P1343",
+        "id": "P1343",
+        "title": "Property:P1343",
+        "wikiId": "P1343",
+        "labels": "described by source",
+        "descriptions": "reference work where this item is described",
+        "aliases": [
+            "described in source",
+            "written about in",
+            "entry",
+            "subject of",
+            "described by encyclopedia",
+            "described by reference work",
+            "described by biography"
+        ],
+        "relations": {}
+    },
+    "P1889": {
+        "searchword": "P1889",
+        "id": "P1889",
+        "title": "Property:P1889",
+        "wikiId": "P1889",
+        "labels": "different from",
+        "descriptions": "item that is different from another item, with which it is often confused",
+        "aliases": [
+            "different than",
+            "different to",
+            "is not",
+            "distinct from",
+            "not the same as",
+            "isn't",
+            "distinguished from",
+            "to be distinguished from",
+            "disambiguated from",
+            "not same as",
+            "confused with",
+            "is different from",
+            "mistakenly taken for",
+            "differs from",
+            "differ from",
+            "often confused with",
+            "rejected match",
+            "not to be confused with",
+            "\u2260",
+            "not equal to"
+        ],
+        "relations": {}
+    },
+    "P227": {
+        "searchword": "P227",
+        "id": "P227",
+        "title": "Property:P227",
+        "wikiId": "P227",
+        "labels": "GND ID",
+        "descriptions": "identifier from an international authority file of names, subjects, and organizations (please don't use type n = name, disambiguation) - Deutsche Nationalbibliothek",
+        "aliases": [
+            "GND",
+            "GND identifier",
+            "Universal Authority File",
+            "Integrated Authority File",
+            "dbpedia:IndividualisedGnd",
+            "DNB authorities",
+            "GND-IDN",
+            "GND ID",
+            "Deutschen Nationalbibliothek ID",
+            "German National Library ID"
+        ],
+        "relations": {}
+    },
+    "P8408": {
+        "searchword": "P8408",
+        "id": "P8408",
+        "title": "Property:P8408",
+        "wikiId": "P8408",
+        "labels": "KBpedia ID",
+        "descriptions": "identifier for the KBpedia knowledge graph, which provides consistent mappings across seven large-scale public knowledge bases including Wikidata, and is used to promote data interoperability and extraction of training sets for machine learning",
+        "aliases": [
+            "KBpedia",
+            "KKO",
+            "KBpedia knowledge graph",
+            "KBpedia ontology",
+            "kbpedia",
+            "Kbpedia"
+        ],
+        "relations": {}
+    },
+    "P3219": {
+        "searchword": "P3219",
+        "id": "P3219",
+        "title": "Property:P3219",
+        "wikiId": "P3219",
+        "labels": "Encyclop\u00e6dia Universalis ID",
+        "descriptions": "identifer for an article in the online version of Encyclop\u00e6dia Universalis",
+        "aliases": [
+            "Universalis online ID",
+            "Universalis ID",
+            "Encyclopaedia Universalis Online ID"
+        ],
+        "relations": {}
+    },
+    "P646": {
+        "searchword": "P646",
+        "id": "P646",
+        "title": "Property:P646",
+        "wikiId": "P646",
+        "labels": "Freebase ID",
+        "descriptions": "identifier for a page in the Freebase database. Format: \"/m/0\" followed by 2 to 7 characters. For those starting with \"/g/\", use Google Knowledge Graph identifier (P2671)",
+        "aliases": [
+            "Freebase identifier",
+            "MID"
+        ],
+        "relations": {}
+    },
+    "P1296": {
+        "searchword": "P1296",
+        "id": "P1296",
+        "title": "Property:P1296",
+        "wikiId": "P1296",
+        "labels": "Gran Enciclop\u00e8dia Catalana ID",
+        "descriptions": "identifier for an item in the Gran Enciclop\u00e8dia Catalana",
+        "aliases": [
+            "GEC ID",
+            "Enciclop\u00e8dia Catalana ID",
+            "Catalan encyclopedia ID",
+            "GrEC ID"
+        ],
+        "relations": {}
+    },
+    "P1382": {
+        "searchword": "P1382",
+        "id": "P1382",
+        "title": "Property:P1382",
+        "wikiId": "P1382",
+        "labels": "partially coincident with",
+        "descriptions": "object that is partially part of, but not fully part of (P361), the subject",
+        "aliases": [
+            "partially overlaps",
+            "partial concurrency",
+            "concurrent with",
+            "concurrency",
+            "overlapping with",
+            "partially include",
+            "partially in",
+            "coincident with",
+            "part of (partially)",
+            "overlaps",
+            "overlaps with"
+        ],
+        "relations": {}
+    },
+    "P1552": {
+        "searchword": "P1552",
+        "id": "P1552",
+        "title": "Property:P1552",
+        "wikiId": "P1552",
+        "labels": "has quality",
+        "descriptions": "the entity has an inherent or distinguishing non-material characteristic",
+        "aliases": [
+            "trait",
+            "inherent property",
+            "attribute",
+            "aspect",
+            "defining feature",
+            "has feature",
+            "has characteristic",
+            "has property",
+            "characterized by",
+            "required property",
+            "quality",
+            "defining parameter",
+            "parameter",
+            "requirement",
+            "defined by"
+        ],
+        "relations": {}
+    },
+    "P18": {
+        "searchword": "P18",
+        "id": "P18",
+        "title": "Property:P18",
+        "wikiId": "P18",
+        "labels": "image",
+        "descriptions": "image of relevant illustration of the subject; if available, use more specific properties (sample: coat of arms image, locator map, flag image, signature image, logo image, collage image); only images which exist on Wikimedia Commons are acceptable",
+        "aliases": [
+            "image of exterior",
+            "portrait",
+            "illustration",
+            "picture",
+            "drawing",
+            "photo",
+            "img",
+            "Commons image",
+            "screenshot",
+            "Image on Commons",
+            "Image on Wikimedia Commons",
+            "still",
+            "screen capture",
+            "image capture",
+            "graph"
+        ],
+        "relations": {}
+    },
+    "P910": {
+        "searchword": "P910",
+        "id": "P910",
+        "title": "Property:P910",
+        "wikiId": "P910",
+        "labels": "topic's main category",
+        "descriptions": "main Wikimedia category",
+        "aliases": [
+            "main category",
+            "category for this topic",
+            "subject category",
+            "has category"
+        ],
+        "relations": {}
+    },
+    "P31": {
+        "searchword": "P31",
+        "id": "P31",
+        "title": "Property:P31",
+        "wikiId": "P31",
+        "labels": "instance of",
+        "descriptions": "that class of which this subject is a particular example and member",
+        "aliases": [
+            "is a",
+            "is an",
+            "has class",
+            "has type",
+            "is a particular",
+            "is a specific",
+            "is an individual",
+            "is a unique",
+            "is an example of",
+            "member of",
+            "unique individual of",
+            "distinct member of",
+            "non-type member of",
+            "unsubclassable example of",
+            "uninstantiable instance of",
+            "unsubclassifiable member of",
+            "not a type but is instance of",
+            "unsubtypable particular",
+            "unitary element of class",
+            "distinct element of",
+            "distinct individual member of",
+            "occurrence of",
+            "rdf:type",
+            "type",
+            "\u2208",
+            "main type",
+            "is a(n)",
+            "is"
+        ],
+        "relations": {}
+    },
+    "P373": {
+        "searchword": "P373",
+        "id": "P373",
+        "title": "Property:P373",
+        "wikiId": "P373",
+        "labels": "Commons category",
+        "descriptions": "name of the Wikimedia Commons category containing files related to this item (without the prefix \"Category:\")",
+        "aliases": [
+            "commonscat",
+            "category Commons"
+        ],
+        "relations": {}
+    },
+    "P7993": {
+        "searchword": "P7993",
+        "id": "P7993",
+        "title": "Property:P7993",
+        "wikiId": "P7993",
+        "labels": "Treccani's Dizionario di Filosofia ID",
+        "descriptions": "identifier for an item in the Dizionario di Filosofia",
+        "aliases": [
+            "Dizionario di Filosofia ID"
+        ],
+        "relations": {}
+    },
+    "P508": {
+        "searchword": "P508",
+        "id": "P508",
+        "title": "Property:P508",
+        "wikiId": "P508",
+        "labels": "BNCF Thesaurus ID",
+        "descriptions": "identifier in the subject indexing tool of the National Central Library of Florence",
+        "aliases": [
+            "BNCF ID"
+        ],
+        "relations": {}
+    }
+}

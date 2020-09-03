@@ -46,7 +46,7 @@ class WikiDataItem:
             "labels": self.labels,
             "descriptions": self.description,
             "aliases": self.aliases,
-            "relations": self.relations
+            "relations": self.relations if self.identifier.startswith("Q") else {}
             }
         return json_dict
 
