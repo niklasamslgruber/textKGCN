@@ -4,6 +4,11 @@ from itertools import chain
 from utils import get_corpus_path, get_kg_data_path
 from wiki_api import download_by_title, get_safely, download_by_id
 
+# TODO:
+# * Move cache checker to WikiAPI
+# * Create StatsCollector which tracks unsuccesful, cache and API calls
+
+
 
 def create_vocabulary_entities(overwrite=False):
     print("Starting to download from Wikidata API...")
