@@ -134,4 +134,5 @@ __pychache__/
 _logs/
 _cache/
 _plots/
-_data/
+_data/knowledge_graphs/Wikidata/embeddings/
+_data/knowledge_graphs/Wikidata/mappings/

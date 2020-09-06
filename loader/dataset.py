@@ -29,7 +29,8 @@ class TextDataset(object):
                             sentiment_labels.append("negative")
                     self.labels = sentiment_labels
         self.label_dict = {label: i for i, label in enumerate(list(set(self.labels)))}  # Key of the labels
-        self.label_inds = np.asarray([self.label_dict[label] for label in self.labels])  # Classification of documents with label key
+        self.label_inds = np.asarray(
+            [self.label_dict[label] for label in self.labels])  # Classification of documents with label key
         self.vocab = vocab  # All unique words
         self.word_id_map = word_id_map  # ID of each word
         self.docs = docs_dict  # Documents as {key: id, value: text}
@@ -89,7 +90,6 @@ class TextDataset(object):
         ind0, ind1, values = sp.find(identity)
         inds = np.stack((ind0, ind1), axis=0)
         self.node_feats = torch.sparse_coo_tensor(inds, values, device=device, dtype=torch.float)
-
 
     def get_pyg_graph(self, device):
         if not hasattr(self, "pyg_graph"):
