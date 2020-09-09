@@ -31,10 +31,16 @@ class WikiDataItem:
     def __get_relations(self):
         rel_dict = {}
         for relation in self.get(["claims"]):
+            current_id = "Initial"
+            counter = 0
+            tmp_dict = {}
             for item in self.get(["claims", relation]):
                 property_id = get_safely(item, ["mainsnak", "property"])
                 value = get_safely(item, ["mainsnak", "datavalue", "value"])
-                rel_dict[property_id] = value
+                current_id = property_id
+                tmp_dict[counter] = value
+                counter += 1
+            rel_dict[current_id] = tmp_dict
         return rel_dict
 
     def to_json(self):
