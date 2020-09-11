@@ -6,6 +6,7 @@ from model.train import train
 import torch
 from pprint import pprint
 from visualization.visualize_gcn import plot
+import time
 
 
 def main():
@@ -16,7 +17,8 @@ def main():
     assert model.num_layers == 2
 
     if FLAGS.plot:
-        plot(model)
+        number_of_docs = len(train_data.labels)
+        plot(model, number_of_docs)
 
     with torch.no_grad():
         test_loss_model, preds_model = model(train_data.get_pyg_graph(device=FLAGS.device), test_data)
@@ -32,4 +34,7 @@ def main():
 
 
 if __name__ == "__main__":
+    start = time.time()
     main()
+    end = time.time()
+    print(f"Duration: {end - start} seconds")

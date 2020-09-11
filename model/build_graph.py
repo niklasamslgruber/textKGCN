@@ -32,8 +32,8 @@ def build_text_graph_dataset(dataset, window_size):
         for i, v in enumerate(split):
             split_dict[i] = v
     if "small" in dataset:
-        doc_list = doc_list[:200]
-        labels_list = labels_list[:200]
+        doc_list = doc_list[:500]
+        labels_list = labels_list[:500]
 
     word_freq = get_vocab(doc_list)
     vocab = list(word_freq.keys())

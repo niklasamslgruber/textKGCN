@@ -24,11 +24,18 @@ def reduce_dimensions(embeddings, fraction=None):
     return x_embedded
 
 
-def visualize(embeddings, filename=None, labels=None, show_legend=False):
-
+def visualize(embeddings, filename=None, labels=None):
     if labels is not None:
         # Generate random colors for each label
-        colors = np.random.rand(len(set(labels)), 3)
+        show_legend = False
+        if len(set(labels)) == 4:
+            colors = ["r", "b", "g", "y"]
+            show_legend = True
+        if len(set(labels)) == 8:
+            colors = ["r", "b", "g", "y", "c", "m", "k", "burlywood"]
+            show_legend = True
+        else:
+            colors = np.random.rand(len(set(labels)), 3)
 
         label_map = {}
         for i, l in enumerate(labels):
