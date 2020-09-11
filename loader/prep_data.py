@@ -1,5 +1,4 @@
 from utils import get_data_path
-
 from collections import defaultdict
 from nltk.corpus import stopwords
 import nltk
