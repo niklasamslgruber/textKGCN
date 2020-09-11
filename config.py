@@ -18,7 +18,7 @@ word_window_size = 10
 parser.add_argument('--word_window_size', default=word_window_size, type=int, help=f"set window size (default: {word_window_size})", metavar='')
 
 # Edge Weights
-parser.add_argument('--use_edge_weights', default=False, action='store_true', help="use edge weights for model")
+parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
 # Set FLAGS from command line
 FLAGS = parser.parse_args()
