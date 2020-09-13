@@ -5,6 +5,7 @@ import pandas as pd
 from utils import get_kg_data_path
 
 all_relations_path = f"{get_kg_data_path()}/data/all_wiki_relations.csv"
+filtered_detail_relations_path = f"{get_kg_data_path()}/data/filtered_wiki_relations_detail.csv"
 filtered_relations_path = f"{get_kg_data_path()}/data/filtered_wiki_relations.csv"
 
 
@@ -65,9 +66,10 @@ def get_all_properties(threshold=1000):
     too_small = relations_df[relations_df["Count"] < threshold].index
     relations_df.drop(too_small, inplace=True)
 
-    # Save to CSV ordered by count
+    # Save to CSV ordered by count with details and without
     relations_df.sort_values(by=["Count"], ascending=False, inplace=True)
-    write_csv(relations_df, filtered_relations_path)
+    write_csv(relations_df, filtered_detail_relations_path)
+    write_csv(relations_df["ID"], filtered_relations_path)
     print(f"{initial_size - relations_df.shape[0]} items filtered out...")
 
 

@@ -1,916 +1,916 @@
-ID+label+description+aliases+Data type+Count
-P2860+cites work+citation from one creative work to another+bibliographic citation, citation+WikibaseItem+174416772
-P1545+series ordinal+"position of an item in its parent series (most frequently a 1-based index), generally to be used as a qualifier (different from ""rank"" defined as a class, and from ""ranking"" defined as a property for evaluating a quality)."+#, number, rank, ordinal number, position in series, s/n, S/N, section number, series number, sort order, sorting order, num., index, unit number, n°, nº+String+151796728
-P2093+author name string+string to store unspecified author name for publications; use if Wikidata item for author (P50) does not exist or is not known+author string, creator name string, maker name string, short author name, songwriting credits string+String+132681037
-P31+instance of+that class of which this subject is a particular example and member+∈, member of, type, is a, is, distinct element of, distinct individual member of, distinct member of, has class, has type, is a particular, is a specific, is a unique, is an, is an example of, is an individual, non-type member of, not a type but is instance of, occurrence of, rdf:type, uninstantiable instance of, unique individual of, unitary element of class, unsubclassable example of, unsubclassifiable member of, unsubtypable particular, main type, is a(n)+WikibaseItem+94037886
-P248+stated in+to be used in the references field to refer to the information document or database in which a claim is made; for qualifiers use P805+originating source, source of claim, in statement+WikibaseItem+67990115
-P1476+title+published title of a work, such as a newspaper article, a literary work, a website, or a performance work+article, full title, headline, known as, original title, titled+Monolingualtext+40492743
-P1433+published in+larger work that a given work was published in, like a book, journal or music album+album, venue, music album, on the tracklist of, part of work, published in journal, article of, chapter of, essay of, song on, song on album, track of, track on, track on album+WikibaseItem+36054583
-P304+page(s)+page number of source referenced for statement+page, p., pages, pg., pgs., pp.+String+34614022
-P478+volume+volume of a book or music release in a collection/series or a published collection of journal issues in a serial publication+vol., volume of a book, volume of serial+String+34088408
-P1227+astronomical filter+passband used to isolate particular sections of the electromagnetic spectrum+filter, colour filter, wavelength band+WikibaseItem+33124295
-P433+issue+issue of a newspaper, a scientific journal or magazine for reference purpose+number, no.+String+31109236
-P528+catalog code+catalog name of an object, use with qualifier P972+register, opus number, astronomical catalog, catalog number, catalogue code+String+28692380
-P972+catalog+catalog for the item, or, as a qualifier of P528 – catalog for which the 'catalog code' is valid+exhibition catalogue, catalogue, registry+WikibaseItem+23776069
-P50+author+main creator(s) of a written work (use on works, not humans); use P2093 when Wikidata item is unknown or does not exist+writer, authors, creator, written by, by, writers, author(s), writer(s)+WikibaseItem+19045736
-P407+language of work or name+"language associated with this creative work (such as books, shows, songs, or websites) or a name (for persons use ""native language"" (P103) and ""languages spoken, written or signed"" (P1412))"+language, audio language, available in, broadcasting language, language of name, language of spoken text, language of the name, language of the reference, language of URL, language of website, language of work, named in language, used language+WikibaseItem+15314799
-P17+country+sovereign state of this item (not to be used for human beings)+state, land, sovereign state, host country+WikibaseItem+13056729
-P921+main subject+primary topic of a work (see also P180: depicts)+subject, topic, artistic theme, sitter, theme, keyword, about, main topic, index term, subject heading, describes, is about, main issue, main thing, mainly about, mentions, primary subject, primary topic, refers to, topic of work, regards, regarding, in regards to, content deals with, content describes, content is about, has a subject, /common/topic/subject+WikibaseItem+11814662
-P642+of+qualifier stating that a statement applies within the scope of a particular item+in, scope, applies to, in scope of, in the scope of, within scope of, within the scope of+WikibaseItem+11071325
-P131+located in the administrative territorial entity+the item is located on the territory of the following administrative entity. Use P276 (location) for specifying locations that are non-administrative places and for items about events+city, town, locality, administrative territorial entity, region, state, based in, happens in, in, in administrative unit, in the administrative unit, Indian reservation, is in administrative unit, is in the administrative region of, is in the administrative unit, is in the arrondissement of, is in the borough of, is in the city of, is in the commune of, is in the county of, is in the department of, is in the district of, is in the Indian reservation of, is in the Indian reserve of, is in the local government area of, is in the municipality of, is in the parish of, is in the prefecture of, is in the principal area of, is in the province of, is in the region of, is in the rural city of, is in the settlement of, is in the shire of, is in the state of, is in the territory of, is in the town of, is in the village of, is in the voivodeship of, is in the ward of, is located in, located in administrative unit, located in the administrative territorial entity, located in the administrative unit, located in the territorial entity, location (administrative territorial entity)+WikibaseItem+10146438
-P459+determination method+how a value is determined, or the standard by which it is declared+standard, method, methodology, rationale, justification, determined by, method of determination, measured by+WikibaseItem+8413033
-P6259+epoch+epoch of an astronomical object coordinate++WikibaseItem+8086783
-P59+constellation+the area of the celestial sphere of which the subject is a part (from a scientific standpoint, not an astrological one)+part of constellation+WikibaseItem+7380323
-P1932+stated as+use as qualifier to indicate how the value was given in the source+sic, as, [sic], author statement, credited as, original wording, originally printed as, printed as, reference wording, source wording+String+7337373
-P106+occupation+"occupation of a person; see also ""field of work"" (Property:P101), ""position held"" (Property:P39)"+craft, profession, work, job, career, employment+WikibaseItem+6881669
-P703+found in taxon+the taxon in which the item can be found+found in species+WikibaseItem+6679136
-P21+sex or gender+sex or gender identity: male (Q6581097), female (Q6581072), intersex (Q1097630), transgender female (Q1052281), transgender male (Q2449503). Animal: male organism (Q44148), female organism (Q43445). Groups of same gender use subclass of (P279)+intersex, female, male, man, woman, gender, sex, gender expression, biological sex, gender identity+WikibaseItem+6617994
-P735+given name+first name or another given name of this person; values used with the property shouldn't link disambiguations nor family names.+name, Christian name, first name, forename, middle name, personal name+WikibaseItem+4495064
-P684+ortholog+orthologous gene in another species (use with 'species' qualifier)++WikibaseItem+4289498
-P143+imported from Wikimedia project+source of this claim's value; used in references section by bots importing data from Wikimedia projects; also allowed to be used for manual imports+from, source, imported from, import from Wikimedia project, import from WM project, imported from WM project+WikibaseItem+4023448
-P27+country of citizenship+the object is a country that recognizes the subject as its citizen+citizenship, citizen of, national of, subject of (country), (legal) nationality+WikibaseItem+3784496
-P361+part of+"object of which the subject is a part (if this subject is already part of object A which is a part of object B, then please only make the subject part of object A). Inverse property of ""has part"" (P527, see also ""has parts of the class"" (P2670))."+in, merged into, assembly of, component of, contained within, is part of, merged with, meronym of, part of-property, section of, subassembly of, subgroup of, subsystem of, system of, within, branch of, cadet branch of, collateral branch of+WikibaseItem+3513405
-P1057+chromosome+chromosome on which an entity is localized+on chromosome+WikibaseItem+3306150
-P279+subclass of+next higher class or type; all instances of these items are instances of those items; this item is a class (subset) of that item. Not to be confused with P31 (instance of)+⊂, ⊆, form of, has superclass, hyponym of, is a category of, is a class of, is a subtype of, is a type of, is also a, is necessarily also a, is thereby also a, rdfs:subClassOf, subcategory of, subset of, subtype of, type of, whose instances ⊆ those of, whose instances are among+WikibaseItem+3017601
-P373+Commons category+"name of the Wikimedia Commons category containing files related to this item (without the prefix ""Category:"")"+category Commons, commonscat+String+2979757
-P225+taxon name+correct scientific name of a taxon (according to the reference given)+correct name (ICNafp), Latin name of a taxon (deprecated), scientific name of a taxon, valid name (ICZN)+String+2843079
-P171+parent taxon+closest parent taxon of the taxon in question+higher taxon, taxon parent+WikibaseItem+2842792
-P105+taxon rank+level in a taxonomic hierarchy+taxonomic rank, rank, type of taxon+WikibaseItem+2837912
-P1810+named as+name by which a subject is recorded in a database or mentioned as a contributor of a work+credited as, subject stated as+String+2758500
-P19+place of birth+most specific known (e.g. city instead of country, or hospital instead of city) birth location of a person, animal or fictional character+birth location, birthplace, location of birth, POB, birth city, birth place, born at, born in, location born+WikibaseItem+2631519
-P734+family name+part of full name of person+surname, last name+WikibaseItem+2498333
-P195+collection+art, museum, archival, or bibliographic collection the subject is part of+art collection, archives, museum collection, GLAM, archival holdings+WikibaseItem+2398095
-P1343+described by source+reference work where this item is described+subject of, entry, described in source, written about in, described by biography, described by encyclopedia, described by reference work+WikibaseItem+2376610
-P1435+heritage designation+heritage designation of a cultural or natural site+designation, protection, heritage status, heritage designation, legal protection, listed status, listing, protected status+WikibaseItem+1966603
-P421+located in time zone+time zone for this item+time zone, time, timezone, TZ+WikibaseItem+1878044
-P276+location+location of the object, structure or event. In the case of an administrative entity use P131. In the case of a geographic entity use P706+neighborhood, locality, venue, region, event location, based in, in, is in, located, located in, location of item, moveable object location, place held+WikibaseItem+1862504
-P281+postal code+identifier assigned by postal authorities for the subject area or building+"PIN Code, post code, postal index number, postcode, zip code, ZIP+4, zipcode"+String+1722658
-P641+sport+sport in which the subject participates or belongs to+play, sports, plays, sport played+WikibaseItem+1600696
-P1640+curator+content specialist responsible for this collection or exhibition+keeper, biocurator, curated by, curation authority, digital curator, has curator+WikibaseItem+1587006
-P527+has part+"part of this subject; inverse property of ""part of"" (P361). See also ""has parts of the class"" (P2670)."+comprised of, has member, contains, formed from, formed out of, ingredients, amalgamation of, assembled from, assembled out of, composed of, consists of, contain, created from, created out of, has as part, has component, has ingredient, has ingredients, have part, holonym of, includes, includes part, parts, set of+WikibaseItem+1572401
-P155+follows+"immediately prior item in a series of which the subject is a part [if the subject has replaced the preceding item, e.g. political offices, use ""replaces"" (P1365)]"+predecessor, preceded by, succeeds, before was, comes after, prequel is, previous is, sequel of, split from, succeeds to, successor to, prev, previous element+WikibaseItem+1538970
-P156+followed by+"immediately following item in a series of which the subject is a part [if the subject has been replaced, e.g. political offices, use ""replaced by"" (P1366)]"+comes before, next is, precedes, preceeds, prequel of, sequel is, succeded by, successor, next, next element+WikibaseItem+1521221
-P69+educated at+educational institution attended by subject+education, faculty, alma mater, alumna of, alumni of, alumnus of, college attended, graduate of, graduated from, school attended, studied at, university attended, attended, place of education+WikibaseItem+1467157
-P659+genomic assembly+specify the genome assembly on which the feature is placed+GenLoc assembly+WikibaseItem+1454861
-P54+member of sports team+sports teams or clubs that the subject currently represents or formerly represented+team, club played for, member of team, of team, part of team, played for, player of, plays for, team played for, teams played for+WikibaseItem+1400474
-P1001+applies to jurisdiction+the item (an institution, law, public office ...) or statement belongs to or has power over or applies to the value (a territorial jurisdiction: a country, state, municipality, ...)+jurisdiction, applied to jurisdiction, applies to territorial jurisdiction, belongs to jurisdiction, country of jurisdiction, linked to jurisdiction, of jurisdiction, valid in jurisdiction+WikibaseItem+1394081
-P971+category combines topics+this category combines (intersects) these two or more topics+category intersects topics, cct, combines topics, subjects of category, topics of category+WikibaseItem+1375502
-P40+child+subject has object as child. Do not use for stepchildren+son, issue, children, daughter, daughters, has child, has children, has daughter, has daughters, has kid, has kids, has son, has sons, kid, kids, offspring, progeny, sons, descendants, parent of+WikibaseItem+1329193
-P6216+copyright status+copyright status for intellectual creations like works of art, publications, software, etc.+copyright restriction+WikibaseItem+1316188
-P136+genre+creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic+literary genre, film genre, music genre, genre of music, type of music, artistic genre, kind of music, type of film+WikibaseItem+1283418
-P1448+official name+official name of the subject in its official language(s)+legal name, name, full title, complete title, long name, official title, registered name+Monolingualtext+1274982
-P682+biological process+is involved in the biological process++WikibaseItem+1238299
-P161+cast member+"actor in the subject production [use ""character role"" (P453) and/or ""name of the character role"" (P4633) as qualifiers] [use ""voice actor"" (P725) for voice-only role]"+actor, actress, film starring, starring, contestant of a play+WikibaseItem+1230914
-P39+position held+subject currently or formerly holds the object position or public office+holds position, office held, political office held, political seat, position occupied, public office+WikibaseItem+1215281
-P680+molecular function+represents gene ontology function annotations++WikibaseItem+1199755
-P7243+pronunciation+lexeme form pronunciation, usually identical to the form's representation, but may include stress position indicator ◌́. Pronunciation audio and IPA text should be attached as qualifiers. Duplicate values are OK if more than one pronunciation exists.++Monolingualtext+1164348
-P6375+street address+full street address where subject is located. include building number through to post code. use also P669 if the street is known as a separate element+address, physical address, located at street address, mailing address, mail address+Monolingualtext+1121650
-P108+employer+person or organization for which the subject works or worked+workplace, employed by, worked at, worked for, working for, working place, works at, works for+WikibaseItem+1121501
-P217+inventory number+identifier for a physical object or a set of physical objects in a collection+accession number, reference, call number, reference number, catalogue number, collection number, control number, local identifier, object number, shelfmark+String+1081744
-P166+award received+award or recognition received by a person, organisation or creative work+award, awards, award won, awarded, awards received, honorary title, honors, honours, medals, prize awarded, prize received, recognition title, win, winner of+WikibaseItem+1068994
-P405+taxon author+the author(s) that (optionally) may be cited with the scientific name+author citation, described by+WikibaseItem+1062895
-P495+country of origin+country of origin of this item (creative work, food, phrase, product, etc.)+comes from, originates from, CoO, origin (country), place of origin+WikibaseItem+1050614
-P215+spectral class+spectral class of an astronomical object+is a star of class, is an object of class+String+1043561
-P645+genomic end+genomic ending coordinate of the biological sequence (e.g. a gene)+stop, Genloc End, Genloc Stop, genomic stop, stop coordinate+String+1028899
-P644+genomic start+genomic starting coordinate of the biological sequence (e.g. a gene)+from, Genloc From, Genloc Start, genomic from, start coordinate+String+1028892
-P150+contains administrative territorial entity+(list of) direct subdivisions of an administrative territorial entity+contains, divided into, divides into, has administrative divisions, has arrondissements, has boroughs, has cities, has counties, has countries, has districts, has local government areas, has members, has municipalities, has regions, has rural cities, has shires, has states, has towns, has villages, has wards, subdivided into+WikibaseItem+1026110
-P20+place of death+most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character+POD, deathplace, location of death, death location, death place, died in+WikibaseItem+1017820
-P2548+strand orientation+orientation of gene on double stranded DNA molecule++WikibaseItem+1007606
-P1412+languages spoken, written or signed+language(s) that a person speaks, writes or signs, including the native language(s)+language, used language, second language, language used, language spoken, language of expression, language read, language signed, language written, language(s) spoken, written or signed, languages of expression, languages signed, languages spoken, languages spoken, written, or signed, signed language, signs language, speaks language, spoke language, uses language, writes language, wrote language+WikibaseItem+985548
-P186+material used+material the subject is made of or derived from+medium, media, reactant, ingredient, feedstock, raw material, construction material, built from, built out of, constructed from, constructed out of, crafted from, crafted out of, formed from, formed out of, ingredients, made from, made of, manufactured from, manufactured out of, ore, source material+WikibaseItem+980169
-P702+encoded by+the gene that encodes some gene product++WikibaseItem+976379
-P688+encodes+the product of a gene (protein or RNA)+codes for+WikibaseItem+973362
-P1013+criterion used+property by which a distinction or classification is made+basis, according to, by, with respect to, based on, criteria used, on the basis of, respectively to, with reference to+WikibaseItem+918678
-P681+cell component+component of the cell in which this item is present+subcellular localization+WikibaseItem+903827
-P22+father+"male parent of the subject. For stepfather, use ""stepparent"" (P3448)"+child of, dad, daddy, daughter of, has father, is child of, is daughter of, is son of, parent, son of+WikibaseItem+816741
-P170+creator+"maker of this creative work or other object (where no more specific property exists). Paintings with unknown painters, use ""anonymous"" (Q4233718) as value."+painter, sculptor, sculptors, created by, made by, created, artist (non-musical), creators, painters+WikibaseItem+739943
-P1264+valid in period+time period when a statement is valid+time period, applies to period, period of applicability, period of time, period of validity+WikibaseItem+717743
-P4224+category contains+category contains elements that are instances of this item+is set of+WikibaseItem+700543
-P3831+object has role+"(qualifier) role or generic identity of the value of a statement (""object"") in the context of that statement; for the role of the item the statement is on (""subject""), use P2868."+role, as, circumstances of employment, has role, object has generic identity, specifically, value has role+WikibaseItem+682377
-P26+spouse+"the subject has the object as their spouse (husband, wife, partner, etc.). Use ""unmarried partner"" (P451) for non-married companions"+husband, husbands, marriage partner, married, married to, marry, spouses, wed, wedded to, wife, wives+WikibaseItem+669598
-P7959+historic county+traditional, geographical division of Great Britain and Ireland+traditional county, ancient or geographic county+WikibaseItem+646534
-P301+category's main topic+primary topic of the subject Wikimedia category+cmt, article with category's topic, category's main article, item for this category, main article in category, main category topic, main topic of category, page with category's topic, topic of category+WikibaseItem+632815
-P910+topic's main category+main Wikimedia category+category for this topic, has category, main category, subject category+WikibaseItem+632135
-P518+applies to part+part, aspect, or form of the item to which the claim applies+for, applied to, applies to aspect, applies to form, apply to, apply to part, in form, involved part, limited to part, line item, of part, valid for part, when viewed as+WikibaseItem+623115
-P1843+taxon common name+common or vernacular name of a biological taxon+common name, vernacular name+Monolingualtext+568921
-P47+shares border with+countries or administrative subdivisions, of equal level, that this item borders, either by land or water. A single common point is enough.+border, adjacent to, bordered by, borders, next to+WikibaseItem+563512
-P1344+participant in+event in which a person or organization was/is a participant; inverse of P710 or P1923+competed in, competes in, participant of, participant of event, participated in, present at, takes part, took part, took part in+WikibaseItem+562665
-P1705+native label+label for item in its official or original language+autonym, label in official language, label in original language, name in official language, name in original language+Monolingualtext+520604
-P180+depicts+depicted entity (see also P921: main subject)+subject, motif, represents, depiction of, landscape of, painting of, portrait of, portrays, depicting+WikibaseItem+516693
-P25+mother+"female parent of the subject. For stepmother, use ""stepparent"" (P3448)"+mom, mum, mummy, child of, daughter of, is child of, is daughter of, is son of, parent, son of, mam, has mother+WikibaseItem+515562
-P1889+different from+item that is different from another item, with which it is often confused+≠, is not, confused with, different than, different to, differs from, disambiguated from, distinct from, distinguished from, is different from, isn't, mistakenly taken for, not same as, not the same as, not to be confused with, often confused with, rejected match, to be distinguished from, differ from, not equal to+WikibaseItem+510547
-P1559+name in native language+name of a person in their native language. Could be displayed in addition to the label, if language has a different script+native name+Monolingualtext+502656
-P175+performer+actor, musician, band or other performer associated with this role or musical work+actor, actress, artist, musician, dancer, musical artist, played by, portrayed by, recorded by, recording by, performed by, sung by+WikibaseItem+493942
-P2701+file format+file format, compression type, or ontology used in a file+format, document format, compression format, file type+WikibaseItem+487786
-P137+operator+person, profession, or organization that operates the equipment, facility, or service; use country for diplomatic missions+administrator, user, facility operator, item operator, managed by, operated by, service operator, webmaster+WikibaseItem+486952
-P102+political party+the political party of which this politician is or has been a member or otherwise affiliated+party, member of, member of party, member of political party, party membership+WikibaseItem+470314
-P274+chemical formula+description of chemical compound  giving element symbols and counts+molecular formula, formula+String+463949
-P3452+inferred from+statement added based on related statement found on the following item, not the entity described by the item (to be used in a source field)++WikibaseItem+450660
-P627+IUCN taxon ID+identifier for a taxon in the International Union for Conservation of Nature database; source for conservation status (P141)+IUCN Red List ID+String+448622
-P6224+level of description+position of the unit of description in the hierarchy of the fonds++WikibaseItem+423066
-P127+owned by+owner of the subject+owner, provenance, shareholder, stockholder, belongs to, is owned by, owners, shareholders, stockholders, belonged to+WikibaseItem+416078
-P282+writing system+alphabet, character set or other system of writing used by a language, supported by a typeface+script, alphabet+WikibaseItem+408956
-P123+publisher+organization or person responsible for publishing books, periodicals, games or software+publishing house, book publisher, video game publisher, board game publisher, software publisher, published by+WikibaseItem+397294
-P413+position played on team / speciality+position or specialism of a player on a team+specialism, speciality, fielding position, player position, position (on team)+WikibaseItem+394973
-P2937+parliamentary term+term of a parliament or any deliberative assembly+legislative term+WikibaseItem+394210
-P881+type of variable star+type of variable star+variable type+WikibaseItem+385786
-P179+part of the series+series which contains the subject+collection, series, listed in, part of series+WikibaseItem+368817
-P2868+subject has role+"role/generic identity of the item (""subject""), also in the context of a statement. For the role of the value of the statement (""object""), use P3831 (""object has role""). For acting roles, use P453 (""character role""). For persons, use P39."+job title, duty, role, function, purpose, as, has role, acting as, had role, subject had role, subject has generic identity+WikibaseItem+365542
-P512+academic degree+academic degree that the person holds+degree, diploma, academic diploma+WikibaseItem+346359
-P8363+study type+classification system for clinical trial, experiment, research++WikibaseItem+338270
-P364+original language of film or TV show+"language in which a film or a performance work was originally created. Deprecated for written works; use P407 (""language of work or name"") instead."+language, original language, created on language, language of the original work+WikibaseItem+335410
-P3373+sibling+"the subject has the object as their sibling (brother, sister, etc.). Use ""relative"" (P1038) for siblings-in-law (brother-in-law, sister-in-law, etc.) and step-siblings (step-brothers, step-sisters, etc.)"+sister, brother, sib, bro, brothers and sisters, siblings, brother or sister, has brother, has sister, sis, sister or brother, brothers, sisters, has sibling, is sibling of, is the sibling of, sisters and brothers, is brother of, is sister of, is the brother of, is the sister of+WikibaseItem+334696
-P463+member of+organization, musical group, or club to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a position such as a member of parliament (use P39 for that).+membership, band member of+WikibaseItem+332855
-P159+headquarters location+city, where an organization's headquarters is or has been situated. Use P276 qualifier for specific building+seat, HQ, based in, garrison, headquarters, admin HQ, head office location, head quarters, HQ location, principle office+WikibaseItem+327201
-P128+regulates (molecular biology)+process regulated by a protein or RNA in molecular biology++WikibaseItem+326614
-P140+religion+religion of a person, organization or religious building, or associated with this subject+faith, denomination, life stance, religious affiliation, follower of religion, follows religion, has religion+WikibaseItem+323057
-P5008+on focus list of Wikimedia project+property to indicate that an item is of particular interest for a Wikimedia project. This property does not add notability. Items should not be created with this property if they are not notable for Wikidata. See also P6104, P972, P2354.+catalog of Wikimedia project, focus list, focused on by Wikimedia project, has Wikimedia project, Wikimedia project focus list+WikibaseItem+321572
-P264+record label+brand and trademark associated with the marketing of subject music recordings and music videos+label+WikibaseItem+319640
-P805+statement is subject of+(qualifying) item that describes the relation identified in this statement+article, artfor, dedicated article, dedicated item, is subject of, subject of, subject of the claim, subject of the statement, related item of statement+WikibaseItem+316569
-P233+canonical SMILES+Simplified Molecular Input Line Entry Specification (canonical format)+SMILES, Simplified Molecular Input Line Entry Specification+String+310594
-P126+maintained by+person or organization in charge of keeping the subject (for instance an infrastructure) in functioning order+maintenance, administrator, custodian, maintainer, administered by+WikibaseItem+301922
-P710+participant+"person, group of people or organization (object) that actively takes/took part in an event or process (subject).  Preferably qualify with ""object has role"" (P3831). Use P1923 for participants that are teams."+agent, accused, party, attendee, belligerents, between, competitor, event participant, participants, player, suspect+WikibaseItem+300832
-P57+director+director(s) of film, TV-series, stageplay, video game or similar+film director, movie director, directed by+WikibaseItem+289752
-P768+electoral district+"electoral district this person is representing, or of the office that is being contested. Use as qualifier for ""position held"" (P39) or ""office contested"" (P541) or ""candidacy in election"" (P3602)"+constituency, seat, electorate, riding, ward, electoral area+WikibaseItem+287650
-P937+work location+location where persons were active+location of work, place of work, work location, workplace, active in, place of activity, work place, working at, work residence, place of employment+WikibaseItem+283136
-P138+named after+"entity or event that inspired the subject's name, or namesake (in at least one language). Qualifier ""applies to name"" (P5168) can be used to indicate which one"+etymology, toponym, eponym, name after, named for, named in honor of, namesake, linked with+WikibaseItem+281748
-P6153+research site+place where this item was researched+location of research, place researched, where researched+WikibaseItem+262202
-P460+said to be the same as+this item is said to be the same as that item, but the statement is disputed+equal to, close to, conspecific with, disputed equivalence, equivalent of, equivalent to, is said to be the same as, is the same as, possibly equivalent to, possibly the same as, said to be different from, same, same as, see also, similar to, the same as, said to be equal to, could be, could be equal to, may be, may be equal to+WikibaseItem+243177
-P291+place of publication+geographical place of publication of the edition (use 1st edition when referring to works)+location of publication, publication city, publication location, publication place, publication region, published in (place), release region, released in+WikibaseItem+237053
-P1552+has quality+the entity has an inherent or distinguishing non-material characteristic+aspect, attribute, parameter, quality, characterized by, defined by, defining feature, defining parameter, has characteristic, has feature, has property, inherent property, required property, requirement, trait+WikibaseItem+234576
-P1031+legal citation of this text+legal citation of legislation or a court decision+citation, case citation, neutral citation, parallel citation, regulation citation, statute citation+String+234108
-P1050+medical condition+any state relevant to the health of an organism, including diseases and positive conditions+disease, condition, disorder, illness, ailment, disability, health condition, health issue, health problem, paralympic disability, suffers from, suffer from+WikibaseItem+231994
-P3880+Caverphone+phonetic algorithm++String+223276
-P2094+competition class+official classification by a regulating body under which the subject (events, teams, participants, or equipment) qualifies for inclusion+weight class, class for competition, compclass, disability sport classifications, qualification class, qualifies for, rated at+WikibaseItem+221718
-P1365+replaces+"person or item replaced. Use ""structure replaces"" (P1398) for structures. Use ""follows"" (P155) if the previous item was not replaced or predecessor and successor are identical"+predecessor, continues from, forefather, preceded by, previous job holder, replaced, succeeds, supersedes, continues+WikibaseItem+220865
-P1346+winner+winner of an event - do not use for awards (use P166/P2453 instead), nor for wars or battles+leader, 1st place medalist, awardee, champ, champion, nominee, prizewinner, titleholder, top dog, victor, winners, won by+WikibaseItem+220191
-P3878+Soundex+phonetic algorithm for indexing names by sound, as pronounced in English. Format: initial of word followed by 3 digits (0–6)++String+218788
-P348+software version identifier+numeric or nominal identifier of a version of a software program or file format, current or past+latest release version, latest version, release version, release versions, software version, software version identifiers, software versions, stable version, stable versions, version, version number, versions+String+209686
-P360+is a list of+common element between all listed items+lists, list of, main article of list, main topic of list+WikibaseItem+205548
-P613+OS grid reference+grid location reference from the Ordnance Survey National Grid reference system used in Great Britain+NGR, grid reference, British National Grid, OSGR+String+204954
-P2817+appears in the heritage monument list+heritage monument is a part of the list of heritage monuments++WikibaseItem+203942
-P5911+inflection class+inflection class this lexeme belongs to, pattern of forms of the lexeme+form pattern+WikibaseItem+201703
-P7261+use restriction status+status of any use restrictions on the object, collection, or materials++WikibaseItem+200923
-P1532+country for sport+country a person or a team represents when playing a sport+sport country, sport nationality, sporting nationality, sports country, sports nationality+WikibaseItem+199461
-P1366+replaced by+other person or item which continues the item by replacing it in its role. Use P156 (followed by) if the item is not replaced (e.g. books in a series), nor identical, but adds to the series without dropping the role of this item in that series+heir, successor, continued by, mediatised to, next job holder, succeeded by, superseded by+WikibaseItem+198622
-P3879+Cologne phonetics+phonetic algorithm which assigns to words a sequence of digits, the phonetic code++String+194765
-P2894+day of week+day of the week on which this item occurs, applies to or is valid++WikibaseItem+191363
-P2348+time period+time period (historic period or era, sports season, theatre season, legislative period etc.) in which the subject occurred+epoch, sports season, legislative period, historical period, era, historic period, historic era, theatre season+WikibaseItem+187502
-P607+conflict+battles, wars or other military engagements in which the person or item participated+battle, war, military conflict, engagement, in action, in conflict, military engagement, participant in conflict, participated in conflict, theater (military), theatre (military)+WikibaseItem+186707
-P1303+instrument+musical instrument that a person plays+musical instrument, instrument played, plays, plays instrument+WikibaseItem+185066
-P1814+name in kana+the reading of a Japanese name in kana+kana, furigana, reading in kana, yomigana, kana name, kana reading+String+184025
-P473+local dialing code+identifier dedicated to subject city by the area communication network+telephone numbering plan, area code, local calling code, STD code, telephone code, telephone prefix, dialling code, local dialling code+String+182908
-P4196+cytogenetic location+cytogenetic location of the gene or region+locus, cytogenetic band+String+182268
-P462+color+color of subject+colour, colors, colours, has color, has colour+WikibaseItem+179718
-P101+field of work+specialization of a person or organization; see P106 for the occupation+academic discipline, subject, area, field of study, discipline, activity, FOW, scientific discipline, domain, academic area, academic subject, be researcher in, conduct research about, fields, research on, responsible for, scientific area, specialism, speciality, studies, domain of activity, activity domain+WikibaseItem+179652
-P119+place of burial+location of grave, resting place, place of ash-scattering, etc, (e.g. town/city or cemetery) for a person or animal. There may be several places: e.g. re-burials, cenotaphs, parts of body buried separately.+tomb, burial place, buried at, buried in, grave at, interment, location of burial, place of grave, place of interment, resting place+WikibaseItem+178508
-P7228+access restriction status+status of any access restrictions on the object, collection, or materials++WikibaseItem+178482
-P5185+grammatical gender+grammatical gender of the word+gender+WikibaseItem+174665
-P6099+clinical trial phase+phase designation for a clinical trial++WikibaseItem+172820
-P793+significant event+significant or notable events associated with the subject+event, outcome, big event, key event, fate, known for, key incident, main events, major event, notable event, notable incident, significant achievment, significant incident, sign. event+WikibaseItem+168075
-P81+connecting line+railway or public transport line(s) subject is directly connected to; use as a qualifier to P197+railway line, is on, line connected to, rail line connected to, rapid transit line+WikibaseItem+167901
-P162+producer+person(s) who produced the film, musical work, theatrical production, etc. (for film, this does not include executive producers, associate producers, etc.) [for production company, use P272, video games - use P178]+film producer, record producer, produced by+WikibaseItem+166826
-P1480+sourcing circumstances+qualification of the truth or accuracy of a source: circa (Q5727902), near (Q21818619), presumably (Q18122778), etc.+certainty, validity, reliability, accuracy, precision, confidence, qualitative valuation+WikibaseItem+166102
-P58+screenwriter+person(s) who wrote the script for subject item+written by, scriptwriter, film script by, screenplay by, teleplay by, writer (of screenplays), writing credits+WikibaseItem+162679
-P197+adjacent station+the stations next to this station, sharing the same line(s)+neighbouring station, next station, next stop, previous station+WikibaseItem+161535
-P86+composer+"person(s) who wrote the music [for lyricist, use ""lyrics by"" (P676)]"+songwriter, composed by, music by, musical score by, written by+WikibaseItem+161295
-P708+diocese+administrative division of the church to which the element belongs; use P5607 for other types of ecclesiastical territorial entities+archdiocese, bishopric, archbishopric+WikibaseItem+159832
-P1402+Foundational Model of Anatomy ID+identifier for human anatomical terminology+FMA, Foundational Model of  Anatomy+String+158089
-P2017+isomeric SMILES+dedicated SMILES for isomer+iso-SMILES+String+158054
-P400+platform+platform for which a work was developed or released, or the specific platform version of a software product+platforms, hardware, environment, computing platform, runtime, game platform, published on+WikibaseItem+156563
-P566+basionym+the legitimate, previously published name on which a new combination or name at new rank is based++WikibaseItem+154023
-P859+sponsor+organization or individual that sponsors this item+patron, endorsed by, sponsored by+WikibaseItem+143918
-P4844+research intervention+the focus of an experiment, also called the experimental variable, research activity, or study intervention+intervention, treatment, exposure, experimental variable+WikibaseItem+142455
-P275+copyright license+license under which this copyrighted work is released+license, licence, content licence, content license, copyright licence+WikibaseItem+141298
-P172+ethnic group+subject's ethnicity (consensus is that a VERY high standard of proof is needed for this field to be used. In general this means 1) the subject claims it themself, or 2) it is widely agreed on by scholars, or 3) is fictional and portrayed as such)+people, race, ethnicity, culture, (cultural) nationality+WikibaseItem+140225
-P1813+short name+short name of a place, organisation, person, Wikidata property, etc.+acronym, abbreviation, shortened name, initialism, abbreviated name, brief name+Monolingualtext+139420
-P669+located on street+"street, road, or square, where the item is located. To add the number, use Property:P670 ""street number"" as qualifier. Use property P6375 if there is no item for the street"+street, road, square, address street, is on, located at street (item), on street+WikibaseItem+139355
-P1454+legal form+legal form of an organization+type of business entity, legal structure, structured as+WikibaseItem+134460
-P410+military rank+"military rank achieved by a person (should usually have a ""start time"" qualifier), or military rank associated with a position"+rank+WikibaseItem+127974
-P2096+media legend+qualifier to describe the media of the statement. This avoids legend storage in the local infobox when the media is defined at Wikidata. For the date, use P585 instead.+audio description, legend, audio caption, audio legend, caption, image description, image legend, media caption, media description, video caption, video description, video legend+Monolingualtext+127914
-P7727+legislative committee+committee in which the legislation is discussed++WikibaseItem+123663
-P1478+has immediate cause+nearest, proximate thing that directly resulted in the subject as outcome or effect. Used in conjunction with 'has cause' (i.e. underlying cause) and 'has contributing factor'. See 'Help:Modeling causes'.+has immediate causes, has proximate cause, has proximate causes, immediate cause, immediate effect of, immediate outcome of, immediate result of, immediately caused by, is immediately caused by, is proximately caused by, proximate effect of, proximate outcome of, proximate result of, proximately caused by+WikibaseItem+123242
-P141+IUCN conservation status+conservation status assigned by the International Union for Conservation of Nature+conservation status+WikibaseItem+122011
-P437+distribution format+method (or type) of distribution for the subject+edition, medium, media, format, media type, distribution, type of media, book format, form of publication, media format+WikibaseItem+120971
-P490+provisional designation+designation of an astronomical body after its discovery and before its official name++String+120449
-P223+galaxy morphological type+galaxy morphological classification code+De Vaucouleurs classification system, Hubble sequence, is a galaxy of type+String+120435
-P593+HomoloGene ID+identifier in the HomoloGene database++String+119720
-P5323+attested in+document where the lemma or form of a Lexeme entity, word or name is attested+form of lexeme found in, lexeme form found in+WikibaseItem+118486
-P898+IPA transcription+transcription in the International Phonetic Alphabet+IPA, pronunciation (IPA)+String+118369
-P2079+fabrication method+method, process or technique used to grow, cook, weave, build, assemble, manufacture the item+manufacturing process, assembly method, fabrication process, made by, manufacturing method, production method, production process, technique used, produced by, assembly process, by means, by method, method used, process used, technology used, creation method, method of assembly, method of fabrication, produced using+WikibaseItem+118002
-P2241+reason for deprecation+qualifier to allow the reason to be indicated why a particular statement should be considered deprecated+Wikidata reason for deprecation, cause of deprecation, deprecated because, deprecation reason+WikibaseItem+114716
-P176+manufacturer+manufacturer or producer of this product+builder, made by, built by, mfr, maker, manufactured by, producer (of product), product of+WikibaseItem+113912
-P1329+phone number+telephone number in standard format (RFC3966), without 'tel:' prefix+phone, tel:, telephone, telephone number, number, fon, phone #, ＴＥＬ, voice number+String+113648
-P2715+elected in+qualifier for statements in position held to link the election in which a person gained a position from, or reelection in which the position was confirmed+election+WikibaseItem+111922
-P551+residence+the place where the person is or has been, resident+lives in, home town, hometown, lived in, place of residence, resided at, resided in, resident in, resident of+WikibaseItem+108568
-P1477+birth name+full name of a person at birth, if different from their current, generally used name (samples: John Peter Doe for Joe Doe, Ann Smith for Ann Miller)+name at birth, bn, birthname, bname, born as, full name at birth, maiden name (female), nee, née+Monolingualtext+108532
-P36+capital+primary city of a country, province, state or other type of administrative territorial entity+chef-lieu, county seat, administrative centre, administrative headquarters, capital city, capital town, court residence, has capital, principal place+WikibaseItem+107961
-P149+architectural style+architectural style of a structure+architecture, style of architecture+WikibaseItem+107555
-P4100+parliamentary group+parliamentary group which a member of a parliament belongs to+party, faction+WikibaseItem+106848
-P393+edition number+number of an edition (first, second, ... as 1, 2, ...) or event+version number, software version number+String+105284
-P272+production company+company that produced this film, audio or performing arts work+film studio, theatre company, ballet company, studio, motion picture studio, movie studio, theatrical troupe, broadcasting company, production house, theater company+WikibaseItem+104927
-P6379+has works in the collection+collection that have works of this person+has work in the collection, has works in the collection(s), work in collection, works in collection, museum housing this person's work+WikibaseItem+104926
-P509+cause of death+underlying or immediate cause of death.  Underlying cause (e.g. car accident, stomach cancer) preferred.  Use 'manner of death' (P1196) for broadest category, e.g. natural causes, accident, homicide, suicide+death cause, die from, die of, died of, method of murder, murder method+WikibaseItem+104875
-P749+parent organization+parent organization of an organization, opposite of subsidiaries (P355)+holding company, holding, parent company, owned by (company or organisation), owned by (company or organization), parent agency, parent organisation, parent unit, part of, subsidiary of, superior formation+WikibaseItem+102883
-P5279+hyphenation+positions where this form can be hyphenated++String+101844
-P1923+participating team+Like 'Participant' (P710) but for teams. For an event like a cycle race or a football match you can use this property to list the teams and P710 to list the individuals (with 'member of sports team' (P54) as a qualifier for the individuals)+teams+WikibaseItem+101339
-P1441+present in work+this (fictional) entity or person is present in the story of that work (use P2860 for works citing other works, P361/P1433 for works being part of / published in other works, P1343 for entities described in non-fictional accounts)+subject of, from narrative, appears in, described by work, discussed in work, featured in work, from work, in narrative, in work, is shown in, mentioned in+WikibaseItem+101294
-P935+Commons gallery+name of the Wikimedia Commons gallery page(s) related to this item (is suitable to allow multiple links to more gallery pages)+gallery+String+99796
-P3602+candidacy in election+election where the subject is a candidate+candidate in election, election candidacy, candidate in, ran in election, running in election+WikibaseItem+99726
-P2789+connects with+item with which the item is physically connected+attached to, attaches to, binds to, connected to, connected with, connects to, couples with, intersects at grade, mates with, meets at grade+WikibaseItem+98380
-P196+minor planet group+is in grouping of minor planets according to similar orbital characteristics+asteroid group+WikibaseItem+97288
-P103+native language+language or languages a person has learned from early childhood+first language, L1 speaker of, language native, mother tongue+WikibaseItem+97279
-P403+mouth of the watercourse+the body of water to which the watercourse drains+outflow, drain, outlet, river mouth, watercourse drain, watercourse ends in, watercourse outflow, flows into+WikibaseItem+96110
-P1268+represents+organization or individual that an entity represents+represents organisation+WikibaseItem+95880
-P1534+end cause+qualifier to use together with the end date qualifier (P582) to specify the cause+cause of ending, ended by, end reason+WikibaseItem+94281
-P1683+quotation+quotation supporting the statement claim (to be used in the reference or qualifier field only, no quote marks)+excerpt, quote, citation+Monolingualtext+93291
-P1269+facet of+topic of which this item is an aspect, item that offers a broader perspective on the same topic+aspect of, main topic, section in, subitem of, subject in, subtopic of, topic of+WikibaseItem+92359
-P2521+female form of label+female form of name or title+female form of label (string), feminine form of label+Monolingualtext+90834
-P5051+towards+"qualifier for ""adjacent station"" (P197) to indicate the terminal station(s) of a transportation line or service in that direction"+terminus, destination, final station, in the direction of, last stop, terminating station, termini+WikibaseItem+89035
-P750+distributed by+distributor of a creative work; distributor for a record label+distributor+WikibaseItem+87891
-P1196+manner of death+general circumstances of a person's death; e.g. natural causes, accident, suicide, homicide, etc.  Use 'cause of death' (P509) for the specific physiological mechanism, e.g. heart attack, trauma, pneumonia...+circumstance of death, death manner, death type, type of death, nature of death+WikibaseItem+87248
-P7763+copyright status as a creator+states if the body of work published during the lifetime of this creator is still copyrighted or in the public domain+copyright status of works, copyright status as creator, statut des droits d'auteur du createur+WikibaseItem+87003
-P241+military branch+branch to which this military unit, award, office, or person belongs, e.g. Royal Navy+formation, branch, service branch, unit branch+WikibaseItem+86372
-P887+based on heuristic+indicates that the property value is determined based on some heuristic (Q201413); to be used as source+heuristic, heuristically based on+WikibaseItem+85044
-P1598+consecrator+bishop who presided as consecrator or co-consecrator of this bishop+consecrated by, has consecrator+WikibaseItem+83870
-P61+discoverer or inventor+subject  who discovered, first described, invented, or developed this discovery or invention+coined, inventor, developer, developed by, created by, invented, discoverer, first described, invented by, inventor or discoverer, discovered by+WikibaseItem+82681
-P1642+acquisition transaction+how the player was acquired; qualifier for P54 (member of sports team)+loan, contract status+WikibaseItem+81760
-P344+director of photography+person responsible for the framing, lighting, and filtration of the subject work+cinematographer, Cinematography, DOP+WikibaseItem+81609
-P958+section, verse, paragraph, or clause+paragraph, or other kind of special indication to find information on a page or on a document (legal texts etc.)+encyclopedia entry, verse, bibliography, dictionary entry, section, item number, clause, entry, paragraph, sub voce, s. v., sub verbo, title (of a section)+String+79757
-P4390+mapping relation type+qualifier to more precisely define the relation of the item to the external identifier using SKOS+mapping type, SKOS mapping relation+WikibaseItem+79232
-P1376+capital of+country, state, department, canton or other administrative division of which the municipality is the governmental seat+county seat for, county seat of+WikibaseItem+79026
-P355+subsidiary+subsidiary of a company or organization, opposite of parent organization (P749)+has subsidiary, owns, parent company of, subsidiary company, subsidiary entities, subsidiary of+WikibaseItem+78784
-P366+use+main use of the subject (includes current and former usage)+mission, role, function, purpose, usage, utility, as, used as, used for, used in, unit mission+WikibaseItem+78706
-P4510+describes a project that uses+essential component or tool that was used in the project described in this publication+uses, describes project that uses+WikibaseItem+78206
-P840+narrative location+the narrative of the work is set in this location+location of narrative, narrative set in, playing in, set in location, setting location, takes place in+WikibaseItem+77724
-P5187+word stem+word stem of the subject lexeme+stem, wordstem+Monolingualtext+77149
-P6886+writing language+language in which the writer has written their work+writing languages+WikibaseItem+76801
-P449+original broadcaster+network(s) or service(s) that originally broadcasted a radio or television program+television channel, radio station, radio network, TV channel, broadcast on, channel, first air channel, network, original air channel, original channel, original network+WikibaseItem+75802
-P2795+directions+describe how to find the subject - directions, objects along way, comments+locality or place+Monolingualtext+75430
-P670+street number+"number in the street address. To be used as a qualifier of Property:P669 ""located on street"""+address number, house number, housenumber+String+73777
-P974+tributary+stream or river that flows into a larger river (for lake inflows use P200)+affluent, has inflow of, has river inflow, has tributary, receives river, receives tributary+WikibaseItem+73438
-P53+family+family, including dynasty and nobility houses. Not family name (use P734 for family name).+house, dynasty, noble family, royal house+WikibaseItem+72455
-P3450+sports season of league or competition+"property that shows the competition of which the item is a season. Use P5138 for ""season of club or team""."+sport season, is a season of, is season of, season of, season of sports competition, season of sports league, season of sports tournament, seasons of+WikibaseItem+71855
-P395+licence plate code+distinguishing signs or parts of license plate associated with the subject. For countries: international licence plate country code or distinguishing sign of vehicles+license plate code+String+70843
-P747+has edition or translation+link to an edition of this item+edition, editions, has edition, has translation, translation(s)+WikibaseItem+69228
-P629+edition or translation of+is an edition or translation of this entity+edition of, translation of, version of+WikibaseItem+68976
-P4614+drainage basin+area where precipitation collects and drains off into a common outlet, such as into a river, bay, or other body of water+river basin district, river basin, watershed, catchment area, water basin+WikibaseItem+68847
-P800+notable work+notable scientific, artistic or literary work, or other work of significance among subject's works+work, artwork, bibliography, creator of, works, significance, famous books, famous for, famous works, known for, literary works, major works, notable books, representative of artwork type, representative work, significant works+WikibaseItem+68815
-P1618+sport number+number worn on a player's (competitor's) uniform, equipment, etc+bib, jersey number, shirt number, squad number, sweater number, uniform number, car number, entry number, guernsey number, jumper number, sports number+String+68428
-P664+organizer+person or institution organizing an event+event producer, organised by, organiser, organising body, organized by, organizing body+WikibaseItem+65794
-P118+league+league in which team or player plays or has played in+sports league, division+WikibaseItem+64176
-P1922+first line+first line of a poem or similar work+fl, 1st line, first sentence, first verse, incipit, opening line+Monolingualtext+63957
-P30+continent+continent of which the subject is a part++WikibaseItem+63932
-P1416+affiliation+organization that a person or organization is affiliated with (not necessarily member of or employed by)+affiliated with, sister society+WikibaseItem+63677
-P1411+nominated for+"award nomination received by a person, organisation or creative work (inspired from ""award received"" (Property:P166))"+nomination received, nominee for+WikibaseItem+63380
-P674+characters+characters which appear in this item (like plays, operas, operettas, books, comics, films, TV series, video games)++WikibaseItem+63224
-P5138+season of club or team+club or team that played the season+season of athletics program, season of club, season of team, sports season of club or team+WikibaseItem+62997
-P706+located on terrain feature+located on the specified landform. Should not be used when the value is only political/administrative (P131) or a mountain range (P4552).+geographical region, is on, terrain feature, on, is in, takes place in, loc (terr), location (terrain feature), on geographical feature, on natural feature+WikibaseItem+60978
-P2321+general classification of race participants+classification of race participants+GC+WikibaseItem+60956
-P453+character role+"specific role played or filled by subject -- use only as qualifier of ""cast member"" (P161), ""voice actor"" (P725)"+role, as, plays, acting role+WikibaseItem+60897
-P447+review score by+issuer of a review score+publication, scorer, reviewer, score issuer+WikibaseItem+60405
-P84+architect+person or architectural firm responsible for designing this building+architecture firm+WikibaseItem+59601
-P1686+for work+qualifier of award received (P166) to specify the work that an award was given to the creator for+awarded for work, citation for award, for their work on, nominated for work+WikibaseItem+58246
-P1313+office held by head of government+political office that is fulfilled by the head of the government of this item+head of government's office, office of head of government, position held by head of government, position of head of government, title of head of government+WikibaseItem+57537
-P112+founded by+founder or co-founder of this organization, religion or place+founder, co-founder, co-founded by, established by, founders+WikibaseItem+55372
-P945+allegiance+country (or other power) that the person or organization serves+loyalty, fidelity+WikibaseItem+55313
-P5166+established from medical condition+cell line or xenograft established from an individual person or animal with a specific medical condition++WikibaseItem+54442
-P452+industry+industry of company or organization+branch, sector, economic branch, field of action, field of exercise+WikibaseItem+54222
-P559+terminus+the feature (intersecting road, train station, etc.) at the end of a linear feature+termini, end point, trailhead, terminating connection+WikibaseItem+53695
-P65+site of astronomical discovery+the place where an astronomical object was discovered (observatory, satellite)+discovery site+WikibaseItem+53597
-P6275+copyright representative+person or organisation who represents the copyright for this person or work of art+πνευματικά δικαιώματα που εκπροσωπούνται από+WikibaseItem+53398
-P135+movement+literary, artistic, scientific or philosophical movement or scene associated with this person or work+school, artistic movement, music scene, literary movement, philosophical movement, artistic school, trend, scientific movement+WikibaseItem+52885
-P4552+mountain range+range or subrange to which the geographical item belongs+range, mountain system, hill range, located in mountain range, located on mountain range, mountain belt, parent range, system of mountains+WikibaseItem+52286
-P4101+dissertation submitted to+institution to whom a thesis or dissertation is submitted+submitted to, thesis submitted to+WikibaseItem+51809
-P206+located in or next to body of water+sea, lake or river+bay, lake, sea, body of water, loc (water), located next to body of water, located on body of water, next to lake, ocean, on bay, on coast of, on harbour, on lake, on river, on shore of, on the coast of, on the shore of+WikibaseItem+51047
-P8047+country of registry+country where a ship is or has been registered+flag state+WikibaseItem+50545
-P487+Unicode character+Unicode character representing the item+emoji, pictograph, Unicode symbol+String+50290
-P16+highway system+system (or specific country specific road type) of which the highway is a part+transport network, network of routes, part of network, road type, routes system, system of routes+WikibaseItem+49890
-P4856+conscription number+number identifying a building in one village/neighborhood++String+49658
-P742+pseudonym+alias used by someone (for nickname use P1449)+alias, code name, heteronym, known professionally as, nom de plume, nom-de-amore, nom-de-guerre, nom-de-plume, nome de guerre, pen name, stage name, user name, ring name+String+49193
-P511+honorific prefix+word or expression used before a name, in addressing or referring to a person+called, pre-nominal, referred to as, style prefix+WikibaseItem+47779
-P190+twinned administrative body+twin towns, sister cities, twinned municipalities and other localities that have a partnership or cooperative agreement, either legally or informally acknowledged by their governments+twin town, partner city, partner town, sister city, sister town, twin cities, twin city+WikibaseItem+46856
-P4908+season+season of a television show or podcast series+television series, TV series, television season, TV season, series of television program+WikibaseItem+46722
-P1588+village code of Indonesia+village identifier by Statistics Indonesia+desa code+String+46650
-P1040+film editor+person who works with the raw footage, selecting shots and combining them into sequences to create a finished motion picture+editor, edited by+WikibaseItem+45887
-P1680+subtitle+for works, when the title is followed by a subtitle+st+Monolingualtext+45838
-P97+noble title+titles held by the person+peerage, hereditary title, royal title, royal and noble ranks, title (hereditary)+WikibaseItem+45517
-P814+IUCN protected areas category+protected areas category by the World Commission on Protected Areas. Used with dedicated items for each category.+IUCN category, IUCN Management Category+WikibaseItem+45463
-P4213+Unicode hex codepoint+hexadecimal codepoint in Unicode+"U+, Unicode code point, codepoint"+String+45326
-P1472+Commons Creator page+"name of Commons Infobox template residing  in ""Creator"" namespace on Wikimedia Commons"+creator page, creator template+String+44918
-P1706+with+qualifier to specify the item that this property is shared with+feat., featuring, accompanied by, award shared with, shared with, tied with, together with+WikibaseItem+44276
-P609+terminus location+location of the terminus of a linear feature+to, between, from, destination, departure point+WikibaseItem+43859
-P3903+column+typographical column in the page of a document++String+42701
-P1066+student of+person who has taught this person+professor, supervisor, teacher, master, advisor, academic supervisor, disciple of, mentor, pupil of, studied under, tutor+WikibaseItem+41603
-P1071+location of creation+place where the item was made; where applicable, location of final assembly+mint, place of origin, assembly location, created at, creation location, location created, location of creation, location of final assembly, location of origin, made in, manufactured in, manufacturing location, minted at, place built, place made, place of manufacture, place of production, production place, written at, place of creation, location of production, production location+WikibaseItem+41499
-P1753+list related to category+Wikimedia list equivalent to a Wikimedia category+category's list, list equivalent to category+WikibaseItem+41474
-P1754+category related to list+Wikimedia category equivalent to a Wikimedia list+category equivalent to list, list category, list's category+WikibaseItem+41203
-P485+archives at+the institution holding the subject's archives+archive location, correspondence at, papers at+WikibaseItem+40605
-P740+location of formation+location where a group or organization was formed+comes from, formation location, formed in, founded in, from, originates from, place of formation, place of foundation, place of incorporation, source location of group/organisation+WikibaseItem+39844
-P7938+associated electoral district+constituencies/electoral districts in which a place is located or is part of. If a municipality/county is split into or part of several districts: add several values. Use only if distinct from administrative entities (P131) in predefined countries+associated constituency, constituency associated with place, electoral district associated with place, located in electoral district, located in the constituency+WikibaseItem+39430
-P8005+research subject recruitment status+categoric way to express whether a research project is or was open for enrolling research subjects meeting certain characteristics++WikibaseItem+38756
-P3432+parent cell line+closest parent cell line of the cell line in question++WikibaseItem+38672
-P2936+language used+language widely used (spoken or written) in this place or at this event+languages used, working language, working languages+WikibaseItem+37981
-P178+developer+organisation or person that developed the item+developed by, written by, created by+WikibaseItem+37003
-P1830+owner of+entities owned by the subject+owns, owns property, shareholder of+WikibaseItem+36760
-P726+candidate+person or party that is an option for an office in this election+electoral candidate, candidate in this election, has election candidate, election has candidate+WikibaseItem+36701
-P2417+stage classification+stage results and ranking of a stage race++WikibaseItem+36633
-P767+contributor to the creative work or subject+person or organization that contributed to a subject: co-creator of a creative work or subject+assistant, collaborator, contributor, contributor(s) to the subject+WikibaseItem+36558
-P812+academic major+subject someone studied at college/university+academic field, subject, major, field of study, academic subject, studied+WikibaseItem+35702
-P144+based on+the work(s) used as the basis for subject item+theme, derived from, adaptation of, based upon, adapted from, copy of, extended from, fork of, modeled after, remake of, themed after, modelled after, replica of+WikibaseItem+35461
-P296+station code+generic identifier for a railway station, when possible, use specific property on certain coding system (e.g. P1378 for China Railway TMIS codes)+telegraph code, DS100 code, station identifier, station number, station numbering+String+35357
-P1464+category for people born here+category item that groups people born in this place+category for place of birth+WikibaseItem+35245
-P5137+item for this sense+concept corresponding to this sense of a lexeme. Do not use on items or properties+sense, item, means, denotes, sense item+WikibaseItem+35143
-P2302+property constraint+constraint applicable to this Wikidata property+constraint, rdfs:domain, rdfs:range+WikibaseItem+34419
-P1039+type of kinship+"qualifier of ""relative"" (P1038) to indicate less usual family relationships (ancestor, son-in-law, adoptions, etc). Indicate how the qualificator item is related to the main item."+kinship, nature of kinship, relationship (kinship), type of relationship+WikibaseItem+34331
-P412+voice type+person's voice type. expected values: soprano, mezzo-soprano, contralto, countertenor, tenor, baritone, bass (and derivatives)+register, range of voice, tessitura, type of voice, vocal type+WikibaseItem+33656
-P6+head of government+head of the executive power of this town, city, municipality, state, country, or other governmental body+president, chancellor, mayor, prime minister, governor, premier, first minister, executive power headed by, government headed by, head of national government+WikibaseItem+33214
-P725+voice actor+"performer of a spoken role in a creative work such as animation, video game, radio drama, or dubbing over [use ""character role"" (P453) as qualifier] [use ""cast member"" (P161) for live acting]"+CV, voice actress, VA, seiyu, VO, voice dubber, dubbed by, voice actors, voice actresses, voiced by+WikibaseItem+33172
-P1824+road number+number assigned to a stretch of public roadway+route number, highway number, shield number+String+33142
-P404+game mode+a video game's available playing mode(s)+mode, gameplay+WikibaseItem+32848
-P541+office contested+title of office which election will determine the next holder of+contested office, contested position, position contested+WikibaseItem+32755
-P115+home venue+home stadium or venue of a sports team or applicable performing arts organization+arena, stadium, venue, ground, ballpark, home field, home ground, home water+WikibaseItem+32671
-P2061+aspect ratio+image width to height ratio of films, photographs, and other images+ratio, image aspect ratio+WikibaseItem+32599
-P2416+sports discipline competed in+discipline an athlete competed in within a sport+sporting event, sports event, sports discipline, sport discipline, discipline of sport, event in sports, sport discipline competed in, sport disciplines competed in, sports disciplines competed in+WikibaseItem+31534
-P306+operating system+operating system (OS) on which a software works or the OS installed on hardware+OS+WikibaseItem+31241
-P1383+contains settlement+settlement which an administrative division contains+populated places within+WikibaseItem+31067
-P4633+name of the character role+name by which a character role is recorded in a database or mentioned in the context of a work, use as qualifier for cast; notably a specific performance of a theatrical production of a play+character name, character named as, character role named as, name of character role, name of role, name of the character, name of the role, role name, role named as+String+31014
-P2670+has parts of the class+the subject instance has parts of the object class (the subject is usually not a class)+composition has pieces that are, constitutent(s) are classified as, has part of the class, has part(s) forming subclass of, has part(s) that are instances of, has parts of class, has parts(P527): instances(P31)of, is assemblage with parts that are, is built/made with example(s) of, is constructed with members of, of subcomponents whose class is, parts of(P361) subject are some, some parts form subclass(P279)of, contains parts of the class+WikibaseItem+30911
-P184+doctoral advisor+person who supervised the doctorate or PhD thesis of the subject+doctoral supervisor, supervisor, advisor, PhD advisor, promotor+WikibaseItem+30710
-P802+student+notable student(s) of the subject individual+pupil, disciples, disciple, pupils, students, teacher of, teacher to+WikibaseItem+30465
-P548+version type+type of version (qualifier for P348, software version), e.g. alpha, beta, stable+release type, software version type+WikibaseItem+29906
-P3005+valid in place+place where a statement is valid+country, applies to location, applies to place, true in, valid in location, valid in territory+WikibaseItem+29825
-P1853+blood type+blood type of the human or animal+blood group+WikibaseItem+29443
-P1038+relative+"family member (qualify with ""type of kinship"", P1039; for direct family member please use specific property)"+family, aunt, grandson, brother-in-law, aunt-in-law, daughter-in-law, relation, cousin, co-brother-in-law, grandfather, grandmother, grandparent, ancestor, son-in-law, family member, sister-in-law, uncle, nephew, nibling, niece, father-in-law, lineal descendant, mother-in-law, co-sister-in-law, grandchild, co-sibling-in-law, descendant, co-husband, co-wife, collateral descendant, grandchildren, granddauther, kinsman, non-binary parent, uncle-in-law+WikibaseItem+29391
-P676+lyrics by+author of song lyrics; also use P86 for music composer+author, lyricist, lyracist, words by, writer (of song lyrics)+WikibaseItem+29289
-P1950+second family name in Spanish name+second (generally maternal) family name in Spanish names (do not use for other double barrelled names)+maternal surname, second Spanish name, second surname in Spanish name, Spanish maternal name, Spanish mother's maiden name, Spanish name, Spanish second name+WikibaseItem+29073
-P915+filming location+"actual place where this scene/film was shot. For the setting, use ""narrative location"" (P840)"+filming location, filmed at, location of filming, location where filmed, place of filming, place where filmed, shooting location, studio where filmed+WikibaseItem+29039
-P825+dedicated to+person or organization to whom the subject was dedicated+dedication, dedicatee, tribute to+WikibaseItem+28743
-P611+religious order+order of monks or nuns to which an individual or religious house belongs+order+WikibaseItem+28430
-P2561+name+name the subject is known by. If a more specific property is available, use that+aka, also known as, known as+Monolingualtext+28194
-P427+taxonomic type+the type genus of this family (or subfamily, etc), or the type species of this genus (or subgenus, etc)+type, type genus, type species, type taxon+WikibaseItem+27131
-P5607+located in the ecclesiastical territorial entity+the item is located on the territory of the following ecclesiastical entity. Use P708 (diocese) for dioceses+Parish, Deanery, Vicariate+WikibaseItem+26962
-P2962+title of chess person+title awarded by a chess federation to a person+chess title+WikibaseItem+26837
-P466+occupant+a person or organization occupying property+inhabitant, tenant, resident, lessee, renter, houses, location of+WikibaseItem+26429
-P3274+content deliverer+third party service (e.g. Google Books, Internet Archive, etc.) that made the content available where it was accessed++WikibaseItem+26279
-P1056+product or material produced+material or product produced by a government agency, business, industry, facility, or process+output, commodity, manufactures, product, products, producer of, creates, has product, maker of, makes, manufacturer of, material produced, produces, results in, work produced+WikibaseItem+26066
-P98+editor+editor of a compiled work such as a book or a periodical (newspaper or an academic journal)+compiler, compiled by, edited by+WikibaseItem+25861
-P1792+category of associated people+Wikimedia category for people associated with this place or organization+category for people associated with this place+WikibaseItem+25836
-P6339+reports periodicity+physical quantity corresponding to the interval of time between two measurements or reported data+data interval, data periodicity, mesurements periodicity+WikibaseItem+25815
-P560+direction+qualifier to indicate the direction of the parent statement's value relative to the subject item+facing+WikibaseItem+25607
-P5412+romanization of Belarusian (2007 system)+romanization of Belarusian (2007)++String+25018
-P5236+prime factor+one of the prime numbers that can be multiplied to give this number+prime factors+WikibaseItem+24898
-P2676+rating certificate ID+reference certificate identifier of content rating decisions+classification number+String+24885
-P7782+category for ship name+Commons category for a name of a ship+Commons category for ship name+WikibaseItem+24052
-P185+doctoral student+doctoral student(s) of a professor+supervise+WikibaseItem+23969
-P1684+inscription+inscriptions, markings and signatures on an object+legend, epigraph (inscription), legenda, text of inscription+Monolingualtext+23748
-P654+direction relative to location+qualifier for geographical locations to express relative direction+DRTL+WikibaseItem+23647
-P5102+nature of statement+(qualifier only) the underlying circumstances of this statement+frequency, condition, nature, modality of statement, refine statement, status of statement, validity of statement+WikibaseItem+23109
-P488+chairperson+presiding member of an organization, group or body+chair, leader, president, chairman, chairwoman, dean, headed by+WikibaseItem+22875
-P1080+from narrative universe+subject's fictional entity is in the object narrative. See also P1441 (present in work) and P1445 (fictional universe described in)+cycle, mythology, continuity, universe, appears in universe, featured in universe, fictional universe where entity is from, from fictional universe, from mythology, from narrative, from universe, in continuity, in cycle, in world of, story cycle, narrative universe+WikibaseItem+22836
-P697+ex taxon author+"person(s) whom the author(s) of a name credited for the idea, followed in an author citation by ""ex"" (via P405)"++WikibaseItem+22456
-P3578+autologous cell line+cell line originating from the same individual+sister cell line+WikibaseItem+22361
-P2900+fax number+telephone number of a facsimile line+facsimile number+String+22328
-P3018+located in protected area+the protected area a place or geographical feature belongs to+national park, state park, protected area+WikibaseItem+22259
-P371+presenter+someone who takes a main role in presenting a radio or television program or a performing arts show+TV presenter, hostess, TV host, host, presented by, hosted by+WikibaseItem+21910
-P1427+start point+starting place of this journey, flight, voyage, trek, migration etc.+from, launch pad, launch site, flight origin, journey origin, journey start, launch location, start location, start place+WikibaseItem+21574
-P2507+corrigendum / erratum+published notice that corrects or amends a previous publication+errata, erratum, corrigenda, corrigendum, corrected by+WikibaseItem+21424
-P2317+call sign+short form identifier for a radio operator or broadcaster and (as flag signal) previous for watercrafts+call letters, callsign, code letters+String+21312
-P2125+Revised Hepburn romanization+romanized Japanese following the Revised Hepburn romanization system+Hepburn romanisation, Hepburn romanization, Modified Hepburn romanization, Modified Hepburn romansation, Revised Hepburn romanisation, romaji+String+21000
-P4884+court+specific court a legal case is/was heard/decided in++WikibaseItem+20930
-P240+FAA airport code+three-letter or four-letter alphanumeric code identifying United States airports+FAA LID+String+20610
-P1877+after a work by+artist whose work strongly inspired/ was copied in this item+artist who inspired this, copy of a work by, inspirational artist, inspiring artist+WikibaseItem+20606
-P88+commissioned by+person or organization that commissioned this work+client, built for, commissioner, developer, made for, orderer+WikibaseItem+20569
-P239+ICAO airport code+four-character alphanumeric identifier for designating airports (for airlines, see P230)+ICAO aerodrome code, ICAO airfield code, International Civil Aviation Organization airport code+String+20290
-P658+tracklist+audio tracks contained in this release+songs, list of tracks, track list, track listing, tracks+WikibaseItem+20285
-P991+successful candidate+person(s) elected after the election+elected person, winner of election, elected, election winner, elected candidate, election won by+WikibaseItem+19724
-P1142+political ideology+political ideology of this organization or person+ideology, political view, has political ideology, official ideology, supports ideology, official political ideology, supports political ideology+WikibaseItem+19716
-P1064+track gauge+spacing of the rails on a railway track+gauge+WikibaseItem+19578
-P2354+has list+Wikimedia list related to this subject+list, list for this topic, related list, topic's list, accompanying list, topic list+WikibaseItem+19561
-P1652+referee+referee or umpire of a match+umpire+WikibaseItem+19265
-P183+endemic to+sole location or habitat type where the taxon lives+endemism+WikibaseItem+18978
-P969+street address (DEPRECATED)+"use ""street address"" (P6375)"++String+18816
-P1449+nickname+informal name (for a pseudonym use P742)+epithet, aka, also known as, informal name, moniker, sobriquet+Monolingualtext+18418
-P1855+Wikidata property example+example where this Wikidata property is used; target item is one that would use this property, with qualifier the property being described given the associated value+eg, e.g., example, Example item for this property, example of property, example of Wikidata property, for example, property example, property sample, Wikidata property sample+WikibaseItem+18377
-P2283+uses+item or concept used by the subject or in the operation (see also instrument [P1303] and armament [P520])+instrument played, item used, made use of, makes use of, used, using, wielded, wields+WikibaseItem+18323
-P1027+conferred by+person or organization who awards a prize to or bestows an honor upon a recipient+presented by, from, awarded by, bestowed by, given by, granted by, by+WikibaseItem+18264
-P1192+connecting service+service stopping at a station++WikibaseItem+17821
-P1549+demonym+demonym (proper noun) for people or things associated with a given place, usually based off the placename; multiple entries with qualifiers to distinguish are used to list variant forms by reason of grammatical gender or plurality.+gentilic+Monolingualtext+17620
-P2453+nominee+qualifier used with «nominated for» to specify which person or organization was nominated++WikibaseItem+17532
-P205+basin country+country that have drainage to/from or border the body of water+basin countries+WikibaseItem+17507
-P2912+distinctive jersey+distinctive jersey held by a class or stage leader in a cycling competition+jersey+WikibaseItem+17433
-P1240+Danish Bibliometric Research Indicator level+Danish scientific level of research publications, coordinated with the nordic list of publication channels. See also item Bibliometric Research Indicator (Q57408668)+BFI level, Danish scientific level+String+17200
-P2643+Carnegie Classification of Institutions of Higher Education+classification of colleges and universities in the United States++WikibaseItem+17089
-P1456+list of monuments+link to the list of heritage monuments in the place/area++WikibaseItem+16783
-P1981+FSK film rating+"permitted audience of a film, according to the German film-rating system (add Prüfnummer with qualifier ""P2676"")"++WikibaseItem+16500
-P2341+indigenous to+area or ethnic group that a language, folk dance, cooking style, food or other cultural expression is found (or was originally found)+endemic to, native to+WikibaseItem+16195
-P1533+family name identical to this given name+last name that is the same as a given first name. Use on items for given names+family name identical to this first name, related family name, related surname+WikibaseItem+16098
-P965+burial plot reference+string of references which identify a specific plot in a burial area, e.g. cemetery+plot, grave reference+String+16057
-P2758+CNC film rating (France)+category assigned to a film by the Board of Film Classification (CNC) which what audiences may view it in France+CNC rating, film classification category (CNC), CNC film rating, CNC movie rating, Commission de classification des œuvres cinématographiques film rating+WikibaseItem+16040
-P1408+licensed to broadcast to+place that a radio/TV station is licensed/required to broadcast to+city of license, community of license+WikibaseItem+15924
-P177+crosses+obstacle (body of water, road, railway...) which this bridge crosses over or this tunnel goes under+spans, under, over, bridge over, spanning, through, tunnel under+WikibaseItem+15915
-P828+has cause+underlying cause, thing that ultimately resulted in this effect+reason, why, cause, because, caused by, due to, effect of, had cause, had reason, had underlying cause, has causes, has reason, has underlying cause, implied by, initial cause, originated due to, outcome of, result of, ultimate cause, ultimate causes, underlying cause+WikibaseItem+15869
-P7867+category for maps+name of the Wikimedia category specifically for maps or plans of this item+Commons maps category, map category, maps category+WikibaseItem+15804
-P608+exhibition history+exhibitions where the item is or was displayed+salon, displayed at, exhibited at, shown, shown at+WikibaseItem+15755
-P2440+transliteration+conversion of text to alternate script (use as a qualifier for monolingual text statements; please use specific property if possible)++String+15695
-P1424+topic's main template+primary infobox or navigational template of this subject+infobox for this topic (main), main template, template for this topic (main), topic's main infobox+WikibaseItem+15665
-P1423+template's main topic+primary topic of the subject template or infobox+infobox's main topic, main topic of template, module's main topic+WikibaseItem+15648
-P4647+location of first performance+location where a work was first debuted, performed or broadcasted+place of first performance+WikibaseItem+15442
-P1444+destination point+intended destination for this route (journey, flight, sailing, exploration, migration, etc.)+to, destination, finish, end of journey, end point (journey), ending at, journey destination, stopping at+WikibaseItem+15245
-P2677+relative position within image+position of a motif within a larger image, defined by  x-offset (from left), y-offset (down from top), width w, and height h of the crop region (as a percentage of the whole image) values+IIIF syntax relative position, image map, pct relative position+String+15125
-P461+opposite of+item that is the opposite of this item+antonym, antonym of, inverse, inverse of, is the antonym of, is the opposite of, opposite+WikibaseItem+15021
-P3876+category for alumni of educational institution+category containing people who studied at this institution+alumni category, category for people educated here, educated here category+WikibaseItem+15015
-P617+yard number+identifier of a ship assigned by its builder (shipyard)++String+14984
-P286+head coach+on-field manager or head coach of a sports club (not to be confused with a general manager P505, which is not a coaching position) or person+manager, coach, club manager, coached by, led by, senior coach, team manager+WikibaseItem+14978
-P2597+Gram staining+Gram stain type of a bacterial strain++WikibaseItem+14926
-P1420+taxon synonym+(incorrect) name listed as synonym of a taxon name+synonym of this name, this taxon has as synonym+WikibaseItem+14895
-P6885+historical region+geographic area which at some point in time had a cultural, ethnic, linguistic or political basis, regardless of present-day borders++WikibaseItem+14861
-P1465+category for people who died here+category item for people who died in this location+category for place of death+WikibaseItem+14670
-P3295+code+code used to represent a specific concept in a given encoding++String+14484
-P737+influenced by+"this person, idea, etc. is informed by that other person, idea, etc., e.g. ""Heidegger was influenced by Aristotle""."+role model, favorite player, has influence, informed by+WikibaseItem+14445
-P1891+signatory+person, country, or organization that has signed an official document (use P50 for author)+ratified by, first signatories, signatories, signed by+WikibaseItem+14241
-P1716+brand+commercial brand associated with the item++WikibaseItem+14081
-P2632+place of detention+place where this person is or was detained+prison, jail, gaol, penitentiary, detained at, detention place, forced exile to, gaoled at, gaoled in, imprisoned at, imprisoned in, in jail, incarcerated at, internment at, internment place, jailed at, penal, place of imprisonment, place of internment, place of confinemant, place of incarceration+WikibaseItem+14067
-P547+commemorates+what the place, monument, memorial, or holiday, commemorates+honors, honours, celebrates, in memory of, memorial to, monument to, marks, in honor of, in honour of+WikibaseItem+13993
-P417+patron saint+patron saint adopted by the subject++WikibaseItem+13862
-P790+approved by+item is approved by other item(s) [qualifier: statement is approved by other item(s)]++WikibaseItem+13595
-P37+official language+language designated as official by this item+speaking, language official, language spoken, spoken in+WikibaseItem+13432
-P1748+NCI Thesaurus ID+identifier in the United States National Cancer Institute Thesaurus, vocabulary for clinical care, translational and basic research, etc+NCIt, NCIT ID+String+13385
-P1382+partially coincident with+object that is partially part of, but not fully part of (P361), the subject+coincident with, concurrency, overlaps with, partial concurrency, concurrent with, overlapping with, overlaps, part of (partially), partially in, partially include, partially overlaps+WikibaseItem+13307
-P423+shooting handedness+whether the hockey player passes or shoots left- or right-handed+dominant hand shooting+WikibaseItem+13179
-P3643+significant environmental impact+types of environmental issues determined to have a significant impact on the object++WikibaseItem+13099
-P289+vessel class+series of vessels built to the same design of which this vessel is a member+ship class, submarine class, class of vessel, spacecraft class+WikibaseItem+12997
-P7561+category for the interior of the item+Commons category for media files depicting interior views of this item (object, place)+Commons category for the interior of the item, Interior category+WikibaseItem+12906
-P3294+encoding+encoding according to which a code is to be interpreted (use only as a qualifier)++WikibaseItem+12822
-P1308+officeholder+persons who hold and/or held an office or noble title+incumbent, noble title holder, position holder+WikibaseItem+12804
-P655+translator+person who adapts a creative work to another language+translated by+WikibaseItem+12722
-P2001+Revised Romanization+romanisation following the Revised Romanisation of the Korean language+Revised Romanization (Korean)+String+12292
-P397+parent astronomical body+major astronomical body the item belongs to+star, planetary system, primary, orbits, parent body+WikibaseItem+12292
-P370+Sandbox-String+"Sandbox property for value of type ""String"""++String+12281
-P2293+genetic association+general link between a disease and the causal genetic entity, if the detailed mechanism is unknown/unavailable++WikibaseItem+12185
-P2522+victory+competition or event won by the subject+awarded, winner of, won, won event+WikibaseItem+12179
-P2567+amended by+document is amended by specified other document++WikibaseItem+12141
-P931+place served by transport hub+territorial entity or entities served by this transport hub (airport, train station, etc.)+city served, serves city, train station serves+WikibaseItem+12044
-P2308+class+"qualifier to define a property constraint in combination with ""property constraint"" (P2302)"+type+WikibaseItem+11919
-P647+drafted by+which team the player was drafted by++WikibaseItem+11758
-P780+symptoms+possible symptoms of a medical condition++WikibaseItem+11732
-P2515+costume designer+person who designed the costumes for a film, television programme, etc++WikibaseItem+11690
-P1817+addressee+person or organization to whom a letter or note is addressed+addressed to, recipient, sent to, to:, To:+WikibaseItem+11660
-P4969+derivative work+new work of art (film, book, software, etc.) derived from major part of this work+adaptation, is the basis for, quoted by, has adaptation+WikibaseItem+11580
-P414+stock exchange+exchange on which this company is traded+exchange, listed on, listed on exchange, listed on stock exchange+WikibaseItem+11510
-P529+runway+name (direction) of runway at airport/airfield/airstrip+RWY+String+11485
-P1403+original combination+for animals: the combination (binomen or trinomen) where the species-group name used in this taxon name was first published+protonym+WikibaseItem+11467
-P287+designed by+person(s) who designed the item+designer, has designer+WikibaseItem+11446
-P2614+World Heritage criteria+selection criteria for UNESCO's cultural and natural 'World Heritage' designation since 2005+WHS criteria+WikibaseItem+11413
-P2303+exception to constraint+item that is an exception to the constraint, qualifier to define a property constraint in combination with P2302+exception, excepting, exceptions, exceptions to constraint+WikibaseItem+11363
-P2571+uncertainty corresponds to+number of standard deviations (sigma) expressing the confidence level of a value++WikibaseItem+11270
-P2554+production designer+production designer(s) of this motion picture, play, video game or similar+scenic designer, scenic design by+WikibaseItem+11198
-P3096+KML file+item with sitelinks to wikimedia page containing text of a relevant KML file+KML, Keyhole Markup Language file+WikibaseItem+11141
-P411+canonization status+stage in the process of attaining sainthood per the subject's religious organization+canonisation status, sainthood status+WikibaseItem+11131
-P1942+McCune-Reischauer romanization+romanization system for Korean++String+11049
-P2541+operating area+area this organisation operates in, serves or has responsibility for+service area, area of operations, area of responsibility, area operated, area served, operating region, region served+WikibaseItem+11002
-P591+EC enzyme number+classification scheme for enzymes+Enzyme Commission number+String+10935
-P532+port of registry+"ship's port of registry. This is generally painted on the ship's stern (for the ""home port"", see Property:P504)"++WikibaseItem+10930
-P7937+format of creative work+structure of a creative work+album type, artistic form, album format, creative form, creative format, literary form+WikibaseItem+10923
-P7084+related category+Wikimedia category is related to this item++WikibaseItem+10900
-P1037+director / manager+person who manages any kind of group+director, boss, chief, manager, head, general manager, director general, manager/director+WikibaseItem+10625
-P277+programming language+the programming language(s) in which the software is developed+language, written in+WikibaseItem+10586
-P6507+taxon author citation+valid author citation for a taxon using the appropriate nomenclature (ICBN, ICZN, ect.)+author citation for this taxon+String+10584
-P121+item operated+equipment, installation or service operated by the subject+eq, item used, operates, operator of, fleet, acop, aircraft carried, aircraft in fleet, aircraft operated, controls, equipment operated, facility operated, operated, runs, service operated, uses item+WikibaseItem+10537
-P5970+Medierådet rating+Rating of a film in the Danish movie content rating system+Medieradet+WikibaseItem+10528
-P3321+male form of label+male form of name of an element+male form of label (string), masculine form of label+Monolingualtext+10516
-P1995+health specialty+main specialty that diagnoses, prevent human illness, injury and other physical and mental impairments+medical specialty, medical speciality, medical field+WikibaseItem+10436
-P2378+issued by+organisation that issues or allocates an identifier+assigned by, emitted by+WikibaseItem+10388
-P451+unmarried partner+"someone with whom the person is in a relationship without being married. Use ""spouse"" (P26) for married couples"+SO, lover, partner, significant other, boyfriend, cohabitant, domestic partner, enbyfriend, girlfriend, life partner, romantic partner, sex partner, partners, is partner of, is the partner of, partner of+WikibaseItem+10248
-P5021+test taken+subject took the test or exam++WikibaseItem+10218
-P2305+item of property constraint+"qualifier to define a property constraint in combination with ""property constraint"" (P2302)"+item, value, allowed unit, claim value, item qualifier, property value, qid+WikibaseItem+10205
-P6184+reference has role+role, or specific nature, of the given reference++WikibaseItem+10182
-P1195+file extension+identifier for a file format (e.g. txt for a text file) used as suffix to the file name, don't use dot at start+extension, filename extension+String+10180
-P2316+constraint status+"qualifier to define a property constraint in combination with P2302. Use values ""mandatory constraint"" or ""suggestion constraint"""+mandatory constraint status, status of constraint+WikibaseItem+10172
-P376+located on astronomical location+astronomical body on which features or places are situated+planet, astronomical body (location), located on astronomical body+WikibaseItem+10110
-P2959+permanent duplicated item+"this item duplicates another item and the two can't be merged, as one Wikimedia project includes two pages, e. g. in different scripts or languages (applies to some wiki, e.g.: cdowiki, gomwiki). Use ""duplicate item"" for other wikis."+duplicate, duplicate item, duplicate of, duplicate of item, identical to, permanently duplicated item, same concept as+WikibaseItem+10095
-P1793+format as a regular expression+regex describing an identifier or a Wikidata property. When using on property constraints, ensure syntax is a PCRE+regex, regular expression+String+10038
-P110+illustrator+person drawing the pictures in a book+photographer, illustrated by, illustration by, inker+WikibaseItem+10015
-P636+route of administration+path by which a drug, fluid, poison, or other substance is taken into the body++WikibaseItem+9864
-P479+input method+input method or device used to interact with a software product+mouse, input device, input, digitiser+WikibaseItem+9833
-P1399+convicted of+crime a person was convicted of+found guilty of, guilty of+WikibaseItem+9562
-P5353+school district+school district to which a settlement or other item belongs++WikibaseItem+9556
-P2364+production code+production code of a television episode++String+9543
-P1257+depicts Iconclass notation+Iconclass code depicted in an artwork. For linking Iconclass codes with their corresponding artistic themes or concepts, use P1256 (Iconclass notation).+Iconclass ID (of artwork), Iconclass notation (of artwork)+String+9518
-P885+origin of the watercourse+main source of a river or stream+water source, river source, river head, source of a stream, source of watercourse, stream source, water origin+WikibaseItem+9492
-P6208+award rationale+qualifier to add short citation explaining the official reason for awarding a prize to a winner by the person or organization who gives the award. Do not use this property to annotate or add comments about a person's award. No quote marked needed.+rationale, award citation, award reason+Monolingualtext+9473
-P398+child astronomical body+minor body that belongs to the item+satellite, secondary, child body, has moon, has planet, orbited by+WikibaseItem+9393
-P129+physically interacts with+physical entity that the subject interacts with++WikibaseItem+9359
-P238+IATA airport code+three-letter identifier for designating airports or cities (for airlines, see P229)+International Air Transport Association airport code, uio+String+9344
-P6424+affiliation string+qualifier to provide the published string form of affiliation attached to an author++String+9315
-P2700+protocol+communication protocol to use to access a dataset or service+communication protocol+WikibaseItem+9308
-P2389+organization directed by the office or person+organization which is directed  by this office+heads, runs, directs, head of, leader of, leads, organization directed from the office, organization led from the office or person+WikibaseItem+9225
-P3494+points classification+++WikibaseItem+9172
-P1594+judge+judge, magistrate or equivalent, presiding at a trial++WikibaseItem+9154
-P516+powered by+equipment or engine used by the subject to convert a source or energy into mechanical energy+engine, drive, powerplant, propulsion, power source, prime mover+WikibaseItem+9154
-P4608+scenographer+person who designed the stage or film set of this item+set designer, scenic designer, stage designer+WikibaseItem+9068
-P6709+Løøv classification+classification system for literature on Sami matters++String+9051
-P408+software engine+software engine employed by the subject item+game engine, engine of software, powered by, render engine+WikibaseItem+9038
-P5030+talk show guest+person invited in a talk show+guest, show guest+WikibaseItem+8975
-P2175+medical condition treated+disease that this pharmaceutical drug, procedure, or therapy is used to treat+capable of inhibiting or preventing pathological process, disease treated, treats, treats disease, treats medical condition+WikibaseItem+8943
-P5841+Status in the Red List of Threatened Species in the Czech Republic+endangerment status of species in the national Red List of the Czech Republic++WikibaseItem+8936
-P912+has facility+the subject item has this type of facility, e.g. toilet, car park+has feature, facility, amenity, features, has amenity+WikibaseItem+8856
-P6087+coach of sports team+sports club for which this person is on-field manager or coach+club manager of, club manager of sports team, co-manager of, coach of, coach of sports team, goalie coach of, head coach of, manager of, manager of sports team, senior coach of, senior coach of sports team, team manager of, team manager of sports team, trainer of, trainer of sports team+WikibaseItem+8851
-P7122+opinion joined by+who joins a judicial opinion+joined by+WikibaseItem+8826
-P237+coat of arms+subject's coat of arms++WikibaseItem+8762
-P678+incertae sedis+qualifier for P171 (parent taxon) to mark which intermediate ranks are incertae sedis+inc. sed.+WikibaseItem+8701
-P598+commander of (DEPRECATED)+for persons who are notable as commanding officers, the units they commanded+commands+WikibaseItem+8661
-P2210+relative to+qualifier: what a statement value is relative to+from, compared to, in relation to, with respect to, compared object, compared with+WikibaseItem+8640
-P1327+partner in business or sport+professional collaborator+business partner, collaborator, partner in business, partner in sports, partnered with, partnership with, professional partner, sport partner, sports partner, team mate, team-mate, work partner, writing partner, colleague+WikibaseItem+8523
-P2388+office held by head of the organization+position of the head of this item+president's office, CEO's office, chairperson's office, chief's office, head's office, leader's office, minister's office, office held by head of the organisation, position held by head of the organisation, secretary's office+WikibaseItem+8319
-P817+decay mode+"type of decay that a radioactive isotope undergoes (should be used as a qualifier for ""decays to"")"++WikibaseItem+8251
-P465+sRGB color hex triplet+sRGB hex triplet format for subject color (e.g. 7FFFD4) specifying the 8-bit red, green and blue components+sRGB, color hex triplet, RGB, color triplet, colour (hex triplet), hexcode+String+8244
-P841+feast day+saint's principal feast day++WikibaseItem+8191
-P249+ticker symbol+identifier for a publicly traded share of a particular stock on a particular stock market or that of a cryptocurrency+stock symbol, stock code, traded as, trading symbol+String+8190
-P358+discography+link to discography in artist or band page+recording catalog, discography link+WikibaseItem+8026
-P5054+cabinet+"qualifier for ""position held"" (P39) to indicate the cabinet to which belongs a minister"++WikibaseItem+7790
-P2598+serial number+an identifier for a specific object among the same product. Not a product code or model number+MSN, s/n, serial code, c/n, constructor's number, manufacturer serial number, construction number+String+7761
-P2505+carries+item (e.g. road, railway, canal) carried by a bridge, a tunnel or a mountain pass++WikibaseItem+7686
-P1884+hair color+person's hair color. Use P585 as qualifier if there's more than one value+color of hair, colour of hair, hair colour+WikibaseItem+7682
-P1026+doctoral thesis+thesis that someone wrote to obtain a PhD degree+dissertation, thesis, PhD thesis, doctoral dissertation+WikibaseItem+7626
-P5816+state of conservation+to indicate state of conservation of a building, monument, etc. It is not related with its heritage protection (P1435), but to its present state of conservation. Ex.: ruinous, demolished, correct, etc.+conservation status+WikibaseItem+7584
-P1990+species kept+taxa, preferably species, present at a zoo, botanical garden,  collection, or other institution. NOT specific animals, not for any geographic location+animals at zoo, animals housed, animals in aquarium, animals kept, animals species kept, captive animals, plant in herborium, plant taxon in botanical garden, plant taxon in collection, resident animal species, resident animals, rose varity in rose garden, species holdings, trees in arboretum+WikibaseItem+7580
-P1431+executive producer+executive producer of a movie or TV show+showrunner+WikibaseItem+7449
-P7153+significant place+significant or notable places associated with the subject+place associated with the subject, key place, sign. place+WikibaseItem+7442
-P2978+wheel arrangement+wheel/axle arrangement for locomotives, railcars and other rolling stock++WikibaseItem+7427
-P4002+WFD Ecological status+Ecological status of a Water Body in accordance with the Water Framework directive.++WikibaseItem+7409
-P4202+WFD Chemical status+chemical status of a Water Body in accordance with the Water Framework directive of the  European Environment Agency++WikibaseItem+7407
-P1629+subject item of this property+relationship represented by the property+item, represents, associated item, property subject item, property's subject item, subject item, Wikidata property subject item, subject of property, subject of this property+WikibaseItem+7389
-P3823+Ethnologue language status+language status identifier by Ethnologue.com using EGIDS scale+EGIDS, language status+WikibaseItem+7387
-P816+decays to+what isotope does this radioactive isotope decay to++WikibaseItem+7386
-P5606+station class+"class of a railway station, assigned by its operator; ""issued by"" is a mandatory qualifier."+station category+WikibaseItem+7341
-P930+type of electrification+electrification system scheme and/or voltage+electrification type+WikibaseItem+7316
-P1028+donated by+person or organization who donated the object+bestowed by, given by, donor, donation from, gift from, gift of+WikibaseItem+7287
-P579+IMA status and/or rank+status given to each mineral by the IMA (International Mineralogical Association)++WikibaseItem+7244
-P1347+military casualty classification+allowed values:  killed in action (Q210392), missing in action (Q2344557), died of wounds (Q16861372), prisoner of war (Q179637), killed in flight accident (Q16861407), others used in military casualty classification+casualty classification, casualty type+WikibaseItem+7216
-P803+professorship+professorship position held by this academic person+chair, endowed professorship, named chair, named professorship, endowed chair, professorship position+WikibaseItem+7156
-P3342+significant person+person linked to the item in any possible way+friend, associated person, friends, key people, key person, notable person, person associated with the subject, associated people, significant people, sign. person+WikibaseItem+7154
-P4776+MAC Address Block Large ID+unique identifier of an organisation registered with the IEEE+OUI, MA-L, MA-L ID, MAC Address Block Large ID, Media Access Control address Block Large identifier, Organizationally Unique Identifier+String+7140
-P201+lake outflow+rivers and other outflows waterway names. If evaporation or seepage are notable outflows, they may be included. Some terms may not be place names, e.g. evaporation+outflow, outflows+WikibaseItem+7038
-P1451+motto text+short motivation sentence associated to item+mission, slogan, motto, tagline, maxime, mission statement, strapline, tourism slogan, travel slogan+Monolingualtext+7030
-P92+main regulatory text+text setting the main rules by which the subject is regulated+by-laws, bylaws, regulated by, governing document, governing text, legal basis, legally established by, statutory authority, statutory authorization+WikibaseItem+6986
-P3497+teams classification by time+teams classification by time++WikibaseItem+6963
-P2596+culture+human culture or people (or several cultures) associated with this item+civilisation+WikibaseItem+6859
-P8359+Dewey Decimal Classification (works and editions)+DDC number assigned to a publication++String+6840
-P8289+parish church+church which acts as the religious centre of a parish++WikibaseItem+6839
-P1547+depends on software+subject software depends on object software+software framework, dependency, interfaces with, requires, runs on, software dependency, depends on, has dependency, has software dependency, requires software+WikibaseItem+6836
-P530+diplomatic relation+diplomatic relations of the country+foreign relations, ambassadorial relation, ambassadorial relations, diplomatic relation, diplomatic relations, foreign relation, political relation, political relations+WikibaseItem+6736
-P2176+drug used for treatment+drug, procedure, or therapy that can be used to treat a medical condition+treatment, prescribed drug, treated by, used for treatment+WikibaseItem+6664
-P467+legislated by+indicates that an act or bill was passed by a legislature.  The value can be a particular session of the legislature+enacted by, passed by+WikibaseItem+6538
-P200+inflows+major inflow sources — rivers, aquifers, glacial runoff, etc. Some terms may not be place names, e.g. none+inflow, inflows, lake inflow, river inflows+WikibaseItem+6531
-P1630+formatter URL+"web page URL; URI template from which ""$1"" can be automatically replaced with the effective property value on items. If the site goes offline, set it to deprecated rank. If the formatter url changes, add a new statement with preferred rank."+URL pattern, URL template, URL fomat string, URL formatter+String+6530
-P4900+broader concept+qualifier to indicate a broader concept that the present item is part of, as mapped by an external source. The statement being qualified should be an exact match.+broader concept in this hierarchy, broader term, is a child concept of, nearest external upward match, nearest matched item above this one in external hierarchy, parent concept, wider concept, wider term+WikibaseItem+6526
-P2975+host+an organism harboring another organism or organisms on or in itself++WikibaseItem+6458
-P1340+eye color+color of the irises of a person's eyes+eye colour, eyecolor, eyecolour+WikibaseItem+6409
-P189+location of discovery+where the item was located when discovered+find spot, place of discovery, discovered at:, discovery place, find location, findspot, found in, location of discovered object+WikibaseItem+6384
-P1030+light characteristic of lighthouse+description of a navigational light sequence or colour displayed on a nautical chart. Explicitly state white light (W)++String+6377
-P1535+used by+item or concept that makes use of the subject (use sub-properties when appropriate)+played by, user+WikibaseItem+6369
-P1434+takes place in fictional universe+the subject is a work describing a fictional universe, i.e. whose plot occurs in this universe.+continuity, describes fictional universe, describes the fictional universe, fictional universe described, set in fictional universe, universe described, universe featured+WikibaseItem+6357
-P375+space launch vehicle+type of rocket or other vehicle for launching subject payload into outer space+launch vehicle, carrier rocket, Rocket used+WikibaseItem+6282
-P4320+mountains classification+person ranked for this cycling stage or race+best climber classification+WikibaseItem+6279
-P2550+recording or performance of+item is a recording or release of this composition+performance of, performance or recording of, recording of+WikibaseItem+6223
-P1011+excluding+usually used as a qualifier+does not apply to part, except, with the exception of, not including+WikibaseItem+6215
-P163+flag+subject's flag+flag description+WikibaseItem+6212
-P4743+animal breed+subject item belongs to a specific group of domestic animals, generally given by association+breed+WikibaseItem+6210
-P194+legislative body+legislative body governing this entity; political institution with elected representatives, such as a parliament/legislature or council+District, parliament, Zila, local government area, assembly, diet, city council, district council, Tehsil, municipal council, LGA, council, rural council, Jila, aboriginal council, indigenous council, representative body+WikibaseItem+6206
-P870+instrumentation+combination of musical instruments employed in a composition or accompanying a (folk) dance++WikibaseItem+6149
-P2747+Filmiroda rating+rating of a film in the former (2004–2011) Hungarian film rating system++WikibaseItem+6148
-P2684+Kijkwijzer rating+Dutch media content rating system++WikibaseItem+6132
-P1945+street key+identification number for a specific street within the street cadastre of a municipality++String+6045
-P2568+repealed by+document is repealed/inactived by specified other document++WikibaseItem+5946
-P1998+UCI code+code uniquely identifying a cycling team++String+5816
-P1145+Lagrangian point+libration point of an object (default: object-sun-earth)+L-point, Lagrange point, libration point+WikibaseItem+5777
-P2802+fleet or registration number+the fleet number or registration of the vehicle+registration number, fleet number, number plate+String+5752
-P1612+Commons Institution page+"name of the institutions's page on Wikimedia Commons (without the prefix ""Institution"")"+Institution template+String+5747
-P797+authority+entity having executive power on given entity+executive authority, governed by, governing authority, governing body, has authority, has governing body+WikibaseItem+5738
-P4323+young rider classification+person ranked as young participant for this cycling stage or race++WikibaseItem+5646
-P6104+maintained by WikiProject+"WikiProject that maintains this property, item, or linked pages. If the WikiProject is hosted outside of Wikidata, define the scope using the qualifier ""of (P642)"""+WikiProject+WikibaseItem+5600
-P2563+superhuman feature or ability+superhuman, supernatural, or paranormal abilities that the fictional subject exhibits+superpower+WikibaseItem+5557
-P2309+relation+"qualifier to define a property constraint in combination with P2302. Possibly values are: ""instance of"", ""subclass of"" or ""instance or subclass of"". The qualifier to use with the property ""relative"" is ""type of kinship"" (P1039), not this."++WikibaseItem+5525
-P4241+refine date+qualifier to narrow down the precision of a date not fully specified by the Wikidata time datatype precision field+quarter, hour, semester, local time, refine time, season of year, specific time, time of year+WikibaseItem+5506
-P2650+interested in+item of special or vested interest to this person or organisation+field of study, area of research, field of research, field of interest, interests, lobbies for, research area, research interests, vested interest+WikibaseItem+5475
-P4243+candidate number+number of the candidate in an election+candidate ID, election candidate number+String+5468
-P3301+broadcast by+the channel, network, website or service that broadcast this item over radio, TV or the Internet+radio station, radio network, TV station, TV channel, radio channel, broadcaster, TV network, streamed by+WikibaseItem+5419
-P1536+immediate cause of+immediate cause of this effect+has immediate effect, has immediate outcome, has immediate result, immediate effect, immediate outcome, immediate result, is immediate cause of+WikibaseItem+5412
-P792+chapter+title or number of the chapter where a claim is made++String+5410
-P8423+version control system+version control system used by a content repository+VCS+WikibaseItem+5352
-P1072+readable file format+file format a program can open and read+can read, file format readable, reads file format+WikibaseItem+5273
-P3716+social classification+social class as recognized in traditional or state law+social class, social status+WikibaseItem+5272
-P1692+ICD-9-CM+identifier in the ICD adaption assigning diagnostic and procedure codes+ICD-9 CM+String+5249
-P5800+narrative role+narrative role or character type this character conforms to (should be used as a qualifier with P674 or restricted to a certain work using P642)++WikibaseItem+5183
-P504+home port+"home port of the vessel (if different from ""ship registry""): For civilian ships, the primary port from which the ship operates. Port of registry →P532 should be listed in ""Ship registry"". For warships, this will be the ship's assigned naval base"+homeport+WikibaseItem+5112
-P5026+lighting designer+person responsible for lighting on a stage+light designer+WikibaseItem+5077
-P4970+alternate names+qualifier for alternate names given for a subject in a database entry+aka, also known as, alternate name, variant names, variants+String+5046
-P556+crystal system+type of crystal for minerals and/or for crystal compounds+crystal structure+WikibaseItem+4996
-P610+highest point+point with highest elevation in a region, on a path, of a race+summit, pinnacle, highest peak, zenith, extreme point highest, elevation of highest point+WikibaseItem+4960
-P1671+route number+number of a rail or other public transport line+line number, public transport line number+String+4935
-P4595+post town+town part of the postal address, for example in the UK or Sweden++String+4848
-P425+field of this occupation+activity corresponding to this occupation (use only for occupations - for people use Property:P101, for profession use P425, for companies use P452)+practice, activity corresponding to this occupation, field of this profession, practices, profession's field, field of occupation, field of profession+WikibaseItem+4822
-P2358+Roman praenomen+standard part of the name of a Roman, link to items for specific Roman praenomen only.+praenomen+WikibaseItem+4817
-P8345+media franchise+this creative work belongs to this media franchise++WikibaseItem+4814
-P2408+set in period+historical, contemporary or future period the work is set in or event featured in the story of the work+period, era, features event, narrative period, narrative time, period covered, set during, set in era, set in time, setting, significant event, takes place in time, time period+WikibaseItem+4802
-P826+tonality+key of a musical composition+key of musical composition, musical key, in key, key used, musical tonality, written in key+WikibaseItem+4749
-P87+librettist+author of the libretto (words) of an opera, operetta, oratorio or cantata, or of the book of a musical+book by, libretto by+WikibaseItem+4707
-P1875+represented by+person or agency that represents or manages the subject+agent, talent agency, manager, rep, managing agent, representative+WikibaseItem+4662
-P3092+film crew member+member of the crew creating an audiovisual work, used for miscellaneous roles qualified with the job title when no specific property exists. Don't use if such a property is available: notably for cast member (P161), director (P57), etc.++WikibaseItem+4642
-P689+afflicts+type of organism or organ which a condition or disease afflicts++WikibaseItem+4640
-P3842+located in present-day administrative territorial entity+the item was located in the territory of this present-day administrative unit; however the two did not at any point coexist in time+located in present day administrative territorial entity, today part of, would today be located in administrative territorial entity+WikibaseItem+4600
-P3179+territory overlaps+part or all of the area associated with (this) entity overlaps part or all of the area associated with that entity+overlaps, partially contains territorial extent, partially located in territorial entity, partly located in territorial entity+WikibaseItem+4572
-P1542+has effect+effect of this cause+outcome, effect, implies, consequence, result, cause of, causes, has outcome, has result, has symptom, led to+WikibaseItem+4533
-P713+Nickel-Strunz '10th ed', review of (9th ed/ 2009 update)+mineral classification Nickel-Strunz version 10 (MinDat)+Nickel-Strunz 10th ed (pending)+String+4525
-P520+armament+equippable weapon item for the subject+weapon, wields, armed with, ship armament+WikibaseItem+4509
-P712+Nickel-Strunz 9th edition (updated 2009)+mineral classification Nickel-Strunz version 9 (updated 2009, deprecated), a PDF format file. Superseeded by  Nickel-Strunz '10th ed'++String+4480
-P4070+identifier shared with+qualifier, to be used on external identifier IDs, indicating another Wikidata item is also matched to this ID+ID shared with, shared ID, shares ID with, shares identifier with+WikibaseItem+4470
-P3448+stepparent+subject has the object as their stepparent+step father, step-father, stepfather, step mother, step-mother, stepmother, step-parent, step parent+WikibaseItem+4438
-P4628+ICTV virus genome composition+classification of viruses of the International Committee on Taxonomy of Viruses by the molecular composition of the virus genome (DNA, RNA, double or single stranded and translational polarity)+virus group+WikibaseItem+4425
-P399+companion of+two or more astronomic bodies of the same type relating to each other++WikibaseItem+4415
-P1595+charge+offence with which someone is charged, at a trial++WikibaseItem+4391
-P1685+Pokédex / Pokémon browser number+identification number of a Pokémon in a Pokédex or Pokémon Browser+Pokédex number, Pokémon browser number+String+4384
-P5831+usage example+example of how a lexeme might be used+example sentence+Monolingualtext+4382
-P741+playing hand+hand used to play a racket sport+tennis hand+WikibaseItem+4382
-P736+cover art by+name of person or team creating cover artwork for book, record album, single record etc.+cover artist+WikibaseItem+4344
-P2359+Roman nomen gentilicium+standard part of the name of a Roman, link to items about the Roman gens only+nomen gentilicium+WikibaseItem+4344
-P1791+category of people buried here+Wikimedia category for people with a burial site within this area+buried here: Wikimedia category for, category for people buried here, category for place of burial, category for burials+WikibaseItem+4322
-P1721+pinyin transliteration+hanyu pinyin transliteration of a Mandarin Chinese text (usually to be used as a qualifier)+hanyu pinyin, pinyin+String+4321
-P1811+list of episodes+link to the article with the list of episodes for this series+episode list, episodes list+WikibaseItem+4316
-P2363+NMHH film rating+rating of a film in the Hungarian film rating system+NMHH movie rating+WikibaseItem+4311
-P1046+discovery method+way an exoplanet was discovered+detection method+WikibaseItem+4310
-P2695+type locality (geology)+the locality where a particular rock type, stratigraphic unit or mineral species is defined from (can coincide but not the same as p189)+(co)-type locality+WikibaseItem+4261
-P2517+category for recipients of this award+link to Wikimedia category for recipients of this award+recipcat, recipient category+WikibaseItem+4219
-P5025+gens+a group of families from Ancient Rome who shared the same nomen++WikibaseItem+4218
-P852+ESRB rating+North American video game content rating+ESRB, Entertainment Software Rating Board rating+WikibaseItem+4216
-P748+appointed by+who appointed the person to the office, can be used as a qualifier++WikibaseItem+4186
-P835+author citation (zoology)+short form of the name used after a taxon this person has authored+abbreviation of author in zoology, author abbreviation in zoology, zoologist author name, zoologist name, zoology author name, zoology name+String+4165
-P444+review score+review score received by a creative work or other entity+rating (score), review rating+String+4130
-P711+Strunz 8th edition (series ID, updated)+mineral classification 8th edition, series identifier, silicate classification modified by Athena++String+4125
-P5713+requires grammatical feature+grammatical features required or generally used with lexeme or form of lexeme+requires case, requires mood, uses case, uses mood+WikibaseItem+4105
-P169+chief executive officer+highest-ranking corporate officer appointed as the CEO within an organization+ceo, CEO, chief executive, executive director+WikibaseItem+4102
-P5168+applies to name of item+(qualifier) label or alias name to which the claim applies (subject of the statement)+applies to name, applies to name of subject+Monolingualtext+4090
-P3871+tributary orientation+specify if the stream confluence is a left bank or right bank tributary++WikibaseItem+4062
-P3912+newspaper format+physical size of a newspaper (berliner, broadsheet, tabloid, etc.)++WikibaseItem+4014
-P1591+defendant+person or organization accused, at a trial+accused, respondant+WikibaseItem+3986
-P1809+choreographer+person(s) who did the choreography++WikibaseItem+3984
-P2922+month of the year+month of the year during which this item occurs, applies to or is valid in+month, month of year+WikibaseItem+3970
-P6241+collection creator+entity (person, organization, etc.) that caused a record or collection to be produced or gathered++WikibaseItem+3962
-P564+singles record+win/lose balance for a player in singles tournaments+41-45+String+3901
-P1354+shown with features+"secondary features depicted in a work. Use as qualifier for ""depicts"" (P180)"+depicted with features, features depicted, features shown+WikibaseItem+3901
-P941+inspired by+work, human, place or event which inspired this creative work or fictional entity+inspiration, source of inspiration+WikibaseItem+3896
-P555+doubles record+win/lose balance for a player in doubles tournaments++String+3880
-P2579+studied by+subject is studied by this science or domain+domain, science, that studies, researched by, in branch of science, researched in, studied in+WikibaseItem+3863
-P6569+taxa especially protected in area+species and other taxa especially protected in a area, whether still actually present or not. Do not use for countries/subnational entities: use red lists properties instead.++WikibaseItem+3856
-P5326+publication in which this taxon name was established+individual publication, in which the unit of biological nomenclature was first formally established+protologue, described in the publication (for scientific names) (deprecated), first description (deprecated), publication in which name was made available, publication in which this scientific name was established+WikibaseItem+3791
-P424+Wikimedia language code+identifier for a language or variant as used by Wikimedia projects+language code, MediaWiki interlanguage prefix, Wikibase monolingual text language code, WMF language code+String+3781
-P823+speaker+person who is speaker for this event, ceremony, keynote, presentation or in a literary work++WikibaseItem+3764
-P3022+flag bearer+person who carries the national flag of their country at an opening or closing ceremony++WikibaseItem+3749
-P3764+pole position+person, who starts race at first row (leader in the starting grid)++WikibaseItem+3716
-P3501+Catholic rite+Catholic rite associated with this item++WikibaseItem+3711
-P6942+animator+person creating animated sequences out of still images++WikibaseItem+3694
-P4330+contains+item or substance located within this item but not part of it+contents, encloses, has contents, holds, stores, surrounds, wraps+WikibaseItem+3654
-P1445+fictional universe described in+"to link a fictional universe with a work that describes it: <universe> ""described in the work:"" <work>"++WikibaseItem+3605
-P1302+primary destinations+major cities that a road serves++WikibaseItem+3592
-P3610+fare zone+fare zone that the station is in+zone+WikibaseItem+3562
-P415+radio format+describes the overall content broadcast on a radio station+genre, format, radio station format+WikibaseItem+3531
-P2572+hashtag+"hashtag associated with this item. Format: do not include the ""#"" symbol"++String+3526
-P2875+property usage tracking category+category tracking a Wikidata property in sister projects+property tracked (inverse of)+WikibaseItem+3522
-P1389+product certification+"certification for a product, qualify with P1001 (""applies to jurisdiction"") if needed"++WikibaseItem+3508
-P837+day in year for periodic occurrence+when a specific holiday or periodic event occurs. Can be used as property or qualifier+date, day, recurring event, day in year, day of periodic occurrence, periodic occurrence, takes place on, takes places during+WikibaseItem+3507
-P5817+state of use+to indicate state of use of a building, monument, etc. It is not related with its heritage protection (P1435), but to its present state of use. Ex.: abandoned, in use, temporarily closed, etc.+use status+WikibaseItem+3469
-P1387+political alignment+political position within the political spectrum+political position, alignment+WikibaseItem+3459
-P2842+place of marriage+"location where the marriage was celebrated. Use as qualifier for property ""spouse"" (P26)"+marriage location, location of marriage, married at, married in, wed at, wedding location+WikibaseItem+3356
-P1782+courtesy name+name bestowed upon a person at adulthood in addition to one's given name, mostly in East Asia+courtesy name, style name, zi+String+3355
-P908+PEGI rating+European video game content rating system - see talk page for appropriate values++WikibaseItem+3343
-P5826+majority opinion by+judicial opinion agreed to by more than half of the members of a court++WikibaseItem+3330
-P1750+name day+"day of the year associated with a first/given name. A qualifier should be used to identify the calendar that is being used. Distinguish from ""feast day"" (P:P841)"++WikibaseItem+3300
-P3858+route diagram+Wikimedia route diagram template+RDT, Wikimedia RDT+WikibaseItem+3298
-P3919+contributed to creative work+"person is cited as contributing to some creative or published work or series (qualify with ""subject has role"", P2868)"+contributor, collaborator on, contributed to, contributor to+WikibaseItem+3282
-P230+ICAO airline designator+three letter identifier for an airline (two letters only until 1982) (for airports, see P239)+International Civil Aviation Organization airline designator+String+3261
-P6086+dramaturge+person responsible for dramaturgical aspects in a performing arts production++WikibaseItem+3216
-P2410+WikiPathways ID+describes in which biological pathways a biological entity occurs++String+3180
-P3730+next higher rank+"higher rank or level in a ranked hierarchy like sport league, military ranks. If there are several possible, list each one and qualify with ""criterion used"" (P1013), avoid using ranks and date qualifiers. For sports leagues/taxa, use specific properties instead."++WikibaseItem+3155
-P3300+musical conductor+the person who directs a musical group, orchestra or chorus+musical director, conductor, choir director+WikibaseItem+3147
-P1560+given name version for other gender+equivalent name (with respect to the meaning of the name) in the same language: female version of a male first name, male version of a female first name. Add primarily the closest matching one+female version of this male given name, male version of this female given name+WikibaseItem+3146
-P3306+ICAA rating+rating in the Spanish motion picture content rating system++WikibaseItem+3108
-P5202+adapted by+person responsible for the arrangement or adaptation resulting in this version of the original work+arranger, remixed by+WikibaseItem+3107
-P3095+practiced by+type of agents that study this subject or work in this profession+associated with, has practitioner, has proponent, implemented by, implementor, practioner, proponent, studied by, occupation of this field+WikibaseItem+3094
-P5832+political coalition+agreement for cooperation between different political parties+political alliance, political bloc+WikibaseItem+3076
-P4000+has fruit type+morphology of the fruit of this taxon, as defined in botany++WikibaseItem+3041
-P3729+next lower rank+"lower rank or level in a ranked hierarchy like sport league, military ranks. If there are several possible, list each one and qualify with ""criterion used"" (P1013), avoid using ranks and date qualifiers. For sports leagues/taxa, use specific properties instead."++WikibaseItem+2999
-P91+sexual orientation+the sexual orientation of the person — use IF AND ONLY IF they have stated it themselves, unambiguously, or it has been widely agreed upon by historians after their death+sexuality+WikibaseItem+2981
-P113+airline hub+airport that serves as a hub for an airline+hub, hub airport+WikibaseItem+2978
-P6365+member category+category item for members of the organization++WikibaseItem+2959
-P4195+category for employees of the organization+Wikimedia category for people who work or worked at this organization++WikibaseItem+2949
-P1282+OpenStreetMap tag or key+OpenStreetMap tagging schema (a Key:key or Tag:key=value) for classes, properties, and values+tag, key, OpenStreetMap key, OpenStreetMap tag, OSM key, OSM tag, OSM tag or key, OSM wiki tag or key, !wosm+String+2894
-P914+USK rating+German video game content rating - see talk page for appropriate values+Unterhaltungssoftware Selbstkontrolle rating+WikibaseItem+2882
-P3150+birthday+"item for day and month on which the subject was born. Used when full ""date of birth"" (P569) isn't known."++WikibaseItem+2861
-P1299+depicted by+object depicting this subject (creative works, books of the bible)+played by, portrayed by, referenced by, appears in, acted by, depicted in, mentioned by+WikibaseItem+2860
-P5997+stated in reference as+for use in a reference section, to indicate how the object of the statement was stated in reference, if this is different to how the object of statement would have been referred to in the statement's original context++String+2831
-P2239+first aid measures+actions to take to help a person in the case of accidents, injuries and accidental exposures to harmful chemicals+first aid response+WikibaseItem+2828
-P2377+MediaWiki hooks used+MediaWiki hooks used by this extension++WikibaseItem+2825
-P1029+crew member+person that participated operating or serving aboard this vehicle+member of crew of+WikibaseItem+2824
-P2559+Wikidata usage instructions+text describing how to use a property or item. Eventually, this statement is to replace usage instructions currently found in description. Until the corresponding feature is implemented, do not remove it from description+usage, how to use, instructions, usage instructions+Monolingualtext+2820
-P2882+relegated+competitor or team relegated during competition+competitor relegated, player relegated, relegation, team relegated+WikibaseItem+2807
-P483+recorded at studio or venue+studio or location where a musical composition was recorded+recording studio, studio, recording venue+WikibaseItem+2800
-P2441+literal translation+direct or word-for-word translation of a name or phrase (qualifier for name, title, inscription, and quotation properties)+direct translation, translation (literal), word-for-word translation+Monolingualtext+2797
-P1462+standards body+organisation that published or maintains the standard governing an item+standards organisation, standards developing organisation, standards developing organization, standards setting organisation, standards setting organization, standardised by, standardized by, standards group+WikibaseItem+2779
-P6112+category for members of a team+Wikimedia category for players playing for a sports team++WikibaseItem+2775
-P3793+IPv6 routing prefix+range of IPv6 addresses+CIDR, IPv6 subnetwork, routing prefix, subnetwork, IPv6 CIDR, IPv6 range+String+2758
-P879+pennant number+the number or designation associated with individual warships, often painted on the hull+hull number, hull classification symbol, pendant number+String+2746
-P2848+Wi-Fi access+internet access availability through Wi-Fi+Wi-Fi, wifi, WLAN+WikibaseItem+2742
-P554+website username+username on a website that the person or movement has an account on (only use as qualifier of P553)+handle, account name, username, username in social media, account name in social media, public username, social media username+String+2728
-P229+IATA airline designator+two-character identifier for an airline+IATA reservation code, International Air Transport Association airline designator+String+2664
-P1012+including+usually used as a qualifier+with, inclusive+WikibaseItem+2663
-P3781+has active ingredient+"has part biologically active component. Inverse of ""active ingredient in"""+active ingredient, contains active ingredient, includes active ingredients+WikibaseItem+2611
-P4584+first appearance+work in which a fictional/mythical character or entity first appeared++WikibaseItem+2594
-P157+killed by+person who killed the subject+murderer, executioner, killer, assassin, assassinated by, executed by, mortally wounded by, murdered by, shot dead by, slain by, slaughtered by+WikibaseItem+2588
-P4661+reservoir created+reservoir created upstream of a dam by this dam+creates lake, creates reservoir, dam created reservoir, impounds, lake created+WikibaseItem+2587
-P5061+unit symbol+abbreviation of a unit for each language; if not provided, then it should default to English++Monolingualtext+2576
-P111+measured physical quantity+value of a physical property expressed as number multiplied by a unit+physical quantity, measure of, quantity+WikibaseItem+2575
-P5028+sound designer+person responsible for the sound on a stage, in a film or in a radio drama++WikibaseItem+2570
-P4792+dam+construction impounding this watercourse or creating this reservoir+impounded by+WikibaseItem+2556
-P1200+bodies of water basin category+the Wikimedia category associated with the basin of a bodies of water+category associated with the basin of the bodies of water, water system category+WikibaseItem+2540
-P2275+World Health Organisation International Nonproprietary Name+identifier for a drug+WHO INN+Monolingualtext+2508
-P5522+Unicode block+Unicode block that a character is in++WikibaseItem+2506
-P3780+active ingredient in+"is part of and forms biologically active component. Inverse of ""has active ingredient"""++WikibaseItem+2489
-P3402+CNC film rating (Romania)+rating of a movie in the Romanian content rating system+CNC rating, CNC film rating, CNC movie rating+WikibaseItem+2483
-P469+lakes on river+lakes, reservoirs, waterfalls the river flows through+reservoir on this river, waterfalls on this river+WikibaseItem+2454
-P4271+rating+qualifier to indicate a score given by the referenced source indicating the quality or completeness of the statement++WikibaseItem+2447
-P927+anatomical location+where in the body does this anatomical feature lie++WikibaseItem+2433
-P1999+UNESCO language status+degree of endangerment of a language conferred by the UNESCO Atlas of World Languages in Danger+AWLD status+WikibaseItem+2412
-P1363+points/goal scored by+person who scored a point or goal in a game+goal scored by, points scored by, scored by, scorer+WikibaseItem+2394
-P5519+Cangjie input+the cangjie input code for the character++String+2382
-P6364+official color+official color(s) chosen to represent or identify an item+official colour, signature color, signature colour+WikibaseItem+2377
-P2443+stage reached+ultimate point in an event or competition reached by a participant+eliminated at, point achieved, round reached+WikibaseItem+2348
-P5280+radical+radical of Chinese character++WikibaseItem+2333
-P3279+statistical leader+leader of a sports tournament in one of statistical qualities (points, assists, rebounds etc.). Don't use for overall winner. Use a qualifier to link to the item about the quality.+MVP, most valuable player, record setter, statistical leader+WikibaseItem+2320
-P7367+content descriptor+content descriptors for this video game or film+reason for rating+WikibaseItem+2320
-P3931+copyright holder+person or organisation who holds the copyright of a work according to the Berne Convention+proprietor, licensor, copyright ‘owner’+WikibaseItem+2318
-P1321+place of origin (Switzerland)+lieu d'origine/Heimatort/luogo d'origine of a Swiss national. Not be confused with place of birth or place of residence+Bürgerort, Heimatort, lieu d'origine, luogo d'origine+WikibaseItem+2307
-P3137+parent peak+parent is the peak whose territory this peak resides in, based on the contour of the lowest col+parent mountain+WikibaseItem+2306
-P5314+property scope+constraint system qualifier to define the scope of a property++WikibaseItem+2281
-P2846+wheelchair accessibility+describes wheelchair accessibility of location or event+ADA, accessibility for wheelchair users, disabled accessibility, easy access, step-free access+WikibaseItem+2278
-P1762+Hornbostel-Sachs classification+Hornbostel-Sachs classification of a musical instrument+Hornbostel-Sachs, Sachs–Hornbostel+String+2276
-P3438+vehicle normally used+vehicle the subject normally uses+automobile used, cars normally used, drives this car, motorcycle driven by subject, trains normally used+WikibaseItem+2266
-P4791+commanded by+commander of a military unit/army/security service, operation, etc.+captain, commander, commanding officer+WikibaseItem+2263
-P6193+ratified by+used to specify that a treaty has been ratified by a given state or subject of international law+ratification, approval, acceptance, accession+WikibaseItem+2253
-P2429+expected completeness+describes whether a property is intended to represent a complete set of real-world items having that property+completeness, expected level of completion+WikibaseItem+2251
-P7047+enemy of+opponent character or group of this character or group+arch-enemy of, archenemy of, archfoe of, archnemesis of, archrival of, archvillain of, opponent of, rival of+WikibaseItem+2250
-P5277+grade of kanji+degree of difficulty of kanji++WikibaseItem+2221
-P3085+qualifies for event+this event qualifies for that event+league this event qualifies for+WikibaseItem+2208
-P3761+IPv4 routing prefix+range of IPv4 addresses+CIDR, IPv4 CIDR, routing prefix, subnetwork, IPv4 range, IPv4 subnetwork+String+2203
-P1073+writable file format+file format a program can create and/or write to+can write, file format written, writes file format+WikibaseItem+2198
-P3650+JMK film rating+rating of a film in the Austrian film rating system++WikibaseItem+2185
-P4132+linguistic typology+classification of languages according to their linguistic trait (as opposed to historical families like romance languages)+typology+WikibaseItem+2170
-P2743+this zoological name is coordinate with+links coordinate zoological names+coordinate name+WikibaseItem+2166
-P739+ammunition+cartridge or other ammunition used by the subject firearm+cartridge, ammo+WikibaseItem+2163
-P3320+board member+member(s) of the board for the organization+member of the board of directors+WikibaseItem+2133
-P3132+last line+last line (excipit) of a poem, last sentence of a novel, etc.+ending, excipit, final line, final sentence, last sentence+Monolingualtext+2110
-P833+interchange station+station to which passengers can transfer to from this station, normally without extra expense+OSI, out of station interchange+WikibaseItem+2082
-P3834+RTC film rating+rating of a film in the Mexican film classification system++WikibaseItem+2068
-P2562+married name+name or surname adopted by a person upon marriage++Monolingualtext+2061
-P1787+art-name+type of pseudonym of modern and historical artists as well as specifically traditionally adopted by writers and artists in East Asia+art name, hao+String+2059
-P1657+MPAA film rating+US film classification administered by the Motion Picture Association of America+Motion Picture Association of America film rating+WikibaseItem+2058
-P1596+penalty+penalty imposed by an authority+sentence, judicial sentence+WikibaseItem+2029
-P765+surface played on+the surface on which a sporting event is played++WikibaseItem+2027
-P4794+season starts+month or season when sports competition begins+season begins+WikibaseItem+2021
-P880+CPU+central processing unit found within the subject item+central processing unit, processor+WikibaseItem+2019
-P5105+Deutsche Bahn station category+category a German railway station operated by DB Station&Service is assigned to+station category (Deutsche Bahn)+WikibaseItem+2000
-P531+diplomatic mission sent+location of diplomatic mission, i.e. consulate of A in the capital city of B+embassy, resident mission+WikibaseItem+1990
-P5053+fastest lap+person who does the fastest lap during a motorsport race+performer of the fastest lap+WikibaseItem+1983
-P3025+open days+days in the week subject item is open within the opening season+days open, open on days, opening days+WikibaseItem+1974
-P38+currency+currency used by item+base currency, used money+WikibaseItem+1971
-P7501+audio system+audio system hardware used in the item++WikibaseItem+1963
-P7377+tussenvoegsel+component of Dutch family name or similar of other languages, generally an unaffixed prefix. Depending on the language, country and application, it may be ignored in sorting. Note differences in capitalization and affixation (spaces)+family name affix, family name prefix+WikibaseItem+1961
-P1639+pendant of+other work in a pair of opposing artworks, such as wedding portraits, commissioned together, but not always+pendant to+WikibaseItem+1957
-P5276+Slavic phonetic alphabet+system of pronunciation recording+AS, Slavic Alphabet+String+1952
-P552+handedness+handedness of the person+dominant hand+WikibaseItem+1952
-P3433+biological variant of+a variant of a physical biological entity (e.g., gene sequence, protein sequence, epigenetic mark)++WikibaseItem+1948
-P3032+adjacent building+building adjacent to the item+located next to, neighboring building+WikibaseItem+1892
-P4873+isoschizomer+isoschizomers of the restriction restriction enzyme, which have the same recognition sequence and the cutting site.++WikibaseItem+1882
-P1885+cathedral+principal church of a religious district+is cathedral of, is cathedral of diocese+WikibaseItem+1861
-P2033+category for pictures taken with camera+Commons category for photos taken with that camera model or model line+Commons photos by camera category, taken with this camera, category for images taken with camera, category for photos taken with camer+WikibaseItem+1857
-P769+significant drug interaction+clinically significant interaction between two pharmacologically active substances (i.e., drugs and/or active metabolites) where concomitant intake can lead to altered effectiveness or adverse drug events.+drug interaction+WikibaseItem+1851
-P1204+Wikimedia portal's main topic+primary topic of this Wikimedia portal++WikibaseItem+1831
-P122+basic form of government+subject's government+form of government, government, type of government+WikibaseItem+1817
-P1557+manifestation of+inherent and characteristic embodiment of a given concept+realization of, reification of+WikibaseItem+1802
-P4312+camera setup+filmmaking method that the cameras were placed by. Use single-camera (Q2918907) or multiple-camera (Q738160)++WikibaseItem+1794
-P450+astronaut mission+space mission that the subject is or has been a member of (do not include future missions)+cosmonaut mission+WikibaseItem+1792
-P35+head of state+official with the highest formal authority in a country/state+leader, president, queen, monarch, king, emperor, governor, state headed by, chief of state+WikibaseItem+1781
-P3922+light sector+visibility sector of a navigational light, if applicable specified by color, given in compass directions/azimuth from the viewing location+visibility sector+String+1778
-P193+main building contractor+the main organization responsible for construction of this structure or building+building contractor, builder, general contractor, main contractor, prime contractor, built by, constructed by+WikibaseItem+1771
-P2499+league level above+the league above this sports league+level above (league), promotion to+WikibaseItem+1753
-P1049+worshipped by+religion or group/civilization that worships a given deity+deity of+WikibaseItem+1753
-P1135+nomenclatural status+the status of a scientific name, according to the relevant rules of nomenclature (taxonomy)++WikibaseItem+1745
-P2564+Köppen climate classification+indicates the characteristic climate of a place++WikibaseItem+1738
-P2184+history of topic+historical development of an item's topic+history, chronology of topic, timeline of topic+WikibaseItem+1735
-P8360+Library of Congress Classification (works and editions)+Library of Congress Classification number assigned to a publication++String+1721
-P521+scheduled service destination+airport or station connected by regular direct service to the subject; for the destination of a trip see P1444++WikibaseItem+1720
-P1879+income classification (Philippines)+classification grade of a Philippine local government unit based on income++WikibaseItem+1719
-P3967+final event+final event of a competition++WikibaseItem+1710
-P502+HURDAT identifier+identifier per HURDAT (North Atlantic hurricane database)+HURDAT+String+1697
-P2500+league level below+the league below this sports league+level below (league), relegation to+WikibaseItem+1688
-P3403+coextensive with+this item has the same boundary as the target item; area associated with (this) entity is identical with the area associated with that entity+coterminous with, same territory as, territory identical with+WikibaseItem+1686
-P7936+business model+business model a business enterprise or creative work operates under++WikibaseItem+1679
-P2851+payment types accepted+types of payment accepted by a venue+credit cards accepted, payment methods accepted+WikibaseItem+1649
-P2012+cuisine+type of food served by a restaurant or restaurant chain++WikibaseItem+1636
-P872+printed by+"organization or person who printed the creative work (if different from ""publisher"")"+printer+WikibaseItem+1636
-P3441+FIFA country code+three-letter country code assigned by FIFA++String+1629
-P208+executive body+branch of government for the daily administration of the state+executive branch+WikibaseItem+1622
-P8450+peak bagging classification+recognised peak bagging classification of a mountain or hill++WikibaseItem+1612
-P3921+Wikidata SPARQL query equivalent+SPARQL code that returns a set of entities that correspond with this category or list. Include ?item+SPARQL equivalent+String+1609
-P6333+title of broader work+"title of website, journal or other work in which an article (or other publication) is published in. Use ""published in"" (P1433) instead if possible."+container title, website title+Monolingualtext+1601
-P2578+studies+subject item is the academic field studying the object item of this property+research, academic field for, is a study of, learning what?, researches, scholarly field for, study of, working on what?+WikibaseItem+1600
-P1151+topic's main Wikimedia portal+Wikimedia portal associated with this topic+portal, main portal+WikibaseItem+1598
-P263+official residence+the residence at which heads of government and other senior figures officially reside+palace, domicile, home, lives at, lives in, resides at, executive mansion, executive residence, presidential palace, gubernatorial mansion, presidential mansion, state house+WikibaseItem+1594
-P618+source of energy+describes the source of energy an animated object (machine or animal) uses+battery, fertilizer, energy source, fuel type, nutrient+WikibaseItem+1582
-P4863+recognition sequence+DNA sequence recognized by a restriction enzyme, DNA binding domain, etc, written from 5' to 3'++String+1574
-P798+military designation+officially assigned designation for a vehicle in military service+MAD, mission design series designation, 1962 US military aerospace vehicle designation, mdsd, mildes, Tri-Service aerospace vehicle designation, USDOD aircraft designation+String+1573
-P3489+pregnancy category+official categorisation of safety of medicine in pregnancy++WikibaseItem+1549
-P853+CERO rating+Japanese video game rating system - see talk page for appropriate values+Computer Entertainment Rating Organization rating+WikibaseItem+1547
-P4688+geomorphological unit+topographic or bathymetric feature to which this geographical item belongs+physiographic unit+WikibaseItem+1545
-P631+structural engineer+person, group or organisation responsible for the structural engineering of a building or structure+engineer, building engineer+WikibaseItem+1541
-P1163+media type+IANA-registered identifier for a file type (MIME)+content type, Internet media type, MIME type+String+1532
-P3364+stereoisomer of+target item is a stereoisomer of this item++WikibaseItem+1524
-P6271+demonym of+item that this sense is a demonym of++WikibaseItem+1516
-P568+overlies+stratigraphic unit that this unit lies over (i.e. the underlying unit)++WikibaseItem+1491
-P199+business division+organizational divisions of this organization (which are not independent legal entities)+divisions, has division, has business division+WikibaseItem+1489
-P4091+Irish Grid Reference+grid location reference from the Irish Grid reference system used in Ireland++String+1485
-P567+underlies+stratigraphic unit that this unit lies under (i.e. the overlying unit)++WikibaseItem+1485
-P4952+safety classification and labelling+classification and labelling data for risk identification about chemicals++WikibaseItem+1482
-P457+foundational text+text through which an institution or object has been created or established+constitution, treaty, charter, constitutive text, created by, created in document, enabling law, establishing document, founding document, organic law+WikibaseItem+1475
-P5623+type of water supply+the type of water supply for fountains, mountain huts, and other entities where water can be obtained++WikibaseItem+1471
-P770+cause of destruction+item which caused the destruction of the subject item+reason of failure+WikibaseItem+1470
-P3680+statement supported by+entity that supports a given statement+according to, claimed by, per, supported by+WikibaseItem+1466
-P505+general manager+general manager of a sports team. If they are also an on-field manager use P286 instead++WikibaseItem+1454
-P1075+rector+rector of a university++WikibaseItem+1451
-P4151+game mechanics+constructs of rules or methods designed for interaction with the game state+game system+WikibaseItem+1438
-P832+public holiday+official public holiday that occurs in this place in its honor, usually a non-working day+bank holiday, legal holiday, national holiday+WikibaseItem+1421
-P795+located on linear feature+linear feature along which distance is specified from a specified datum point++WikibaseItem+1382
-P5824+is retracted by+(article) is retracted by (retraction notice)+retracted by+WikibaseItem+1381
-P1414+GUI toolkit or framework+framework or toolkit a program uses to display the graphical user interface+user interface, GUI toolkit, widget toolkit, default user interface, GUI framework, UI framework, UI toolkit, widget framework+WikibaseItem+1373
-P2545+bowling style+type of bowling employed by a cricketer+Bowling+WikibaseItem+1372
-P4864+cutting site of restriction enzyme+DNA cutting site of restriction enzyme, written from 5' to 3'+cutting site+String+1371
-P3216+ClassInd rating+rating of an audiovisual work, video game or RPG in the Brazilian Advisory Rating System (ClassInd)+BARS+WikibaseItem+1368
-P553+website account on+website that the person or organization has an account on (use with P554) Note: only used with reliable source or if the person or organization disclosed it.+account on, social media account on, user account on+WikibaseItem+1367
-P5186+conjugation class+"conjugation class this lexeme belongs to. On items for languages, use ""has conjugation class"" (P5206)"++WikibaseItem+1363
-P994+NFPA Fire+NFPA rating for a chemical's flammability (red quadrant in fire diamond)+NFPA Flammability+String+1361
-P993+NFPA Health+NFPA rating for a chemical's hazard to health (blue quadrant in fire diamond)++String+1361
-P995+NFPA Instability+NFPA rating for chemical or physical reactivity (yellow quadrant in fire diamond)+NFPA Reactivity+String+1361
-P1582+natural product of taxon+links a natural product with its source (animal, plant, fungal, algal, etc.)+made from, comes from (taxon), fruit of (taxon), produced by taxon, product of taxon+WikibaseItem+1350
-P4044+therapeutic area+disease area in which a medical intervention is applied++WikibaseItem+1333
-P1438+Jewish Encyclopedia ID (Russian)+Electronic Jewish Encyclopedia in Russian++String+1332
-P1774+workshop of+artist whose work group are the likely creator of an artwork+studio of+WikibaseItem+1316
-P820+arXiv classification+arXiv classification of pre-print articles+arXiv category+String+1312
-P2322+article ID+identifier for an article in an online publication++String+1308
-P690+space group+symmetry classification for 2 and 3 dimensional patterns or crystals++WikibaseItem+1307
-P3822+rules for classification+the rules for classification of a sports league++WikibaseItem+1301
-P6872+has written for+this person contributed to this publication+writes for, written for+WikibaseItem+1287
-P66+ancestral home+place of origin for ancestors of subject+ancestral village, native place, native village+WikibaseItem+1286
-P1951+investor+individual or organization which invests money in the item for the purpose of obtaining financial return on their investment+private investor, investors+WikibaseItem+1267
-P1740+category for films shot at this location+the object is a category for films shot at or in the subject+cff, cat films shot, category of films shot at this location, cfsi, films shot at this location+WikibaseItem+1256
-P1672+this taxon is source of+"links a taxon to natural products it produces. Note that it does not say ""this taxon is the source of"" or ""this taxon is a source of"" as this may vary. Some products may be yielded by more than one taxon."+natural product, this taxon is a source of, this taxon is the source of, produces, has natural product, produces natural product, secretes+WikibaseItem+1246
-P5389+permanent resident of+country or region that person have the legal status of permanent resident+PR+WikibaseItem+1245
-P1310+statement disputed by+entity that disputes a given statement+disputed by, opposed by, rejected by, denied by, refused by+WikibaseItem+1241
-P2361+online service+online service or online service provider tied to an item+internet service provider, ISP+WikibaseItem+1239
-P167+structure replaced by+the item which replaced this building or structure, at the same geographic location+replaced by (structure), succeeded by (structure)+WikibaseItem+1230
-P5880+video designer+person responsible for the creation and integration of film and motion graphics on a stage++WikibaseItem+1226
-P3828+wears+clothing or accessory worn on subject's body+uniform, clothing, accessory, garment, outfit, wearing, wore+WikibaseItem+1224
-P1074+fictional analog of+used to link an entity or class of entities appearing in a creative work with the analogous entity or class of entities in the real world+fictional version of+WikibaseItem+1222
-P1531+parent of this hybrid, breed, or cultivar++parent of this hybrid, parent(s) of this hybrid, parents of this hybrid, cultivar from+WikibaseItem+1221
-P5286+Portable Game Notation+move of a chess game provided as a string in Portable Game Notation+PGN+String+1219
-P2438+narrator+narrator, character or person that tells the story+narrated by+WikibaseItem+1209
-P4914+produces cohesive end+overhang DNA sequence generated by restriction enzyme, written from 5' to 3'++String+1209
-P2744+PASE name+standardised name (including disambiguation number) given to a person in the Prosopography of Anglo-Saxon England++String+1195
-P426+aircraft registration+identifier assigned to an individual aircraft by civil aircraft registry+registration, acreg, tail number+String+1194
-P6338+colorist+artist in charge of adding colors to drawings, comics, movie film, etc.++WikibaseItem+1188
-P8361+Universal Decimal Classification (works and editions)+UDC number assigned to a publication++String+1180
-P2629+BBFC rating+"British media content rating (add BBFC reference with qualifier ""P2676"")"+BBFC certificate+WikibaseItem+1179
-P3354+positive therapeutic predictor+the presence of the genetic variant helps to predict response to a treatment++WikibaseItem+1173
-P5769+editor-in-chief+a publication's editorial leader who has final responsibility for its operations and policies and the selection of authors, translators, illustrators, and formats for publishing articles or books in collections or periodical papers+editor in chief, EiC, executive editor, directed by, lead editor, managing editor+WikibaseItem+1155
-P2881+promoted+competitor or team relegated during competition+promotion, competitor promoted, player promoted, team promoted+WikibaseItem+1150
-P2291+charted in+chart where the element reached a position++WikibaseItem+1138
-P1165+home world+home planet or natural satellite for a fictional character or species+planet, homeworld+WikibaseItem+1133
-P4322+best sprinter classification+"person ranked as ""best sprinter"" for this cycling stage or race"++WikibaseItem+1129
-P3938+named by+person or organisation that coined the name; use as qualifier for P2561 and its subproperties+coined by, namer+WikibaseItem+1118
-P807+separated from+subject was founded or started by separating from identified object+forked from, schism from, seceded from, split from, broke from, branched from+WikibaseItem+1110
-P5237+pronunciation variety+qualifier for IPA transcription (P898), pronunciation audio (P443) or spoken text audio (P989) to indicate the associated spoken language variant+accent, pronunciation, with dialect, with pronunciation+WikibaseItem+1109
-P1336+territory claimed by+administrative divisions that claim control of a given area+claimed by, sovereignty claimed by+WikibaseItem+1090
-P4934+calculated from+value of the subject item cannot be measured directly or can be calculated from the following measurands or attributes+computed from+WikibaseItem+1081
-P2365+Roman cognomen+standard part of the name of a Roman, link to items about specific Roman cognomen only.+cognomen+WikibaseItem+1079
-P533+target+target of an attack or military operation+attack target, military target, target of attack+WikibaseItem+1071
-P1419+shape+shape of an object+form factor+WikibaseItem+1067
-P1312+has facet polytope+facet of a polytope, in the next-lower dimension+facet of a polytope+WikibaseItem+1066
-P3975+secretary general+leader of a political or international organization, sometimes below the chairperson (P488)+leader, general secretary, perpetual secretary+WikibaseItem+1058
-P1576+lifestyle+typical way of life of an individual, group, or culture+diet, follows lifestyle, has lifestyle+WikibaseItem+1050
-P4913+dialect of+"language of which an item with this property is a dialect. Use in addition to ""subclass of"" (P279) if a languoid is also considered a dialect."++WikibaseItem+1048
-P6149+running mate+second person on a presidential or other electoral ticket++WikibaseItem+1041
-P7338+regnal ordinal+(qualifier) the ordinal number used with this name. Generally to distinguish it among persons with the same name who held the same office+regnal number+String+1039
-P2360+intended public+this work, product, object or event is intended for, or has been designed to that person or group of people, animals, plants, etc+made for, for, target group, target market, audience of, created for, designed for, for audience of, for market, serving+WikibaseItem+1023
-P2009+Exif model+string as it appears in the EXIF generated by a camera++String+1015
-P3712+objective of project or action+desired result or outcome+mission, goal, purpose, end, objective, aim, intention, desired outcome, desired result, stated goal, to support+WikibaseItem+1008
-P522+type of orbit+orbit a satellite has around its central body+orbit, orbit type+WikibaseItem+1006
-P1398+structure replaces+the item this building or structure replaced, at the same geographic location+replaced by (structure), replacement building, replaces (structure)+WikibaseItem+1006
+ID
+P2860
+P1545
+P2093
+P31
+P248
+P1476
+P1433
+P304
+P478
+P1227
+P433
+P528
+P972
+P50
+P407
+P17
+P921
+P642
+P131
+P459
+P6259
+P59
+P1932
+P106
+P703
+P21
+P735
+P684
+P143
+P27
+P361
+P1057
+P279
+P373
+P225
+P171
+P105
+P1810
+P19
+P734
+P195
+P1343
+P1435
+P421
+P276
+P281
+P641
+P1640
+P527
+P155
+P156
+P69
+P659
+P54
+P1001
+P971
+P40
+P6216
+P136
+P1448
+P682
+P161
+P39
+P680
+P7243
+P6375
+P108
+P217
+P166
+P405
+P495
+P215
+P645
+P644
+P150
+P20
+P2548
+P1412
+P186
+P702
+P688
+P1013
+P681
+P22
+P170
+P1264
+P4224
+P3831
+P26
+P7959
+P301
+P910
+P518
+P1843
+P47
+P1344
+P1705
+P180
+P25
+P1889
+P1559
+P175
+P2701
+P137
+P102
+P274
+P3452
+P627
+P6224
+P127
+P282
+P123
+P413
+P2937
+P881
+P179
+P2868
+P512
+P8363
+P364
+P3373
+P463
+P159
+P128
+P140
+P5008
+P264
+P805
+P233
+P126
+P710
+P57
+P768
+P937
+P138
+P6153
+P460
+P291
+P1552
+P1031
+P1050
+P3880
+P2094
+P1365
+P1346
+P3878
+P348
+P360
+P613
+P2817
+P5911
+P7261
+P1532
+P1366
+P3879
+P2894
+P2348
+P607
+P1303
+P1814
+P473
+P4196
+P462
+P101
+P119
+P7228
+P5185
+P6099
+P793
+P81
+P162
+P1480
+P58
+P197
+P86
+P708
+P1402
+P2017
+P400
+P566
+P859
+P4844
+P275
+P172
+P1813
+P669
+P1454
+P410
+P2096
+P7727
+P1478
+P141
+P437
+P490
+P223
+P593
+P5323
+P898
+P2079
+P2241
+P176
+P1329
+P2715
+P551
+P1477
+P36
+P149
+P4100
+P393
+P272
+P6379
+P509
+P749
+P5279
+P1923
+P1441
+P935
+P3602
+P2789
+P196
+P103
+P403
+P1268
+P1534
+P1683
+P1269
+P2521
+P5051
+P750
+P1196
+P7763
+P241
+P887
+P1598
+P61
+P1642
+P344
+P958
+P4390
+P1376
+P355
+P366
+P4510
+P840
+P5187
+P6886
+P449
+P2795
+P670
+P974
+P53
+P3450
+P395
+P747
+P629
+P4614
+P800
+P1618
+P664
+P118
+P1922
+P30
+P1416
+P1411
+P674
+P5138
+P706
+P2321
+P453
+P447
+P84
+P1686
+P1313
+P112
+P945
+P5166
+P452
+P559
+P65
+P6275
+P135
+P4552
+P4101
+P206
+P8047
+P487
+P16
+P4856
+P742
+P511
+P190
+P4908
+P1588
+P1040
+P1680
+P97
+P814
+P4213
+P1472
+P1706
+P609
+P3903
+P1066
+P1071
+P1753
+P1754
+P485
+P740
+P7938
+P8005
+P3432
+P2936
+P178
+P1830
+P726
+P2417
+P767
+P812
+P144
+P296
+P1464
+P5137
+P2302
+P1039
+P412
+P6
+P725
+P1824
+P404
+P541
+P115
+P2061
+P2416
+P306
+P1383
+P4633
+P2670
+P184
+P802
+P548
+P3005
+P1853
+P1038
+P676
+P1950
+P915
+P825
+P611
+P2561
+P427
+P5607
+P2962
+P466
+P3274
+P1056
+P98
+P1792
+P6339
+P560
+P5412
+P5236
+P2676
+P7782
+P185
+P1684
+P654
+P5102
+P488
+P1080
+P697
+P3578
+P2900
+P3018
+P371
+P1427
+P2507
+P2317
+P2125
+P4884
+P240
+P1877
+P88
+P239
+P658
+P991
+P1142
+P1064
+P2354
+P1652
+P183
+P969
+P1449
+P1855
+P2283
+P1027
+P1192
+P1549
+P2453
+P205
+P2912
+P1240
+P2643
+P1456
+P1981
+P2341
+P1533
+P965
+P2758
+P1408
+P177
+P828
+P7867
+P608
+P2440
+P1424
+P1423
+P4647
+P1444
+P2677
+P461
+P3876
+P617
+P286
+P2597
+P1420
+P6885
+P1465
+P3295
+P737
+P1891
+P1716
+P2632
+P547
+P417
+P790
+P37
+P1748
+P1382
+P423
+P3643
+P289
+P7561
+P3294
+P1308
+P655
+P2001
+P397
+P370
+P2293
+P2522
+P2567
+P931
+P2308
+P647
+P780
+P2515
+P1817
+P4969
+P414
+P529
+P1403
+P287
+P2614
+P2303
+P2571
+P2554
+P3096
+P411
+P1942
+P2541
+P591
+P532
+P7937
+P7084
+P1037
+P277
+P6507
+P121
+P5970
+P3321
+P1995
+P2378
+P451
+P5021
+P2305
+P6184
+P1195
+P2316
+P376
+P2959
+P1793
+P110
+P636
+P479
+P1399
+P5353
+P2364
+P1257
+P885
+P6208
+P398
+P129
+P238
+P6424
+P2700
+P2389
+P3494
+P1594
+P516
+P4608
+P6709
+P408
+P5030
+P2175
+P5841
+P912
+P6087
+P7122
+P237
+P678
+P598
+P2210
+P1327
+P2388
+P817
+P465
+P841
+P249
+P358
+P5054
+P2598
+P2505
+P1884
+P1026
+P5816
+P1990
+P1431
+P7153
+P2978
+P4002
+P4202
+P1629
+P3823
+P816
+P5606
+P930
+P1028
+P579
+P1347
+P803
+P3342
+P4776
+P201
+P1451
+P92
+P3497
+P2596
+P8359
+P8289
+P1547
+P530
+P2176
+P467
+P200
+P1630
+P4900
+P2975
+P1340
+P189
+P1030
+P1535
+P1434
+P375
+P4320
+P2550
+P1011
+P163
+P4743
+P194
+P870
+P2747
+P2684
+P1945
+P2568
+P1998
+P1145
+P2802
+P1612
+P797
+P4323
+P6104
+P2563
+P2309
+P4241
+P2650
+P4243
+P3301
+P1536
+P792
+P8423
+P1072
+P3716
+P1692
+P5800
+P504
+P5026
+P4970
+P556
+P610
+P1671
+P4595
+P425
+P2358
+P8345
+P2408
+P826
+P87
+P1875
+P3092
+P689
+P3842
+P3179
+P1542
+P713
+P520
+P712
+P4070
+P3448
+P4628
+P399
+P1595
+P1685
+P5831
+P741
+P736
+P2359
+P1791
+P1721
+P1811
+P2363
+P1046
+P2695
+P2517
+P5025
+P852
+P748
+P835
+P444
+P711
+P5713
+P169
+P5168
+P3871
+P3912
+P1591
+P1809
+P2922
+P6241
+P564
+P1354
+P941
+P555
+P2579
+P6569
+P5326
+P424
+P823
+P3022
+P3764
+P3501
+P6942
+P4330
+P1445
+P1302
+P3610
+P415
+P2572
+P2875
+P1389
+P837
+P5817
+P1387
+P2842
+P1782
+P908
+P5826
+P1750
+P3858
+P3919
+P230
+P6086
+P2410
+P3730
+P3300
+P1560
+P3306
+P5202
+P3095
+P5832
+P4000
+P3729
+P91
+P113
+P6365
+P4195
+P1282
+P914
+P3150
+P1299
+P5997
+P2239
+P2377
+P1029
+P2559
+P2882
+P483
+P2441
+P1462
+P6112
+P3793
+P879
+P2848
+P554
+P229
+P1012
+P3781
+P4584
+P157
+P4661
+P5061
+P111
+P5028
+P4792
+P1200
+P2275
+P5522
+P3780
+P3402
+P469
+P4271
+P927
+P1999
+P1363
+P5519
+P6364
+P2443
+P5280
+P3279
+P7367
+P3931
+P1321
+P3137
+P5314
+P2846
+P1762
+P3438
+P4791
+P6193
+P2429
+P7047
+P5277
+P3085
+P3761
+P1073
+P3650
+P4132
+P2743
+P739
+P3320
+P3132
+P833
+P3834
+P2562
+P1787
+P1657
+P1596
+P765
+P4794
+P880
+P5105
+P531
+P5053
+P3025
+P38
+P7501
+P7377
+P1639
+P5276
+P552
+P3433
+P3032
+P4873
+P1885
+P2033
+P769
+P1204
+P122
+P1557
+P4312
+P450
+P35
+P3922
+P193
+P2499
+P1049
+P1135
+P2564
+P2184
+P8360
+P521
+P1879
+P3967
+P502
+P2500
+P3403
+P7936
+P2851
+P2012
+P872
+P3441
+P208
+P8450
+P3921
+P6333
+P2578
+P1151
+P263
+P618
+P4863
+P798
+P3489
+P853
+P4688
+P631
+P1163
+P3364
+P6271
+P568
+P199
+P4091
+P567
+P4952
+P457
+P5623
+P770
+P3680
+P505
+P1075
+P4151
+P832
+P795
+P5824
+P1414
+P2545
+P4864
+P3216
+P553
+P5186
+P994
+P993
+P995
+P1582
+P4044
+P1438
+P1774
+P820
+P2322
+P690
+P3822
+P6872
+P66
+P1951
+P1740
+P1672
+P5389
+P1310
+P2361
+P167
+P5880
+P3828
+P1074
+P1531
+P5286
+P2438
+P4914
+P2744
+P426
+P6338
+P8361
+P2629
+P3354
+P5769
+P2881
+P2291
+P1165
+P4322
+P3938
+P807
+P5237
+P1336
+P4934
+P2365
+P533
+P1419
+P1312
+P3975
+P1576
+P4913
+P6149
+P7338
+P2360
+P2009
+P3712
+P522
+P1398
