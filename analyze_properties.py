@@ -4,9 +4,9 @@ import lxml.html as lh
 import pandas as pd
 from utils import get_kg_data_path
 
-all_relations_path = f"{get_kg_data_path()}/data/all_wiki_relations.csv"
-filtered_detail_relations_path = f"{get_kg_data_path()}/data/filtered_wiki_relations_detail.csv"
-filtered_relations_path = f"{get_kg_data_path()}/data/filtered_wiki_relations.csv"
+all_relations_path = f"{get_kg_data_path()}/relations/all_wiki_relations.csv"
+filtered_detail_relations_path = f"{get_kg_data_path()}/relations/filtered_wiki_relations_detail.csv"
+filtered_relations_path = f"{get_kg_data_path()}/relations/filtered_wiki_relations.csv"
 
 
 def download_all_properties():
