@@ -64,6 +64,9 @@ def get_all_properties(threshold=1000):
     # Currently the median (50%) is used (value: 1000)
     too_small = relations_df[relations_df["Count"] < threshold].index
     relations_df.drop(too_small, inplace=True)
+
+    # Save to CSV ordered by count
+    relations_df.sort_values(by=["Count"], ascending=False, inplace=True)
     write_csv(relations_df, filtered_relations_path)
     print(f"{initial_size - relations_df.shape[0]} items filtered out...")
 
