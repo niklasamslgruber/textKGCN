@@ -39,7 +39,6 @@ def download_all_properties():
                     data = data.replace(',', '')
                     data = int(data)
                 except:
-                    print(f"Fail for {i}")
                     pass
             # Append the data to the empty list of the i'th column
             columns[current_column][1].append(data)
@@ -47,27 +46,34 @@ def download_all_properties():
 
     data_dict = {title: column for (title, column) in columns}
     data_df = pd.DataFrame(data_dict)
-    data_df.to_csv(all_relations_path, index=False, sep="+")
+    write_csv(data_df, all_relations_path)
 
 
 def get_all_properties(threshold=1000):
     if not isfile(all_relations_path):
         download_all_properties()
 
-    relations_df = pd.read_csv(all_relations_path, index_col=None, sep="+")
+    relations_df = read_csv(all_relations_path)
     initial_size = relations_df.shape[0]
 
     # Drop all properties which are unneccessary such as URL, Math, Location data, etc.
     important_types = relations_df[~relations_df["Data type"].isin(["WikibaseItem", "String", "Monolingualtext"])].index
     relations_df.drop(important_types, inplace=True)
-    print(relations_df.shape)
 
     # Filter out all relations with a count below the threshold (see statistics by using describe())
     # Currently the median (50%) is used (value: 1000)
     too_small = relations_df[relations_df["Count"] < threshold].index
     relations_df.drop(too_small, inplace=True)
-    relations_df.to_csv(filtered_relations_path, index=False, sep="+")
+    write_csv(relations_df, filtered_relations_path)
     print(f"{initial_size - relations_df.shape[0]} items filtered out...")
+
+
+def read_csv(path):
+    return pd.read_csv(path, index_col=None, sep="+")
+
+
+def write_csv(dataframe, path):
+    dataframe.to_csv(path, index=False, sep="+")
 
 
 if __name__ == '__main__':
