@@ -1,6 +1,7 @@
 import json
 from os.path import isfile
 from itertools import chain
+from tqdm import tqdm
 from config import FLAGS
 from utils import get_corpus_path, get_kg_data_path
 from wiki_api import download_by_title, get_safely, download_by_id
@@ -38,8 +39,10 @@ def create_json(iterable, download_function, path):
     data_dict = {}
     stats_collector = APIStatsCollector()
 
-    for identifier in iterable:
-        data_dict[identifier] = download_function(identifier, stats_collector)
+    with tqdm(total=len(iterable)) as bar:
+        for identifier in iterable:
+            data_dict[identifier] = download_function(identifier, stats_collector)
+            bar.update(1)
 
     # Write to JSON file
     write_json(path, data_dict, stats_collector)
@@ -51,7 +54,7 @@ def create_vocabulary_entities():
     # Load all words from vocabulary
     entities = get_all_vocab_words()
     create_json(entities, download_entity, entities_path)
-
+    print("Entity downloading finished")
     # Create JSON with all relations from previously initialized entities
     create_vocabulary_relations()
 
@@ -90,8 +93,8 @@ def download(search_word, lookup_function, download_function, stats_collector):
 # JSON Reader
 
 # Paths
-relations_path = f"{get_kg_data_path()}/graphs/{FLAGS.dataset}_vocab_relations.json"
-entities_path = f"{get_kg_data_path()}/graphs/{FLAGS.dataset}_vocab_entities.json"
+relations_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_relations.json"
+entities_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_entities.json"
 
 # Dictionary from JSON to avoid reading multiple times
 entity_dict = {}
