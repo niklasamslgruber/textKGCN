@@ -5,6 +5,7 @@ from tqdm import tqdm
 from config import FLAGS
 from utils import get_corpus_path, get_kg_data_path
 from wiki_api import download_by_title, get_safely, download_by_id
+import pandas as pd
 
 
 class APIStatsCollector:
@@ -41,7 +42,8 @@ def create_json(iterable, download_function, path):
 
     with tqdm(total=len(iterable)) as bar:
         for identifier in iterable:
-            data_dict[identifier] = download_function(identifier, stats_collector)
+            item = download_function(identifier, stats_collector)
+            data_dict[identifier] = item
             bar.update(1)
 
     # Write to JSON file
@@ -95,6 +97,7 @@ def download(search_word, lookup_function, download_function, stats_collector):
 # Paths
 relations_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_relations.json"
 entities_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_entities.json"
+entity2id_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_entity2id.csv"
 
 # Dictionary from JSON to avoid reading multiple times
 entity_dict = {}
@@ -142,6 +145,17 @@ def find_relation(relation_id):
     return json_dict.get(relation_id, {})
 
 
+# Entity Mappings
+
+def create_entity_mappings():
+    all_entities = read_json_file(entities_path)
+    mappings = []
+    for entity in all_entities.keys():
+        mappings.append([entity, all_entities[entity]["id"]])
+
+    write_csv(entity2id_path, mappings)
+
+
 # File reader / writer
 
 def write_json(path, data, stats_collector):
@@ -151,6 +165,11 @@ def write_json(path, data, stats_collector):
     output.close()
 
     print(f"Wrote JSON with {len(data.keys())} elements {stats_collector.get_output()}")
+
+
+def write_csv(path, array):
+    data = pd.DataFrame(array)
+    data.to_csv(path, index=False, header=False, sep=",")
 
 
 def read_txt_file(path):
@@ -176,3 +195,4 @@ def read_json_file(path):
 
 if __name__ == '__main__':
     create_vocabulary_entities()
+    create_entity_mappings()
