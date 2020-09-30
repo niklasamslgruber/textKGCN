@@ -58,8 +58,7 @@ def get_all_properties(threshold=1000):
     initial_size = relations_df.shape[0]
 
     # Drop all properties which are unneccessary such as URL, Math, Location data, etc.
-    # TODO: Delete "String" and "MonolingualText"
-    important_types = relations_df[~relations_df["Data type"].isin(["WikibaseItem", "String", "Monolingualtext"])].index
+    important_types = relations_df[~relations_df["Data type"].isin(["WikibaseItem"])].index
     relations_df.drop(important_types, inplace=True)
 
     # Filter out all relations with a count below the threshold (see statistics by using describe())
@@ -72,6 +71,7 @@ def get_all_properties(threshold=1000):
     write_csv(relations_df, filtered_detail_relations_path)
     write_csv(relations_df["ID"], filtered_relations_path)
     print(f"{initial_size - relations_df.shape[0]} items filtered out...")
+    print(f"Relevant relations: {relations_df.shape[0]}")
 
 
 def read_csv(path):

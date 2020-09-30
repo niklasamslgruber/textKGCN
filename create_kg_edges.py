@@ -109,45 +109,7 @@ def setup_triples():
 
 
 # Adjacency matrices
-def create_adjacency_matrix():
-    vocab_ids = get_entity2id()
-    filtered_triples = get_triples(filtered=True)
-    docs = get_documents()
-
-    sizes = []
-    counter = 0
-    prev_ids = []
-    for doc in docs:
-        ids = vocab_ids[vocab_ids["name"].isin(doc)]["id"].to_numpy()
-
-        if counter == 6:
-            print(doc)
-            print(vocab_ids[vocab_ids["name"].isin(doc)])
-            print(ids)
-        assert len(set(doc)) == len(ids)
-        if len(prev_ids) > 0:
-            test = filtered_triples[filtered_triples["entity1"].isin(ids) & filtered_triples["entity2"].isin(prev_ids)]
-            sizes.append(test.shape[0])
-
-            if counter == 6:
-                print("Hwe")
-                print(test)
-                print(f"Size is {test.shape[0]}")
-
-        counter += 1
-        prev_ids = ids
-
-    print("Statistics")
-    print(f"Max: {max(sizes)}")
-    print(f"Min: {min(sizes)}")
-    listY = list(sizes)
-    print(f"Number of O's: {listY.count(0)}")
-    print(f"Number of not 0's: {len(listY) - listY.count(0)}")
-    # print(listY)
-    print(f"Total entries: {len(sizes)}")
-
-
-def test():
+def create_doc2doc_edges():
     vocab_ids = get_entity2id()
     filtered_triples = get_triples(filtered=True)
     docs = get_documents()
@@ -205,7 +167,10 @@ def test():
     data.to_csv(document_triples_path, index=False, header=True, sep=",")
 
 
+def load_document_triples():
+    triples = pd.read_csv(document_triples_path, sep=',')
+    return triples
+
+
 if __name__ == '__main__':
-    # setup_triples()
-    # create_adjacency_matrix()
-    test()
+    create_doc2doc_edges()
