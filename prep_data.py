@@ -1,4 +1,5 @@
-from utils import get_data_path
+from config import FLAGS
+from utils import get_data_path, get_corpus_path
 from collections import defaultdict
 from nltk.corpus import stopwords
 import nltk
@@ -106,10 +107,3 @@ def clean_doc(string, dataset):
     string = re.sub(r"\?", " ", string)
     string = re.sub(r"\s{2,}", " ", string)
     return string.strip().lower()
-
-
-if __name__ == "__main__":
-
-    dataset = 'twitter_asian_prejudice_no_hashtag'
-    out = clean_doc('"😷before you wear n95 masks, you should look into getting a fit test. because unlike surgical masks, one size does not fit all for n95 masks. having best fit n95 for your face will ensure a good face seal for protection.  https://t.co/xm2maqsp8w  #HASHTAG HASHTAG_EASTASIA+VIRUS https://t.co/iiszmr3wgc"', dataset)
-    clean_data(dataset)

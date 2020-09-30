@@ -4,6 +4,7 @@ from model.model_text_gnn import TextGNN
 from utils import parse_as_int_list
 import torch
 
+
 def create_model(dataset):
     sp = vars(FLAGS)["model"].split(':')
     name = sp[0]
@@ -28,7 +29,9 @@ def create_text_gnn(layer_info, dataset):
         counts = Counter(dataset.label_inds[dataset.node_ids])
         weights = len(counts) * [0]
         min_weight = min(counts.values())
+
         for k, v in counts.items():
+            # MARK: If code fails here, increase number of data in small dataset
             weights[k] = min_weight / float(v)
         weights = torch.tensor(weights, device=FLAGS.device)
 
