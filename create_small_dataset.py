@@ -70,10 +70,10 @@ def create_small_dataset(dataset, size=300):
 
     # Save to new file
     assert len(sentences_normal) == len(sentences_clean) == len(doc_labels)
-    write_to_txt(sentences_normal, base_path + "_sentences.txt")
+    write_to_txt(sentences_normal, base_path + "_small_sentences.txt")
     write_to_txt(unique_vocab, base_path + "_small_vocab.txt")
     write_to_txt(sentences_clean, base_path + "_small_sentences_clean.txt")
-    write_to_txt(doc_labels, base_path + "_labels.txt")
+    write_to_txt(doc_labels, base_path + "_small_labels.txt")
 
     print(f"Small dataset created with {size} documents (based on: {dataset})")
 

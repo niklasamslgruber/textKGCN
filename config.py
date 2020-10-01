@@ -27,19 +27,11 @@ FLAGS = parser.parse_args()
 """ 
 Dataset
 """
-# dataset = 'twitter_asian_prejudice'
-# dataset = 'twitter_asian_prejudice_sentiment'
 # dataset = 'r8_presplit'
 dataset = 'r8_small'
 # dataset = 'ag_presplit'
-# dataset = 'twitter_asian_prejudice_small'
 
-if 'twitter_asian_prejudice' in dataset:
-    if 'sentiment' in dataset:
-        num_labels = 2
-    else:
-        num_labels = 4
-elif 'ag' in dataset:
+if 'ag' in dataset:
     num_labels = 4
 elif 'r8' in dataset:
     num_labels = 8
