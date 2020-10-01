@@ -14,20 +14,6 @@ class TextDataset(object):
         self.name = name
         self.graph = sparse_graph
         self.labels = labels  # Classification of each document
-        if 'twitter_asian_prejudice' in name:
-            if 'sentiment' not in name:
-                self.labels = ['discussion_of_eastasian_prejudice' if label == 'counter_speech' else label for label in
-                               self.labels]
-            else:
-                if 'neutral' not in labels:
-                    sentiment_labels = []
-                    neutral_pos_labels = ["none_of_the_above", "counter_speech", "discussion_of_eastasian_prejudice"]
-                    for label in labels:
-                        if label in neutral_pos_labels:
-                            sentiment_labels.append("neutral")
-                        else:
-                            sentiment_labels.append("negative")
-                    self.labels = sentiment_labels
         self.label_dict = {label: i for i, label in enumerate(list(set(self.labels)))}  # Key of the labels
         self.label_inds = np.asarray(
             [self.label_dict[label] for label in self.labels])  # Classification of documents with label key

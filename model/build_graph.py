@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 
 def build_text_graph_dataset(dataset, window_size):
-    if "prejudice_small" in dataset or 'sentiment' in dataset:
+    if "prejudice_small" in dataset:
         dataset_name = "_".join(dataset.split("_")[:-1])
     else:
         dataset_name = dataset
@@ -31,9 +31,6 @@ def build_text_graph_dataset(dataset, window_size):
         split_dict = {}
         for i, v in enumerate(split):
             split_dict[i] = v
-    if "small" in dataset:
-        doc_list = doc_list[:500]
-        labels_list = labels_list[:500]
 
     word_freq = get_vocab(doc_list)
     vocab = list(word_freq.keys())
@@ -157,8 +154,3 @@ def build_word_doc_edges(doc_list):
         word_doc_freq[word] = len(doc_list)
 
     return words_in_docs, word_doc_freq
-
-
-if __name__ == "__main__":
-    dataset = 'twitter_asian_prejudice_small'
-    build_text_graph_dataset(dataset, 20)

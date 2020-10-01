@@ -14,8 +14,8 @@ def load_data():
     test_ratio = 100 - train_ratio - val_ratio
     if 'presplit' not in dataset_name:
         save_fn = '{}_train_{}_val_{}_test_{}_seed_{}_window_size_{}'.format(dataset_name, train_ratio,
-                                                              val_ratio, test_ratio,
-                                                              FLAGS.random_seed, FLAGS.word_window_size)
+                                                                             val_ratio, test_ratio,
+                                                                             FLAGS.random_seed, FLAGS.word_window_size)
     else:
         save_fn = '{}_train_val_test_{}_window_size_{}'.format(dataset_name, FLAGS.random_seed, FLAGS.word_window_size)
     path = join(dir, save_fn)
@@ -26,12 +26,6 @@ def load_data():
         train_data, val_data, test_data = _load_tvt_data_helper()
         save({'train_data': train_data, 'val_data': val_data, 'test_data': test_data}, path)
 
-    dataset = FLAGS.dataset
-    if "small" in dataset:
-        dataset_name = "_".join(dataset.split("_")[:-1])
-    else:
-        dataset_name = dataset
-        
     orig_text_path = join(get_corpus_path(), dataset_name + "_sentences.txt")
     raw_doc_list = []
     f = open(orig_text_path, 'rb')

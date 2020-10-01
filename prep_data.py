@@ -1,5 +1,4 @@
-from config import FLAGS
-from utils import get_data_path, get_corpus_path
+from utils import get_data_path
 from collections import defaultdict
 from nltk.corpus import stopwords
 import nltk
@@ -20,11 +19,11 @@ def clean_data(dataset):
         dataset = old_name
         word_counts = defaultdict(int)
         for doc in docs_list:
-            temp = clean_doc(doc, dataset)
+            temp = clean_doc(doc)
             words = temp.split()
             for word in words:
                 word_counts[word] += 1
-        clean_docs = clean_documents(docs_list, word_counts, dataset)
+        clean_docs = clean_documents(docs_list, word_counts)
         corpus_str = '\n'.join(clean_docs)
         f = open(clean_text_path, 'w')
         f.write(corpus_str)
@@ -49,13 +48,13 @@ def clean_data(dataset):
     print('average_len : ' + str(aver_len))
 
 
-def clean_documents(docs, word_counts, dataset):
+def clean_documents(docs, word_counts):
     nltk.download('stopwords')
     stop_words = set(stopwords.words('english'))
     print(stop_words)
     ret = []
     for doc in docs:
-        doc = clean_doc(doc, dataset)
+        doc = clean_doc(doc)
         words = doc.split()
         words = [word for word in words if word not in stop_words and word_counts[word] >= 5]
         doc = ' '.join(words).strip()
@@ -66,31 +65,7 @@ def clean_documents(docs, word_counts, dataset):
     return ret
 
 
-def clean_doc_ap(string):
-    string = re.sub(r"http[s]?\:\/\/.[a-zA-Z0-9\.\/\_?=%&#\-\+!]+", " ", string)
-    string = re.sub(r"[^A-Za-z0-9()_+,!?:\'\`]", " ", string)  # replace all non alpha numeric characters
-    string = re.sub(r"(?<!HASHTAG)_", " ", string)
-    string = re.sub(r"(?<!EASTASIA)\+ | (?<!VIRUS)\+", " ", string)
-    string = re.sub(r"\+", "_", string)
-    string = re.sub(r"HASHTAG_EASTASIA_VIRUS(?!(\s))", "HASHTAG_EASTASIA_VIRUS ", string)
-    string = re.sub(r"HASHTAG_EASTASIA(?!(\s|_))", "HASHTAG_EASTASIA ", string)
-    string = re.sub(r"HASHTAG_VIRUS(?!(\s|_))", "HASHTAG_VIRUS ", string)
-    string = re.sub(r"HASHTAG_VIRUS_OTHERCOUNTRY(?!(\s))", "HASHTAG_VIRUS_OTHERCOUNTRY ", string)
-    string = re.sub(r"HASHTAG(?!([\s|_]))", "HASHTAG ", string)
-    if "no_hashtag" in dataset:
-        string = re.sub(r"HASHTAG_EASTASIA_VIRUS", " ", string)
-        string = re.sub(r"HASHTAG_EASTASIA", " ", string)
-        string = re.sub(r"HASHTAG_VIRUS", " ", string)
-        string = re.sub(r"HASHTAG_VIRUS_OTHERCOUNTRY", " ", string)
-        string = re.sub(r"HASHTAG", " ", string)
-    return string
-
-
-def clean_doc(string, dataset):
-    if 'twitter_asian_prejudice' in dataset:
-        string = clean_doc_ap(string)
-    else:
-        pass
+def clean_doc(string):
     string = re.sub(r"^\"", "", string)
     string = re.sub(r"\"$", "", string)
     string = re.sub(r"\'s", " \'s", string)
