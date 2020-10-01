@@ -30,8 +30,9 @@ Dataset
 # dataset = 'twitter_asian_prejudice'
 # dataset = 'twitter_asian_prejudice_sentiment'
 # dataset = 'r8_presplit'
+dataset = 'r8_small'
 # dataset = 'ag_presplit'
-dataset = 'twitter_asian_prejudice_small'
+# dataset = 'twitter_asian_prejudice_small'
 
 if 'twitter_asian_prejudice' in dataset:
     if 'sentiment' in dataset:
@@ -44,7 +45,6 @@ elif 'r8' in dataset:
     num_labels = 8
 
 FLAGS.dataset = dataset
-
 
 """
 Model

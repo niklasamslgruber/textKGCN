@@ -136,3 +136,4 @@ _cache/
 _plots/
 _data/knowledge_graphs/Wikidata/embeddings/
 _data/knowledge_graphs/Wikidata/mappings/
+_data/knowledge_graphs/Wikidata/triples/r8_presplit_document_triples.csv
