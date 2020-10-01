@@ -1,11 +1,11 @@
-import scipy.sparse as sp
-from math import log
-from loader.dataset import TextDataset
 from collections import defaultdict
+from math import log
+from os.path import exists
 import pandas as pd
-from utils import get_corpus_path
-from os.path import join, exists
+import scipy.sparse as sp
 from tqdm import tqdm
+import io_utils as io
+from loader.dataset import TextDataset
 
 
 def build_text_graph_dataset(dataset, window_size):
@@ -13,8 +13,8 @@ def build_text_graph_dataset(dataset, window_size):
         dataset_name = "_".join(dataset.split("_")[:-1])
     else:
         dataset_name = dataset
-    clean_text_path = join(get_corpus_path(), dataset_name + '_sentences_clean.txt')
-    labels_path = join(get_corpus_path(), dataset_name + '_labels.txt')
+    clean_text_path = io.get_clean_sentences_path(dataset_name)
+    labels_path = io.get_labels_path(dataset_name)
     labels = pd.read_csv(labels_path, header=None, sep='\t')
     doc_list = []
     f = open(clean_text_path, 'rb')
@@ -34,9 +34,9 @@ def build_text_graph_dataset(dataset, window_size):
 
     word_freq = get_vocab(doc_list)
     vocab = list(word_freq.keys())
-    if not exists(join(get_corpus_path(), dataset + '_vocab.txt')):
+    if not exists(io.get_vocab_path(dataset)):
         vocab_str = '\n'.join(vocab)
-        f = open(join(get_corpus_path(), dataset + '_vocab.txt'), 'w')
+        f = open(io.get_vocab_path(dataset), 'w')
         f.write(vocab_str)
         f.close()
     words_in_docs, word_doc_freq = build_word_doc_edges(doc_list)

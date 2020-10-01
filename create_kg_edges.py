@@ -8,31 +8,27 @@ Steps:
 4. Count number of relation between two documents
 5. Weight relations and set a doc-doc edge weight
 """
-from os.path import join
-from config import FLAGS
-from match_kg_data import read_json_file, entities_path, write_csv, entity2id_path
-from analyze_properties import read_csv, filtered_relations_path
-from utils import get_corpus_path, get_kg_data_path
-from wiki_api import get_safely
 import pandas as pd
 from tqdm import tqdm
 
-triples_path = f"{get_kg_data_path()}/triples/{FLAGS.dataset}_triples.csv"
-filtered_triples_path = f"{get_kg_data_path()}/triples/{FLAGS.dataset}_filtered_triples.csv"
-document_triples_path = f"{get_kg_data_path()}/triples/{FLAGS.dataset}_document_triples.csv"
+import io_utils as io
+from analyze_properties import read_csv
+from config import FLAGS
+from match_kg_data import read_json_file, write_csv
+from wiki_api import get_safely
 
 
 # Data loader
 def get_all_entities():
-    return read_json_file(entities_path)
+    return read_json_file(io.get_vocab_entities_path(FLAGS.dataset))
 
 
 def get_relevant_relations():
-    return read_csv(filtered_relations_path)
+    return read_csv(io.get_filtered_wiki_relations_path())
 
 
 def get_entity2id():
-    return pd.read_csv(entity2id_path, index_col=None, header=None, sep=",", names=["name", "id"])
+    return pd.read_csv(io.get_entity2id_path(FLAGS.dataset), index_col=None, header=None, sep=",", names=["name", "id"])
 
 
 def get_vocab_ids():
@@ -43,13 +39,13 @@ def get_vocab_ids():
 
 
 def get_triples(filtered=False):
-    path = filtered_triples_path if filtered else triples_path
+    path = io.get_filtered_word_triples_path(FLAGS.dataset) if filtered else io.get_all_word_triples_path(FLAGS.dataset)
     return pd.read_csv(path, index_col=None, header=None, sep=",", names=["entity1", "relation", "entity2"])
 
 
 def get_documents():
     docs = []
-    clean_text_path = join(get_corpus_path(), FLAGS.dataset + '_sentences_clean.txt')
+    clean_text_path = io.get_clean_sentences_path(FLAGS.dataset)
     file = open(clean_text_path, 'rb')
     for line in file.readlines():
         docs.append(line.strip().decode().split(" "))
@@ -72,7 +68,7 @@ def create_triples():
                     triple = [all_entities[entity]["id"], relation, result.get("id")]
                     triples.append(triple)
 
-    write_csv(triples_path, triples)
+    write_csv(io.get_all_word_triples_path(FLAGS.dataset), triples)
     return triples
 
 
@@ -98,11 +94,12 @@ def filter_triples():
     # Drop duplicate relations
     triples.drop_duplicates(inplace=True)
 
-    write_csv(filtered_triples_path, triples)
+    write_csv(io.get_filtered_word_triples_path(FLAGS.dataset), triples)
     print(f"Filtered out {old_size - triples.shape[0]} irrelevant triples...")
 
 
 def setup_triples():
+    # TODO: Create only when file not exists
     # Creates a filtered and unfiltered triples CVS file
     create_triples()
     filter_triples()
@@ -110,6 +107,8 @@ def setup_triples():
 
 # Adjacency matrices
 def create_doc2doc_edges():
+    setup_triples()
+    # TODO: Check if doc2doc file already exists
     vocab_ids = get_entity2id()
     filtered_triples = get_triples(filtered=True)
     docs = get_documents()
@@ -164,11 +163,11 @@ def create_doc2doc_edges():
     print(f"Total entries: {len(sizes)}")
 
     data = pd.DataFrame(triples, columns=["doc1", "doc2", "number_of_relations"])
-    data.to_csv(document_triples_path, index=False, header=True, sep=",")
+    data.to_csv(io.get_document_triples_path(FLAGS.dataset), index=False, header=True, sep=",")
 
 
 def load_document_triples():
-    triples = pd.read_csv(document_triples_path, sep=',')
+    triples = pd.read_csv(io.get_document_triples_path(FLAGS.dataset), sep=',')
     return triples
 
 

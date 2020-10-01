@@ -1,13 +1,14 @@
-from config import FLAGS
-from os.path import join
-from utils import get_save_path, load, save, get_corpus_path
-from model.build_graph import build_text_graph_dataset
-from loader.dataset import TextDataset
 import gc
+from os.path import join
+import io_utils as io
+from config import FLAGS
+from loader.dataset import TextDataset
+from model.build_graph import build_text_graph_dataset
+from utils import load, save
 
 
 def load_data():
-    dir = join(get_save_path(), 'split')
+    dir = join(io.get_cache_path(), 'split')
     dataset_name = FLAGS.dataset
     train_ratio = int(FLAGS.tvt_ratio[0] * 100)
     val_ratio = int(FLAGS.tvt_ratio[1] * 100)
@@ -26,7 +27,7 @@ def load_data():
         train_data, val_data, test_data = _load_tvt_data_helper()
         save({'train_data': train_data, 'val_data': val_data, 'test_data': test_data}, path)
 
-    orig_text_path = join(get_corpus_path(), dataset_name + "_sentences.txt")
+    orig_text_path = io.get_sentences_path(dataset_name)
     raw_doc_list = []
     f = open(orig_text_path, 'rb')
     for line in f.readlines():
@@ -37,7 +38,7 @@ def load_data():
 
 
 def _load_tvt_data_helper():
-    dir = join(get_save_path(), 'all')
+    dir = join(io.get_cache_path(), 'all')
     path = join(dir, FLAGS.dataset + '_all_window_' + str(FLAGS.word_window_size))
     rtn = load(path)
     if rtn:

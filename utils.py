@@ -1,31 +1,11 @@
-from collections import OrderedDict
 import datetime
-import klepto
-from os.path import dirname, abspath, join, expanduser, isfile, exists
-from os import environ, makedirs
-import pytz
 import re
+from collections import OrderedDict
+from os import environ, makedirs
+from os.path import dirname, expanduser, isfile, exists
 from socket import gethostname
-
-
-def get_root_path():
-    return dirname(abspath(__file__))
-
-
-def get_data_path():
-    return join(get_root_path(), '_data')
-
-
-def get_corpus_path():
-    return join(get_data_path(), 'corpus')
-
-
-def get_save_path():
-    return join(get_root_path(), '_cache')
-
-
-def get_kg_data_path():
-    return join(get_data_path(), 'knowledge_graphs/Wikidata')
+import klepto
+import pytz
 
 
 def load(filepath, print_msg=True):

@@ -1,9 +1,9 @@
-from os.path import join, isfile
-import pandas as pd
-from config import FLAGS
-from utils import get_corpus_path
-from visualization.visualize_tsne import visualize, reduce_dimensions
+from os.path import isfile
 import numpy as np
+import pandas as pd
+import io_utils as io
+from config import FLAGS
+from visualization.visualize_tsne import visualize, reduce_dimensions
 
 
 def plot(model, number_of_docs):
@@ -22,17 +22,18 @@ def plot(model, number_of_docs):
 
 
 def plot_documents(embeddings, layer):
-    np.savetxt(f"_plots/gcn/embeddings/{FLAGS.dataset}_doc_embeddings_layer{layer}.csv", embeddings.numpy(),
+
+    np.savetxt(io.get_document_embeddings_path(FLAGS.dataset, layer), embeddings.numpy(),
                delimiter=",")
     labels = generate_doc_labels(embeddings)
-    plot_embeddings(embeddings, labels, f"_plots/gcn/docs_layer_{layer}.png")
+    plot_embeddings(embeddings, labels, io.get_documents_layer_plot_path(FLAGS.dataset, layer))
 
 
 def plot_words(embeddings, layer):
-    np.savetxt(f"_plots/gcn/embeddings/{FLAGS.dataset}_word_embeddings_layer{layer}.csv", embeddings.numpy(),
+    np.savetxt(io.get_word_embeddings_path(FLAGS.dataset, layer), embeddings.numpy(),
                delimiter=",")
     labels = generate_word_labels(embeddings)
-    plot_embeddings(embeddings, labels, f"_plots/gcn/words_layer_{layer}.png")
+    plot_embeddings(embeddings, labels, io.get_words_layer_plot_path(FLAGS.dataset, layer))
 
 
 def plot_embeddings(embeddings, labels, path):
@@ -42,11 +43,11 @@ def plot_embeddings(embeddings, labels, path):
 
 def generate_doc_labels(embeddings):
     # Labels based on the "_labels.txt" file
-    labels_path = join(get_corpus_path(), FLAGS.dataset + '_labels.txt')
+    labels_path = io.get_labels_path(FLAGS.dataset)
     labels = []
     if isfile(labels_path):
         file = open(labels_path, "rb")
-        should_split = "ag" in FLAGS.dataset or "r8" in FLAGS.dataset
+        should_split = "presplit" in FLAGS.dataset
         for line in file.readlines()[0:len(embeddings)]:
             words = line.strip().decode()
             if should_split:
@@ -72,14 +73,15 @@ def generate_word_labels(embeddings):
 def read_embeddings():
     counter = 0
     while counter < 2:
-        word_emb = pd.read_csv(f"_plots/gcn/embeddings/{FLAGS.dataset}_word_embeddings_layer{counter}.csv", delimiter=",", header=None).to_numpy()
-        doc_emb = pd.read_csv(f"_plots/gcn/embeddings/{FLAGS.dataset}_doc_embeddings_layer{counter}.csv", delimiter=",", header=None).to_numpy()
+        word_emb = pd.read_csv(io.get_word_embeddings_path(FLAGS.dataset, counter), delimiter=",", header=None).to_numpy()
+        doc_emb = pd.read_csv(io.get_document_embeddings_path(FLAGS.dataset, counter), delimiter=",", header=None).to_numpy()
         reduced_emb_doc = reduce_dimensions(doc_emb)
         reduced_emb_word = reduce_dimensions(word_emb)
         doc_labels = generate_doc_labels(doc_emb)
         word_labels = generate_word_labels(word_emb)
-        visualize(reduced_emb_word, filename=f'_plots/gcn/{FLAGS.dataset}_words_layer_{counter}.png', labels=word_labels)
-        visualize(reduced_emb_doc, filename=f'_plots/gcn/{FLAGS.dataset}_docs_layer_{counter}.png', labels=doc_labels)
+
+        visualize(reduced_emb_word, filename=io.get_words_layer_plot_path(FLAGS.dataset, counter), labels=word_labels)
+        visualize(reduced_emb_doc, filename=io.get_documents_layer_plot_path(FLAGS.dataset, counter), labels=doc_labels)
         counter += 1
 
 

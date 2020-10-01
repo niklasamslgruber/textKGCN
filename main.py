@@ -1,15 +1,22 @@
-from config import FLAGS
-from evaluation.eval import eval
-from loader.load_data import load_data
-from helper.saver import Saver
-from model.train import train
-import torch
-from pprint import pprint
-from visualization.visualize_gcn import plot
 import time
+from pprint import pprint
+import torch
+from config import FLAGS
+from create_kg_edges import create_doc2doc_edges
+from evaluation.eval import eval
+from helper.saver import Saver
+from loader.load_data import load_data
+from match_kg_data import create_wiki_mappings
+from model.train import train
+from visualization.visualize_gcn import plot
 
 
 def main():
+    # KG preparations
+    create_wiki_mappings()
+    # Note takes quite a while
+    create_doc2doc_edges()
+
     saver = Saver()
     train_data, val_data, test_data, raw_doc_list = load_data()
 

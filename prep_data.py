@@ -1,19 +1,19 @@
-from utils import get_data_path
-from collections import defaultdict
-from nltk.corpus import stopwords
-import nltk
-from os.path import join, exists
 import re
+from collections import defaultdict
+from os.path import exists
+import nltk
+from nltk.corpus import stopwords
+import io_utils as io
 
 
 def clean_data(dataset):
-    clean_text_path = join(get_data_path(), 'corpus', dataset + '_sentences_clean.txt')
+    clean_text_path = io.get_clean_sentences_path(dataset)
     if not exists(clean_text_path):
         docs_list = []
         old_name = dataset
         if "no_hashtag" in dataset:
             dataset = '_'.join(dataset.split('_')[:-2])
-        with open(join(get_data_path(), 'corpus', dataset + '_sentences.txt')) as f:
+        with open(io.get_sentences_path(dataset)) as f:
             for line in f.readlines():
                 docs_list.append(line.strip())
         dataset = old_name

@@ -1,10 +1,9 @@
-from evaluation.eval import eval, MovingAverage
-from config import FLAGS
-from model.model_factory import create_model
-
-from pprint import pprint
 import time
+from pprint import pprint
 import torch
+from config import FLAGS
+from evaluation.eval import eval, MovingAverage
+from model.model_factory import create_model
 
 
 def train(train_data, val_data, saver):

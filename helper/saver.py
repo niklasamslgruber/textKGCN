@@ -1,17 +1,17 @@
-from config import FLAGS
-from model.model_factory import create_model
-from utils import get_root_path, create_dir_if_not_exists, get_ts, save, sorted_nicely
-
 import glob
 from os.path import join, getctime
 import torch
+import io_utils as io
+from config import FLAGS
+from model.model_factory import create_model
+from utils import create_dir_if_not_exists, get_ts, save, sorted_nicely
 
 
 class Saver(object):
     def __init__(self):
         model_str = self.get_model_str()
         self.logdir = join(
-            get_root_path(),
+            io.get_root_path(),
             '_logs',
             '{}_{}'.format(model_str, get_ts()))
         create_dir_if_not_exists(self.logdir)
@@ -85,4 +85,4 @@ def get_model_info_as_command():
         v = d[k]
         s = '--{}={}'.format(k, v)
         rtn.append(s)
-    return 'python {} {}'.format(join(get_root_path(), 'main.py'), '  '.join(rtn))
+    return 'python {} {}'.format(join(io.get_root_path(), 'main.py'), '  '.join(rtn))

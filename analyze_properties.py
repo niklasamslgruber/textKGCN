@@ -1,12 +1,8 @@
 from os.path import isfile
-import requests
 import lxml.html as lh
 import pandas as pd
-from utils import get_kg_data_path
-
-all_relations_path = f"{get_kg_data_path()}/relations/all_wiki_relations.csv"
-filtered_detail_relations_path = f"{get_kg_data_path()}/relations/filtered_wiki_relations_detail.csv"
-filtered_relations_path = f"{get_kg_data_path()}/relations/filtered_wiki_relations.csv"
+import requests
+import io_utils as io
 
 
 def download_all_properties():
@@ -47,14 +43,14 @@ def download_all_properties():
 
     data_dict = {title: column for (title, column) in columns}
     data_df = pd.DataFrame(data_dict)
-    write_csv(data_df, all_relations_path)
+    write_csv(data_df, io.get_all_wiki_relations_path())
 
 
 def get_all_properties(threshold=1000):
-    if not isfile(all_relations_path):
+    if not isfile(io.get_all_wiki_relations_path()):
         download_all_properties()
 
-    relations_df = read_csv(all_relations_path)
+    relations_df = read_csv(io.get_all_wiki_relations_path())
     initial_size = relations_df.shape[0]
 
     # Drop all properties which are unneccessary such as URL, Math, Location data, etc.
@@ -68,8 +64,8 @@ def get_all_properties(threshold=1000):
 
     # Save to CSV ordered by count with details and without
     relations_df.sort_values(by=["Count"], ascending=False, inplace=True)
-    write_csv(relations_df, filtered_detail_relations_path)
-    write_csv(relations_df["ID"], filtered_relations_path)
+    write_csv(relations_df, io.get_filtered_wiki_detailed_relations_path())
+    write_csv(relations_df["ID"], io.get_filtered_wiki_relations_path())
     print(f"{initial_size - relations_df.shape[0]} items filtered out...")
     print(f"Relevant relations: {relations_df.shape[0]}")
 

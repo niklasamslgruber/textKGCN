@@ -1,11 +1,11 @@
 import json
-from os.path import isfile
 from itertools import chain
-from tqdm import tqdm
-from config import FLAGS
-from utils import get_corpus_path, get_kg_data_path
-from wiki_api import download_by_title, get_safely, download_by_id
+from os.path import isfile
 import pandas as pd
+from tqdm import tqdm
+import io_utils as io
+from config import FLAGS
+from wiki_api import download_by_title, get_safely, download_by_id
 
 
 class APIStatsCollector:
@@ -55,7 +55,7 @@ def create_vocabulary_entities():
 
     # Load all words from vocabulary
     entities = get_all_vocab_words()
-    create_json(entities, download_entity, entities_path)
+    create_json(entities, download_entity, io.get_vocab_entities_path(FLAGS.dataset))
     print("Entity downloading finished")
     # Create JSON with all relations from previously initialized entities
     create_vocabulary_relations()
@@ -66,7 +66,7 @@ def create_vocabulary_relations():
 
     # Load all relations
     relations = get_all_relations()
-    create_json(relations, download_relation, relations_path)
+    create_json(relations, download_relation, io.get_vocab_relations_path(FLAGS.dataset))
 
 
 # API Downloader
@@ -94,11 +94,6 @@ def download(search_word, lookup_function, download_function, stats_collector):
 
 # JSON Reader
 
-# Paths
-relations_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_relations.json"
-entities_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_entities.json"
-entity2id_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_entity2id.csv"
-
 # Dictionary from JSON to avoid reading multiple times
 entity_dict = {}
 relation_dict = {}
@@ -107,7 +102,7 @@ relation_dict = {}
 def get_all_relations():
     # Gets all relations for current vocabulary
     all_relations = []
-    entities = read_json_file(entities_path)
+    entities = read_json_file(io.get_vocab_entities_path(FLAGS.dataset))
     for entity in entities.values():
         relations = get_safely(entity, ["relations"]).keys()
         all_relations.append(relations)
@@ -118,7 +113,7 @@ def get_all_relations():
 
 def get_all_vocab_words():
     # Gets all words in the vocabulary
-    return read_txt_file(f'{get_corpus_path()}/{FLAGS.dataset}_vocab.txt')
+    return read_txt_file(io.get_vocab_path(FLAGS.dataset))
 
 
 # JSON Lookups
@@ -129,7 +124,7 @@ def find_entity(entity_name):
     if len(entity_dict) > 0:
         json_dict = entity_dict
     else:
-        json_dict = read_json_file(entities_path)
+        json_dict = read_json_file(io.get_vocab_entities_path(FLAGS.dataset))
         entity_dict = json_dict
     return json_dict.get(entity_name, {})
 
@@ -140,7 +135,7 @@ def find_relation(relation_id):
     if len(relation_dict) > 0:
         json_dict = relation_dict
     else:
-        json_dict = read_json_file(relations_path)
+        json_dict = read_json_file(io.get_vocab_relations_path(FLAGS.dataset))
         relation_dict = json_dict
     return json_dict.get(relation_id, {})
 
@@ -148,12 +143,12 @@ def find_relation(relation_id):
 # Entity Mappings
 
 def create_entity_mappings():
-    all_entities = read_json_file(entities_path)
+    all_entities = read_json_file(io.get_vocab_entities_path(FLAGS.dataset))
     mappings = []
     for entity in all_entities.keys():
         mappings.append([entity, all_entities[entity]["id"]])
 
-    write_csv(entity2id_path, mappings)
+    write_csv(io.get_entity2id_path(FLAGS.dataset), mappings)
 
 
 # File reader / writer
@@ -193,6 +188,11 @@ def read_json_file(path):
     return json_dict
 
 
-if __name__ == '__main__':
+def create_wiki_mappings():
+    # Creates files with all entities and their relations from dataset
     create_vocabulary_entities()
     create_entity_mappings()
+
+
+if __name__ == '__main__':
+    create_wiki_mappings()

@@ -1,8 +1,8 @@
-import numpy as np
 import random
+import numpy as np
+import scipy.sparse as sp
 import torch
 from torch_geometric.data import Data as PyGSingleGraphData
-import scipy.sparse as sp
 
 
 class TextDataset(object):

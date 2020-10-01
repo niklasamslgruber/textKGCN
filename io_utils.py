@@ -30,20 +30,20 @@ def get_logs_path():
 
 
 # Specific directory paths
-def get_kg_data_path():
+def get_kg_base_path():
     return join(get_data_path(), 'knowledge_graphs/Wikidata')
 
 
 def get_kg_relations_path():
-    return join(get_kg_data_path(), 'relations')
+    return join(get_kg_base_path(), 'relations')
 
 
 def get_kg_triples_path():
-    return join(get_kg_data_path(), 'triples')
+    return join(get_kg_base_path(), 'triples')
 
 
 def get_kg_data_path():
-    return join(get_kg_data_path(), 'data')
+    return join(get_kg_base_path(), 'data')
 
 
 def get_embeddings_cache_path():
@@ -109,11 +109,11 @@ def get_vocab_path(dataset):
 
 
 # Plots
-def get_words_layer_path(dataset, layer):
+def get_words_layer_plot_path(dataset, layer):
     return join(get_plots_path(), f'{dataset}_words_layer_{layer}.png')
 
 
-def get_documents_layer_path(dataset, layer):
+def get_documents_layer_plot_path(dataset, layer):
     return join(get_plots_path(), f'{dataset}_docs_layer_{layer}.png')
 
 
