@@ -1,6 +1,6 @@
 # Includes:
-# - all paths
-# - helper methods to read and write to / from txt, json, csv
+# [x] all paths
+# [ ] helper methods to read and write to / from txt, json, csv
 from os.path import dirname, abspath, join
 
 

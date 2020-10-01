@@ -1,19 +1,4 @@
-from os.path import join
-from utils import get_data_path, get_corpus_path
-
-
-# Readers
-def get_base_path(dataset):
-    return join(get_corpus_path(), dataset)
-
-
-def get_base_data(dataset):
-    base_path = get_base_path(dataset)
-    clean_sentences_path = base_path + '_sentences_clean.txt'
-    sentences_path = base_path + '_sentences.txt'
-    labels_path = base_path + '_labels.txt'
-
-    return clean_sentences_path, sentences_path, labels_path
+import io_utils as io
 
 
 def write_to_txt(data, path):
@@ -23,16 +8,13 @@ def write_to_txt(data, path):
 
 
 def create_small_dataset(dataset, size=300):
-    clean_sentences_path, sentences_path, labels_path = get_base_data(dataset)
-
     small_dataset_name = dataset if "presplit" not in dataset else dataset.replace("_presplit", "")
-    print(small_dataset_name)
+    small_dataset_name += "_small"
 
     # Load files
-    cleaned_sentences = open(clean_sentences_path, 'r')
-    sentences = open(sentences_path, 'r')
-    labels = open(labels_path, 'r')
-    base_path = join(get_corpus_path(), small_dataset_name)
+    cleaned_sentences = open(io.get_clean_sentences_path(dataset), 'r')
+    sentences = open(io.get_sentences_path(dataset), 'r')
+    labels = open(io.get_labels_path(dataset), 'r')
 
     # Vocabulary and sentences
     vocabs = []
@@ -70,10 +52,11 @@ def create_small_dataset(dataset, size=300):
 
     # Save to new file
     assert len(sentences_normal) == len(sentences_clean) == len(doc_labels)
-    write_to_txt(sentences_normal, base_path + "_small_sentences.txt")
-    write_to_txt(unique_vocab, base_path + "_small_vocab.txt")
-    write_to_txt(sentences_clean, base_path + "_small_sentences_clean.txt")
-    write_to_txt(doc_labels, base_path + "_small_labels.txt")
+
+    write_to_txt(sentences_normal, io.get_sentences_path(small_dataset_name))
+    write_to_txt(unique_vocab, io.get_vocab_path(small_dataset_name))
+    write_to_txt(sentences_clean, io.get_clean_sentences_path(small_dataset_name))
+    write_to_txt(doc_labels, io.get_labels_path(small_dataset_name))
 
     print(f"Small dataset created with {size} documents (based on: {dataset})")
 
