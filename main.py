@@ -15,7 +15,7 @@ def main():
     # KG preparations
     create_wiki_mappings()
     # Note takes quite a while
-    create_doc2doc_edges()
+    # create_doc2doc_edges()
 
     saver = Saver()
     train_data, val_data, test_data, raw_doc_list = load_data()

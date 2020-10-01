@@ -43,18 +43,10 @@ def plot_embeddings(embeddings, labels, path):
 
 def generate_doc_labels(embeddings):
     # Labels based on the "_labels.txt" file
-    labels_path = io.get_labels_path()
-    labels = []
-    if isfile(labels_path):
-        file = open(labels_path, "rb")
-        should_split = "presplit" in FLAGS.dataset
-        for line in file.readlines()[0:len(embeddings)]:
-            words = line.strip().decode()
-            if should_split:
-                words = words.split("\t")[2]
-            labels.append(words)
-            file.close()
-    return labels
+    labels = io.read_txt(io.get_labels_path())[0:len(embeddings)]
+    label_index = 2 if "presplit" in FLAGS.dataset else 0
+    doc_labels = list(map(lambda label: label.split(sep="\t")[label_index], labels))
+    return doc_labels
 
 
 def generate_word_labels(embeddings):

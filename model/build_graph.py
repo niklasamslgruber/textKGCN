@@ -13,14 +13,10 @@ def build_text_graph_dataset(dataset, window_size):
         dataset_name = "_".join(dataset.split("_")[:-1])
     else:
         dataset_name = dataset
-    clean_text_path = io.get_clean_sentences_path(dataset_name)
     labels_path = io.get_labels_path(dataset_name)
     labels = pd.read_csv(labels_path, header=None, sep='\t')
-    doc_list = []
-    f = open(clean_text_path, 'rb')
-    for line in f.readlines():
-        doc_list.append(line.strip().decode())
-    f.close()
+    doc_list = io.read_txt(io.get_clean_sentences_path(dataset_name))
+
     assert len(labels) == len(doc_list)
     if 'presplit' not in dataset:
         labels_list = labels.iloc[0:, 0].tolist()

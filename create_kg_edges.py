@@ -12,15 +12,11 @@ import pandas as pd
 from tqdm import tqdm
 import io_utils as io
 from analyze_properties import read_csv
-from match_kg_data import read_json_file, write_csv
+from match_kg_data import write_csv
 from wiki_api import get_safely
 
 
 # Data loader
-def get_all_entities():
-    return read_json_file(io.get_vocab_entities_path())
-
-
 def get_relevant_relations():
     return read_csv(io.get_filtered_wiki_relations_path())
 
@@ -42,20 +38,15 @@ def get_triples(filtered=False):
 
 
 def get_documents():
-    docs = []
-    clean_text_path = io.get_clean_sentences_path()
-    file = open(clean_text_path, 'rb')
-    for line in file.readlines():
-        docs.append(line.strip().decode().split(" "))
-    file.close()
-    return docs
+    cleaned_sentences = list(map(lambda doc: doc.split(" "), io.read_txt(io.get_clean_sentences_path())))
+    return cleaned_sentences
 
 
 # Create triple documents
 def create_triples():
     # Creates triples based on the vocab entities and relations (unfiltered)
     triples = []
-    all_entities = get_all_entities()
+    all_entities = io.read_json(io.get_vocab_entities_path())
     for entity in all_entities.keys():
         for relation in get_safely(all_entities, [entity, "relations"]).keys():
             for relation_value in get_safely(all_entities, [entity, "relations", relation]).keys():

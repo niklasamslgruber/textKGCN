@@ -27,12 +27,7 @@ def load_data():
         train_data, val_data, test_data = _load_tvt_data_helper()
         save({'train_data': train_data, 'val_data': val_data, 'test_data': test_data}, path)
 
-    orig_text_path = io.get_sentences_path(dataset_name)
-    raw_doc_list = []
-    f = open(orig_text_path, 'rb')
-    for line in f.readlines():
-        raw_doc_list.append(line.strip().decode())
-    f.close()
+    raw_doc_list = io.read_txt(io.get_sentences_path(dataset_name))
 
     return train_data, val_data, test_data, raw_doc_list
 

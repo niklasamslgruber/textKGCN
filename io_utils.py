@@ -1,8 +1,10 @@
 # Includes:
 # [x] all paths
 # [ ] helper methods to read and write to / from txt, json, csv
-from os.path import dirname, abspath, join
+import json
+from os.path import dirname, abspath, join, isfile
 from config import FLAGS
+import pandas as pd
 
 
 # Base Paths
@@ -125,3 +127,59 @@ def get_word_embeddings_path(layer, dataset=FLAGS.dataset):
 
 def get_document_embeddings_path(layer, dataset=FLAGS.dataset):
     return join(get_embeddings_cache_path(), f'{dataset}_doc_embeddings_layer{layer}.csv')
+
+
+# JSON
+def read_json(path):
+    assert path.endswith('.json')
+
+    json_dict = {}
+    if isfile(path):
+        with open(path, 'r') as output:
+            json_dict = json.load(output)
+        output.close()
+    return json_dict
+
+
+def write_json(path, data):
+    assert path.endswith('.json')
+
+    with open(path, "w") as output:
+        json.dump(data, output, indent=4)
+    output.close()
+
+
+# TXT
+def write_txt(data, path):
+    assert path.endswith('.txt')
+    data_to_write = map(lambda item: item.replace("\n", ""), data)
+    f = open(path, 'w')
+    f.writelines("\n".join(data_to_write))
+    f.close()
+
+
+def read_txt(path):
+    assert path.endswith('.txt')
+    data = []
+    if isfile(path):
+        file = open(path, 'r')
+        for line in file.readlines():
+            data.append(line.strip())
+        file.close()
+    else:
+        raise ValueError(f'File not found: {path}')
+    return data
+
+
+def read_csv(path):
+    assert path.endswith('.csv')
+    pd.read_csv(path, index_col=None, header=None, sep=',', names=['name', 'id'])
+
+
+# Writer
+def write_csv(path, array):
+    assert path.endswith('.csv')
+    data = pd.DataFrame(array)
+    data.to_csv(path, index=False, header=False, sep=',')
+
+

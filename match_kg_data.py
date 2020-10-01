@@ -1,6 +1,4 @@
-import json
 from itertools import chain
-from os.path import isfile
 import pandas as pd
 from tqdm import tqdm
 import io_utils as io
@@ -46,7 +44,8 @@ def create_json(iterable, download_function, path):
             bar.update(1)
 
     # Write to JSON file
-    write_json(path, data_dict, stats_collector)
+    io.write_json(path, data_dict)
+    print(f"Wrote JSON with {len(data_dict.keys())} elements {stats_collector.get_output()}")
 
 
 def create_vocabulary_entities():
@@ -101,7 +100,8 @@ relation_dict = {}
 def get_all_relations():
     # Gets all relations for current vocabulary
     all_relations = []
-    entities = read_json_file(io.get_vocab_entities_path())
+    entities = io.read_json(io.get_vocab_entities_path())
+
     for entity in entities.values():
         relations = get_safely(entity, ["relations"]).keys()
         all_relations.append(relations)
@@ -112,7 +112,7 @@ def get_all_relations():
 
 def get_all_vocab_words():
     # Gets all words in the vocabulary
-    return read_txt_file(io.get_vocab_path())
+    return io.read_txt(io.get_vocab_path())
 
 
 # JSON Lookups
@@ -123,7 +123,7 @@ def find_entity(entity_name):
     if len(entity_dict) > 0:
         json_dict = entity_dict
     else:
-        json_dict = read_json_file(io.get_vocab_entities_path())
+        json_dict = io.read_json(io.get_vocab_entities_path())
         entity_dict = json_dict
     return json_dict.get(entity_name, {})
 
@@ -134,7 +134,7 @@ def find_relation(relation_id):
     if len(relation_dict) > 0:
         json_dict = relation_dict
     else:
-        json_dict = read_json_file(io.get_vocab_relations_path())
+        json_dict = io.read_json(io.get_vocab_relations_path())
         relation_dict = json_dict
     return json_dict.get(relation_id, {})
 
@@ -142,7 +142,7 @@ def find_relation(relation_id):
 # Entity Mappings
 
 def create_entity_mappings():
-    all_entities = read_json_file(io.get_vocab_entities_path())
+    all_entities = io.read_json(io.get_vocab_entities_path())
     mappings = []
     for entity in all_entities.keys():
         mappings.append([entity, all_entities[entity]["id"]])
@@ -152,39 +152,9 @@ def create_entity_mappings():
 
 # File reader / writer
 
-def write_json(path, data, stats_collector):
-    # Write to .json file
-    with open(path, "w") as output:
-        json.dump(data, output, indent=4)
-    output.close()
-
-    print(f"Wrote JSON with {len(data.keys())} elements {stats_collector.get_output()}")
-
-
 def write_csv(path, array):
     data = pd.DataFrame(array)
     data.to_csv(path, index=False, header=False, sep=",")
-
-
-def read_txt_file(path):
-    # Read .txt file
-    data = []
-    if isfile(path):
-        file = open(path, "rb")
-        for line in file.readlines():
-            data.append(line.strip().decode())
-        file.close()
-    return data
-
-
-def read_json_file(path):
-    # Read .json file
-    json_dict = {}
-    if isfile(path):
-        with open(path, "r") as output:
-            json_dict = json.load(output)
-        output.close()
-    return json_dict
 
 
 def create_wiki_mappings():
