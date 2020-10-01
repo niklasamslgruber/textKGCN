@@ -2,6 +2,7 @@
 # [x] all paths
 # [ ] helper methods to read and write to / from txt, json, csv
 from os.path import dirname, abspath, join
+from config import FLAGS
 
 
 # Base Paths
@@ -53,28 +54,28 @@ def get_embeddings_cache_path():
 # Specific file paths
 
 # Triples
-def get_all_word_triples_path(dataset):
+def get_all_word_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(), f'{dataset}_triples.csv')
 
 
-def get_filtered_word_triples_path(dataset):
+def get_filtered_word_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(), f'{dataset}_filtered_triples.csv')
 
 
-def get_document_triples_path(dataset):
+def get_document_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(), f'{dataset}_document_triples.csv')
 
 
 # Mappings
-def get_entity2id_path(dataset):
+def get_entity2id_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(), f'{dataset}_entity2id.csv')
 
 
-def get_vocab_entities_path(dataset):
+def get_vocab_entities_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(), f'{dataset}_vocab_entities.json')
 
 
-def get_vocab_relations_path(dataset):
+def get_vocab_relations_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(), f'{dataset}_vocab_relations.json')
 
 
@@ -92,35 +93,35 @@ def get_filtered_wiki_detailed_relations_path():
 
 
 # Dataset files
-def get_labels_path(dataset):
+def get_labels_path(dataset=FLAGS.dataset):
     return join(get_corpus_path(), f'{dataset}_labels.txt')
 
 
-def get_sentences_path(dataset):
+def get_sentences_path(dataset=FLAGS.dataset):
     return join(get_corpus_path(), f'{dataset}_sentences.txt')
 
 
-def get_clean_sentences_path(dataset):
+def get_clean_sentences_path(dataset=FLAGS.dataset):
     return join(get_corpus_path(), f'{dataset}_sentences_clean.txt')
 
 
-def get_vocab_path(dataset):
+def get_vocab_path(dataset=FLAGS.dataset):
     return join(get_corpus_path(), f'{dataset}_vocab.txt')
 
 
 # Plots
-def get_words_layer_plot_path(dataset, layer):
+def get_words_layer_plot_path(layer, dataset=FLAGS.dataset):
     return join(get_plots_path(), f'{dataset}_words_layer_{layer}.png')
 
 
-def get_documents_layer_plot_path(dataset, layer):
+def get_documents_layer_plot_path(layer, dataset=FLAGS.dataset):
     return join(get_plots_path(), f'{dataset}_docs_layer_{layer}.png')
 
 
 # Embeddings
-def get_word_embeddings_path(dataset, layer):
+def get_word_embeddings_path(layer, dataset=FLAGS.dataset):
     return join(get_embeddings_cache_path(), f'{dataset}_word_embeddings_layer{layer}.csv')
 
 
-def get_document_embeddings_path(dataset, layer):
+def get_document_embeddings_path(layer, dataset=FLAGS.dataset):
     return join(get_embeddings_cache_path(), f'{dataset}_doc_embeddings_layer{layer}.csv')

@@ -10,17 +10,15 @@ Steps:
 """
 import pandas as pd
 from tqdm import tqdm
-
 import io_utils as io
 from analyze_properties import read_csv
-from config import FLAGS
 from match_kg_data import read_json_file, write_csv
 from wiki_api import get_safely
 
 
 # Data loader
 def get_all_entities():
-    return read_json_file(io.get_vocab_entities_path(FLAGS.dataset))
+    return read_json_file(io.get_vocab_entities_path())
 
 
 def get_relevant_relations():
@@ -28,7 +26,7 @@ def get_relevant_relations():
 
 
 def get_entity2id():
-    return pd.read_csv(io.get_entity2id_path(FLAGS.dataset), index_col=None, header=None, sep=",", names=["name", "id"])
+    return pd.read_csv(io.get_entity2id_path(), index_col=None, header=None, sep=",", names=["name", "id"])
 
 
 def get_vocab_ids():
@@ -39,13 +37,13 @@ def get_vocab_ids():
 
 
 def get_triples(filtered=False):
-    path = io.get_filtered_word_triples_path(FLAGS.dataset) if filtered else io.get_all_word_triples_path(FLAGS.dataset)
+    path = io.get_filtered_word_triples_path() if filtered else io.get_all_word_triples_path()
     return pd.read_csv(path, index_col=None, header=None, sep=",", names=["entity1", "relation", "entity2"])
 
 
 def get_documents():
     docs = []
-    clean_text_path = io.get_clean_sentences_path(FLAGS.dataset)
+    clean_text_path = io.get_clean_sentences_path()
     file = open(clean_text_path, 'rb')
     for line in file.readlines():
         docs.append(line.strip().decode().split(" "))
@@ -68,7 +66,7 @@ def create_triples():
                     triple = [all_entities[entity]["id"], relation, result.get("id")]
                     triples.append(triple)
 
-    write_csv(io.get_all_word_triples_path(FLAGS.dataset), triples)
+    write_csv(io.get_all_word_triples_path(), triples)
     return triples
 
 
@@ -94,7 +92,7 @@ def filter_triples():
     # Drop duplicate relations
     triples.drop_duplicates(inplace=True)
 
-    write_csv(io.get_filtered_word_triples_path(FLAGS.dataset), triples)
+    write_csv(io.get_filtered_word_triples_path(), triples)
     print(f"Filtered out {old_size - triples.shape[0]} irrelevant triples...")
 
 
@@ -163,11 +161,11 @@ def create_doc2doc_edges():
     print(f"Total entries: {len(sizes)}")
 
     data = pd.DataFrame(triples, columns=["doc1", "doc2", "number_of_relations"])
-    data.to_csv(io.get_document_triples_path(FLAGS.dataset), index=False, header=True, sep=",")
+    data.to_csv(io.get_document_triples_path(), index=False, header=True, sep=",")
 
 
 def load_document_triples():
-    triples = pd.read_csv(io.get_document_triples_path(FLAGS.dataset), sep=',')
+    triples = pd.read_csv(io.get_document_triples_path(), sep=',')
     return triples
 
 
