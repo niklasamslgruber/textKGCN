@@ -21,6 +21,18 @@ def plot_results(metric="accuracy"):
     plt.close(fig)
 
 
+def visualize_loss(loss_array, loss):
+    number_epochs = len(loss_array)
+    fig, ax = plt.subplots(figsize=(15, 15))
+    fig.suptitle(f"Validation loss for {number_epochs} epochs")
+    fig.tight_layout()
+    plt.plot(range(0, number_epochs), loss_array, label="Validation loss")
+    plt.plot(range(0, len(loss)), loss, label="Loss")
+    plt.legend()
+    plt.savefig(io.get_eval_loss_plot_path())
+    plt.close(fig)
+
+
 if __name__ == '__main__':
     plot_results()
     plot_results("f1_macro")

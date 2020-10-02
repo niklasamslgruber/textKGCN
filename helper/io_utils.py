@@ -121,6 +121,11 @@ def get_results_plot_path(metric, dataset=FLAGS.dataset):
     return join(results_path, f'{dataset}_eval_results_{metric}.png')
 
 
+def get_eval_loss_plot_path(dataset=FLAGS.dataset):
+    results_path = path(join(get_plots_path(), f'results/val_loss'))
+    return join(results_path, f'{dataset}_val_loss.png')
+
+
 # Embeddings
 def get_word_embeddings_path(layer, dataset=FLAGS.dataset):
     return join(get_embeddings_cache_path(), f'{dataset}_word_embeddings_layer{layer}.csv')

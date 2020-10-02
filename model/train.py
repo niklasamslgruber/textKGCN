@@ -4,6 +4,7 @@ import torch
 from config import FLAGS
 from evaluation.eval import eval, MovingAverage
 from model.model_factory import create_model
+from visualize_results import visualize_loss
 
 
 def train(train_data, val_data, saver):
@@ -17,6 +18,8 @@ def train(train_data, val_data, saver):
     pyg_graph = train_data.get_pyg_graph(FLAGS.device)
     optimizer = torch.optim.Adam(model.parameters(), lr=FLAGS.lr, )
 
+    epoch_losses = []
+    losses = []
     for epoch in range(FLAGS.num_epochs):
         t = time.time()
         model.train()
@@ -29,17 +32,26 @@ def train(train_data, val_data, saver):
             val_loss, preds_val = model(pyg_graph, val_data)
             val_loss = val_loss.item()
             eval_res_val = eval(preds_val, val_data, False)
+            epoch_losses.append(val_loss)
+            losses.append(loss)
+
             if FLAGS.show_eval:
                 print("Epoch: {:04d}, Train Loss: {:.5f}, Time: {:.5f}".format(epoch, loss, time.time() - t))
                 print("Val Loss: {:.5f}".format(val_loss))
                 print("Val Results: ...")
                 pprint(eval_res_val)
+
             eval_res_val["loss"] = val_loss
 
             if len(moving_avg.results) == 0 or moving_avg.best_result(eval_res_val[FLAGS.validation_metric]):
                 saver.save_trained_model(model, epoch + 1)
+
+            # Accuracy is used for the moving average
             moving_avg.add_to_moving_avg(eval_res_val[FLAGS.validation_metric])
             if moving_avg.stop():
                 break
+
+    # if FLAGS.plot:
+    visualize_loss(epoch_losses, losses)
     best_model = saver.load_trained_model(train_data)
     return best_model, model
