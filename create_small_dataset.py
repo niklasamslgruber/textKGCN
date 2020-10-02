@@ -1,4 +1,4 @@
-import file_utils as file
+from helper import file_utils as file
 
 
 def create_small_dataset(dataset, size=300):

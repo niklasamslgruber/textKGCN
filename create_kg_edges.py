@@ -12,8 +12,8 @@ from os.path import exists
 
 import pandas as pd
 from tqdm import tqdm
-import file_utils as file
-from wiki_api import get_safely
+from helper import file_utils as file
+from loader.wiki_api import get_safely
 
 
 # Data loader
@@ -93,7 +93,10 @@ def create_doc2doc_edges():
     filtered_triples = get_triples(filtered=True)
     docs = get_documents()
 
-    print(len(file.get_document_triples()))
+    # Creating the doc2doc matrix takes very long, shoould only be done when neccessary
+    if file.get_document_triples() is not None:
+        print("Document triple file already exist. File will not be created again.")
+        return
 
     sizes = []
     triples = []

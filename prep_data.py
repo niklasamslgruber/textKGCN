@@ -3,8 +3,7 @@ from collections import defaultdict
 from os.path import exists
 import nltk
 from nltk.corpus import stopwords
-import io_utils as io
-import file_utils as file
+from helper import io_utils as io, file_utils as file
 
 
 def clean_data(dataset):

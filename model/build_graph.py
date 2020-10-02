@@ -4,9 +4,8 @@ from os.path import exists
 import pandas as pd
 import scipy.sparse as sp
 from tqdm import tqdm
-import io_utils as io
+from helper import io_utils as io, file_utils as file
 from loader.dataset import TextDataset
-import file_utils as file
 
 
 def build_text_graph_dataset(dataset, window_size):

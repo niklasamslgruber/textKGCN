@@ -1,7 +1,8 @@
 import lxml.html as lh
 import pandas as pd
 import requests
-import file_utils as file
+from helper import file_utils as file
+
 
 # This file downloads a list of all available WikiData relations (properties) and filters them
 # The filters are:

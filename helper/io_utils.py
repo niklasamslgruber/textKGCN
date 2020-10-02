@@ -1,5 +1,5 @@
 import json
-from os.path import dirname, abspath, join, isfile, exists
+from os.path import dirname, abspath, join, isfile
 import utils
 from config import FLAGS
 import pandas as pd
@@ -7,7 +7,7 @@ import pandas as pd
 
 # Base Paths
 def get_root_path():
-    return dirname(abspath(__file__))
+    return dirname(dirname(abspath(__file__)))
 
 
 def get_data_path():

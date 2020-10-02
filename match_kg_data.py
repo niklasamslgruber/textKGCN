@@ -1,7 +1,7 @@
 from itertools import chain
 from tqdm import tqdm
-from wiki_api import download_by_title, get_safely, download_by_id
-import file_utils as file
+from loader.wiki_api import download_by_title, get_safely, download_by_id
+from helper import file_utils as file
 
 
 class APIStatsCollector:

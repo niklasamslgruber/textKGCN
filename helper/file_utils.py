@@ -1,5 +1,5 @@
 from os.path import exists
-import io_utils as io
+from helper import io_utils as io
 from config import FLAGS
 
 
@@ -130,7 +130,11 @@ def save_filtered_triples(data, dataset=FLAGS.dataset):
 
 
 def get_document_triples(dataset=FLAGS.dataset):
-    return io.read_csv(io.get_document_triples_path(dataset), sep=",")
+    path = io.get_document_triples_path(dataset)
+    if not exists(path):
+        print("Document triples do not exist yet. Will be created now. This may take a while")
+        return None
+    return io.read_csv(path, sep=",")
 
 
 def save_document_triples(data, dataset=FLAGS.dataset):

@@ -1,7 +1,7 @@
 import glob
 from os.path import join, getctime
 import torch
-import io_utils as io
+from helper import io_utils as io
 from config import FLAGS
 from model.model_factory import create_model
 from utils import create_dir_if_not_exists, get_ts, save, sorted_nicely

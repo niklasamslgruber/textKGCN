@@ -1,8 +1,7 @@
 import numpy as np
-import io_utils as io
+from helper import io_utils as io, file_utils as file
 from config import FLAGS
 from visualization.visualize_tsne import visualize, reduce_dimensions
-import file_utils as file
 
 
 def plot(model, number_of_docs):
