@@ -4,7 +4,7 @@ from helper import io_utils as io, file_utils as file
 from config import FLAGS
 from loader.dataset import TextDataset
 from model.build_graph import build_text_graph_dataset
-from utils import load, save
+from helper.utils import load, save
 
 
 def load_data():

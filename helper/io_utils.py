@@ -1,6 +1,6 @@
 import json
 from os.path import dirname, abspath, join, isfile
-import utils
+from helper import utils
 from config import FLAGS
 import pandas as pd
 
