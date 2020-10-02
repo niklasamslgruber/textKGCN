@@ -1,8 +1,6 @@
-# Includes:
-# [x] all paths
-# [ ] helper methods to read and write to / from txt, json, csv
 import json
-from os.path import dirname, abspath, join, isfile
+from os.path import dirname, abspath, join, isfile, exists
+import utils
 from config import FLAGS
 import pandas as pd
 
@@ -13,44 +11,49 @@ def get_root_path():
 
 
 def get_data_path():
-    return join(get_root_path(), '_data')
+    return path(join(get_root_path(), '_data'))
 
 
 def get_corpus_path():
-    return join(get_data_path(), 'corpus')
+    return path(join(get_data_path(), 'corpus'))
 
 
 def get_cache_path():
-    return join(get_root_path(), '_cache')
+    return path(join(get_root_path(), '_cache'))
 
 
 def get_plots_path():
-    return join(get_root_path(), '_plots')
+    return path(join(get_root_path(), '_plots'))
 
 
 def get_logs_path():
-    return join(get_root_path(), '_logs')
+    return path(join(get_root_path(), '_logs'))
 
 
 # Specific directory paths
 def get_kg_base_path():
-    return join(get_data_path(), 'knowledge_graphs/Wikidata')
+    return path(join(get_data_path(), 'wikidata'))
 
 
 def get_kg_relations_path():
-    return join(get_kg_base_path(), 'relations')
+    return path(join(get_kg_base_path(), 'relations'))
 
 
 def get_kg_triples_path():
-    return join(get_kg_base_path(), 'triples')
+    return path(join(get_kg_base_path(), 'triples'))
 
 
 def get_kg_data_path():
-    return join(get_kg_base_path(), 'data')
+    return path(join(get_kg_base_path(), 'data'))
 
 
 def get_embeddings_cache_path():
-    return join(get_root_path(), '_plots/gcn/embeddings')
+    return path(join(get_cache_path(), 'gcn_embeddings'))
+
+
+def path(path):
+    utils.create_dir_if_not_exists(path)
+    return path
 
 
 # Specific file paths
@@ -88,10 +91,6 @@ def get_all_wiki_relations_path():
 
 def get_filtered_wiki_relations_path():
     return join(get_kg_relations_path(), 'filtered_wiki_relations.csv')
-
-
-def get_filtered_wiki_detailed_relations_path():
-    return join(get_kg_relations_path(), 'filtered_wiki_relations_detail.csv')
 
 
 # Dataset files
@@ -150,11 +149,11 @@ def write_json(path, data):
 
 
 # TXT
-def write_txt(data, path):
+def write_txt(data, path, sep="\n"):
     assert path.endswith('.txt')
     data_to_write = map(lambda item: item.replace("\n", ""), data)
     f = open(path, 'w')
-    f.writelines("\n".join(data_to_write))
+    f.writelines(sep.join(data_to_write))
     f.close()
 
 
@@ -171,15 +170,13 @@ def read_txt(path):
     return data
 
 
-def read_csv(path):
-    assert path.endswith('.csv')
-    pd.read_csv(path, index_col=None, header=None, sep=',', names=['name', 'id'])
-
-
-# Writer
-def write_csv(path, array):
+# CSV
+def write_csv(path, array, sep, header=True):
     assert path.endswith('.csv')
     data = pd.DataFrame(array)
-    data.to_csv(path, index=False, header=False, sep=',')
+    data.to_csv(path, index=False, header=header, sep=sep)
 
 
+def read_csv(path, sep):
+    assert path.endswith('.csv')
+    return pd.read_csv(path, index_col=None, sep=sep)
