@@ -1,0 +1,2 @@
+time;wiki_enabled;accuracy;f1_weighted;f1_macro;f1_micro;precision_weighted;precision_macro;precision_micro;recall_weighted;recall_macro;recall_micro
+2020-10-02T08-11-05.501799;False;0.9;0.8984384384384385;0.8599099099099099;0.9;0.9333333333333333;0.9166666666666666;0.9;0.9;0.8618421052631579;0.9
