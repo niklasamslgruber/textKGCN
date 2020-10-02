@@ -1,11 +1,7 @@
-import json
-from os.path import isfile
 from itertools import chain
 from tqdm import tqdm
-from config import FLAGS
-from utils import get_corpus_path, get_kg_data_path
-from wiki_api import download_by_title, get_safely, download_by_id
-import pandas as pd
+from loader.wiki_api import download_by_title, get_safely, download_by_id
+from helper import file_utils as file
 
 
 class APIStatsCollector:
@@ -36,7 +32,7 @@ class APIStatsCollector:
 
 # Vocab Processing
 
-def create_json(iterable, download_function, path):
+def create_json(iterable, download_function, json_writer):
     data_dict = {}
     stats_collector = APIStatsCollector()
 
@@ -47,15 +43,16 @@ def create_json(iterable, download_function, path):
             bar.update(1)
 
     # Write to JSON file
-    write_json(path, data_dict, stats_collector)
+    json_writer(data_dict)
+    print(f"Wrote JSON with {len(data_dict.keys())} elements {stats_collector.get_output()}")
 
 
 def create_vocabulary_entities():
     print("Creating entities for vocabulary...")
 
     # Load all words from vocabulary
-    entities = get_all_vocab_words()
-    create_json(entities, download_entity, entities_path)
+    entities = file.get_vocab()
+    create_json(entities, download_entity, file.save_vocab_entities)
     print("Entity downloading finished")
     # Create JSON with all relations from previously initialized entities
     create_vocabulary_relations()
@@ -66,7 +63,7 @@ def create_vocabulary_relations():
 
     # Load all relations
     relations = get_all_relations()
-    create_json(relations, download_relation, relations_path)
+    create_json(relations, download_relation, file.save_vocab_relations)
 
 
 # API Downloader
@@ -94,11 +91,6 @@ def download(search_word, lookup_function, download_function, stats_collector):
 
 # JSON Reader
 
-# Paths
-relations_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_relations.json"
-entities_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_vocab_entities.json"
-entity2id_path = f"{get_kg_data_path()}/data/{FLAGS.dataset}_entity2id.csv"
-
 # Dictionary from JSON to avoid reading multiple times
 entity_dict = {}
 relation_dict = {}
@@ -107,18 +99,14 @@ relation_dict = {}
 def get_all_relations():
     # Gets all relations for current vocabulary
     all_relations = []
-    entities = read_json_file(entities_path)
+    entities = file.get_vocab_entities()
+
     for entity in entities.values():
         relations = get_safely(entity, ["relations"]).keys()
         all_relations.append(relations)
 
     unique_relations = list(dict.fromkeys(chain.from_iterable(all_relations)))
     return unique_relations
-
-
-def get_all_vocab_words():
-    # Gets all words in the vocabulary
-    return read_txt_file(f'{get_corpus_path()}/{FLAGS.dataset}_vocab.txt')
 
 
 # JSON Lookups
@@ -129,7 +117,7 @@ def find_entity(entity_name):
     if len(entity_dict) > 0:
         json_dict = entity_dict
     else:
-        json_dict = read_json_file(entities_path)
+        json_dict = file.get_vocab_entities()
         entity_dict = json_dict
     return json_dict.get(entity_name, {})
 
@@ -140,7 +128,7 @@ def find_relation(relation_id):
     if len(relation_dict) > 0:
         json_dict = relation_dict
     else:
-        json_dict = read_json_file(relations_path)
+        json_dict = file.get_vocab_relations()
         relation_dict = json_dict
     return json_dict.get(relation_id, {})
 
@@ -148,51 +136,19 @@ def find_relation(relation_id):
 # Entity Mappings
 
 def create_entity_mappings():
-    all_entities = read_json_file(entities_path)
+    all_entities = file.get_vocab_entities()
     mappings = []
     for entity in all_entities.keys():
         mappings.append([entity, all_entities[entity]["id"]])
 
-    write_csv(entity2id_path, mappings)
+    file.save_entity2id(mappings)
 
 
-# File reader / writer
-
-def write_json(path, data, stats_collector):
-    # Write to .json file
-    with open(path, "w") as output:
-        json.dump(data, output, indent=4)
-    output.close()
-
-    print(f"Wrote JSON with {len(data.keys())} elements {stats_collector.get_output()}")
-
-
-def write_csv(path, array):
-    data = pd.DataFrame(array)
-    data.to_csv(path, index=False, header=False, sep=",")
-
-
-def read_txt_file(path):
-    # Read .txt file
-    data = []
-    if isfile(path):
-        file = open(path, "rb")
-        for line in file.readlines():
-            data.append(line.strip().decode())
-        file.close()
-    return data
-
-
-def read_json_file(path):
-    # Read .json file
-    json_dict = {}
-    if isfile(path):
-        with open(path, "r") as output:
-            json_dict = json.load(output)
-        output.close()
-    return json_dict
+def create_wiki_mappings():
+    # Creates files with all entities and their relations from dataset
+    create_vocabulary_entities()
+    create_entity_mappings()
 
 
 if __name__ == '__main__':
-    create_vocabulary_entities()
-    create_entity_mappings()
+    create_wiki_mappings()

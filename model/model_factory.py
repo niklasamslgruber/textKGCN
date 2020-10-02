@@ -1,8 +1,8 @@
-from config import FLAGS
 from collections import Counter
-from model.model_text_gnn import TextGNN
-from utils import parse_as_int_list
 import torch
+from config import FLAGS
+from model.model_text_gnn import TextGNN
+from helper.utils import parse_as_int_list
 
 
 def create_model(dataset):

@@ -1,6 +1,6 @@
-from utils import get_host, get_user
 import argparse
 import torch
+from helper.utils import get_host, get_user
 
 parser = argparse.ArgumentParser()
 

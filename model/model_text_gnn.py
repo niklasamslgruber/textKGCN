@@ -1,13 +1,13 @@
-from config import FLAGS
-
-import torch.nn.functional as F
-import torch.nn as nn
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from torch.nn import Parameter
-from torch_scatter import scatter_add
 from torch_geometric.nn.conv import MessagePassing
-from torch_geometric.utils import remove_self_loops, add_self_loops, softmax
 from torch_geometric.nn.inits import glorot, zeros
+from torch_geometric.utils import remove_self_loops, add_self_loops, softmax
+from torch_scatter import scatter_add
+
+from config import FLAGS
 
 
 class TextGNN(nn.Module):
