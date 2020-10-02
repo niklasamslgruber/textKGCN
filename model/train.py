@@ -51,7 +51,8 @@ def train(train_data, val_data, saver):
             if moving_avg.stop():
                 break
 
-    # if FLAGS.plot:
-    visualize_loss(epoch_losses, losses)
+    if FLAGS.plot:
+        visualize_loss(epoch_losses, losses)
+        
     best_model = saver.load_trained_model(train_data)
     return best_model, model
