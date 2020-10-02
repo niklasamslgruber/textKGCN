@@ -1,8 +1,12 @@
 import numpy as np
 from sklearn import metrics
+import pandas as pd
+from helper.utils import get_ts
+from helper import file_utils as file
+import matplotlib.pyplot as plt
 
 
-def eval(preds, dataset, test=False):
+def eval(preds, dataset, use_wikidata, test=False, save=False):
     y_true = dataset.label_inds[dataset.node_ids]
     y_pred_label = np.asarray([np.argmax(pred) for pred in preds])
     accuracy = metrics.accuracy_score(y_true, y_pred_label)
@@ -15,7 +19,9 @@ def eval(preds, dataset, test=False):
     recall_weighted = metrics.recall_score(y_true, y_pred_label, average='weighted')
     recall_macro = metrics.recall_score(y_true, y_pred_label, average='macro')
     recall_micro = metrics.recall_score(y_true, y_pred_label, average='micro')
-    results = {"accuracy": accuracy,
+    results = {"time": get_ts(),
+               "wiki_enabled": use_wikidata,
+               "accuracy": accuracy,
                "f1_weighted": f1_weighted,
                "f1_macro": f1_macro,
                "f1_micro": f1_micro,
@@ -26,6 +32,10 @@ def eval(preds, dataset, test=False):
                "recall_macro": recall_macro,
                "recall_micro": recall_micro
                }
+
+    if save:
+        save_metrics(results)
+
     if test:
         one_hot_true = np.zeros((y_true.size, len(dataset.label_dict)))
         one_hot_true[np.arange(y_true.size), y_true] = 1
@@ -34,6 +44,14 @@ def eval(preds, dataset, test=False):
         one_hot_pred[np.arange(y_pred_label.size), y_pred_label] = 1
         results["y_pred"] = one_hot_pred
     return results
+
+
+def save_metrics(results):
+    dataframe = pd.DataFrame.from_dict([results])
+    existing_logs = file.get_eval_logs()
+    if existing_logs is not None:
+        dataframe = pd.concat([existing_logs, dataframe])
+    file.save_eval_logs(dataframe)
 
 
 class MovingAverage(object):
