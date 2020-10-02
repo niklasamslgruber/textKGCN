@@ -8,37 +8,28 @@ Steps:
 4. Count number of relation between two documents
 5. Weight relations and set a doc-doc edge weight
 """
+from os.path import exists
+
 import pandas as pd
 from tqdm import tqdm
-import io_utils as io
-from analyze_properties import read_csv
-from match_kg_data import write_csv
+import file_utils as file
 from wiki_api import get_safely
 
 
 # Data loader
-def get_relevant_relations():
-    return read_csv(io.get_filtered_wiki_relations_path())
-
-
-def get_entity2id():
-    return pd.read_csv(io.get_entity2id_path(), index_col=None, header=None, sep=",", names=["name", "id"])
-
-
 def get_vocab_ids():
-    entity2id_df = get_entity2id()
-    unmapped_entities = entity2id_df[entity2id_df["id"] == "-1"].index
+    entity2id_df = file.get_entity2id()
+    unmapped_entities = entity2id_df[entity2id_df["wikiID"] == "-1"].index
     entity2id_df.drop(unmapped_entities, inplace=True)
-    return entity2id_df["id"].to_numpy()
+    return entity2id_df["wikiID"].to_numpy()
 
 
 def get_triples(filtered=False):
-    path = io.get_filtered_word_triples_path() if filtered else io.get_all_word_triples_path()
-    return pd.read_csv(path, index_col=None, header=None, sep=",", names=["entity1", "relation", "entity2"])
+    return file.get_filtered_triples() if filtered else file.get_all_triples()
 
 
 def get_documents():
-    cleaned_sentences = list(map(lambda doc: doc.split(" "), io.read_txt(io.get_clean_sentences_path())))
+    cleaned_sentences = list(map(lambda doc: doc.split(" "), file.get_cleaned_sentences()))
     return cleaned_sentences
 
 
@@ -46,7 +37,7 @@ def get_documents():
 def create_triples():
     # Creates triples based on the vocab entities and relations (unfiltered)
     triples = []
-    all_entities = io.read_json(io.get_vocab_entities_path())
+    all_entities = file.get_vocab_entities()
     for entity in all_entities.keys():
         for relation in get_safely(all_entities, [entity, "relations"]).keys():
             for relation_value in get_safely(all_entities, [entity, "relations", relation]).keys():
@@ -57,14 +48,14 @@ def create_triples():
                     triple = [all_entities[entity]["id"], relation, result.get("id")]
                     triples.append(triple)
 
-    write_csv(io.get_all_word_triples_path(), triples)
+    file.save_all_triples(triples)
     return triples
 
 
 def filter_triples():
     # Adjust filters in `analyze_properties` and save them to the filtered_relations.csv
     triples = get_triples()
-    relevant_relations = get_relevant_relations()["ID"].to_numpy()
+    relevant_relations = file.get_filtered_relations()
     vocab_ids = get_vocab_ids()
     old_size = triples.shape[0]
 
@@ -83,7 +74,7 @@ def filter_triples():
     # Drop duplicate relations
     triples.drop_duplicates(inplace=True)
 
-    write_csv(io.get_filtered_word_triples_path(), triples)
+    file.save_filtered_triples(triples)
     print(f"Filtered out {old_size - triples.shape[0]} irrelevant triples...")
 
 
@@ -98,9 +89,11 @@ def setup_triples():
 def create_doc2doc_edges():
     setup_triples()
     # TODO: Check if doc2doc file already exists
-    vocab_ids = get_entity2id()
+    vocab_ids = file.get_entity2id()
     filtered_triples = get_triples(filtered=True)
     docs = get_documents()
+
+    print(len(file.get_document_triples()))
 
     sizes = []
     triples = []
@@ -109,7 +102,7 @@ def create_doc2doc_edges():
     with tqdm(total=sum(range(1, len(docs)))) as bar:
         for doc in docs:
             # Get Id's of every word in document
-            ids = vocab_ids[vocab_ids["name"].isin(doc)]["id"].to_numpy()
+            ids = vocab_ids[vocab_ids["word"].isin(doc)]["wikiID"].to_numpy()
             assert len(set(doc)) == len(ids)
             current_triples = filtered_triples["entity1"].isin(ids)
 
@@ -123,7 +116,7 @@ def create_doc2doc_edges():
                     current_sub_doc += 1
                     continue
                 # Get ID's of other document
-                sub_ids = vocab_ids[vocab_ids["name"].isin(sub_doc)]["id"].to_numpy()
+                sub_ids = vocab_ids[vocab_ids["word"].isin(sub_doc)]["wikiID"].to_numpy()
                 # Check if there are any relation between doc and sub_doc
                 relation_to_subdoc = filtered_triples[current_triples & filtered_triples["entity2"].isin(sub_ids)]
 
@@ -152,12 +145,7 @@ def create_doc2doc_edges():
     print(f"Total entries: {len(sizes)}")
 
     data = pd.DataFrame(triples, columns=["doc1", "doc2", "number_of_relations"])
-    data.to_csv(io.get_document_triples_path(), index=False, header=True, sep=",")
-
-
-def load_document_triples():
-    triples = pd.read_csv(io.get_document_triples_path(), sep=',')
-    return triples
+    file.save_document_triples(data)
 
 
 if __name__ == '__main__':

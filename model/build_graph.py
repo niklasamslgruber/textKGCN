@@ -6,6 +6,7 @@ import scipy.sparse as sp
 from tqdm import tqdm
 import io_utils as io
 from loader.dataset import TextDataset
+import file_utils as file
 
 
 def build_text_graph_dataset(dataset, window_size):
@@ -15,7 +16,7 @@ def build_text_graph_dataset(dataset, window_size):
         dataset_name = dataset
     labels_path = io.get_labels_path(dataset_name)
     labels = pd.read_csv(labels_path, header=None, sep='\t')
-    doc_list = io.read_txt(io.get_clean_sentences_path(dataset_name))
+    doc_list = file.get_cleaned_sentences(dataset_name)
 
     assert len(labels) == len(doc_list)
     if 'presplit' not in dataset:

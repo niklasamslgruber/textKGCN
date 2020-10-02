@@ -5,6 +5,7 @@ from config import FLAGS
 from loader.dataset import TextDataset
 from model.build_graph import build_text_graph_dataset
 from utils import load, save
+import file_utils as file
 
 
 def load_data():
@@ -27,7 +28,7 @@ def load_data():
         train_data, val_data, test_data = _load_tvt_data_helper()
         save({'train_data': train_data, 'val_data': val_data, 'test_data': test_data}, path)
 
-    raw_doc_list = io.read_txt(io.get_sentences_path(dataset_name))
+    raw_doc_list = file.get_sentences(dataset_name)
 
     return train_data, val_data, test_data, raw_doc_list
 

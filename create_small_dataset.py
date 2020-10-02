@@ -1,13 +1,13 @@
-import io_utils as io
+import file_utils as file
 
 
 def create_small_dataset(dataset, size=300):
     new_datatset = f'{dataset if "presplit" not in dataset else dataset.replace("_presplit", "")}_small'
 
     # Load files
-    cleaned_sentences = io.read_txt(io.get_clean_sentences_path(dataset))
-    sentences = io.read_txt(io.get_sentences_path(dataset))
-    labels = io.read_txt(io.get_labels_path(dataset))
+    cleaned_sentences = file.get_cleaned_sentences(dataset)
+    sentences = file.get_sentences(dataset)
+    labels = file.get_labels(dataset)
 
     # Sentences & Labels
     sentences_normal = sentences[0:size]
@@ -28,10 +28,10 @@ def create_small_dataset(dataset, size=300):
     # Save to new file
     assert len(sentences_normal) == len(sentences_clean) == len(doc_labels)
 
-    io.write_txt(sentences_normal, io.get_sentences_path(new_datatset))
-    io.write_txt(unique_vocab, io.get_vocab_path(new_datatset))
-    io.write_txt(sentences_clean, io.get_clean_sentences_path(new_datatset))
-    io.write_txt(doc_labels, io.get_labels_path(new_datatset))
+    file.save_sentences(sentences_normal, new_datatset)
+    file.save_vocab(unique_vocab, new_datatset)
+    file.save_clean_sentences(sentences_clean, new_datatset)
+    file.save_labels(doc_labels, new_datatset)
 
     print(f"Small dataset created with {size} documents (based on: {dataset})")
 

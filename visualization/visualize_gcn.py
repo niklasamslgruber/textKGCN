@@ -1,9 +1,8 @@
-from os.path import isfile
 import numpy as np
-import pandas as pd
 import io_utils as io
 from config import FLAGS
 from visualization.visualize_tsne import visualize, reduce_dimensions
+import file_utils as file
 
 
 def plot(model, number_of_docs):
@@ -22,16 +21,15 @@ def plot(model, number_of_docs):
 
 
 def plot_documents(embeddings, layer):
+    file.save_document_embeddings(embeddings, layer)
 
-    np.savetxt(io.get_document_embeddings_path(layer), embeddings.numpy(),
-               delimiter=",")
     labels = generate_doc_labels(embeddings)
     plot_embeddings(embeddings, labels, io.get_documents_layer_plot_path(layer))
 
 
 def plot_words(embeddings, layer):
-    np.savetxt(io.get_word_embeddings_path(layer), embeddings.numpy(),
-               delimiter=",")
+    file.save_word_embeddings(embeddings, layer)
+
     labels = generate_word_labels(embeddings)
     plot_embeddings(embeddings, labels, io.get_words_layer_plot_path(layer))
 
@@ -43,7 +41,7 @@ def plot_embeddings(embeddings, labels, path):
 
 def generate_doc_labels(embeddings):
     # Labels based on the "_labels.txt" file
-    labels = io.read_txt(io.get_labels_path())[0:len(embeddings)]
+    labels = file.get_labels()[0:len(embeddings)]
     label_index = 2 if "presplit" in FLAGS.dataset else 0
     doc_labels = list(map(lambda label: label.split(sep="\t")[label_index], labels))
     return doc_labels
@@ -62,11 +60,12 @@ def generate_word_labels(embeddings):
 
 
 # Helper method
-def read_embeddings():
+def visualize_from_cache():
     counter = 0
     while counter < 2:
-        word_emb = pd.read_csv(io.get_word_embeddings_path(counter), delimiter=",", header=None).to_numpy()
-        doc_emb = pd.read_csv(io.get_document_embeddings_path(counter), delimiter=",", header=None).to_numpy()
+        word_emb = file.get_word_embeddings(counter)
+        doc_emb = file.get_doc_embeddings(counter)
+
         reduced_emb_doc = reduce_dimensions(doc_emb)
         reduced_emb_word = reduce_dimensions(word_emb)
         doc_labels = generate_doc_labels(doc_emb)
@@ -75,6 +74,3 @@ def read_embeddings():
         visualize(reduced_emb_word, filename=io.get_words_layer_plot_path(counter), labels=word_labels)
         visualize(reduced_emb_doc, filename=io.get_documents_layer_plot_path(counter), labels=doc_labels)
         counter += 1
-
-
-

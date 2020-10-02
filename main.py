@@ -8,7 +8,7 @@ from helper.saver import Saver
 from loader.load_data import load_data
 from match_kg_data import create_wiki_mappings
 from model.train import train
-from visualization.visualize_gcn import plot
+from visualization.visualize_gcn import plot, visualize_from_cache
 
 
 def main():
@@ -16,6 +16,7 @@ def main():
     create_wiki_mappings()
     # Note takes quite a while
     # create_doc2doc_edges()
+    # visualize_from_cache()
 
     saver = Saver()
     train_data, val_data, test_data, raw_doc_list = load_data()

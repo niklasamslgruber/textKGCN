@@ -4,18 +4,14 @@ from os.path import exists
 import nltk
 from nltk.corpus import stopwords
 import io_utils as io
+import file_utils as file
 
 
 def clean_data(dataset):
     clean_text_path = io.get_clean_sentences_path(dataset)
     if not exists(clean_text_path):
-        docs_list = []
         old_name = dataset
-        if "no_hashtag" in dataset:
-            dataset = '_'.join(dataset.split('_')[:-2])
-        with open(io.get_sentences_path(dataset)) as f:
-            for line in f.readlines():
-                docs_list.append(line.strip())
+        docs_list = file.get_sentences(dataset)
         dataset = old_name
         word_counts = defaultdict(int)
         for doc in docs_list:

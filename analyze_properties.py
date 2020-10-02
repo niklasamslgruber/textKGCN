@@ -1,16 +1,24 @@
-from os.path import isfile
 import lxml.html as lh
 import pandas as pd
 import requests
-import io_utils as io
+import file_utils as file
+
+# This file downloads a list of all available WikiData relations (properties) and filters them
+# The filters are:
+#   * Relation categories which do not refer to a WikiData item
+#   * Relations with too less data (everything below the median)
+#
+# The script produces two files:
+#   * /all_wiki_relations.csv: Includes all relations with their type, count, category, etc.
+#   * /filtered_wiki_relations.csv: Includes the relation Ids of all relations which passed the filter
 
 
 def download_all_properties():
     url = "https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all"
     request = requests.get(url)
-    # Save page content
-    doc = lh.fromstring(request.content)
+
     # Get data between the <tr>..</tr> HTML tags
+    doc = lh.fromstring(request.content)
     tr_elements = doc.xpath('//tr')
 
     columns = []
@@ -43,39 +51,31 @@ def download_all_properties():
 
     data_dict = {title: column for (title, column) in columns}
     data_df = pd.DataFrame(data_dict)
-    write_csv(data_df, io.get_all_wiki_relations_path())
+
+    file.save_all_relations(data_df)
 
 
 def get_all_properties(threshold=1000):
-    if not isfile(io.get_all_wiki_relations_path()):
-        download_all_properties()
+    download_all_properties()
 
-    relations_df = read_csv(io.get_all_wiki_relations_path())
+    relations_df = file.get_all_relations()
     initial_size = relations_df.shape[0]
 
     # Drop all properties which are unneccessary such as URL, Math, Location data, etc.
-    important_types = relations_df[~relations_df["Data type"].isin(["WikibaseItem"])].index
+    important_types = relations_df[~relations_df["type"].isin(["WikibaseItem"])].index
     relations_df.drop(important_types, inplace=True)
 
     # Filter out all relations with a count below the threshold (see statistics by using describe())
     # Currently the median (50%) is used (value: 1000)
-    too_small = relations_df[relations_df["Count"] < threshold].index
+    too_small = relations_df[relations_df["count"] < threshold].index
     relations_df.drop(too_small, inplace=True)
 
     # Save to CSV ordered by count with details and without
-    relations_df.sort_values(by=["Count"], ascending=False, inplace=True)
-    write_csv(relations_df, io.get_filtered_wiki_detailed_relations_path())
-    write_csv(relations_df["ID"], io.get_filtered_wiki_relations_path())
+    relations_df.sort_values(by=["count"], ascending=False, inplace=True)
+    file.save_filtered_relations(relations_df["ID"])
+
     print(f"{initial_size - relations_df.shape[0]} items filtered out...")
     print(f"Relevant relations: {relations_df.shape[0]}")
-
-
-def read_csv(path):
-    return pd.read_csv(path, index_col=None, sep="+")
-
-
-def write_csv(dataframe, path):
-    dataframe.to_csv(path, index=False, sep="+")
 
 
 if __name__ == '__main__':

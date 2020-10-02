@@ -1,8 +1,7 @@
 from itertools import chain
-import pandas as pd
 from tqdm import tqdm
-import io_utils as io
 from wiki_api import download_by_title, get_safely, download_by_id
+import file_utils as file
 
 
 class APIStatsCollector:
@@ -33,7 +32,7 @@ class APIStatsCollector:
 
 # Vocab Processing
 
-def create_json(iterable, download_function, path):
+def create_json(iterable, download_function, json_writer):
     data_dict = {}
     stats_collector = APIStatsCollector()
 
@@ -44,7 +43,7 @@ def create_json(iterable, download_function, path):
             bar.update(1)
 
     # Write to JSON file
-    io.write_json(path, data_dict)
+    json_writer(data_dict)
     print(f"Wrote JSON with {len(data_dict.keys())} elements {stats_collector.get_output()}")
 
 
@@ -52,8 +51,8 @@ def create_vocabulary_entities():
     print("Creating entities for vocabulary...")
 
     # Load all words from vocabulary
-    entities = get_all_vocab_words()
-    create_json(entities, download_entity, io.get_vocab_entities_path())
+    entities = file.get_vocab()
+    create_json(entities, download_entity, file.save_vocab_entities)
     print("Entity downloading finished")
     # Create JSON with all relations from previously initialized entities
     create_vocabulary_relations()
@@ -64,7 +63,7 @@ def create_vocabulary_relations():
 
     # Load all relations
     relations = get_all_relations()
-    create_json(relations, download_relation, io.get_vocab_relations_path())
+    create_json(relations, download_relation, file.save_vocab_relations)
 
 
 # API Downloader
@@ -100,7 +99,7 @@ relation_dict = {}
 def get_all_relations():
     # Gets all relations for current vocabulary
     all_relations = []
-    entities = io.read_json(io.get_vocab_entities_path())
+    entities = file.get_vocab_entities()
 
     for entity in entities.values():
         relations = get_safely(entity, ["relations"]).keys()
@@ -108,11 +107,6 @@ def get_all_relations():
 
     unique_relations = list(dict.fromkeys(chain.from_iterable(all_relations)))
     return unique_relations
-
-
-def get_all_vocab_words():
-    # Gets all words in the vocabulary
-    return io.read_txt(io.get_vocab_path())
 
 
 # JSON Lookups
@@ -123,7 +117,7 @@ def find_entity(entity_name):
     if len(entity_dict) > 0:
         json_dict = entity_dict
     else:
-        json_dict = io.read_json(io.get_vocab_entities_path())
+        json_dict = file.get_vocab_entities()
         entity_dict = json_dict
     return json_dict.get(entity_name, {})
 
@@ -134,7 +128,7 @@ def find_relation(relation_id):
     if len(relation_dict) > 0:
         json_dict = relation_dict
     else:
-        json_dict = io.read_json(io.get_vocab_relations_path())
+        json_dict = file.get_vocab_relations()
         relation_dict = json_dict
     return json_dict.get(relation_id, {})
 
@@ -142,19 +136,12 @@ def find_relation(relation_id):
 # Entity Mappings
 
 def create_entity_mappings():
-    all_entities = io.read_json(io.get_vocab_entities_path())
+    all_entities = file.get_vocab_entities()
     mappings = []
     for entity in all_entities.keys():
         mappings.append([entity, all_entities[entity]["id"]])
 
-    write_csv(io.get_entity2id_path(), mappings)
-
-
-# File reader / writer
-
-def write_csv(path, array):
-    data = pd.DataFrame(array)
-    data.to_csv(path, index=False, header=False, sep=",")
+    file.save_entity2id(mappings)
 
 
 def create_wiki_mappings():
