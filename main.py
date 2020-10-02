@@ -12,10 +12,12 @@ from visualization.visualize_gcn import plot
 
 
 def main():
-    # KG preparations
-    create_wiki_mappings()
-    # Note takes quite a while
-    create_doc2doc_edges()
+    use_wikidata = False
+    if use_wikidata:
+        # KG preparations
+        create_wiki_mappings()
+        # Note takes quite a while
+        create_doc2doc_edges()
 
     saver = Saver()
     train_data, val_data, test_data, raw_doc_list = load_data()
@@ -31,7 +33,8 @@ def main():
         test_loss_model, preds_model = model(train_data.get_pyg_graph(device=FLAGS.device), test_data)
 
     # Classification
-    eval_res = eval(preds_model, test_data, True)
+    eval_res = eval(preds_model, test_data, use_wikidata, True, save=True)
+
     y_true = eval_res.pop('y_true')
     y_pred = eval_res.pop('y_pred')
 

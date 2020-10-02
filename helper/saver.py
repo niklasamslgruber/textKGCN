@@ -17,7 +17,6 @@ class Saver(object):
         create_dir_if_not_exists(self.logdir)
         self.model_info_f = self._open('model_info.txt')
         self._log_model_info()
-        # self._save_conf_code()  # Save config.py code
         print('Logging to {}'.format(self.logdir))
 
     def _log_model_info(self):
@@ -32,7 +31,7 @@ class Saver(object):
         epoch = "_epoch_{}".format(epoch) if epoch is not None else ""
         p = join(self.logdir, 'trained_model{}.pt'.format(epoch))
         torch.save(trained_model.state_dict(), p)
-        print('Trained model saved to {}'.format(p))
+        # print('Trained model saved to {}'.format(p))
 
     def load_trained_model(self, train_data):
         p = join(self.logdir, 'trained_model*')
@@ -43,17 +42,6 @@ class Saver(object):
             torch.load(best_trained_model_path, map_location=FLAGS.device))
         trained_model.to(FLAGS.device)
         return trained_model
-
-    def _save_conf_code(self):
-        with open(join(self.logdir, 'config.py'), 'w') as f:
-            f.write(self.extract_config_code())
-        p = join(self.logdir, 'FLAGS')
-        print("in _save_conf_code")
-        save({'FLAGS': FLAGS}, p, print_msg=False)
-
-    def extract_config_code(self):
-        with open(join(get_root_path(), 'config.py')) as f:
-            return f.read()
 
     @staticmethod
     def get_model_str():

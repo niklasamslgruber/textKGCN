@@ -141,6 +141,19 @@ def save_document_triples(data, dataset=FLAGS.dataset):
     io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations"])
 
 
+# Evaluation logger
+def get_eval_logs(dataset=FLAGS.dataset):
+    path = io.get_eval_log_path(dataset)
+    if not exists(path):
+        # save_eval_logs([])
+        return None
+    return io.read_csv(path, sep=';')
+
+
+def save_eval_logs(data, dataset=FLAGS.dataset):
+    return io.write_csv(io.get_eval_log_path(dataset), data, sep=';')
+
+
 # Helper
 def exist(path, error):
     if not exists(path):

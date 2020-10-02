@@ -8,8 +8,6 @@ Steps:
 4. Count number of relation between two documents
 5. Weight relations and set a doc-doc edge weight
 """
-from os.path import exists
-
 import pandas as pd
 from tqdm import tqdm
 from helper import file_utils as file
