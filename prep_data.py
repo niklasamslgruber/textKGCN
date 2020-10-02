@@ -76,3 +76,4 @@ def clean_doc(string):
     string = re.sub(r"\?", " ", string)
     string = re.sub(r"\s{2,}", " ", string)
     return string.strip().lower()
+
