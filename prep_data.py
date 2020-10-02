@@ -46,7 +46,6 @@ def clean_data(dataset):
 def clean_documents(docs, word_counts):
     nltk.download('stopwords')
     stop_words = set(stopwords.words('english'))
-    print(stop_words)
     ret = []
     for doc in docs:
         doc = clean_doc(doc)

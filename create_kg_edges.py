@@ -115,7 +115,6 @@ def create_doc2doc_edges():
             for sub_doc in docs:
                 # Skip relations to itself
                 if current_sub_doc <= current_document:
-                    # print("Skipped")
                     current_sub_doc += 1
                     continue
                 # Get ID's of other document
