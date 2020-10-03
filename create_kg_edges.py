@@ -77,7 +77,6 @@ def filter_triples():
 
 
 def setup_triples():
-    # TODO: Create only when file not exists
     # Creates a filtered and unfiltered triples CVS file
     create_triples()
     filter_triples()
@@ -85,8 +84,9 @@ def setup_triples():
 
 # Adjacency matrices
 def create_doc2doc_edges():
+    # Note: Only one half of the adj matrix is generated here to save resources as the matrix is symmetric
+    # Make sure to add the WHOLE matrix to the model graph
     setup_triples()
-    # TODO: Check if doc2doc file already exists
     vocab_ids = file.get_entity2id()
     filtered_triples = get_triples(filtered=True)
     docs = get_documents()
@@ -102,16 +102,18 @@ def create_doc2doc_edges():
     current_document = 0
     with tqdm(total=sum(range(1, len(docs)))) as bar:
         for doc in docs:
+
             # Get Id's of every word in document
             ids = vocab_ids[vocab_ids["word"].isin(doc)]["wikiID"].to_numpy()
             assert len(set(doc)) == len(ids)
             current_triples = filtered_triples["entity1"].isin(ids)
+            current_triples2 = filtered_triples["entity2"].isin(ids)
 
             # Helper variables
             current_sub_doc = 0
 
             for sub_doc in docs:
-                # Skip relations to itself
+                # Skip relations to itself and docs already covered (matrix is symmetric)
                 if current_sub_doc <= current_document:
                     current_sub_doc += 1
                     continue
@@ -119,13 +121,15 @@ def create_doc2doc_edges():
                 sub_ids = vocab_ids[vocab_ids["word"].isin(sub_doc)]["wikiID"].to_numpy()
                 # Check if there are any relation between doc and sub_doc
                 relation_to_subdoc = filtered_triples[current_triples & filtered_triples["entity2"].isin(sub_ids)]
+                # Check if there are any relations between sub_doc and doc
+                relation_to_subdoc2 = filtered_triples[current_triples2 & filtered_triples["entity1"].isin(sub_ids)]
 
-                number_of_relations = relation_to_subdoc.shape[0]
+                number_of_relations = relation_to_subdoc.shape[0] + relation_to_subdoc2.shape[0]
                 sizes.append(number_of_relations)
 
                 # Add non-zero triples to document triple
                 if not number_of_relations == 0:
-                    triple = [current_document, current_sub_doc, int(relation_to_subdoc.shape[0])]
+                    triple = [current_document, current_sub_doc, int(number_of_relations), relation_to_subdoc["relation"].tolist(), relation_to_subdoc2["relation"].tolist()]
                     triples.append(triple)
 
                 current_sub_doc += 1
@@ -144,8 +148,20 @@ def create_doc2doc_edges():
     print(f"Number of not 0's: {len(list_sizes) - list_sizes.count(0)}")
     print(f"Total entries: {len(sizes)}")
 
-    data = pd.DataFrame(triples, columns=["doc1", "doc2", "number_of_relations"])
-    file.save_document_triples(data)
+    data = pd.DataFrame(triples)
+    save_full_matrix(data)
+
+
+def save_full_matrix(dataframe):
+    # Mirrors the generated half adjacency matrix to a full symmetrical adjacency matrix
+    columns = dataframe.columns.tolist()
+    new_columns = [columns[1], columns[0], columns[2], columns[4], columns[3]]
+    mirrored_frame = dataframe.copy()
+    mirrored_frame.columns = new_columns
+
+    full_adj = dataframe.append(mirrored_frame)
+    assert full_adj.shape == (2 * dataframe.shape[0], dataframe.shape[1])
+    file.save_document_triples(full_adj)
 
 
 if __name__ == '__main__':

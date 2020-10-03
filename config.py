@@ -38,6 +38,8 @@ elif 'r8' in dataset:
 
 FLAGS.dataset = dataset
 
+FLAGS.use_wikidata = True
+
 """
 Model
 """

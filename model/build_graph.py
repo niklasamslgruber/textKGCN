@@ -4,6 +4,7 @@ from os.path import exists
 import pandas as pd
 import scipy.sparse as sp
 from tqdm import tqdm
+from config import FLAGS
 from helper import io_utils as io, file_utils as file
 from loader.dataset import TextDataset
 
@@ -121,6 +122,17 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
                       word_doc_freq[vocab[word_id]])
             weight.append(freq * idf)
             doc_word_set.add(word)
+
+    if FLAGS.use_wikidata:
+        # Append doc2doc edges
+        document_triples = file.get_document_triples()
+        row_doc = document_triples["doc1"].tolist()
+        col_doc = document_triples["doc2"].tolist()
+        weight_doc = document_triples["relations"].tolist()
+
+        row += row_doc
+        col += col_doc
+        weight += weight_doc
 
     number_nodes = num_docs + len(vocab)
     adj_mat = sp.csr_matrix((weight, (row, col)), shape=(number_nodes, number_nodes))
