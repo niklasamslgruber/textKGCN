@@ -4,6 +4,7 @@ from create_kg_edges import create_doc2doc_edges
 
 
 def setup():
+    print("\n\n[WARNING]: This process requires an active internet connection and may take several hours\n\n")
     # Load all WikiData properties and filter them
     get_all_properties()
     print("Successfully downloaded and filtered all WikiData relations")
