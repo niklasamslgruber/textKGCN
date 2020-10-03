@@ -10,6 +10,8 @@ Steps:
 """
 import pandas as pd
 from tqdm import tqdm
+
+from config import FLAGS
 from helper import file_utils as file
 from loader.wiki_api import get_safely
 
@@ -139,6 +141,8 @@ def create_doc2doc_edges():
     print(f"Created {2 * len(triples)} doc2doc edges")
 
     data = pd.DataFrame(triples)
+    data.to_pickle(f"{FLAGS.dataset}_document_triples.pickle")
+
     save_full_matrix(data)
 
 
