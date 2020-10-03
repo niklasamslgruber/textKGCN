@@ -3,6 +3,7 @@ from collections import defaultdict
 from os.path import exists
 import nltk
 from nltk.corpus import stopwords
+from config import FLAGS
 from helper import io_utils as io, file_utils as file
 
 
@@ -38,6 +39,9 @@ def clean_data(dataset):
             max_len = len(temp)
     f.close()
     aver_len = 1.0 * aver_len / len(lines)
+
+    create_vocab(dataset)
+
     print('min_len : ' + str(min_len))
     print('max_len : ' + str(max_len))
     print('average_len : ' + str(aver_len))
@@ -76,4 +80,25 @@ def clean_doc(string):
     string = re.sub(r"\?", " ", string)
     string = re.sub(r"\s{2,}", " ", string)
     return string.strip().lower()
+
+
+def create_vocab(dataset):
+    # Vocabulary and sentences
+    vocabs = []
+    sentences_clean = file.get_cleaned_sentences()
+
+    for line in sentences_clean:
+        # Vocabulary
+        words = line.split(sep=" ")
+        vocabs += words
+
+    # Make vocabs unique
+    unique_vocab = list(dict.fromkeys(vocabs))
+
+    # Save to new file
+    file.save_vocab(unique_vocab, dataset)
+
+
+if __name__ == '__main__':
+    clean_data(FLAGS.dataset)
 
