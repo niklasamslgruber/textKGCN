@@ -138,7 +138,7 @@ def get_document_triples(dataset=FLAGS.dataset):
 
 
 def save_document_triples(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations"])
+    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations", "1to2", "2to1"])
 
 
 # Evaluation logger
@@ -158,3 +158,8 @@ def save_eval_logs(data, dataset=FLAGS.dataset):
 def exist(path, error):
     if not exists(path):
         raise ValueError(error)
+
+
+def check_files():
+    exist(io.get_document_triples_path(),
+                 "To run textKGCN you need a file with doc2doc edges. Run `create_kg_edges.py` to create one for your dataset")
