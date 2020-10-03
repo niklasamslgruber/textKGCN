@@ -91,11 +91,6 @@ def create_doc2doc_edges():
     filtered_triples = get_triples(filtered=True)
     docs = get_documents()
 
-    # Creating the doc2doc matrix takes very long, shoould only be done when neccessary
-    if file.get_document_triples() is not None:
-        print("Document triple file already exist. File will not be created again.")
-        return
-
     sizes = []
     triples = []
 
@@ -140,13 +135,8 @@ def create_doc2doc_edges():
 
     assert len(sizes) == sum(range(1, current_document))
 
-    print("Statistics")
-    print(f"Max: {max(sizes)}")
-    print(f"Min: {min(sizes)}")
-    list_sizes = list(sizes)
-    print(f"Number of O's: {list_sizes.count(0)}")
-    print(f"Number of not 0's: {len(list_sizes) - list_sizes.count(0)}")
-    print(f"Total entries: {len(sizes)}")
+    print(f"Highest number of relations between two docs: {max(sizes)}")
+    print(f"Created {2 * len(triples)} doc2doc edges")
 
     data = pd.DataFrame(triples)
     save_full_matrix(data)

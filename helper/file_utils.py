@@ -162,4 +162,4 @@ def exist(path, error):
 
 def check_files():
     exist(io.get_document_triples_path(),
-                 "To run textKGCN you need a file with doc2doc edges. Run `create_kg_edges.py` to create one for your dataset")
+                 "To run textKGCN you need a file with doc2doc edges. Run `prep_graph.py` to create all needed files.")
