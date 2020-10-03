@@ -31,11 +31,6 @@ def build_text_graph_dataset(dataset, window_size):
 
     word_freq = get_vocab(doc_list)
     vocab = list(word_freq.keys())
-    if not exists(io.get_vocab_path(dataset)):
-        vocab_str = '\n'.join(vocab)
-        f = open(io.get_vocab_path(dataset), 'w')
-        f.write(vocab_str)
-        f.close()
     words_in_docs, word_doc_freq = build_word_doc_edges(doc_list)
     print(f"Number of words: {len(words_in_docs)}")
     word_id_map = {word: i for i, word in enumerate(vocab)}
