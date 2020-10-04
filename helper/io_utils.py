@@ -108,12 +108,12 @@ def get_vocab_path(dataset=FLAGS.dataset):
 # Plots
 def get_words_layer_plot_path(layer, dataset=FLAGS.dataset):
     word_path = path(join(get_plots_path(), 'embeddings/words'))
-    return join(word_path, f'embeddings/{dataset}_words_layer_{layer}.png')
+    return join(word_path, f'{dataset}_words_layer_{layer}.png')
 
 
 def get_documents_layer_plot_path(layer, dataset=FLAGS.dataset):
     doc_path = path(join(get_plots_path(), 'embeddings/docs'))
-    return join(doc_path, f'embeddings/{dataset}_docs_layer_{layer}.png')
+    return join(doc_path, f'{dataset}_docs_layer_{layer}.png')
 
 
 def get_results_plot_path(metric, dataset=FLAGS.dataset):
