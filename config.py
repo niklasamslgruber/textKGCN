@@ -38,7 +38,7 @@ elif 'r8' in dataset:
 
 FLAGS.dataset = dataset
 
-FLAGS.use_wikidata = True
+FLAGS.use_wikidata = False
 
 """
 Model
@@ -54,6 +54,8 @@ s = 'textKGCN:pred_type={},node_embd_type={},num_layers={},layer_dim_list={},act
         pred_type, node_embd_type, num_layers, "_".join([str(i) for i in layer_dim_list]), 'relu', dropout, class_weights)
 
 model_params = {
+    'dataset': FLAGS.dataset,
+    'wiki_enabled': FLAGS.use_wikidata,
     'pred_type': pred_type,
     'node_embd':  node_embd_type,
     'layer_dims': layer_dim_list,

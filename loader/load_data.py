@@ -14,11 +14,13 @@ def load_data():
     val_ratio = int(FLAGS.tvt_ratio[1] * 100)
     test_ratio = 100 - train_ratio - val_ratio
     if 'presplit' not in dataset_name:
-        save_fn = '{}_train_{}_val_{}_test_{}_seed_{}_window_size_{}'.format(dataset_name, train_ratio,
-                                                                             val_ratio, test_ratio,
-                                                                             FLAGS.random_seed, FLAGS.word_window_size)
+        save_fn = '{}_train_{}_val_{}_test_{}_seed_{}_window_size_{}_wikidata_{}'.format(dataset_name, train_ratio,
+                                                                                        val_ratio, test_ratio,
+                                                                                        FLAGS.random_seed, FLAGS.word_window_size,
+                                                                                        FLAGS.use_wikidata)
     else:
-        save_fn = '{}_train_val_test_{}_window_size_{}'.format(dataset_name, FLAGS.random_seed, FLAGS.word_window_size)
+        save_fn = '{}_train_val_test_{}_window_size_{}_wikidata_{}'.format(dataset_name, FLAGS.random_seed,
+                                                                           FLAGS.word_window_size, FLAGS.use_wikidata)
     path = join(dir, save_fn)
     rtn = load(path)
     if rtn:
@@ -34,7 +36,7 @@ def load_data():
 
 def _load_tvt_data_helper():
     dir = join(io.get_cache_path(), 'all')
-    path = join(dir, FLAGS.dataset + '_all_window_' + str(FLAGS.word_window_size))
+    path = join(dir, FLAGS.dataset + '_all_window_' + str(FLAGS.word_window_size) + "_" + str(FLAGS.use_wikidata))
     rtn = load(path)
     if rtn:
         dataset = TextDataset(None, None, None, None, None, None, rtn)
