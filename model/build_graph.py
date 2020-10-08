@@ -1,6 +1,5 @@
 from collections import defaultdict
 from math import log
-from os.path import exists
 import pandas as pd
 import scipy.sparse as sp
 from tqdm import tqdm
@@ -120,11 +119,14 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
-        document_triples = file.get_document_triples()
+        tp = pd.read_csv(io.get_document_triples_path(), iterator=True, chunksize=1000000)
+        document_triples = pd.concat(tp, ignore_index=True)
         row_doc = document_triples["doc1"].tolist()
         col_doc = document_triples["doc2"].tolist()
-        weight_doc = document_triples["relations"].tolist()
+        weight_doc = [weight * 10 for weight in document_triples["relations"].tolist()]
 
+        print(f"Added {len(row_doc)} doc2doc edges")
+        assert len(row_doc) == len(col_doc) == len(weight_doc)
         row += row_doc
         col += col_doc
         weight += weight_doc
