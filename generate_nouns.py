@@ -29,6 +29,9 @@ def generate_nouns(dataset):
     doc_nouns_normalized = []
     for sent in clean_sentences:
         nouns, normalized_nouns = extract_nouns(sent)
+        nouns = list(set(nouns))
+        normalized_nouns = list(set(normalized_nouns))
+
         doc_nouns.append(" ".join(nouns))
         doc_nouns_normalized.append(" ".join(normalized_nouns))
 
@@ -41,9 +44,8 @@ def create_normalized_vocab():
     normalized_nouns = file.get_normalized_nouns()
     nouns = file.get_nouns()
     vocabs = []
-    for index, line in enumerate(normalized_nouns):
+    for line in normalized_nouns:
         # Vocabulary
-        print(index)
         words = line.split(sep=" ")
         while "" in words:
             words.remove("")

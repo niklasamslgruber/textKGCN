@@ -106,6 +106,14 @@ def save_entity2id(data, dataset=FLAGS.dataset):
     io.write_csv(io.get_entity2id_path(dataset), data, sep=",", header=["word", "wikiID"])
 
 
+def get_doc2id(dataset=FLAGS.dataset):
+    return io.read_csv(io.get_doc2id_path(dataset), sep=",")
+
+
+def save_doc2id(data, dataset=FLAGS.dataset):
+    io.write_csv(io.get_doc2id_path(dataset), data, sep=",", header=["doc", "wikiID"])
+
+
 def get_vocab_entities(dataset=FLAGS.dataset):
     return io.read_json(io.get_vocab_entities_path(dataset))
 

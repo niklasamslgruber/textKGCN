@@ -66,9 +66,17 @@ def get_document_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(), f'{dataset}_document_triples.csv')
 
 
+def get_document_triples_pickle_path(dataset=FLAGS.dataset):
+    return join(get_kg_triples_path(), f'{dataset}_document_triples.pickle')
+
+
 # Mappings
 def get_entity2id_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(), f'{dataset}_entity2id.csv')
+
+
+def get_doc2id_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_doc2id.csv')
 
 
 def get_vocab_entities_path(dataset=FLAGS.dataset):
@@ -103,6 +111,18 @@ def get_clean_sentences_path(dataset=FLAGS.dataset):
 
 def get_vocab_path(dataset=FLAGS.dataset):
     return join(get_corpus_path(), f'{dataset}_vocab.txt')
+
+
+def get_nouns_vocab(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_vocab_nouns.txt')
+
+
+def get_nouns_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_nouns.txt')
+
+
+def get_normalized_nouns_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_nouns_normalized.txt')
 
 
 # Plots
