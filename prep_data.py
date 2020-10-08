@@ -4,6 +4,7 @@ from os.path import exists
 import nltk
 from nltk.corpus import stopwords
 from config import FLAGS
+from generate_nouns import generate_nouns
 from helper import io_utils as io, file_utils as file
 
 
@@ -41,6 +42,7 @@ def clean_data(dataset):
     aver_len = 1.0 * aver_len / len(lines)
 
     create_vocab(dataset)
+    generate_nouns(dataset)
 
     print('min_len : ' + str(min_len))
     print('max_len : ' + str(max_len))

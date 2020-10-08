@@ -51,7 +51,7 @@ def create_vocabulary_entities():
     print("Creating entities for vocabulary...")
 
     # Load all words from vocabulary
-    entities = file.get_vocab()
+    entities = file.get_nouns_vocab()
     create_json(entities, download_entity, file.save_vocab_entities)
     print("Entity downloading finished")
     # Create JSON with all relations from previously initialized entities

@@ -65,6 +65,38 @@ def save_labels(data, dataset=FLAGS.dataset):
     io.write_txt(data, io.get_labels_path(dataset))
 
 
+# Nouns
+
+def get_nouns(dataset=FLAGS.dataset):
+    path = io.get_nouns_path(dataset)
+    exist(path, "Dataset has not been tokenized yet, run `prep_data.py`")
+    return io.read_txt(path)
+
+
+def get_normalized_nouns(dataset=FLAGS.dataset):
+    path = io.get_normalized_nouns_path(dataset)
+    exist(path, "Dataset has not been tokenized yet, run `prep_data.py`")
+    return io.read_txt(path)
+
+
+def get_nouns_vocab(dataset=FLAGS.dataset):
+    path = io.get_nouns_vocab(dataset)
+    exist(path, "Dataset has not been tokenized yet, run `prep_data.py`")
+    return io.read_txt(path)
+
+
+def save_nouns(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_nouns_path(dataset))
+
+
+def save_normalized_nouns(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_normalized_nouns_path(dataset))
+
+
+def save_nouns_vocab(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_nouns_vocab(dataset))
+
+
 # WikiData Entities & Relations
 def get_entity2id(dataset=FLAGS.dataset):
     return io.read_csv(io.get_entity2id_path(dataset), sep=",")
@@ -138,7 +170,7 @@ def get_document_triples(dataset=FLAGS.dataset):
 
 
 def save_document_triples(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations", "1to2", "2to1"])
+    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations", "detail"])
 
 
 # Evaluation logger
