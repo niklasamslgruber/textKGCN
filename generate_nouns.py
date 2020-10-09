@@ -1,5 +1,6 @@
 import spacy
-from helper import file_utils as file, io_utils as io
+from helper import file_utils as file
+from tqdm import tqdm
 
 # Helper
 # lemmas = [token.lemma_ for token in doc]
@@ -27,7 +28,8 @@ def generate_nouns(dataset):
     clean_sentences = file.get_cleaned_sentences(dataset)
     doc_nouns = []
     doc_nouns_normalized = []
-    for sent in clean_sentences:
+    print("Starting to generate nouns")
+    for sent in tqdm(clean_sentences):
         nouns, normalized_nouns = extract_nouns(sent)
         nouns = list(set(nouns))
         normalized_nouns = list(set(normalized_nouns))
@@ -42,9 +44,9 @@ def generate_nouns(dataset):
 
 def create_normalized_vocab():
     normalized_nouns = file.get_normalized_nouns()
-    nouns = file.get_nouns()
     vocabs = []
-    for line in normalized_nouns:
+    print("Starting to create normalized vocab")
+    for line in tqdm(normalized_nouns):
         # Vocabulary
         words = line.split(sep=" ")
         while "" in words:
@@ -54,6 +56,3 @@ def create_normalized_vocab():
         # Make vocabs unique
     unique_vocab = list(dict.fromkeys(vocabs))
     file.save_nouns_vocab(unique_vocab)
-
-
-create_normalized_vocab()
