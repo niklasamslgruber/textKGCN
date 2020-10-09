@@ -77,7 +77,6 @@ def filter_triples():
 
 
 def setup_triples():
-    # TODO: Create only when file not exists
     # Creates a filtered and unfiltered triples CVS file
     create_triples()
     filter_triples()
@@ -85,67 +84,64 @@ def setup_triples():
 
 # Adjacency matrices
 def create_doc2doc_edges():
+    # Note: Only one half of the adj matrix is generated here to save resources as the matrix is symmetric
     setup_triples()
-    # TODO: Check if doc2doc file already exists
-    vocab_ids = file.get_entity2id()
-    filtered_triples = get_triples(filtered=True)
-    docs = get_documents()
+    doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
+    filtered_triples = get_triples(filtered=True)  # Triples
 
-    # Creating the doc2doc matrix takes very long, shoould only be done when neccessary
-    if file.get_document_triples() is not None:
-        print("Document triple file already exist. File will not be created again.")
-        return
-
-    sizes = []
+    ids = file.get_doc2id()
     triples = []
+    with tqdm(total=len(doc_nouns_norm)) as bar:
+        for doc_index, doc in enumerate(doc_nouns_norm):
+            if doc == "":
+                continue
 
-    current_document = 0
-    with tqdm(total=sum(range(1, len(docs)))) as bar:
-        for doc in docs:
-            # Get Id's of every word in document
-            ids = vocab_ids[vocab_ids["word"].isin(doc)]["wikiID"].to_numpy()
-            assert len(set(doc)) == len(ids)
-            current_triples = filtered_triples["entity1"].isin(ids)
+            # All ID's of the normalized nouns in the current document
+            doc_ids = ids[ids["doc"] == doc_index]["wikiID"].tolist()
 
-            # Helper variables
-            current_sub_doc = 0
+            # Graph edges pointing to other entities
+            triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
+            # Graph edges pointing to current doc nouns
+            triples_in = filtered_triples[filtered_triples["entity2"].isin(doc_ids)]
+            triples_in.columns = [triples_out.columns[2], triples_out.columns[1], triples_out.columns[0]]
 
-            for sub_doc in docs:
-                # Skip relations to itself
-                if current_sub_doc <= current_document:
-                    current_sub_doc += 1
-                    continue
-                # Get ID's of other document
-                sub_ids = vocab_ids[vocab_ids["word"].isin(sub_doc)]["wikiID"].to_numpy()
-                # Check if there are any relation between doc and sub_doc
-                relation_to_subdoc = filtered_triples[current_triples & filtered_triples["entity2"].isin(sub_ids)]
+            # Remove duplicates
+            combined_df = triples_out.append(triples_in)
+            combined_df.reset_index(inplace=True, drop=True)
+            combined_df.drop_duplicates(inplace=True)
 
-                number_of_relations = relation_to_subdoc.shape[0]
-                sizes.append(number_of_relations)
+            doc_pointers = {}
+            for index, row in combined_df.iterrows():
+                relation = row["relation"]
+                entity2 = row["entity2"]
+                pointer = ids[ids["wikiID"] == entity2]["doc"].tolist()
+                for doc_id in pointer:
+                    if doc_id in doc_pointers:
+                        doc_pointers[doc_id].append(relation)
+                    else:
+                        doc_pointers[doc_id] = [relation]
 
-                # Add non-zero triples to document triple
-                if not number_of_relations == 0:
-                    triple = [current_document, current_sub_doc, int(relation_to_subdoc.shape[0])]
-                    triples.append(triple)
+            for key in doc_pointers:
+                relations = doc_pointers[key]
+                triples.append([doc_index, key, len(relations), relations])
+            bar.update(1)
 
-                current_sub_doc += 1
-                bar.update(1)
+    data = pd.DataFrame(triples)
+    print(f"Highest number of relations between two docs: {max(data[2])}")
+    print(f"Created {2 * len(triples)} doc2doc edges")
+    save_full_matrix(data)
 
-            # Next document
-            current_document += 1
 
-    assert len(sizes) == sum(range(1, current_document))
+def save_full_matrix(dataframe):
+    # Mirrors the generated half adjacency matrix to a full symmetrical adjacency matrix
+    columns = dataframe.columns.tolist()
+    new_columns = [columns[1], columns[0], columns[2], columns[3]]
+    mirrored_frame = dataframe.copy()
+    mirrored_frame.columns = new_columns
 
-    print("Statistics")
-    print(f"Max: {max(sizes)}")
-    print(f"Min: {min(sizes)}")
-    list_sizes = list(sizes)
-    print(f"Number of O's: {list_sizes.count(0)}")
-    print(f"Number of not 0's: {len(list_sizes) - list_sizes.count(0)}")
-    print(f"Total entries: {len(sizes)}")
-
-    data = pd.DataFrame(triples, columns=["doc1", "doc2", "number_of_relations"])
-    file.save_document_triples(data)
+    full_adj = dataframe.append(mirrored_frame)
+    assert full_adj.shape == (2 * dataframe.shape[0], dataframe.shape[1])
+    file.save_document_triples(full_adj)
 
 
 if __name__ == '__main__':

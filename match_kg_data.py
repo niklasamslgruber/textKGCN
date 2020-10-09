@@ -51,7 +51,7 @@ def create_vocabulary_entities():
     print("Creating entities for vocabulary...")
 
     # Load all words from vocabulary
-    entities = file.get_vocab()
+    entities = file.get_nouns_vocab()
     create_json(entities, download_entity, file.save_vocab_entities)
     print("Entity downloading finished")
     # Create JSON with all relations from previously initialized entities
@@ -144,10 +144,29 @@ def create_entity_mappings():
     file.save_entity2id(mappings)
 
 
+def create_doc_id_mappings():
+    vocab_id = file.get_entity2id()  # Dataframe with "word" and "wikiID" column
+    doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
+    mappings = []
+    for current_doc, doc in enumerate(doc_nouns_norm):
+        if doc == "":
+            continue
+        doc_words = doc.split(" ")
+        doc_map = vocab_id[vocab_id["word"].isin(doc_words)]
+        doc_ids = doc_map["wikiID"].tolist()
+        for wordId in doc_ids:
+            if not wordId == "-1":
+                mappings.append([current_doc, wordId])
+        assert len(set(doc_words)) == len(doc_ids)
+
+    file.save_doc2id(mappings)
+
+
 def create_wiki_mappings():
     # Creates files with all entities and their relations from dataset
     create_vocabulary_entities()
     create_entity_mappings()
+    create_doc_id_mappings()
 
 
 if __name__ == '__main__':

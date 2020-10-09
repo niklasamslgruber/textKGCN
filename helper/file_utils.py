@@ -65,6 +65,38 @@ def save_labels(data, dataset=FLAGS.dataset):
     io.write_txt(data, io.get_labels_path(dataset))
 
 
+# Nouns
+
+def get_nouns(dataset=FLAGS.dataset):
+    path = io.get_nouns_path(dataset)
+    exist(path, "Dataset has not been tokenized yet, run `prep_data.py`")
+    return io.read_txt(path)
+
+
+def get_normalized_nouns(dataset=FLAGS.dataset):
+    path = io.get_normalized_nouns_path(dataset)
+    exist(path, "Dataset has not been tokenized yet, run `prep_data.py`")
+    return io.read_txt(path)
+
+
+def get_nouns_vocab(dataset=FLAGS.dataset):
+    path = io.get_nouns_vocab(dataset)
+    exist(path, "Dataset has not been tokenized yet, run `prep_data.py`")
+    return io.read_txt(path)
+
+
+def save_nouns(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_nouns_path(dataset))
+
+
+def save_normalized_nouns(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_normalized_nouns_path(dataset))
+
+
+def save_nouns_vocab(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_nouns_vocab(dataset))
+
+
 # WikiData Entities & Relations
 def get_entity2id(dataset=FLAGS.dataset):
     return io.read_csv(io.get_entity2id_path(dataset), sep=",")
@@ -72,6 +104,14 @@ def get_entity2id(dataset=FLAGS.dataset):
 
 def save_entity2id(data, dataset=FLAGS.dataset):
     io.write_csv(io.get_entity2id_path(dataset), data, sep=",", header=["word", "wikiID"])
+
+
+def get_doc2id(dataset=FLAGS.dataset):
+    return io.read_csv(io.get_doc2id_path(dataset), sep=",")
+
+
+def save_doc2id(data, dataset=FLAGS.dataset):
+    io.write_csv(io.get_doc2id_path(dataset), data, sep=",", header=["doc", "wikiID"])
 
 
 def get_vocab_entities(dataset=FLAGS.dataset):
@@ -138,7 +178,7 @@ def get_document_triples(dataset=FLAGS.dataset):
 
 
 def save_document_triples(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations"])
+    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations", "detail"])
 
 
 # Evaluation logger
@@ -158,3 +198,8 @@ def save_eval_logs(data, dataset=FLAGS.dataset):
 def exist(path, error):
     if not exists(path):
         raise ValueError(error)
+
+
+def check_files():
+    exist(io.get_document_triples_path(),
+                 "To run textKGCN you need a file with doc2doc edges. Run `prep_graph.py` to create all needed files.")

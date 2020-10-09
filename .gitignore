@@ -135,3 +135,4 @@ _logs/
 _cache/
 _plots/
 _data/wikidata/triples/r8_presplit_document_triples.csv
+_data/wikidata/triples/r8_presplit_document_triples.pickle

@@ -66,9 +66,17 @@ def get_document_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(), f'{dataset}_document_triples.csv')
 
 
+def get_document_triples_pickle_path(dataset=FLAGS.dataset):
+    return join(get_kg_triples_path(), f'{dataset}_document_triples.pickle')
+
+
 # Mappings
 def get_entity2id_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(), f'{dataset}_entity2id.csv')
+
+
+def get_doc2id_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_doc2id.csv')
 
 
 def get_vocab_entities_path(dataset=FLAGS.dataset):
@@ -105,15 +113,27 @@ def get_vocab_path(dataset=FLAGS.dataset):
     return join(get_corpus_path(), f'{dataset}_vocab.txt')
 
 
+def get_nouns_vocab(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_vocab_nouns.txt')
+
+
+def get_nouns_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_nouns.txt')
+
+
+def get_normalized_nouns_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(), f'{dataset}_nouns_normalized.txt')
+
+
 # Plots
 def get_words_layer_plot_path(layer, dataset=FLAGS.dataset):
     word_path = path(join(get_plots_path(), 'embeddings/words'))
-    return join(word_path, f'embeddings/{dataset}_words_layer_{layer}.png')
+    return join(word_path, f'{dataset}_words_layer_{layer}.png')
 
 
 def get_documents_layer_plot_path(layer, dataset=FLAGS.dataset):
     doc_path = path(join(get_plots_path(), 'embeddings/docs'))
-    return join(doc_path, f'embeddings/{dataset}_docs_layer_{layer}.png')
+    return join(doc_path, f'{dataset}_docs_layer_{layer}.png')
 
 
 def get_results_plot_path(metric, dataset=FLAGS.dataset):

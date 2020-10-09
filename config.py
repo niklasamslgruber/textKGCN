@@ -27,8 +27,8 @@ FLAGS = parser.parse_args()
 """ 
 Dataset
 """
-# dataset = 'r8_presplit'
-dataset = 'r8_small'
+dataset = 'r8_presplit'
+# dataset = 'r8_small'
 # dataset = 'ag_presplit'
 
 if 'ag' in dataset:
@@ -37,6 +37,8 @@ elif 'r8' in dataset:
     num_labels = 8
 
 FLAGS.dataset = dataset
+
+FLAGS.use_wikidata = True
 
 """
 Model
@@ -52,6 +54,8 @@ s = 'textKGCN:pred_type={},node_embd_type={},num_layers={},layer_dim_list={},act
         pred_type, node_embd_type, num_layers, "_".join([str(i) for i in layer_dim_list]), 'relu', dropout, class_weights)
 
 model_params = {
+    'dataset': FLAGS.dataset,
+    'wiki_enabled': FLAGS.use_wikidata,
     'pred_type': pred_type,
     'node_embd':  node_embd_type,
     'layer_dims': layer_dim_list,
@@ -67,7 +71,7 @@ FLAGS.model = s
 Validation
 """
 FLAGS.use_best_val_model_for_inference = True
-FLAGS.validation_window_size = 10
+FLAGS.validation_window_size = 20
 FLAGS.validation_metric = 'accuracy'  # Choices: ["f1_weighted", "accuracy", "loss"]
 
 
@@ -93,5 +97,5 @@ Other
 FLAGS.user = get_user()
 FLAGS.hostname = get_host()
 
-gpu = -1
-FLAGS.device = str('cuda:{}'.format(gpu) if torch.cuda.is_available() and gpu != -1 else 'cpu')
+gpu = 0
+FLAGS.device = str('cuda:{}'.format(gpu) if torch.cuda.is_available() else 'cpu')
