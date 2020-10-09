@@ -20,7 +20,7 @@ Other configuration options can be set in `config.py`.
 
 ### Dependencies
 The code runs with `Python 3.6`.
-All dependencies can be installed automatically with this command (tested on `macOS` only): 
+All dependencies can be installed automatically with this command (for `cpu` usage only, tested on `macOS` only): 
  ```
  sh install_dependencies.sh
 ```
