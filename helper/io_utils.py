@@ -63,11 +63,7 @@ def get_filtered_word_triples_path(dataset=FLAGS.dataset):
 
 
 def get_document_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(), f'{dataset}_document_triples.csv')
-
-
-def get_document_triples_pickle_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(), f'{dataset}_document_triples.pickle')
+    return join(get_kg_triples_path(), f'{dataset}_document_triples.pickle.bz2')
 
 
 # Mappings
@@ -213,6 +209,17 @@ def read_csv(path, sep):
     assert path.endswith('.csv')
     return pd.read_csv(path, index_col=None, sep=sep)
 
+
+# Pickle
+def write_pickle(path, data):
+    assert path.endswith('.pickle.bz2')
+    data.to_pickle(path, compression="bz2")
+
+
+def read_pickle(path):
+    assert path.endswith('.pickle.bz2')
+    print(path)
+    return pd.read_pickle(path, compression="bz2")
 
 # Helper
 def path(path):

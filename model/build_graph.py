@@ -119,13 +119,11 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
-        tp = pd.read_csv(io.get_document_triples_path(), iterator=True, chunksize=1000000)
-        document_triples = pd.concat(tp, ignore_index=True)
+        document_triples = file.get_document_triples()
         document_triples = document_triples[document_triples["relations"] > 2]
         row_doc = document_triples["doc1"].tolist()
         col_doc = document_triples["doc2"].tolist()
         weight_doc = document_triples["relations"].tolist()
-
         print(f"Added {len(row_doc)} doc2doc edges")
         assert len(row_doc) == len(col_doc) == len(weight_doc)
         row += row_doc

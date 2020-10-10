@@ -171,21 +171,22 @@ def save_filtered_triples(data, dataset=FLAGS.dataset):
 
 def get_document_triples(dataset=FLAGS.dataset):
     path = io.get_document_triples_path(dataset)
-    if not exists(path):
-        print("Document triples do not exist yet. Will be created now. This may take a while")
-        return None
-    return io.read_csv(path, sep=",")
+    exist(path, "Document triples do not exist yet. Will be created now. This may take a while")
+    return io.read_pickle(path)
 
 
 def save_document_triples(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_document_triples_path(dataset), data, sep=",", header=["doc1", "doc2", "relations", "detail"])
+    path = io.get_document_triples_path(dataset)
+    io.write_pickle(path, data)
+    if FLAGS.debug:
+        csv_path = path.replace(".pickle.bz2", ".csv")
+        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail"])
 
 
 # Evaluation logger
 def get_eval_logs(dataset=FLAGS.dataset):
     path = io.get_eval_log_path(dataset)
     if not exists(path):
-        # save_eval_logs([])
         return None
     return io.read_csv(path, sep=';')
 
