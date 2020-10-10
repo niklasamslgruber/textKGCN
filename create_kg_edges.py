@@ -8,6 +8,8 @@ Steps:
 4. Count number of relation between two documents
 5. Weight relations and set a doc-doc edge weight
 """
+from collections import defaultdict
+from math import log
 import pandas as pd
 from tqdm import tqdm
 from helper import file_utils as file
@@ -91,10 +93,12 @@ def create_doc2doc_edges():
 
     ids = file.get_doc2id()
     triples = []
+    relations_array = []
     with tqdm(total=len(doc_nouns_norm)) as bar:
         for doc_index, doc in enumerate(doc_nouns_norm):
             if doc == "":
                 bar.update(1)
+                relations_array.append("-")
                 continue
 
             # All ID's of the normalized nouns in the current document
@@ -111,6 +115,11 @@ def create_doc2doc_edges():
             combined_df.reset_index(inplace=True, drop=True)
             combined_df.drop_duplicates(inplace=True)
 
+            all_outgoing_relations = combined_df["relation"].tolist()
+            if len(all_outgoing_relations) == 0:
+                all_outgoing_relations = "-"
+            relations_array.append(all_outgoing_relations)
+
             doc_pointers = {}
             for index, row in combined_df.iterrows():
                 relation = row["relation"]
@@ -124,10 +133,19 @@ def create_doc2doc_edges():
 
             for key in doc_pointers:
                 relations = doc_pointers[key]
-                triples.append([doc_index, key, len(relations), relations])
+                count = 0
+                if len(relations) > 1:
+                    count = len(relations)
+                    relations = "+".join(relations)
+                elif len(relations) == 1:
+                    relations = relations[0]
+                    count = 1
+                triples.append([doc_index, key, count, relations])
             bar.update(1)
 
     data = pd.DataFrame(triples)
+
+    file.save_doc2relations([" ".join(elem) for elem in relations_array])
     print(f"Highest number of relations between two docs: {max(data[2])}")
     print(f"Created {2 * len(triples)} doc2doc edges")
     save_full_matrix(data)
@@ -144,6 +162,49 @@ def save_full_matrix(dataframe):
     full_adj.columns = ["doc1", "doc2", "relations", "detail"]
     assert full_adj.shape == (2 * dataframe.shape[0], dataframe.shape[1])
     file.save_document_triples(full_adj)
+    generate_idf_scores()
+    generate_pmi_scores()
+
+
+def generate_idf_scores():
+    doc_relations = file.get_doc2relations()
+    num_docs = len(doc_relations)
+    doc_word_freq = defaultdict(int)
+    relation_doc_freq = {}
+    relations_in_docs = defaultdict(set)
+    row = []
+    col = []
+    weight = []
+
+    for i, rels in enumerate(doc_relations):
+        relations = rels.split()
+        for rel in relations:
+            relations_in_docs[rel].add(i)
+            doc_word_str = (i, rel)
+            doc_word_freq[doc_word_str] += 1
+
+    for rel, doc_list in relations_in_docs.items():
+        relation_doc_freq[rel] = len(doc_list)
+
+    for i, rels in enumerate(doc_relations):
+        relations = rels.split()
+        doc_rel_set = set()
+        for rel in relations:
+            if rel in doc_rel_set or rel == "-":
+                continue
+            freq = doc_word_freq[(i, rel)]
+            row.append(i)
+            col.append(rel)
+            idf = log(1.0 * num_docs / relation_doc_freq[rel])
+            weight.append(freq * idf)
+            doc_rel_set.add(rel)
+
+    data = pd.DataFrame({"doc": row, "relation": col, "idf": weight})
+    file.save_doc2idf(data)
+
+
+def generate_pmi_scores():
+    print("Not yet implemented")
 
 
 if __name__ == '__main__':
