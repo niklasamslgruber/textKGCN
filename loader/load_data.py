@@ -27,7 +27,8 @@ def load_data():
         train_data, val_data, test_data = rtn['train_data'], rtn['val_data'], rtn['test_data']
     else:
         train_data, val_data, test_data = _load_tvt_data_helper()
-        save({'train_data': train_data, 'val_data': val_data, 'test_data': test_data}, path)
+        if FLAGS.use_cache:
+            save({'train_data': train_data, 'val_data': val_data, 'test_data': test_data}, path)
 
     raw_doc_list = file.get_sentences(dataset_name)
 
@@ -43,7 +44,8 @@ def _load_tvt_data_helper():
     else:
         dataset = build_text_graph_dataset(FLAGS.dataset, FLAGS.word_window_size)
         gc.collect()
-        save(dataset.__dict__, path)
+        if FLAGS.use_cache:
+            save(dataset.__dict__, path)
 
     train_dataset, val_dataset, test_dataset = dataset.tvt_split(FLAGS.tvt_ratio[:2], FLAGS.tvt_list, FLAGS.random_seed)
     return train_dataset, val_dataset, test_dataset

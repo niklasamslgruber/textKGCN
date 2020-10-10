@@ -192,7 +192,11 @@ def get_eval_logs(dataset=FLAGS.dataset):
 
 
 def save_eval_logs(data, dataset=FLAGS.dataset):
-    return io.write_csv(io.get_eval_log_path(dataset), data, sep=';')
+    io.write_csv(io.get_eval_log_path(dataset), data, sep=';')
+
+
+def save_result_log(data, dataset=FLAGS.dataset):
+    io.write_json(io.get_result_log_path(dataset), data)
 
 
 # Helper

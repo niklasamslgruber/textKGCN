@@ -1,11 +1,9 @@
-import datetime
 import re
 from collections import OrderedDict
 from os import environ, makedirs
 from os.path import dirname, expanduser, isfile, exists
 from socket import gethostname
 import klepto
-import pytz
 
 
 def load(filepath, print_msg=True):
@@ -77,21 +75,6 @@ def get_host():
     if host is not None:
         return host
     return gethostname()
-
-
-tstamp = None
-
-
-def get_ts():
-    global tstamp
-    if not tstamp:
-        tstamp = get_current_ts()
-    return tstamp
-
-
-def get_current_ts(zone='US/Pacific'):
-    return datetime.datetime.now(pytz.timezone(zone)).strftime(
-        '%Y-%m-%dT%H-%M-%S.%f')
 
 
 def sorted_nicely(l, reverse=False):

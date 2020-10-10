@@ -1,9 +1,7 @@
 import numpy as np
 from sklearn import metrics
 import pandas as pd
-from helper.utils import get_ts
-from helper import file_utils as file
-import matplotlib.pyplot as plt
+from helper import file_utils as file, io_utils as io
 
 
 def eval(preds, dataset, use_wikidata, test=False, save=False):
@@ -19,7 +17,7 @@ def eval(preds, dataset, use_wikidata, test=False, save=False):
     recall_weighted = metrics.recall_score(y_true, y_pred_label, average='weighted')
     recall_macro = metrics.recall_score(y_true, y_pred_label, average='macro')
     recall_micro = metrics.recall_score(y_true, y_pred_label, average='micro')
-    results = {"time": get_ts(),
+    results = {"time": io.get_ts(),
                "wiki_enabled": use_wikidata,
                "accuracy": accuracy,
                "f1_weighted": f1_weighted,
@@ -52,6 +50,7 @@ def save_metrics(results):
     if existing_logs is not None:
         dataframe = pd.concat([existing_logs, dataframe])
     file.save_eval_logs(dataframe)
+    file.save_result_log(results)
 
 
 class MovingAverage(object):
