@@ -4,19 +4,16 @@ import torch
 from helper import io_utils as io
 from config import FLAGS
 from model.model_factory import create_model
-from helper.utils import create_dir_if_not_exists, get_ts, save, sorted_nicely
+from helper.utils import create_dir_if_not_exists, sorted_nicely
 
 
 class Saver(object):
     def __init__(self):
-        model_str = self.get_model_str()
-        self.logdir = join(
-            io.get_root_path(),
-            '_logs',
-            '{}_{}'.format(model_str, get_ts()))
+        self.logdir = io.get_logs_path()
         create_dir_if_not_exists(self.logdir)
         self.model_info_f = self._open('model_info.txt')
         self._log_model_info()
+
         print('Logging to {}'.format(self.logdir))
 
     def _log_model_info(self):
@@ -43,14 +40,6 @@ class Saver(object):
         trained_model.to(FLAGS.device)
         return trained_model
 
-    @staticmethod
-    def get_model_str():
-        li = []
-        key_flags = [FLAGS.model.split(":")[0], FLAGS.dataset, "_".join([str(i) for i in FLAGS.tvt_ratio])]
-        for f in key_flags:
-            li.append(str(f))
-        return '_'.join(li)
-
     def _open(self, f):
         return open(join(self.logdir, f), 'w')
 
@@ -62,7 +51,7 @@ def get_model_info_as_str():
         v = d[k]
         s = '{0:26} : {1}'.format(k, v)
         rtn.append(s)
-    rtn.append('{0:26} : {1}'.format('ts', get_ts()))
+    rtn.append('{0:26} : {1}'.format('ts', io.get_ts()))
     return '\n'.join(rtn)
 
 

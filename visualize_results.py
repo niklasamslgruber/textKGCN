@@ -31,8 +31,3 @@ def visualize_loss(loss_array, loss):
     plt.legend()
     plt.savefig(io.get_eval_loss_plot_path())
     plt.close(fig)
-
-
-if __name__ == '__main__':
-    plot_results()
-    plot_results("f1_macro")

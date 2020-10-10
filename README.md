@@ -15,6 +15,7 @@ $ python main.py
 * `--plot`: Plots textKGCN embeddings, training curves, recent model performance
 * `--word-window-size`: Specifies the window size used for the model (default: 10)
 * `--use_edge_weights`: Defines whether edge weights should be used 
+* `--debug`: Activate debug mode (changes number of epochs)
 
 Other configuration options can be set in `config.py`.
 

@@ -14,6 +14,9 @@ def main():
     if FLAGS.use_wikidata:
         file.check_files()
 
+    if FLAGS.debug:
+        print("\n-- DEBUG MODE --\n")
+
     saver = Saver()
     train_data, val_data, test_data, raw_doc_list = load_data()
 
@@ -36,6 +39,7 @@ def main():
     if FLAGS.show_eval:
         print("Test...")
         pprint(eval_res)
+
 
 
 if __name__ == "__main__":

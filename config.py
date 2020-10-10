@@ -20,6 +20,10 @@ parser.add_argument('--word_window_size', default=word_window_size, type=int, he
 # Edge Weights
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
+debug = False
+parser.add_argument('--debug', default=debug, action='store_true', help="use edge weights for model")
+
+
 # Set FLAGS from command line
 FLAGS = parser.parse_args()
 
@@ -27,8 +31,8 @@ FLAGS = parser.parse_args()
 """ 
 Dataset
 """
-dataset = 'r8_presplit'
-# dataset = 'r8_small'
+# dataset = 'r8_presplit'
+dataset = 'r8_small'
 # dataset = 'ag_presplit'
 
 if 'ag' in dataset:
@@ -37,8 +41,8 @@ elif 'r8' in dataset:
     num_labels = 8
 
 FLAGS.dataset = dataset
-
 FLAGS.use_wikidata = True
+FLAGS.use_cache = False
 
 """
 Model
@@ -85,10 +89,9 @@ FLAGS.tvt_list = ["train", "test", "val"]
 """
 Optimization
 """
-debug = False
 FLAGS.lr = 2e-2
 FLAGS.random_seed = 3
-FLAGS.num_epochs = 2 if debug else 400
+FLAGS.num_epochs = 2 if FLAGS.debug else 400
 
 
 """

@@ -31,7 +31,7 @@ def train(train_data, val_data, saver):
         with torch.no_grad():
             val_loss, preds_val = model(pyg_graph, val_data)
             val_loss = val_loss.item()
-            eval_res_val = eval(preds_val, val_data, False)
+            eval_res_val = eval(preds_val, val_data, FLAGS.use_wikidata)
             epoch_losses.append(val_loss)
             losses.append(loss)
 

@@ -94,6 +94,7 @@ def create_doc2doc_edges():
     with tqdm(total=len(doc_nouns_norm)) as bar:
         for doc_index, doc in enumerate(doc_nouns_norm):
             if doc == "":
+                bar.update(1)
                 continue
 
             # All ID's of the normalized nouns in the current document
@@ -140,6 +141,7 @@ def save_full_matrix(dataframe):
     mirrored_frame.columns = new_columns
 
     full_adj = dataframe.append(mirrored_frame)
+    full_adj.columns = ["doc1", "doc2", "relations", "detail"]
     assert full_adj.shape == (2 * dataframe.shape[0], dataframe.shape[1])
     file.save_document_triples(full_adj)
 
