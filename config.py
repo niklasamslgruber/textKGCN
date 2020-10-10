@@ -27,8 +27,8 @@ FLAGS = parser.parse_args()
 """ 
 Dataset
 """
-dataset = 'r8_presplit'
-# dataset = 'r8_small'
+# dataset = 'r8_presplit'
+dataset = 'r8_small'
 # dataset = 'ag_presplit'
 
 if 'ag' in dataset:
@@ -37,6 +37,7 @@ elif 'r8' in dataset:
     num_labels = 8
 
 FLAGS.dataset = dataset
+FLAGS.debug = False
 
 FLAGS.use_wikidata = True
 
@@ -85,10 +86,9 @@ FLAGS.tvt_list = ["train", "test", "val"]
 """
 Optimization
 """
-debug = False
 FLAGS.lr = 2e-2
 FLAGS.random_seed = 3
-FLAGS.num_epochs = 2 if debug else 400
+FLAGS.num_epochs = 400
 
 
 """

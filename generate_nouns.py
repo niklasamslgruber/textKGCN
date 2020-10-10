@@ -31,8 +31,8 @@ def generate_nouns(dataset):
     print("Starting to generate nouns")
     for sent in tqdm(clean_sentences):
         nouns, normalized_nouns = extract_nouns(sent)
-        nouns = list(set(nouns))
-        normalized_nouns = list(set(normalized_nouns))
+        nouns = sorted(list(set(nouns)))
+        normalized_nouns = sorted(list(set(normalized_nouns)))
 
         doc_nouns.append(" ".join(nouns))
         doc_nouns_normalized.append(" ".join(normalized_nouns))
