@@ -20,7 +20,7 @@ parser.add_argument('--word_window_size', default=word_window_size, type=int, he
 # Edge Weights
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
-debug = False
+debug = True
 parser.add_argument('--debug', default=debug, action='store_true', help="use edge weights for model")
 
 

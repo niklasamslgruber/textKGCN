@@ -106,22 +106,14 @@ def create_doc2doc_edges():
 
             # Graph edges pointing to other entities
             triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
-            # Graph edges pointing to current doc nouns
-            triples_in = filtered_triples[filtered_triples["entity2"].isin(doc_ids)]
-            triples_in.columns = [triples_out.columns[2], triples_out.columns[1], triples_out.columns[0]]
 
-            # Remove duplicates
-            combined_df = triples_out.append(triples_in)
-            combined_df.reset_index(inplace=True, drop=True)
-            combined_df.drop_duplicates(inplace=True)
-
-            all_outgoing_relations = combined_df["relation"].tolist()
+            all_outgoing_relations = triples_out["relation"].tolist()
             if len(all_outgoing_relations) == 0:
                 all_outgoing_relations = "-"
             relations_array.append(all_outgoing_relations)
 
             doc_pointers = {}
-            for index, row in combined_df.iterrows():
+            for index, row in triples_out.iterrows():
                 relation = row["relation"]
                 entity2 = row["entity2"]
                 pointer = ids[ids["wikiID"] == entity2]["doc"].tolist()
@@ -144,29 +136,16 @@ def create_doc2doc_edges():
             bar.update(1)
 
     data = pd.DataFrame(triples)
-
+    data.columns = ["doc1", "doc2", "relations", "detail"]
     file.save_doc2relations([" ".join(elem) for elem in relations_array])
-    print(f"Highest number of relations between two docs: {max(data[2])}")
-    print(f"Created {2 * len(triples)} doc2doc edges")
-    save_full_matrix(data)
-
-
-def save_full_matrix(dataframe):
-    # Mirrors the generated half adjacency matrix to a full symmetrical adjacency matrix
-    columns = dataframe.columns.tolist()
-    new_columns = [columns[1], columns[0], columns[2], columns[3]]
-    mirrored_frame = dataframe.copy()
-    mirrored_frame.columns = new_columns
-
-    full_adj = dataframe.append(mirrored_frame)
-    full_adj.columns = ["doc1", "doc2", "relations", "detail"]
-    assert full_adj.shape == (2 * dataframe.shape[0], dataframe.shape[1])
-    file.save_document_triples(full_adj)
+    print(f"Highest number of relations between two docs: {max(data['relations'])}")
+    print(f"Created {len(triples)} doc2doc edges")
     generate_idf_scores()
-    generate_pmi_scores()
+    apply_idf(data)
 
 
 def generate_idf_scores():
+    print("Generate IDF scores...")
     doc_relations = file.get_doc2relations()
     num_docs = len(doc_relations)
     doc_word_freq = defaultdict(int)
@@ -203,8 +182,26 @@ def generate_idf_scores():
     file.save_doc2idf(data)
 
 
-def generate_pmi_scores():
-    print("Not yet implemented")
+def apply_idf(data):
+    print("Starting to apply IDF scores...")
+    doc_triples = data
+    idf = file.get_doc2idf()
+
+    idf_edges = []
+    with tqdm(total=doc_triples.shape[0]) as bar:
+        for index, row in doc_triples.iterrows():
+            relations = row["detail"].split("+")
+            doc_number = row["doc1"]
+            score = 0
+            for rel in relations:
+                idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_number)]["idf"].tolist()
+                assert len(idf_score) == 1
+                score += idf_score[0]
+            idf_edges.append((doc_number, row["doc2"], len(relations), "+".join(relations), score))
+            bar.update(1)
+
+    data = pd.DataFrame(idf_edges)
+    file.save_document_triples(data)
 
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ from tqdm import tqdm
 from config import FLAGS
 from helper import io_utils as io, file_utils as file
 from loader.dataset import TextDataset
-
+import pandas as pd
 
 def build_text_graph_dataset(dataset, window_size):
     if "prejudice_small" in dataset:
@@ -116,6 +116,13 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
                       word_doc_freq[vocab[word_id]])
             weight.append(freq * idf)
             doc_word_set.add(word)
+
+    frame = pd.DataFrame({
+        "row": row,
+        "col": col,
+        "weight": weight
+        })
+    frame.to_csv("edges.csv", index=False)
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
