@@ -90,10 +90,6 @@ def get_doc2idf_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_doc2idf.csv')
 
 
-def get_doc2pmi_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2pmi.csv')
-
-
 def get_vocab_entities_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_vocab_entities.json')
 

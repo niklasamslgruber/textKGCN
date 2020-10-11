@@ -41,7 +41,6 @@ def main():
         pprint(eval_res)
 
 
-
 if __name__ == "__main__":
     start = time.time()
     main()

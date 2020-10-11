@@ -130,14 +130,6 @@ def save_doc2idf(data, dataset=FLAGS.dataset):
     io.write_csv(io.get_doc2idf_path(dataset), data, sep=",", header=["doc", "relation", "idf"])
 
 
-def get_doc2pmi(dataset=FLAGS.dataset):
-    return io.read_csv(io.get_doc2pmi_path(dataset), sep=",")
-
-
-def save_doc2pmi(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_doc2pmi_path(dataset), data, sep=",", header=["doc", "relation", "pmi"])
-
-
 def get_vocab_entities(dataset=FLAGS.dataset):
     return io.read_json(io.get_vocab_entities_path(dataset))
 
@@ -204,7 +196,7 @@ def save_document_triples(data, dataset=FLAGS.dataset):
     io.write_pickle(path, data)
     if FLAGS.debug:
         csv_path = path.replace(".pickle.bz2", ".csv")
-        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail"])
+        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail", "idf"])
 
 
 # Evaluation logger
