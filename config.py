@@ -14,13 +14,16 @@ parser.add_argument('--show_eval', default=False, action='store_true', help="sho
 parser.add_argument('--plot', default=False, action='store_true', help="save model output as plots")
 
 # Sampling
-word_window_size = 10
+word_window_size = 15
 parser.add_argument('--word_window_size', default=word_window_size, type=int, help=f"set window size (default: {word_window_size})", metavar='')
 
 # Edge Weights
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
-debug = True
+# doc2doc edges weight
+parser.add_argument('--raw_count', default=False, action='store_true', help="use number of relations as doc2doc weight instead of idf")
+
+debug = False
 parser.add_argument('--debug', default=debug, action='store_true', help="use edge weights for model")
 
 
@@ -31,8 +34,8 @@ FLAGS = parser.parse_args()
 """ 
 Dataset
 """
-# dataset = 'r8_presplit'
-dataset = 'r8_small'
+dataset = 'r8_presplit'
+# dataset = 'r8_small'
 # dataset = 'ag_presplit'
 
 if 'ag' in dataset:
@@ -43,6 +46,11 @@ elif 'r8' in dataset:
 FLAGS.dataset = dataset
 FLAGS.use_wikidata = True
 FLAGS.use_cache = False
+
+# CAUTION:
+# Setting the threshold too low will lead to many edges
+# The more total edges, the more RAM is required
+FLAGS.relation_count_threshold = 2
 
 """
 Model
@@ -75,7 +83,7 @@ FLAGS.model = s
 Validation
 """
 FLAGS.use_best_val_model_for_inference = True
-FLAGS.validation_window_size = 20
+FLAGS.validation_window_size = FLAGS.word_window_size
 FLAGS.validation_metric = 'accuracy'  # Choices: ["f1_weighted", "accuracy", "loss"]
 
 

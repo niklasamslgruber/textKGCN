@@ -15,13 +15,14 @@ $ python main.py
 * `--plot`: Plots textKGCN embeddings, training curves, recent model performance
 * `--word-window-size`: Specifies the window size used for the model (default: 10)
 * `--use_edge_weights`: Defines whether edge weights should be used 
+* `--raw_count`: Use number of relations as doc2doc edge weight, instead of the idf score
 * `--debug`: Activate debug mode (changes number of epochs)
 
 Other configuration options can be set in `config.py`.
 
 ### Dependencies
 The code runs with `Python 3.6`.
-All dependencies can be installed automatically with this command (for `cpu` usage only, tested on `macOS` only): 
+All dependencies can be installed automatically with this command (for `cpu` usage only, `macOS` & `linux` only): 
  ```
  sh install_dependencies.sh
 ```

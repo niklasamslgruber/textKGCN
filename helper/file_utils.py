@@ -196,7 +196,7 @@ def save_document_triples(data, dataset=FLAGS.dataset):
     io.write_pickle(path, data)
     if FLAGS.debug:
         csv_path = path.replace(".pickle.bz2", ".csv")
-        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail", "idf"])
+        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relation_count", "detail", "idf"])
 
 
 # Evaluation logger

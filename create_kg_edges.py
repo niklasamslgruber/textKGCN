@@ -12,6 +12,8 @@ from collections import defaultdict
 from math import log
 import pandas as pd
 from tqdm import tqdm
+
+from config import FLAGS
 from helper import file_utils as file
 from loader.wiki_api import get_safely
 
@@ -84,21 +86,45 @@ def setup_triples():
     filter_triples()
 
 
-# Adjacency matrices
-def create_doc2doc_edges():
-    # Note: Only one half of the adj matrix is generated here to save resources as the matrix is symmetric
+def generate_doc2relations():
     setup_triples()
     doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
+    relations_array = []
+    ids = file.get_doc2id()
     filtered_triples = get_triples(filtered=True)  # Triples
 
+    for doc_index, doc in enumerate(doc_nouns_norm):
+        if doc == "":
+            relations_array.append("-")
+            continue
+        # All ID's of the normalized nouns in the current document
+        doc_ids = ids[ids["doc"] == doc_index]["wikiID"].tolist()
+
+        # Graph edges pointing to other entities
+        triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
+
+        all_outgoing_relations = triples_out["relation"].tolist()
+        if len(all_outgoing_relations) == 0:
+            all_outgoing_relations = "-"
+        relations_array.append(all_outgoing_relations)
+
+    file.save_doc2relations([" ".join(elem) for elem in relations_array])
+    generate_idf_scores()
+
+
+# Adjacency matrices
+def create_doc2doc_edges():
+    generate_doc2relations()
+    doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
+    filtered_triples = get_triples(filtered=True)  # Triples
+    idf = file.get_doc2idf()
     ids = file.get_doc2id()
     triples = []
-    relations_array = []
+    filtered_out_items = 0
     with tqdm(total=len(doc_nouns_norm)) as bar:
         for doc_index, doc in enumerate(doc_nouns_norm):
             if doc == "":
                 bar.update(1)
-                relations_array.append("-")
                 continue
 
             # All ID's of the normalized nouns in the current document
@@ -106,11 +132,6 @@ def create_doc2doc_edges():
 
             # Graph edges pointing to other entities
             triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
-
-            all_outgoing_relations = triples_out["relation"].tolist()
-            if len(all_outgoing_relations) == 0:
-                all_outgoing_relations = "-"
-            relations_array.append(all_outgoing_relations)
 
             doc_pointers = {}
             for index, row in triples_out.iterrows():
@@ -125,23 +146,23 @@ def create_doc2doc_edges():
 
             for key in doc_pointers:
                 relations = doc_pointers[key]
-                count = 0
-                if len(relations) > 1:
-                    count = len(relations)
-                    relations = "+".join(relations)
-                elif len(relations) == 1:
-                    relations = relations[0]
-                    count = 1
-                triples.append([doc_index, key, count, relations])
+                if len(relations) <= FLAGS.relation_count_threshold:
+                    filtered_out_items += 1
+                    continue
+                count = len(relations)
+                score = 0
+                for rel in relations:
+                    idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_index)]["idf"].tolist()
+                    assert len(idf_score) == 1
+                    score += idf_score[0]
+                triples.append([doc_index, key, count, "+".join(relations), score])
             bar.update(1)
 
     data = pd.DataFrame(triples)
-    data.columns = ["doc1", "doc2", "relations", "detail"]
-    file.save_doc2relations([" ".join(elem) for elem in relations_array])
+    data.columns = ["doc1", "doc2", "relations", "detail", "idf"]
     print(f"Highest number of relations between two docs: {max(data['relations'])}")
-    print(f"Created {len(triples)} doc2doc edges")
-    generate_idf_scores()
-    apply_idf(data)
+    print(f"Created {len(triples)} doc2doc edges (filtered by threshold: {filtered_out_items})")
+    file.save_document_triples(data)
 
 
 def generate_idf_scores():
@@ -180,28 +201,6 @@ def generate_idf_scores():
 
     data = pd.DataFrame({"doc": row, "relation": col, "idf": weight})
     file.save_doc2idf(data)
-
-
-def apply_idf(data):
-    print("Starting to apply IDF scores...")
-    doc_triples = data
-    idf = file.get_doc2idf()
-
-    idf_edges = []
-    with tqdm(total=doc_triples.shape[0]) as bar:
-        for index, row in doc_triples.iterrows():
-            relations = row["detail"].split("+")
-            doc_number = row["doc1"]
-            score = 0
-            for rel in relations:
-                idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_number)]["idf"].tolist()
-                assert len(idf_score) == 1
-                score += idf_score[0]
-            idf_edges.append((doc_number, row["doc2"], len(relations), "+".join(relations), score))
-            bar.update(1)
-
-    data = pd.DataFrame(idf_edges)
-    file.save_document_triples(data)
 
 
 if __name__ == '__main__':
