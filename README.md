@@ -39,7 +39,7 @@ These dependencies will be installed:
 * `torch-spline-conv==1.2.0`
 * `torch-geometric==1.6.1`
 * `klepto==0.1.9`
-* `sklearn`, `matplotlib`, `pytz`, `pandas`, `spacy`
+* `sklearn`, `matplotlib`, `pytz`, `pandas`, `spacy`, `nltk`, `lxml`
 ###### Additionally, the model requires the `spacy 'en'` dataset which is will be installed automatically when you run the bash script. Otherwise it can be installed manually with `python -m spacy download en`
 
 ### Datasets
