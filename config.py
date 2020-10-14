@@ -42,9 +42,9 @@ FLAGS = parser.parse_args()
 """ 
 Dataset
 """
-dataset = 'r8_presplit'
+# dataset = 'r8_presplit'
 # dataset = 'r8_small'
-# dataset = 'ag_presplit'
+dataset = 'ag_presplit'
 
 if 'ag' in dataset:
     num_labels = 4
