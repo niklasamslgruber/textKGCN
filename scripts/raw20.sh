@@ -6,7 +6,7 @@
 #SBATCH --mail-user="niklas.amslgruber@campus.lmu.de"
 #SBATCH --ntasks=1
 #SBATCH --output=out/raw20.%j.out
-#SBATCH --begin 20:00
+#SBATCH --begin 20:16
 #SBATCH --partition=All
 
 source ~/miniconda3/bin/activate thesis
