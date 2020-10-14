@@ -6,10 +6,9 @@
 #SBATCH --mail-user="niklas.amslgruber@campus.lmu.de"
 #SBATCH --ntasks=1
 #SBATCH --output=out/ag_dataset.%j.out
-#SBATCH --begin 20:00
 #SBATCH --partition=All
 
 source ~/miniconda3/bin/activate thesis
 
-cd textKGCN
+cd ~/Desktop/textKGCN
 python prep_data.py

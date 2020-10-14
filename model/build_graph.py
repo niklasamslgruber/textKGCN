@@ -124,8 +124,8 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
         old_size = document_triples.shape[0]
 
         # Filter all relations with number of relations below threshold
-        document_triples = document_triples[document_triples["relations"] > FLAGS.relation_count_threshold]
-        print(f"doc2doc edge count threshold ({FLAGS.relation_count_threshold}) filtered out: {old_size - document_triples.shape[0]}")
+        document_triples = document_triples[document_triples["relations"] > FLAGS.threshold]
+        print(f"doc2doc edge count threshold ({FLAGS.threshold}) filtered out: {old_size - document_triples.shape[0]}")
 
         weight_key = "relations" if FLAGS.raw_count else "idf"
         row_doc = document_triples["doc1"].tolist()
