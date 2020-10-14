@@ -12,8 +12,6 @@ from collections import defaultdict
 from math import log
 import pandas as pd
 from tqdm import tqdm
-
-from config import FLAGS
 from helper import file_utils as file
 from loader.wiki_api import get_safely
 

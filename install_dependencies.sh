@@ -11,6 +11,7 @@ pip install torch-cluster==1.5.7+cpu -f https://pytorch-geometric.com/whl/torch-
 pip install torch-spline-conv==1.2.0+cpu -f https://pytorch-geometric.com/whl/torch-1.6.0.html
 pip install torch-geometric
 pip install spacy
+pip install lxml
 python -m spacy download en
 
 echo "Successfully installed all dependencies. You are now ready to run textKGCN"
