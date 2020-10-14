@@ -23,8 +23,15 @@ parser.add_argument('--use_edge_weights', default=True, action='store_true', hel
 # doc2doc edges weight
 parser.add_argument('--raw_count', default=False, action='store_true', help="use number of relations as doc2doc weight instead of idf")
 
+# relation threshold
+relation_count_threshold = 2
+parser.add_argument('--threshold', default=relation_count_threshold, type=int, help=f"set filter threshold for doc2doc edges (default: {relation_count_threshold})", metavar='')
+
 debug = False
 parser.add_argument('--debug', default=debug, action='store_true', help="use edge weights for model")
+
+
+parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
 
 
 # Set FLAGS from command line
@@ -44,13 +51,8 @@ elif 'r8' in dataset:
     num_labels = 8
 
 FLAGS.dataset = dataset
-FLAGS.use_wikidata = True
+FLAGS.use_wikidata = not FLAGS.no_wiki
 FLAGS.use_cache = False
-
-# CAUTION:
-# Setting the threshold too low will lead to many edges
-# The more total edges, the more RAM is required
-FLAGS.relation_count_threshold = 2
 
 """
 Model
