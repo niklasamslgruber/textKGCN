@@ -81,7 +81,7 @@ def download(search_word, lookup_function, download_function, stats_collector):
     if len(data) == 0:
         stats_collector.api_call()
         entity = download_function(search_word)[0]
-        if entity.identifier == "-1":
+        if entity is None or entity.identifier == "-1":
             stats_collector.failed()
         data = entity.to_json()
     else:
