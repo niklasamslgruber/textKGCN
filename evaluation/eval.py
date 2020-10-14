@@ -22,7 +22,7 @@ def eval(preds, dataset, use_wikidata, test=False, save=False):
                "wiki_enabled": use_wikidata,
                "window_size": FLAGS.word_window_size,
                "raw_count": FLAGS.raw_count,
-               "threshold": FLAGS.relation_count_threshold,
+               "threshold": FLAGS.threshold,
                "accuracy": accuracy,
                "f1_weighted": f1_weighted,
                "f1_macro": f1_macro,
