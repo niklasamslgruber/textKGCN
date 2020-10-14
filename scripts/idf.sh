@@ -11,5 +11,5 @@
 
 source ~/miniconda3/bin/activate thesis
 
-cd textKGCN
+cd ~/Desktop/textKGCN
 python main.py --show_eval --plot
