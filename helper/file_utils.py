@@ -182,7 +182,7 @@ def get_filtered_triples(dataset=FLAGS.dataset):
 
 
 def save_filtered_triples(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_filtered_word_triples_path(dataset), data, sep=",", header=["entity1", "relation", "entity2"])
+    io.write_csv(io.get_filtered_word_triples_path(dataset), data, sep=",", header=["entity1", "relations", "entity2"])
 
 
 def get_document_triples(dataset=FLAGS.dataset):
@@ -194,9 +194,8 @@ def get_document_triples(dataset=FLAGS.dataset):
 def save_document_triples(data, dataset=FLAGS.dataset):
     path = io.get_document_triples_path(dataset)
     io.write_pickle(path, data)
-    if FLAGS.debug:
-        csv_path = path.replace(".pickle.bz2", ".csv")
-        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relation_count", "detail", "idf"])
+    csv_path = path.replace(".pickle.bz2", ".csv")
+    io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail", "idf"])
 
 
 # Evaluation logger

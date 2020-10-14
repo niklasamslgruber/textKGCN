@@ -121,8 +121,13 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
     if FLAGS.use_wikidata:
         # Append doc2doc edges
         document_triples = file.get_document_triples()
-        weight_key = "relation_count" if FLAGS.raw_count else "idf"
+        old_size = document_triples.shape[0]
 
+        # Filter all relations with number of relations below threshold
+        document_triples = document_triples[document_triples["relations"] > FLAGS.relation_count_threshold]
+        print(f"doc2doc edge count threshold ({FLAGS.relation_count_threshold}) filtered out: {old_size - document_triples.shape[0]}")
+
+        weight_key = "relations" if FLAGS.raw_count else "idf"
         row_doc = document_triples["doc1"].tolist()
         col_doc = document_triples["doc2"].tolist()
         weight_doc = document_triples[weight_key].tolist()

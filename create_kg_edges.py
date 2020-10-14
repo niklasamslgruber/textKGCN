@@ -102,8 +102,7 @@ def generate_doc2relations():
 
         # Graph edges pointing to other entities
         triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
-
-        all_outgoing_relations = triples_out["relation"].tolist()
+        all_outgoing_relations = triples_out["relations"].tolist()
         if len(all_outgoing_relations) == 0:
             all_outgoing_relations = "-"
         relations_array.append(all_outgoing_relations)
@@ -135,7 +134,7 @@ def create_doc2doc_edges():
 
             doc_pointers = {}
             for index, row in triples_out.iterrows():
-                relation = row["relation"]
+                relation = row["relations"]
                 entity2 = row["entity2"]
                 pointer = ids[ids["wikiID"] == entity2]["doc"].tolist()
                 for doc_id in pointer:
@@ -146,9 +145,6 @@ def create_doc2doc_edges():
 
             for key in doc_pointers:
                 relations = doc_pointers[key]
-                if len(relations) <= FLAGS.relation_count_threshold:
-                    filtered_out_items += 1
-                    continue
                 count = len(relations)
                 score = 0
                 for rel in relations:

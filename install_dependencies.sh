@@ -1,5 +1,5 @@
 #!/bin/bash
-pip install torch==1.6.0 torchvision==0.7.0
+pip install torch==1.6.0+cpu torchvision==0.7.0+cpu
 pip install klepto==0.1.9
 pip install pytz
 pip install sklearn
