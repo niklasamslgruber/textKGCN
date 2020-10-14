@@ -12,3 +12,4 @@ source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
 python prep_data.py
+python prep_graph.py
