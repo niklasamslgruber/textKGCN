@@ -27,10 +27,11 @@ parser.add_argument('--raw_count', default=False, action='store_true', help="use
 relation_count_threshold = 2
 parser.add_argument('--threshold', default=relation_count_threshold, type=int, help=f"set filter threshold for doc2doc edges (default: {relation_count_threshold})", metavar='')
 
+# debug
 debug = False
 parser.add_argument('--debug', default=debug, action='store_true', help="use edge weights for model")
 
-
+# wikidata usage
 parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
 
 
