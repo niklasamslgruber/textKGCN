@@ -87,7 +87,7 @@ def download(search_word, lookup_function, download_function, stats_collector):
                 stats_collector.failed()
             data = entity.to_json()
         else:
-            data = {}
+            data = {"id": "-1"}
     else:
         stats_collector.cached()
     return data
