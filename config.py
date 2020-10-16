@@ -35,7 +35,7 @@ parser.add_argument('--debug', default=debug, action='store_true', help="use edg
 parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
 
 # dataset
-available_datasets = ["r8_presplit", "r8_small", "ag_presplit"]
+available_datasets = ["r8_presplit", "r8_small", "ag_presplit", "20ng_presplit", "mr_presplit", "ohsumed_presplit", "r52_presplit"]
 parser.add_argument('--dataset', default=available_datasets[2], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
 
 
