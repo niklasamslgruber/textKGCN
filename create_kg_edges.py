@@ -145,6 +145,9 @@ def create_doc2doc_edges():
                 relations = doc_pointers[key]
                 count = len(relations)
                 score = 0
+                # Ignore all documents with only one or less outgoing edges (needed for performance)
+                if len(relations) < 2:
+                    continue
                 for rel in relations:
                     idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_index)]["idf"].tolist()
                     assert len(idf_score) == 1

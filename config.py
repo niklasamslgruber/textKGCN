@@ -46,11 +46,22 @@ assert FLAGS.dataset in available_datasets, "Dataset not available"
 """ 
 Dataset
 """
-
-if 'ag' in FLAGS.dataset:
-    num_labels = 4
-elif 'r8' in FLAGS.dataset:
+dataset = FLAGS.dataset
+num_labels = 0
+if dataset == "r8" or dataset == "r8_small":
     num_labels = 8
+elif dataset == "r52":
+    num_labels = 52
+elif dataset == "mr":
+    num_labels = 2
+elif dataset == "ag":
+    num_labels = 4
+elif dataset == "20ng":
+    num_labels = 20
+elif dataset == "ohsumed":
+    num_labels = 23
+else:
+    assert False, "invalid value"
 
 FLAGS.use_wikidata = not FLAGS.no_wiki
 FLAGS.use_cache = False
