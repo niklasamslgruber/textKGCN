@@ -13,7 +13,7 @@ def load_data():
     train_ratio = int(FLAGS.tvt_ratio[0] * 100)
     val_ratio = int(FLAGS.tvt_ratio[1] * 100)
     test_ratio = 100 - train_ratio - val_ratio
-    if 'presplit' not in dataset_name:
+    if 'small' in dataset_name:
         save_fn = '{}_train_{}_val_{}_test_{}_seed_{}_window_size_{}_wikidata_{}'.format(dataset_name, train_ratio,
                                                                                         val_ratio, test_ratio,
                                                                                         FLAGS.random_seed, FLAGS.word_window_size,

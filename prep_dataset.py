@@ -4,7 +4,7 @@ from helper import io_utils as io
 
 def prep_ohsumed():
     # Source: https://github.com/yao8839836/text_gcn
-    corpus_path = io.get_corpus_path("ohsumed_presplit")
+    corpus_path = io.get_corpus_path("ohsumed")
 
     labels_data = io.read_txt(join(corpus_path, "ohsumed.txt"))
     label_file = []
@@ -24,8 +24,8 @@ def prep_ohsumed():
     assert len(label_file) == len(sentences_file) == len(labels_data)
     print(label_file[0:2])
     print(sentences_file[0:2])
-    io.write_txt(label_file, join(corpus_path, "ohsumed_presplit_labels.txt"))
-    io.write_txt(sentences_file, join(corpus_path, "ohsumed_presplit_sentences.txt"))
+    io.write_txt(label_file, join(corpus_path, "ohsumed_labels.txt"))
+    io.write_txt(sentences_file, join(corpus_path, "ohsumed_sentences.txt"))
 
 
 def prep_mr():
@@ -34,23 +34,23 @@ def prep_mr():
     print(corpus_path)
     print(join(corpus_path, f"mr_sentences.txt"))
     test_data = io.read_txt(join(corpus_path, f"mr/text_all.txt"))
-    io.write_txt(test_data, join(corpus_path, f"mr_presplit_sentences.txt"))
+    io.write_txt(test_data, join(corpus_path, f"mr_sentences.txt"))
 
 
 def prep_r52():
     # Source: https://www.cs.umb.edu/~smimarog/textmining/datasets/
-    read("r52", "r52_presplit")
+    read("r52")
 
 
 def prep_20ng():
     # Source: https://www.cs.umb.edu/~smimarog/textmining/datasets/
-    read("20ng", "20ng_presplit")
+    read("20ng")
 
 
-def read(read_name, out_file):
-    corpus_path = io.get_corpus_path(out_file)
-    test_data = io.read_txt(join(corpus_path, f"{read_name}-test-stemmed.txt"))
-    train_data = io.read_txt(join(corpus_path, f"{read_name}-train-stemmed.txt"))
+def read(name):
+    corpus_path = io.get_corpus_path(name)
+    test_data = io.read_txt(join(corpus_path, f"{name}-test-stemmed.txt"))
+    train_data = io.read_txt(join(corpus_path, f"{name}-train-stemmed.txt"))
     data = train_data + test_data
 
     label_file = []
@@ -67,5 +67,5 @@ def read(read_name, out_file):
 
     assert len(label_file) == len(sentences_file)
 
-    io.write_txt(label_file, join(corpus_path, f"{out_file}_labels.txt"))
-    io.write_txt(sentences_file, join(corpus_path, f"{out_file}_sentences.txt"))
+    io.write_txt(label_file, join(corpus_path, f"{name}_labels.txt"))
+    io.write_txt(sentences_file, join(corpus_path, f"{name}_sentences.txt"))

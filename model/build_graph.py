@@ -19,7 +19,7 @@ def build_text_graph_dataset(dataset, window_size):
     doc_list = file.get_cleaned_sentences(dataset_name)
 
     assert len(labels) == len(doc_list)
-    if 'presplit' not in dataset:
+    if 'small' in dataset:
         labels_list = labels.iloc[0:, 0].tolist()
         split_dict = None
     else:
