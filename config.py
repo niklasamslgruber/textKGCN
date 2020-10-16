@@ -34,24 +34,24 @@ parser.add_argument('--debug', default=debug, action='store_true', help="use edg
 # wikidata usage
 parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
 
+# dataset
+available_datasets = ["r8_presplit", "r8_small", "ag_presplit"]
+parser.add_argument('--dataset', default=available_datasets[2], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
+
 
 # Set FLAGS from command line
 FLAGS = parser.parse_args()
-
+assert FLAGS.dataset in available_datasets, "Dataset not available"
 
 """ 
 Dataset
 """
-# dataset = 'r8_presplit'
-# dataset = 'r8_small'
-dataset = 'ag_presplit'
 
-if 'ag' in dataset:
+if 'ag' in FLAGS.dataset:
     num_labels = 4
-elif 'r8' in dataset:
+elif 'r8' in FLAGS.dataset:
     num_labels = 8
 
-FLAGS.dataset = dataset
 FLAGS.use_wikidata = not FLAGS.no_wiki
 FLAGS.use_cache = False
 

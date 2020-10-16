@@ -11,4 +11,4 @@
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --show_eval --plot --raw_count --word_window_size 20 --threshold 3
+python main.py --show_eval --plot --word_window_size 20 --threshold 3
