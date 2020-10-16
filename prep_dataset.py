@@ -28,22 +28,24 @@ def prep_ohsumed():
     io.write_txt(sentences_file, join(corpus_path, "ohsumed_sentences.txt"))
 
 
-def prep_mr():
-    # Source: https://github.com/yao8839836/text_gcn
-    corpus_path = io.get_corpus_path("mr")
-    print(corpus_path)
-    print(join(corpus_path, f"mr_sentences.txt"))
-    test_data = io.read_txt(join(corpus_path, f"mr/text_all.txt"))
-    io.write_txt(test_data, join(corpus_path, f"mr_sentences.txt"))
-
-
 def prep_r52():
     # Source: https://www.cs.umb.edu/~smimarog/textmining/datasets/
     read("r52")
 
+
 def prep_20ng():
     # Source: https://www.cs.umb.edu/~smimarog/textmining/datasets/
     read("20ng")
+
+
+def prep_mr():
+    # Source: https://github.com/yao8839836/text_gcn
+    data = []
+    file = open(join(io.get_corpus_path("mr"), "mr_sentences.txt"), 'r', errors="ignore")
+    for line in file.readlines():
+        data.append(line.strip())
+    file.close()
+    io.read_txt(join(io.get_corpus_path("mr"), "mr_sentences.txt"))
 
 
 def read(name):
@@ -68,3 +70,7 @@ def read(name):
 
     io.write_txt(label_file, join(corpus_path, f"{name}_labels.txt"))
     io.write_txt(sentences_file, join(corpus_path, f"{name}_sentences.txt"))
+
+
+if __name__ == '__main__':
+    prep_mr()
