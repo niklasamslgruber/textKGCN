@@ -147,6 +147,7 @@ def create_doc2doc_edges():
                 score = 0
                 # Ignore all documents with only one or less outgoing edges (needed for performance)
                 if len(relations) < 2:
+                    filtered_out_items += 1
                     continue
                 for rel in relations:
                     idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_index)]["idf"].tolist()

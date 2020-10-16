@@ -226,7 +226,7 @@ def write_csv(path, array, sep, header=True):
 
 def read_csv(path, sep):
     assert path.endswith('.csv')
-    return pd.read_csv(path, index_col=None, sep=sep)
+    return pd.read_csv(path, index_col=None, sep=sep, keep_default_na=False)
 
 
 # Pickle
