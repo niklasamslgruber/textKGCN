@@ -1,8 +1,8 @@
-available_datasets = ["r8", "ag", "20ng", "mr", "ohsumed", "r52"]
+available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
 
 
 def generate_prep_scripts():
-    datasets = available_datasets[2:]
+    datasets = available_datasets[1:]
     exec_code = []
     for dataset in datasets:
 
@@ -30,6 +30,7 @@ def generate_prep_scripts():
     file = open(f"scripts/prep/prep_all.sh", "w")
     file.writelines(script)
     file.close()
+
 
 def generate_train_scripts():
     windows = ["15"]
@@ -70,19 +71,7 @@ def generate_train_scripts():
     print(len(exec_code))
     file.close()
 
-def test(number):
-    print(f'{sum(range(1, number)):,}')
-    rate = 0.001
-    edges = sum(range(1, number))
-    time = (rate * edges) / 60 / 60
-    print(f"Time: {time} h")
 
 if __name__ == '__main__':
-    # generate_prep_scripts()
-    # generate_train_scripts()
-    test(18820)
-    test(127599)
-    test(10661)
-    test(7399)
-    test(7673)
-    test(9100)
+    generate_prep_scripts()
+    generate_train_scripts()

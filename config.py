@@ -35,8 +35,8 @@ parser.add_argument('--debug', default=debug, action='store_true', help="use edg
 parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
 
 # dataset
-available_datasets = ["r8", "r8_small", "ag", "20ng", "mr", "ohsumed", "r52"]
-parser.add_argument('--dataset', default=available_datasets[2], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
+available_datasets = ["r8", "r8_small", "20ng", "mr", "ohsumed", "r52"]
+parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
 
 
 # Set FLAGS from command line
@@ -54,8 +54,6 @@ elif dataset == "r52":
     num_labels = 52
 elif dataset == "mr":
     num_labels = 2
-elif dataset == "ag":
-    num_labels = 4
 elif dataset == "20ng":
     num_labels = 20
 elif dataset == "ohsumed":
