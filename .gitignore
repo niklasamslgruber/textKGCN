@@ -140,3 +140,4 @@ _data/20ng/triples/20ng_document_triples.csv
 _data/mr/triples/mr_document_triples.csv
 _data/r52/triples/r52_document_triples.csv
 _data/ohsumed/triples/ohsumed_document_triples.csv
+script/out/
