@@ -14,34 +14,45 @@ parser.add_argument('--show_eval', default=False, action='store_true', help="sho
 parser.add_argument('--plot', default=False, action='store_true', help="save model output as plots")
 
 # Sampling
-word_window_size = 10
+word_window_size = 15
 parser.add_argument('--word_window_size', default=word_window_size, type=int, help=f"set window size (default: {word_window_size})", metavar='')
 
 # Edge Weights
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
+# doc2doc edges weight
+parser.add_argument('--raw_count', default=False, action='store_true', help="use number of relations as doc2doc weight instead of idf")
+
+# relation threshold
+relation_count_threshold = 2
+parser.add_argument('--threshold', default=relation_count_threshold, type=int, help=f"set filter threshold for doc2doc edges (default: {relation_count_threshold})", metavar='')
+
+# debug
 debug = False
 parser.add_argument('--debug', default=debug, action='store_true', help="use edge weights for model")
+
+# wikidata usage
+parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
+
+# dataset
+available_datasets = ["r8_presplit", "r8_small", "ag_presplit"]
+parser.add_argument('--dataset', default=available_datasets[2], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
 
 
 # Set FLAGS from command line
 FLAGS = parser.parse_args()
-
+assert FLAGS.dataset in available_datasets, "Dataset not available"
 
 """ 
 Dataset
 """
-# dataset = 'r8_presplit'
-dataset = 'r8_small'
-# dataset = 'ag_presplit'
 
-if 'ag' in dataset:
+if 'ag' in FLAGS.dataset:
     num_labels = 4
-elif 'r8' in dataset:
+elif 'r8' in FLAGS.dataset:
     num_labels = 8
 
-FLAGS.dataset = dataset
-FLAGS.use_wikidata = True
+FLAGS.use_wikidata = not FLAGS.no_wiki
 FLAGS.use_cache = False
 
 """
@@ -75,7 +86,7 @@ FLAGS.model = s
 Validation
 """
 FLAGS.use_best_val_model_for_inference = True
-FLAGS.validation_window_size = 20
+FLAGS.validation_window_size = FLAGS.word_window_size
 FLAGS.validation_metric = 'accuracy'  # Choices: ["f1_weighted", "accuracy", "loss"]
 
 

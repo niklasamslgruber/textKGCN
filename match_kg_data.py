@@ -80,10 +80,14 @@ def download(search_word, lookup_function, download_function, stats_collector):
     data = lookup_function(search_word)
     if len(data) == 0:
         stats_collector.api_call()
-        entity = download_function(search_word)[0]
-        if entity.identifier == "-1":
-            stats_collector.failed()
-        data = entity.to_json()
+        result = download_function(search_word)
+        if result is not None and len(result) > 0:
+            entity = download_function(search_word)[0]
+            if entity.identifier == "-1":
+                stats_collector.failed()
+            data = entity.to_json()
+        else:
+            data = {"id": "-1"}
     else:
         stats_collector.cached()
     return data

@@ -97,3 +97,6 @@ def download_entities(url, search_word):
         return items
     except requests.exceptions.InvalidSchema:
         print(f"Failed to load data for `{search_word}`")
+        return None
+    except KeyError:
+        return None

@@ -82,6 +82,14 @@ def get_doc2id_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_doc2id.csv')
 
 
+def get_doc2relations_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations.txt')
+
+
+def get_doc2idf_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf.csv')
+
+
 def get_vocab_entities_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_vocab_entities.json')
 

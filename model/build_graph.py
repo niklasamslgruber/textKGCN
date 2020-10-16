@@ -6,6 +6,7 @@ from tqdm import tqdm
 from config import FLAGS
 from helper import io_utils as io, file_utils as file
 from loader.dataset import TextDataset
+import pandas as pd
 
 
 def build_text_graph_dataset(dataset, window_size):
@@ -120,11 +121,17 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
     if FLAGS.use_wikidata:
         # Append doc2doc edges
         document_triples = file.get_document_triples()
-        document_triples = document_triples[document_triples["relations"] > 2]
+        old_size = document_triples.shape[0]
+
+        # Filter all relations with number of relations below threshold
+        document_triples = document_triples[document_triples["relations"] > FLAGS.threshold]
+        print(f"doc2doc edge count threshold ({FLAGS.threshold}) filtered out: {old_size - document_triples.shape[0]}")
+
+        weight_key = "relations" if FLAGS.raw_count else "idf"
         row_doc = document_triples["doc1"].tolist()
         col_doc = document_triples["doc2"].tolist()
-        weight_doc = document_triples["relations"].tolist()
-        print(f"Added {len(row_doc)} doc2doc edges")
+        weight_doc = document_triples[weight_key].tolist()
+        print(f"Added {len(row_doc)} doc2doc edges with weight: {weight_key}")
         assert len(row_doc) == len(col_doc) == len(weight_doc)
         row += row_doc
         col += col_doc

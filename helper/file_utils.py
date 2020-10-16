@@ -114,6 +114,22 @@ def save_doc2id(data, dataset=FLAGS.dataset):
     io.write_csv(io.get_doc2id_path(dataset), data, sep=",", header=["doc", "wikiID"])
 
 
+def get_doc2relations(dataset=FLAGS.dataset):
+    return io.read_txt(io.get_doc2relations_path(dataset))
+
+
+def save_doc2relations(data, dataset=FLAGS.dataset):
+    io.write_txt(data, io.get_doc2relations_path(dataset))
+
+
+def get_doc2idf(dataset=FLAGS.dataset):
+    return io.read_csv(io.get_doc2idf_path(dataset), sep=",")
+
+
+def save_doc2idf(data, dataset=FLAGS.dataset):
+    io.write_csv(io.get_doc2idf_path(dataset), data, sep=",", header=["doc", "relation", "idf"])
+
+
 def get_vocab_entities(dataset=FLAGS.dataset):
     return io.read_json(io.get_vocab_entities_path(dataset))
 
@@ -166,7 +182,7 @@ def get_filtered_triples(dataset=FLAGS.dataset):
 
 
 def save_filtered_triples(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_filtered_word_triples_path(dataset), data, sep=",", header=["entity1", "relation", "entity2"])
+    io.write_csv(io.get_filtered_word_triples_path(dataset), data, sep=",", header=["entity1", "relations", "entity2"])
 
 
 def get_document_triples(dataset=FLAGS.dataset):
@@ -178,9 +194,8 @@ def get_document_triples(dataset=FLAGS.dataset):
 def save_document_triples(data, dataset=FLAGS.dataset):
     path = io.get_document_triples_path(dataset)
     io.write_pickle(path, data)
-    if FLAGS.debug:
-        csv_path = path.replace(".pickle.bz2", ".csv")
-        io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail"])
+    csv_path = path.replace(".pickle.bz2", ".csv")
+    io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "relations", "detail", "idf"])
 
 
 # Evaluation logger
