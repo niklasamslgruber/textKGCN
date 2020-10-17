@@ -1,0 +1,1 @@
+sbatch no_wiki_w15_r52.sh && sleep 5 && sbatch raw_w15_t3_r52.sh && sleep 5 && sbatch idf_w15_t3_r52.sh && sleep 5 && sbatch raw_w15_t4_r52.sh && sleep 5 && sbatch idf_w15_t4_r52.sh && sleep 5 && sbatch raw_w15_t5_r52.sh && sleep 5 && sbatch idf_w15_t5_r52.sh
