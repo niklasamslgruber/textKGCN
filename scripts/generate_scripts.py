@@ -65,7 +65,7 @@ def generate_train_scripts():
                     print(f"Generated script: 'scripts/train/{name}.sh'")
                     exec_code.append(f"sbatch {name}.sh")
 
-    script = " && ".join(exec_code)
+    script = " && sleep 5 && ".join(exec_code)
     file = open(f"scripts/train/train_all.sh", "w")
     file.writelines(script)
     print(len(exec_code))
