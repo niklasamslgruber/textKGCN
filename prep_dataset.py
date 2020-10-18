@@ -1,5 +1,5 @@
 from os.path import join
-from helper import io_utils as io
+from helper import io_utils as io, file_utils
 
 
 def prep_ohsumed():
@@ -41,11 +41,15 @@ def prep_20ng():
 def prep_mr():
     # Source: https://github.com/yao8839836/text_gcn
     data = []
-    file = open(join(io.get_corpus_path("mr"), "mr_sentences.txt"), 'r', errors="ignore")
+    file = open(join(io.get_corpus_path("mr"), "mr_sentences1.txt"), 'r')
+    # content = file.read()
+    # print(content)
     for line in file.readlines():
-        data.append(line.strip())
+        data.append(line)
     file.close()
-    io.read_txt(join(io.get_corpus_path("mr"), "mr_sentences.txt"))
+    io.read_txt(join(io.get_corpus_path("mr"), "mr_sentences1.txt"))
+
+    file_utils.save_sentences(data)
 
 
 def read(name):
