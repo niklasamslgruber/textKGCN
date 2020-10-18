@@ -1,4 +1,7 @@
 from os.path import join
+
+from idna import unicode
+
 from helper import io_utils as io, file_utils
 
 
@@ -41,13 +44,28 @@ def prep_20ng():
 def prep_mr():
     # Source: https://github.com/yao8839836/text_gcn
     data = []
-    file = open(join(io.get_corpus_path("mr"), "mr_sentences1.txt"), 'r')
-    # content = file.read()
-    # print(content)
-    for line in file.readlines():
-        data.append(line)
-    file.close()
-    io.read_txt(join(io.get_corpus_path("mr"), "mr_sentences1.txt"))
+    sentences = file_utils.get_sentences()
+    print(sentences[0:10])
+    import unicodedata
+
+    # try:
+    #     text = unicode(sentences, 'utf-8')
+    # except NameError:  # unicode is a default on python 3
+    #     pass
+    for s in sentences:
+        text = unicodedata.normalize('NFD', s) \
+            .encode('ascii', 'ignore') \
+            .decode("utf-8")
+        string = str(text)
+        data.append(string)
+
+    # file = open(join(io.get_corpus_path("mr"), "mr_sentences1.txt"), 'r')
+    # # content = file.read()
+    # # print(content)
+    # for line in file.readlines():
+    #     data.append(line)
+    # file.close()
+    # io.read_txt(join(io.get_corpus_path("mr"), "mr_sentences1.txt"))
 
     file_utils.save_sentences(data)
 
