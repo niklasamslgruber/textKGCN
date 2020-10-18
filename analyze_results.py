@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+
+from config import FLAGS
 from helper import file_utils as file, io_utils as io
 import pandas as pd
 
@@ -34,8 +36,8 @@ def visualize_loss(loss_array, loss):
     plt.close(fig)
 
 
-def analyze_results(dataset):
-    data = file.get_eval_logs(dataset)
+def analyze_results():
+    data = file.get_eval_logs()
     window_size = set(data["window_size"].tolist())
     raw_count = set(data["raw_count"].tolist())
     threshold = set(data["threshold"].tolist())
@@ -64,9 +66,9 @@ def analyze_results(dataset):
     results_df.columns = ["count"] + data.columns[1:].tolist()
     results_df = results_df.sort_values(by=["window_size", "threshold"]).reset_index(drop=True)
     results_df = results_df.dropna()
-    print(f"Average results for {dataset}")
+    print(f"Average results for {FLAGS.dataset}")
     print(results_df)
 
 
 if __name__ == '__main__':
-    analyze_results("r52")
+    analyze_results()
