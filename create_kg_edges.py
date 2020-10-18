@@ -140,24 +140,12 @@ def create_doc2doc_edges():
                         doc_pointers[doc_id].append(relation)
                     else:
                         doc_pointers[doc_id] = [relation]
+                    triples.append([doc_index, doc_id, len(doc_pointers[doc_id]), "+".join(doc_pointers[doc_id])])
 
-            for key in doc_pointers:
-                relations = doc_pointers[key]
-                count = len(relations)
-                score = 0
-                # Ignore all documents with only one or less outgoing edges (needed for performance)
-                if len(relations) < 2:
-                    filtered_out_items += 1
-                    continue
-                for rel in relations:
-                    idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_index)]["idf"].tolist()
-                    assert len(idf_score) == 1
-                    score += idf_score[0]
-                triples.append([doc_index, key, count, "+".join(relations), score])
             bar.update(1)
 
     data = pd.DataFrame(triples)
-    data.columns = ["doc1", "doc2", "relations", "detail", "idf"]
+    data.columns = ["doc1", "doc2", "relations", "detail"]
     print(f"Highest number of relations between two docs: {max(data['relations'])}")
     print(f"Created {len(triples)} doc2doc edges (filtered by threshold: {filtered_out_items})")
     file.save_document_triples(data)
@@ -199,6 +187,22 @@ def generate_idf_scores():
 
     data = pd.DataFrame({"doc": row, "relation": col, "idf": weight})
     file.save_doc2idf(data)
+
+def apply_idf():
+    print("Not yet implemented")
+# for key in doc_pointers:
+#     relations = doc_pointers[key]
+#     count = len(relations)
+#     score = 0
+#     # Ignore all documents with only one or less outgoing edges (needed for performance)
+#     if len(relations) < 2:
+#         filtered_out_items += 1
+#         continue
+#     for rel in relations:
+#         idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_index)]["idf"].tolist()
+#         assert len(idf_score) == 1
+#         score += idf_score[0]
+#     triples.append([doc_index, key, count, "+".join(relations), score])
 
 
 if __name__ == '__main__':
