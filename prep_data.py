@@ -23,6 +23,7 @@ def clean_data(dataset):
         clean_docs = clean_documents(docs_list, word_counts)
         corpus_str = '\n'.join(clean_docs)
         f = open(clean_text_path, 'w')
+        print(corpus_str)
         f.write(corpus_str)
         f.close()
     f = open(clean_text_path, 'r')
