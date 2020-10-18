@@ -133,11 +133,8 @@ dmypy.json
 __pychache__/
 _logs/
 _cache/
-_data/r8/triples/r8_document_triples.csv
-_data/r8_small/triples/r8_small_document_triples.csv
-_data/ag/triples/ag_document_triples.csv
-_data/20ng/triples/20ng_document_triples.csv
-_data/mr/triples/mr_document_triples.csv
-_data/r52/triples/r52_document_triples.csv
-_data/ohsumed/triples/ohsumed_document_triples.csv
+
 script/out/
+**/*_document_triples.csv
+**/*_document_triples_metrics.csv
+

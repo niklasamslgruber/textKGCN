@@ -12,8 +12,9 @@ from collections import defaultdict
 from math import log
 import pandas as pd
 from tqdm import tqdm
-from helper import file_utils as file
+from helper import file_utils as file, io_utils as io
 from loader.wiki_api import get_safely
+from os.path import exists
 
 
 # Data loader
@@ -111,10 +112,13 @@ def generate_doc2relations():
 
 # Adjacency matrices
 def create_doc2doc_edges():
+    if exists(io.get_document_triples_path()):
+        print("Document triples pickle file adready exists, will not be created again")
+        apply_idf()
+        return
     generate_doc2relations()
     doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
     filtered_triples = get_triples(filtered=True)  # Triples
-    idf = file.get_doc2idf()
     ids = file.get_doc2id()
     triples = []
     filtered_out_items = 0
@@ -149,6 +153,7 @@ def create_doc2doc_edges():
     print(f"Highest number of relations between two docs: {max(data['relations'])}")
     print(f"Created {len(triples)} doc2doc edges (filtered by threshold: {filtered_out_items})")
     file.save_document_triples(data)
+    apply_idf()
 
 
 def generate_idf_scores():
@@ -188,21 +193,28 @@ def generate_idf_scores():
     data = pd.DataFrame({"doc": row, "relation": col, "idf": weight})
     file.save_doc2idf(data)
 
+
 def apply_idf():
-    print("Not yet implemented")
-# for key in doc_pointers:
-#     relations = doc_pointers[key]
-#     count = len(relations)
-#     score = 0
-#     # Ignore all documents with only one or less outgoing edges (needed for performance)
-#     if len(relations) < 2:
-#         filtered_out_items += 1
-#         continue
-#     for rel in relations:
-#         idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc_index)]["idf"].tolist()
-#         assert len(idf_score) == 1
-#         score += idf_score[0]
-#     triples.append([doc_index, key, count, "+".join(relations), score])
+    print("Applying IDF...")
+    doc_triples = file.get_document_triples()
+    idf = file.get_doc2idf()
+    data = []
+    with tqdm(total=doc_triples.shape[0]) as bar:
+        for index, row in doc_triples.iterrows():
+            doc1 = row["doc1"]
+            doc2 = row["doc2"]
+            relations = row["detail"].split("+")
+            score = 0
+            for rel in relations:
+                idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc1)]["idf"].tolist()
+                assert len(idf_score) == 1
+                score += idf_score[0]
+            data.append([doc1, doc2, len(relations) ,score])
+            bar.update(1)
+
+    dataframe = pd.DataFrame(data)
+    dataframe.columns = ["doc1", "doc2", "count", "idf"]
+    file.save_document_triples_metrics(dataframe)
 
 
 if __name__ == '__main__':

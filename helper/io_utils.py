@@ -73,6 +73,10 @@ def get_document_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(dataset), f'{dataset}_document_triples.pickle.bz2')
 
 
+def get_document_triples_metrics_path(dataset=FLAGS.dataset):
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics.pickle.bz2')
+
+
 # Mappings
 def get_entity2id_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_entity2id.csv')

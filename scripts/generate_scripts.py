@@ -8,9 +8,8 @@ def generate_prep_scripts():
     folder_path = "scripts/prep"
     clear(folder_path)
 
-    datasets = available_datasets[1:]
     exec_code = []
-    for dataset in datasets:
+    for dataset in available_datasets:
         name = f"{dataset}_prep"
         header = get_header(name)
         py_call = f"python prep_data.py --dataset {dataset} && python prep_graph.py --dataset {dataset}"
@@ -31,7 +30,6 @@ def generate_train_scripts(n=1):
     threshold = ["3", "4", "5"]
     raw_count = [True, False]
     exec_code = []
-    suffix = " &&\n" if n > 1 else ""
 
     for dataset in available_datasets:
         dataset_exec = []
