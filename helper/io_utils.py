@@ -208,7 +208,7 @@ def read_txt(path):
     assert path.endswith('.txt')
     data = []
     if isfile(path):
-        file = open(path, 'r')
+        file = open(path, 'r', errors="replace")
         for line in file.readlines():
             data.append(line.strip())
         file.close()
