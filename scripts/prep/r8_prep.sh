@@ -10,4 +10,4 @@
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python prep_data.py --dataset r8 && python prep_graph.py --dataset r8
+python prep_graph.py --dataset r8

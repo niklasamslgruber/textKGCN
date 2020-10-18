@@ -12,7 +12,7 @@ def generate_prep_scripts():
     for dataset in available_datasets:
         name = f"{dataset}_prep"
         header = get_header(name)
-        py_call = f"python prep_data.py --dataset {dataset} && python prep_graph.py --dataset {dataset}"
+        py_call = f"python prep_graph.py --dataset {dataset}"
         code = header + py_call
 
         write_script(code, f"{folder_path}/{name}.sh")

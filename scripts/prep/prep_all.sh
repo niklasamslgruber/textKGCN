@@ -1,1 +1,1 @@
-sbatch 20ng_prep.sh && sbatch mr_prep.sh && sbatch ohsumed_prep.sh && sbatch r52_prep.sh
+sbatch r8_prep.sh && sbatch 20ng_prep.sh && sbatch mr_prep.sh && sbatch ohsumed_prep.sh && sbatch r52_prep.sh
