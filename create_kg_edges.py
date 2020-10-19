@@ -112,10 +112,10 @@ def generate_doc2relations():
 
 # Adjacency matrices
 def create_doc2doc_edges():
-    if exists(io.get_document_triples_path()):
-        print("Document triples pickle file adready exists, will not be created again")
-        apply_idf()
-        return
+    # if exists(io.get_document_triples_path()):
+    #     print("Document triples pickle file adready exists, will not be created again")
+    #     apply_idf()
+    #     return
     generate_doc2relations()
     doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
     filtered_triples = get_triples(filtered=True)  # Triples
@@ -144,7 +144,10 @@ def create_doc2doc_edges():
                         doc_pointers[doc_id].append(relation)
                     else:
                         doc_pointers[doc_id] = [relation]
-                    triples.append([doc_index, doc_id, len(doc_pointers[doc_id]), "+".join(doc_pointers[doc_id])])
+
+                    # Filter out all docs with length below 2
+                    if len(doc_pointers[doc_id]) > 1:
+                        triples.append([doc_index, doc_id, len(doc_pointers[doc_id]), "+".join(doc_pointers[doc_id])])
 
             bar.update(1)
 
