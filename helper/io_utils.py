@@ -36,6 +36,10 @@ def get_logs_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), '_logs', get_ts()))
 
 
+def get_basic_plots_path():
+    return path(join(get_root_path(), 'plots'))
+
+
 # Specific directory paths
 def get_kg_base_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), 'triples'))
