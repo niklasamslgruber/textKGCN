@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=idf_w15_t4_mr
 #SBATCH --comment='Train model'
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/idf_w15_t4_mr.%j.out

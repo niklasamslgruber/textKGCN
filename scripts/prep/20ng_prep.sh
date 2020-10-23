@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=20ng_prep
 #SBATCH --comment='Train model'
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/20ng_prep.%j.out

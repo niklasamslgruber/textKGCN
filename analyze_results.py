@@ -1,7 +1,5 @@
 import os
-
 import matplotlib.pyplot as plt
-from config import FLAGS
 from helper import file_utils as file, io_utils as io
 import pandas as pd
 
@@ -128,13 +126,13 @@ def plot_number_of_edges():
     for dataset in available_datasets:
         number_of_edges = []
         document_triples = file.get_document_triples_metrics(dataset)
+        print(f"{dataset} max: {document_triples['count'].max()}")
         for t in thresholds:
             num = document_triples[document_triples["count"] > t].shape[0]
             number_of_edges.append(num)
         assert len(number_of_edges) == len(thresholds)
         dataset_length[dataset] = number_of_edges
 
-    print(dataset_length)
     fig, ax = plt.subplots(figsize=(30, 15))
     fig.suptitle(f"Number of doc2doc edges for threshold")
     plt.xlabel("Threshold")
@@ -156,5 +154,5 @@ def plot_number_of_edges():
 
 
 if __name__ == '__main__':
-    # analyze_results()
-    plot_all()
+    plot_number_of_edges()
+    # plot_all()

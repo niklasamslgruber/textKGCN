@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=no_wiki_w15_r52
 #SBATCH --comment='Train model'
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/no_wiki_w15_r52.%j.out

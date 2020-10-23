@@ -266,4 +266,4 @@ def get_ts():
 
 def get_current_ts(zone='Europe/Berlin'):
     return datetime.datetime.now(pytz.timezone(zone)).strftime(
-        '%d-%m-%Y-T%H-%M-%S')
+        '%d-%m-%Y-T%H-%M-%S.%f')
