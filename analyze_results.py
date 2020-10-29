@@ -32,7 +32,7 @@ def analyze_results(dataset):
     for w in window_size:
         reference = data[(data["wiki_enabled"] == False) & (data["window_size"] == w)].iloc[:, 5:]
         count = reference.shape[0]
-        references.append([count, False, w, "NaN", "NaN"] + reference.mean().tolist())
+        references.append([count, False, w, "NaN", "NaN"] + reference.max().tolist())
         for t in threshold:
             for r in raw_count:
                 filtered_data = data[
@@ -81,7 +81,6 @@ def plot_results(data, ax, metric, dataset):
     ax.set_ylabel(metric)
     ax.title.set_text(dataset)
     ax.set_xticks(thresholds)
-
     assert len(data_dict.keys()) == 3
     for key in data_dict:
         value = data_dict[key]
@@ -94,10 +93,12 @@ def plot_results(data, ax, metric, dataset):
                 metrics = tmp * len(thresholds)
                 name = "textGCN"
                 color = "r"
+                labels = thresholds
         else:
+            labels = list(value.keys())
             metrics = [value[t] for t in value]
-        assert len(metrics) == len(thresholds)
-        ax.plot(thresholds, metrics, color, label=name, linewidth=2)
+        assert len(metrics) == len(labels)
+        ax.plot(labels, metrics, color, label=name, linewidth=2)
 
     ax.legend()
 
@@ -116,7 +117,7 @@ def plot_all(metric="accuracy"):
     assert len(data_dict.keys()) == number_subplots
 
     plt.tight_layout()
-    plt.savefig(f"{io.get_basic_plots_path()}/dataset_results.png")
+    plt.savefig(f"{io.get_basic_plots_path()}/dataset_results_{metric}.png")
     plt.close(fig)
 
 
@@ -154,5 +155,7 @@ def plot_number_of_edges():
 
 
 if __name__ == '__main__':
-    plot_number_of_edges()
-    # plot_all()
+    # plot_number_of_edges()
+    plot_all()
+    plot_all("f1_macro")
+    plot_all("f1_micro")
