@@ -121,31 +121,37 @@ def plot_all(metric="accuracy"):
     plt.close(fig)
 
 
-def plot_number_of_edges():
-    thresholds = range(1, 85)
+def get_number_of_edges():
     dataset_length = {}
     for dataset in available_datasets:
         number_of_edges = []
         document_triples = file.get_document_triples_metrics(dataset)
-        print(f"{dataset} max: {document_triples['count'].max()}")
-        for t in thresholds:
+        maximum = document_triples['count'].max()
+        print(f"{dataset} max: {maximum}")
+        for t in range(1, maximum + 1):
             num = document_triples[document_triples["count"] > t].shape[0]
             number_of_edges.append(num)
-        assert len(number_of_edges) == len(thresholds)
+        assert len(number_of_edges) == maximum
         dataset_length[dataset] = number_of_edges
+    return dataset_length
+
+
+def plot_number_of_edges():
+    ticks = range(1, 85)
+    dataset_length = get_number_of_edges()
 
     fig, ax = plt.subplots(figsize=(30, 15))
     fig.suptitle(f"Number of doc2doc edges for threshold")
     plt.xlabel("Threshold")
     plt.ylabel("Count")
-    plt.xticks(thresholds)
+    plt.xticks(ticks)
     plt.yscale("log")
     counter = 0
     colors = ["r", "g", "b", "y", "c", "m"]
 
     for key in dataset_length:
         value = dataset_length[key]
-        plt.plot(thresholds, value, colors[counter], label=key, linewidth=4)
+        plt.plot(range(1, len(value) + 1), value, colors[counter], label=key, linewidth=4)
         counter += 1
 
     plt.legend()
@@ -155,7 +161,7 @@ def plot_number_of_edges():
 
 
 if __name__ == '__main__':
-    # plot_number_of_edges()
-    plot_all()
-    plot_all("f1_macro")
-    plot_all("f1_micro")
+    plot_number_of_edges()
+    # plot_all()
+    # plot_all("f1_macro")
+    # plot_all("f1_micro")
