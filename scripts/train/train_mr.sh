@@ -1,1 +1,1 @@
-sbatch no_wiki_w15_mr.sh && sleep 1 && sbatch raw_w15_t4_mr.sh && sleep 1 && sbatch idf_w15_t4_mr.sh && sleep 1 && sbatch raw_w15_t5_mr.sh && sleep 1 && sbatch idf_w15_t5_mr.sh
+sbatch no_wiki_w15_mr.sh && sleep 1 && sbatch raw_w15_t4_count_mr.sh && sleep 1 && sbatch raw_w15_t4_idf_mr.sh && sleep 1 && sbatch raw_w15_t4_idf_wiki_mr.sh && sleep 1 && sbatch raw_w15_t5_count_mr.sh && sleep 1 && sbatch raw_w15_t5_idf_mr.sh && sleep 1 && sbatch raw_w15_t5_idf_wiki_mr.sh

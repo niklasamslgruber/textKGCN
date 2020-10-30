@@ -107,16 +107,17 @@ def generate_doc2relations():
         relations_array.append(all_outgoing_relations)
 
     file.save_doc2relations([" ".join(elem) for elem in relations_array])
-    generate_idf_scores()
 
 
 # Adjacency matrices
 def create_doc2doc_edges():
-    # if exists(io.get_document_triples_path()):
-    #     print("Document triples pickle file adready exists, will not be created again")
-    #     apply_idf()
-    #     return
+    if exists(io.get_document_triples_path()):
+        print("Document triples pickle file adready exists, will not be created again")
+        generate_idf_scores()
+        apply_idf()
+        return
     generate_doc2relations()
+    generate_idf_scores()
     doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
     filtered_triples = get_triples(filtered=True)  # Triples
     ids = file.get_doc2id()
@@ -165,10 +166,12 @@ def generate_idf_scores():
     num_docs = len(doc_relations)
     doc_word_freq = defaultdict(int)
     relation_doc_freq = {}
+    relation_doc_freq_wiki = {}
     relations_in_docs = defaultdict(set)
     row = []
     col = []
     weight = []
+    weight_wiki = []
 
     for i, rels in enumerate(doc_relations):
         relations = rels.split()
@@ -177,7 +180,15 @@ def generate_idf_scores():
             doc_word_str = (i, rel)
             doc_word_freq[doc_word_str] += 1
 
+    all_relations = file.get_all_relations()
+
     for rel, doc_list in relations_in_docs.items():
+        count = all_relations[all_relations["ID"] == rel]["count"].tolist()
+        assert len(count) <= 1, (count, rel)
+        if len(count) == 1:
+            relation_doc_freq_wiki[rel] = count[0]
+        else:
+            relation_doc_freq_wiki[rel] = 0
         relation_doc_freq[rel] = len(doc_list)
 
     for i, rels in enumerate(doc_relations):
@@ -190,10 +201,15 @@ def generate_idf_scores():
             row.append(i)
             col.append(rel)
             idf = log(1.0 * num_docs / relation_doc_freq[rel])
+            # TODO: Query current number of entities on WikiData
+            # Source: https://www.wikidata.org/wiki/Wikidata:Statistics on 30.10.2020 at 11:41
+            idf_wiki = log(1.0 * 90450399 / relation_doc_freq[rel])
+
             weight.append(freq * idf)
+            weight_wiki.append(freq * idf_wiki)
             doc_rel_set.add(rel)
 
-    data = pd.DataFrame({"doc": row, "relation": col, "idf": weight})
+    data = pd.DataFrame({"doc": row, "relation": col, "idf": weight, "idf_wiki": weight_wiki})
     file.save_doc2idf(data)
 
 
@@ -208,15 +224,19 @@ def apply_idf():
             doc2 = row["doc2"]
             relations = row["detail"].split("+")
             score = 0
+            wiki_score = 0
             for rel in relations:
-                idf_score = idf[(idf["relation"] == rel) & (idf["doc"] == doc1)]["idf"].tolist()
-                assert len(idf_score) == 1
+                scores = idf[(idf["relation"] == rel) & (idf["doc"] == doc1)][["idf", "idf_wiki"]]
+                idf_score = scores["idf"].tolist()
+                idf_wiki_score = scores["idf_wiki"].tolist()
+                assert len(idf_score) == 1 and len(idf_wiki_score) == 1
                 score += idf_score[0]
-            data.append([doc1, doc2, len(relations) ,score])
+                wiki_score += idf_wiki_score[0]
+            data.append([doc1, doc2, len(relations), score, wiki_score])
             bar.update(1)
 
     dataframe = pd.DataFrame(data)
-    dataframe.columns = ["doc1", "doc2", "count", "idf"]
+    dataframe.columns = ["doc1", "doc2", "count", "idf", "idf_wiki"]
     file.save_document_triples_metrics(dataframe)
 
 

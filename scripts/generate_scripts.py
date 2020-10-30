@@ -26,7 +26,7 @@ def generate_prep_scripts():
         write_script(code, f"{folder_path}/{name}.sh")
         exec_code.append(f"sbatch {name}.sh")
 
-    script = " && ".join(exec_code)
+    script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/prep_all.sh")
 
 
@@ -35,7 +35,7 @@ def generate_train_scripts(n=1):
     clear(folder_path)
 
     windows = ["15"]
-    raw_count = [True, False]
+    method = ["count", "idf", "idf_wiki"]
     exec_code = []
 
     for index, dataset in enumerate(available_datasets):
@@ -52,11 +52,9 @@ def generate_train_scripts(n=1):
             dataset_exec.append(f"sbatch {name}.sh")
 
             for t in threshold:
-                for r in raw_count:
-                    name = f"{'raw' if r else 'idf'}_w{w}_t{t}_{dataset}"
-                    arguments = f"--word_window_size {w} --threshold {t} --dataset {dataset}"
-                    if r:
-                        arguments += " --raw_count"
+                for r in method:
+                    name = f"{'raw' if r else 'idf'}_w{w}_t{t}_{r}_{dataset}"
+                    arguments = f"--word_window_size {w} --threshold {t} --dataset {dataset} --method {r}"
 
                     header = get_header(name)
                     py_call = f"python main.py --show_eval --plot {arguments}"
