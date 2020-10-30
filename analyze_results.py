@@ -161,7 +161,7 @@ def plot_number_of_edges():
 
 
 if __name__ == '__main__':
-    plot_number_of_edges()
-    # plot_all()
-    # plot_all("f1_macro")
-    # plot_all("f1_micro")
+    # plot_number_of_edges()
+    plot_all()
+    plot_all("f1_macro")
+    plot_all("f1_micro")
