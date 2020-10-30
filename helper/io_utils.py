@@ -36,6 +36,10 @@ def get_logs_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), '_logs', get_ts()))
 
 
+def get_basic_plots_path():
+    return path(join(get_root_path(), 'plots'))
+
+
 # Specific directory paths
 def get_kg_base_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), 'triples'))
@@ -71,6 +75,10 @@ def get_filtered_word_triples_path(dataset=FLAGS.dataset):
 
 def get_document_triples_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(dataset), f'{dataset}_document_triples.pickle.bz2')
+
+
+def get_document_triples_metrics_path(dataset=FLAGS.dataset):
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics.pickle.bz2')
 
 
 # Mappings
@@ -226,7 +234,7 @@ def write_csv(path, array, sep, header=True):
 
 def read_csv(path, sep):
     assert path.endswith('.csv')
-    return pd.read_csv(path, index_col=None, sep=sep)
+    return pd.read_csv(path, index_col=None, sep=sep, keep_default_na=False)
 
 
 # Pickle
@@ -258,4 +266,4 @@ def get_ts():
 
 def get_current_ts(zone='Europe/Berlin'):
     return datetime.datetime.now(pytz.timezone(zone)).strftime(
-        '%d-%m-%Y-T%H-%M-%S')
+        '%d-%m-%Y-T%H-%M-%S.%f')

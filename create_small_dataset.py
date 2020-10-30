@@ -3,7 +3,7 @@ from prep_data import clean_data
 
 
 def create_small_dataset(dataset, size=300):
-    new_datatset = f'{dataset if "presplit" not in dataset else dataset.replace("_presplit", "")}_small'
+    new_datatset = f'{dataset}_small'
 
     # Load files
     sentences = file.get_sentences(dataset)
@@ -22,4 +22,4 @@ def create_small_dataset(dataset, size=300):
 
 
 if __name__ == '__main__':
-    create_small_dataset("r8_presplit")
+    create_small_dataset("r8")

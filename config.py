@@ -35,8 +35,8 @@ parser.add_argument('--debug', default=debug, action='store_true', help="use edg
 parser.add_argument('--no_wiki', default=False, action='store_true', help="disable doc2doc edges")
 
 # dataset
-available_datasets = ["r8_presplit", "r8_small", "ag_presplit"]
-parser.add_argument('--dataset', default=available_datasets[2], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
+available_datasets = ["r8", "r8_small", "20ng", "mr", "ohsumed", "r52"]
+parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
 
 
 # Set FLAGS from command line
@@ -46,11 +46,20 @@ assert FLAGS.dataset in available_datasets, "Dataset not available"
 """ 
 Dataset
 """
-
-if 'ag' in FLAGS.dataset:
-    num_labels = 4
-elif 'r8' in FLAGS.dataset:
+dataset = FLAGS.dataset
+num_labels = 0
+if dataset == "r8" or dataset == "r8_small":
     num_labels = 8
+elif dataset == "r52":
+    num_labels = 52
+elif dataset == "mr":
+    num_labels = 2
+elif dataset == "20ng":
+    num_labels = 20
+elif dataset == "ohsumed":
+    num_labels = 23
+else:
+    assert False, "invalid value"
 
 FLAGS.use_wikidata = not FLAGS.no_wiki
 FLAGS.use_cache = False

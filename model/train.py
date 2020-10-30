@@ -4,7 +4,7 @@ import torch
 from config import FLAGS
 from evaluation.eval import eval, MovingAverage
 from model.model_factory import create_model
-from visualize_results import visualize_loss
+from analyze_results import visualize_loss
 
 
 def train(train_data, val_data, saver):
