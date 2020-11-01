@@ -81,11 +81,13 @@ def plot_results(data, ax, metric, dataset):
     ax.set_ylabel(metric)
     ax.title.set_text(dataset)
     ax.set_xticks(thresholds)
-    assert len(data_dict.keys()) == 3
+
+    colors = ["g", "b", "y", "m"]
+    counter = 0
     for key in data_dict:
         value = data_dict[key]
-        name = "Raw" if key else "IDF"
-        color = "b" if key else "g"
+        name = key
+        color = colors[counter]
         if key == "no_wiki":
             if len(value) > 0:
                 tmp = [value[int(t)] for t in value]
@@ -99,6 +101,7 @@ def plot_results(data, ax, metric, dataset):
             metrics = [value[t] for t in value]
         assert len(metrics) == len(labels)
         ax.plot(labels, metrics, color, label=name, linewidth=2)
+        counter += 1
 
     ax.legend()
 

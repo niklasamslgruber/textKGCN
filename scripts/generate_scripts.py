@@ -53,7 +53,7 @@ def generate_train_scripts(n=1):
 
             for t in threshold:
                 for r in method:
-                    name = f"{'raw' if r else 'idf'}_w{w}_t{t}_{r}_{dataset}"
+                    name = f"w{w}_t{t}_{r}_{dataset}"
                     arguments = f"--word_window_size {w} --threshold {t} --dataset {dataset} --method {r}"
 
                     header = get_header(name)
