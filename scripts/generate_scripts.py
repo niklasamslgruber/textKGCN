@@ -37,6 +37,7 @@ def generate_train_scripts(n=1):
     windows = ["15"]
     method = ["count", "idf", "idf_wiki"]
     exec_code = []
+    specific_code = []
 
     for index, dataset in enumerate(available_datasets):
         threshold = configuration[dataset]
@@ -63,6 +64,8 @@ def generate_train_scripts(n=1):
                     write_script(code, f"{folder_path}/{name}.sh")
                     exec_code.append(f"sbatch {name}.sh")
                     dataset_exec.append(f"sbatch {name}.sh")
+                    if r == "idf_wiki":
+                        specific_code.append(f"sbatch {name}.sh")
 
         dataset_script = " && sleep 1 && ".join(dataset_exec)
         if len(dataset_exec) > 25:
@@ -72,6 +75,9 @@ def generate_train_scripts(n=1):
 
     script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/train_all.sh")
+
+    specific_script = " && sleep 1 && ".join(specific_code)
+    write_script(specific_script, f"{folder_path}/train_all_idf_wiki.sh")
 
 
 def get_header(name):
