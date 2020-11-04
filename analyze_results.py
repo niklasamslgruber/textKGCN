@@ -32,7 +32,7 @@ def analyze_results(dataset):
     for w in window_size:
         reference = data[(data["wiki_enabled"] == False) & (data["window_size"] == w)].iloc[:, 5:]
         count = reference.shape[0]
-        references.append([count, False, w, "NaN", "NaN"] + reference.max().tolist())
+        references.append([count, False, w, "NaN", "NaN"] + reference.mean().tolist())
         for t in threshold:
             for r in raw_count:
                 filtered_data = data[
@@ -43,7 +43,7 @@ def analyze_results(dataset):
                     ].iloc[:, 5:]
                 count = filtered_data.shape[0]
                 meta = [count, True, w, r, t]
-                results.append(meta + filtered_data.max().tolist())
+                results.append(meta + filtered_data.mean().tolist())
 
     total = references + results
     results_df = pd.DataFrame(total)
@@ -100,7 +100,7 @@ def plot_results(data, ax, metric, dataset):
             labels = list(value.keys())
             metrics = [value[t] for t in value]
         assert len(metrics) == len(labels)
-        ax.plot(labels, metrics, color, label=name, linewidth=2)
+        ax.plot(labels, metrics, color, label=f"{name} ({len(metrics)})", linewidth=2)
         counter += 1
 
     ax.legend()
