@@ -1,4 +1,7 @@
+import csv
 import os
+from collections import Counter, OrderedDict
+
 import matplotlib.pyplot as plt
 from helper import file_utils as file, io_utils as io
 import pandas as pd
@@ -162,9 +165,36 @@ def plot_number_of_edges():
     plt.savefig(f"{io.get_basic_plots_path()}/edge_thresholds.png")
     plt.close(fig)
 
+def test():
+    all_rels = file.get_all_relations()
+    filtered = file.get_filtered_relations()
+
+    test = all_rels[all_rels["ID"].isin(filtered)]
+
+    test.to_csv("test.csv")
+    big_counter = Counter()
+    for dataset in available_datasets:
+        all = []
+        relations = file.get_document_triples(dataset)["detail"].tolist()
+        for x in relations:
+            rels = x.split("+")
+            for r in rels:
+                all.append(r)
+
+        big_counter += Counter(all)
+    with open('dict.csv', 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in OrderedDict(big_counter.most_common()).items():
+            desc = all_rels[all_rels["ID"] == key]["description"].tolist()
+            label = all_rels[all_rels["ID"] == key]["label"].tolist()
+            assert len(desc) == 1
+            writer.writerow([key, value, label[0], desc[0]])
+
+
 
 if __name__ == '__main__':
     # plot_number_of_edges()
-    plot_all()
-    plot_all("f1_macro")
-    plot_all("f1_micro")
+    # plot_all()
+    # plot_all("f1_macro")
+    # plot_all("f1_micro")
+    test()

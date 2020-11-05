@@ -74,11 +74,11 @@ def get_filtered_word_triples_path(dataset=FLAGS.dataset):
 
 
 def get_document_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_new.pickle.bz2')
 
 
 def get_document_triples_metrics_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics_new.pickle.bz2')
 
 
 # Mappings

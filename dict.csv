@@ -1,0 +1,164 @@
+P279,20470023,subclass of,next higher class or type; all instances of these items are instances of those items; this item is a class (subset) of that item. Not to be confused with P31 (instance of)
+P361,11395284,part of,"object of which the subject is a part (if this subject is already part of object A which is a part of object B, then please only make the subject part of object A). Inverse property of ""has part"" (P527, see also ""has parts of the class"" (P2670))."
+P31,10871738,instance of,that class of which this subject is a particular example and member
+P461,8890690,opposite of,item that is the opposite of this item
+P527,7908256,has part,"part of this subject; inverse property of ""part of"" (P361). See also ""has parts of the class"" (P2670)."
+P460,4798104,said to be the same as,"this item is said to be the same as that item, but it's uncertain or disputed"
+P1889,3712236,different from,"item that is different from another item, with which it is often confused"
+P1552,2875833,has quality,the entity has an inherent or distinguishing non-material characteristic
+P180,1195720,depicts,depicted entity (see also P921: main subject)
+P1557,1052673,manifestation of,inherent and characteristic embodiment of a given concept
+P2670,978487,has parts of the class,the subject instance has parts of the object class (the subject is usually not a class)
+P2789,733995,connects with,item with which the item is physically connected
+P1269,632185,facet of,"topic of which this item is an aspect, item that offers a broader perspective on the same topic"
+P366,588664,use,main use of the subject (includes current and former usage)
+P1382,487896,partially coincident with,"object that is partially part of, but not fully part of (P361), the subject"
+P4934,430221,calculated from,value of the subject item cannot be measured directly or can be calculated from the following measurands or attributes
+P1542,391193,has effect,effect of this cause
+P425,365558,field of this occupation,"activity corresponding to this occupation (use only for occupations - for people use Property:P101, for profession use P425, for companies use P452)"
+P927,342748,anatomical location,where in the body does this anatomical feature lie
+P3095,313760,practiced by,type of agents that study this subject or work in this profession
+P186,312405,material used,material the subject is made of or derived from
+P828,302874,has cause,"underlying cause, thing that ultimately resulted in this effect"
+P1995,278030,health specialty,"main specialty that diagnoses, prevent human illness, injury and other physical and mental impairments"
+P155,260735,follows,"immediately prior item in a series of which the subject is a part [if the subject has replaced the preceding item, e.g. political offices, use ""replaces"" (P1365)]"
+P138,245367,named after,"entity or event that inspired the subject's name, or namesake (in at least one language). Qualifier ""applies to name"" (P5168) can be used to indicate which one"
+P2579,215659,studied by,subject is studied by this science or domain
+P2176,199914,drug used for treatment,"drug, procedure, or therapy that can be used to treat a medical condition"
+P156,168111,followed by,"immediately following item in a series of which the subject is a part [if the subject has been replaced, e.g. political offices, use ""replaced by"" (P1366)]"
+P2175,157313,medical condition treated,"disease that this pharmaceutical drug, procedure, or therapy is used to treat"
+P1535,151601,used by,item or concept that makes use of the subject (use sub-properties when appropriate)
+P703,135147,found in taxon,the taxon in which the item can be found
+P111,130351,measured physical quantity,value of a physical property expressed as number multiplied by a unit
+P688,126125,encodes,the product of a gene (protein or RNA)
+P2578,67827,studies,subject item is the academic field studying the object item of this property
+P376,64980,located on astronomical location,astronomical body on which features or places are situated
+P397,57762,parent astronomical body,major astronomical body the item belongs to
+P398,54311,child astronomical body,minor body that belongs to the item
+P1056,54020,product or material produced,"material or product produced by a government agency, business, industry, facility, or process"
+P2959,46442,permanent duplicated item,"this item duplicates another item and the two can't be merged, as one Wikimedia project includes two pages, e. g. in different scripts or languages (applies to some wiki, e.g.: cdowiki, gomwiki). Use ""duplicate item"" for other wikis."
+P276,46088,location,"location of the object, structure or event. In the case of an administrative entity use P131. In the case of a geographic entity use P706"
+P2283,45142,uses,item or concept used by the subject or in the operation (see also instrument [P1303] and armament [P520])
+P106,43884,occupation,"occupation of a person; see also ""field of work"" (Property:P101), ""position held"" (Property:P39)"
+P2868,41160,subject has role,"role/generic identity of the item (""subject""), also in the context of a statement. For the role of the value of the statement (""object""), use P3831 (""object has role""). For acting roles, use P453 (""character role""). For persons, use P39."
+P2079,38447,fabrication method,"method, process or technique used to grow, cook, weave, build, assemble, manufacture the item"
+P1536,38252,immediate cause of,immediate cause of this effect
+P689,38080,afflicts,type of organism or organ which a condition or disease afflicts
+P710,38078,participant,"person, group of people or organization (object) that actively takes/took part in an event or process (subject).  Preferably qualify with ""object has role"" (P3831). Use P1923 for participants that are teams."
+P618,34042,source of energy,describes the source of energy an animated object (machine or animal) uses
+P1478,23923,has immediate cause,"nearest, proximate thing that directly resulted in the subject as outcome or effect. Used in conjunction with 'has cause' (i.e. underlying cause) and 'has contributing factor'. See 'Help:Modeling causes'."
+P780,22909,symptoms,possible symptoms of a medical condition
+P921,20944,main subject,primary topic of a work (see also P180: depicts)
+P21,20415,sex or gender,"sex or gender identity of human or animal. For human: male, female, non-binary, intersex, transgender female, transgender male, agender. For animal: male organism, female organism. Groups of same gender use subclass of (P279)"
+P459,17370,determination method,"how a value is determined, or the standard by which it is declared"
+P1399,13841,convicted of,crime a person was convicted of
+P129,13605,physically interacts with,physical entity that the subject interacts with
+P3712,9097,objective of project or action,desired result or outcome
+P452,8073,industry,industry of company or organization
+P101,7929,field of work,specialization of a person or organization; see P106 for the occupation
+P2389,6825,organization directed by the office or person,organization which is directed  by this office
+P682,6580,biological process,is involved in the biological process
+P1672,6233,this taxon is source of,"links a taxon to natural products it produces. Note that it does not say ""this taxon is the source of"" or ""this taxon is a source of"" as this may vary. Some products may be yielded by more than one taxon."
+P1454,6106,legal form,legal form of an organization
+P1344,6027,participant in,event in which a person or organization was/is a participant; inverse of P710 or P1923
+P2922,5824,month of the year,"month of the year during which this item occurs, applies to or is valid in"
+P437,5456,distribution format,method (or type) of distribution for the subject
+P140,4445,religion,"religion of a person, organization or religious building, or associated with this subject"
+P1582,4385,natural product of taxon,"links a natural product with its source (animal, plant, fungal, algal, etc.)"
+P681,3835,cell component,component of the cell in which this item is present
+P121,3832,item operated,"equipment, installation or service operated by the subject"
+P144,3493,based on,the work(s) used as the basis for subject item
+P171,2973,parent taxon,closest parent taxon of the taxon in question
+P769,2890,significant drug interaction,"clinically significant interaction between two pharmacologically active substances (i.e., drugs and/or active metabolites) where concomitant intake can lead to altered effectiveness or adverse drug events."
+P462,2695,color,color of subject
+P1142,2256,political ideology,political ideology of this organization or person
+P509,1938,cause of death,"underlying or immediate cause of death.  Underlying cause (e.g. car accident, stomach cancer) preferred.  Use 'manner of death' (P1196) for broadest category, e.g. natural causes, accident, homicide, suicide"
+P530,1477,diplomatic relation,diplomatic relations of the country
+P1165,1121,home world,home planet or natural satellite for a fictional character or species
+P17,1097,country,sovereign state of this item (not to be used for human beings)
+P1072,781,readable file format,file format a program can open and read
+P463,552,member of,"organization, musical group, or club to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a position such as a member of parliament (use P39 for that)."
+P136,518,genre,creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic
+P1073,499,writable file format,file format a program can create and/or write to
+P127,466,owned by,owner of the subject
+P793,420,significant event,significant or notable events associated with the subject
+P1071,376,location of creation,"place where the item was made; where applicable, location of final assembly"
+P1830,369,owner of,entities owned by the subject
+P4330,351,contains,item or substance located within this item but not part of it
+P1419,343,shape,shape of an object
+P150,326,contains administrative territorial entity,(list of) direct subdivisions of an administrative territorial entity
+P39,250,position held,subject currently or formerly holds the object position or public office
+P360,213,is a list of,common element between all listed items
+P3729,206,next lower rank,"lower rank or level in a ranked hierarchy like sport league, military ranks. If there are several possible, list each one and qualify with ""criterion used"" (P1013), avoid using ranks and date qualifiers. For sports leagues/taxa, use specific properties instead."
+P3828,206,wears,clothing or accessory worn on subject's body
+P2851,202,payment types accepted,types of payment accepted by a venue
+P641,200,sport,sport in which the subject participates or belongs to
+P3730,196,next higher rank,"higher rank or level in a ranked hierarchy like sport league, military ranks. If there are several possible, list each one and qualify with ""criterion used"" (P1013), avoid using ranks and date qualifiers. For sports leagues/taxa, use specific properties instead."
+P2541,176,operating area,"area this organisation operates in, serves or has responsibility for"
+P105,151,taxon rank,level in a taxonomic hierarchy
+P1531,144,"parent of this hybrid, breed, or cultivar",
+P495,143,country of origin,"country of origin of this item (creative work, food, phrase, product, etc.)"
+P178,138,developer,organisation or person that developed the item
+P2975,110,host,an organism harboring another organism or organisms on or in itself
+P427,103,taxonomic type,"the type genus of this family (or subfamily, etc), or the type species of this genus (or subgenus, etc)"
+P7501,102,audio system,audio system hardware used in the item
+P176,98,manufacturer,manufacturer or producer of this product
+P131,72,located in the administrative territorial entity,the item is located on the territory of the following administrative entity. Use P276 (location) for specifying locations that are non-administrative places and for items about events
+P47,71,shares border with,"countries or administrative subdivisions, of equal level, that this item borders, either by land or water. A single common point is enough."
+P170,68,creator,"maker of this creative work or other object (where no more specific property exists). Paintings with unknown painters, use ""anonymous"" (Q4233718) as value."
+P937,65,work location,location where persons were active
+P27,64,country of citizenship,the object is a country that recognizes the subject as its citizen
+P35,63,head of state,official with the highest formal authority in a country/state
+P135,63,movement,"literary, artistic, scientific or philosophical movement or scene associated with this person or work"
+P607,60,conflict,"battles, wars or other military engagements in which the person or item participated"
+P551,53,residence,"the place where the person is or has been, resident"
+P636,47,route of administration,"path by which a drug, fluid, poison, or other substance is taken into the body"
+P674,38,characters,"characters which appear in this item (like plays, operas, operettas, books, comics, films, TV series, video games)"
+P190,37,twinned administrative body,"twin towns, sister cities, twinned municipalities and other localities that have a partnership or cooperative agreement, either legally or informally acknowledged by their governments"
+P400,37,platform,"platform for which a work was developed or released, or the specific platform version of a software product"
+P1303,35,instrument,musical instrument that a person plays
+P735,34,given name,first name or another given name of this person; values used with the property shouldn't link disambiguations nor family names.
+P1547,33,depends on software,subject software depends on object software
+P1441,31,present in work,"this (fictional) entity or person is present in the story of that work (use P2860 for works citing other works, P361/P1433 for works being part of / published in other works, P1343 for entities described in non-fictional accounts)"
+P19,29,place of birth,"most specific known (e.g. city instead of country, or hospital instead of city) birth location of a person, animal or fictional character"
+P740,25,location of formation,location where a group or organization was formed
+P411,25,canonization status,stage in the process of attaining sainthood per the subject's religious organization
+P6364,21,official color,official color(s) chosen to represent or identify an item
+P50,20,author,"main creator(s) of a written work (use on works, not humans); use P2093 when Wikidata item is unknown or does not exist"
+P737,19,influenced by,"this person, idea, etc. is informed by that other person, idea, etc., e.g. ""Heidegger was influenced by Aristotle""."
+P20,16,place of death,"most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character"
+P800,15,notable work,"notable scientific, artistic or literary work, or other work of significance among subject's works"
+P1001,14,applies to jurisdiction,"the item (an institution, law, public office ...) or statement belongs to or has power over or applies to the value (a territorial jurisdiction: a country, state, municipality, ...)"
+P520,12,armament,equippable weapon item for the subject
+P4794,11,season starts,month or season when sports competition begins
+P122,10,basic form of government,subject's government
+P159,10,headquarters location,"city, where an organization's headquarters is or has been situated. Use P276 qualifier for specific building"
+P112,10,founded by,"founder or co-founder of this organization, religion or place"
+P123,9,publisher,"organization or person responsible for publishing books, periodicals, podcasts, games or software"
+P88,9,commissioned by,person or organization that commissioned this work
+P1049,8,worshipped by,religion or group/civilization that worships a given deity
+P277,8,programming language,the programming language(s) in which the software is developed
+P5800,7,narrative role,narrative role or character type this character conforms to (should be used as a qualifier with P674 or restricted to a certain work using P642)
+P421,6,located in time zone,time zone for this item
+P241,6,military branch,"branch to which this military unit, award, office, or person belongs, e.g. Royal Navy"
+P706,5,located on terrain feature,located on the specified landform. Should not be used when the value is only political/administrative (P131) or a mountain range (P4552).
+P199,5,business division,organizational divisions of this organization (which are not independent legal entities)
+P1196,5,manner of death,"general circumstances of a person's death; e.g. natural causes, accident, suicide, homicide, etc.  Use 'cause of death' (P509) for the specific physiological mechanism, e.g. heart attack, trauma, pneumonia..."
+P91,4,sexual orientation,"the sexual orientation of the person — use IF AND ONLY IF they have stated it themselves, unambiguously, or it has been widely agreed upon by historians after their death"
+P598,4,commander of (DEPRECATED),"for persons who are notable as commanding officers, the units they commanded"
+P205,3,basin country,country that have drainage to/from or border the body of water
+P355,3,subsidiary,"subsidiary of a company or organization, opposite of parent organization (P749)"
+P206,3,located in or next to body of water,"sea, lake or river"
+P4000,3,has fruit type,"morphology of the fruit of this taxon, as defined in botany"
+P749,2,parent organization,"parent organization of an organization, opposite of subsidiaries (P355)"
+P1050,2,medical condition,"any state relevant to the health of an organism, including diseases and positive conditions"
+P1366,2,replaced by,"other person or item which continues the item by replacing it in its role. Use P156 (followed by) if the item is not replaced (e.g. books in a series), nor identical, but adds to the series without dropping the role of this item in that series"
+P175,2,performer,"actor, musician, band or other performer associated with this role or musical work"
+P512,2,academic degree,academic degree that the person holds
+P4791,2,commanded by,"commander of a military unit/army/security service, operation, etc."
+P1376,2,capital of,"country, state, department, canton or other administrative division of which the municipality is the governmental seat"
+P1365,2,replaces,"person or item replaced. Use ""structure replaces"" (P1398) for structures. Use ""follows"" (P155) if the previous item was not replaced or predecessor and successor are identical"
+P137,1,operator,"person, profession, or organization that operates the equipment, facility, or service; use country for diplomatic missions"
+P38,1,currency,currency used by item
+P511,1,honorific prefix,"word or expression used before a name, in addressing or referring to a person"
+P417,1,patron saint,patron saint adopted by the subject
