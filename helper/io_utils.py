@@ -70,7 +70,7 @@ def get_all_word_triples_path(dataset=FLAGS.dataset):
 
 
 def get_filtered_word_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples.csv')
+    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples_new.csv')
 
 
 def get_document_triples_path(dataset=FLAGS.dataset):
@@ -91,11 +91,11 @@ def get_doc2id_path(dataset=FLAGS.dataset):
 
 
 def get_doc2relations_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations.txt')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations_new.txt')
 
 
 def get_doc2idf_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf.csv')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf_new.csv')
 
 
 def get_vocab_entities_path(dataset=FLAGS.dataset):
