@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/w15_t13_count_ohsumed.%j.out
-#SBATCH --partition=All
+#SBATCH --partition=Luna
 
 source ~/miniconda3/bin/activate thesis
 
