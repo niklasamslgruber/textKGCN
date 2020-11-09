@@ -46,7 +46,7 @@ def analyze_results(dataset):
                     ].iloc[:, 5:]
                 count = filtered_data.shape[0]
                 meta = [count, True, w, r, t]
-                results.append(meta + filtered_data.mean().tolist())
+                results.append(meta + filtered_data.max().tolist())
 
     total = references + results
     results_df = pd.DataFrame(total)
@@ -175,11 +175,33 @@ def test():
     big_counter = Counter()
     for dataset in available_datasets:
         all = []
-        relations = file.get_document_triples(dataset)["detail"].tolist()
+        triples = file.get_document_triples_metrics(dataset)
+        triples_n = file.get_document_triples(dataset)
+        relations = triples_n["detail"].tolist()
         for x in relations:
             rels = x.split("+")
             for r in rels:
                 all.append(r)
+
+        idf = triples["idf"].tolist()
+        idf_wiki = triples["idf_wiki"].tolist()
+        count = triples["count"].tolist()
+
+        idf_set = list(set(idf))
+        idf_wiki_set = list(set(idf_wiki))
+        count_set = list(set(count))
+
+        plt.hist(count, bins=len(count_set))
+        plt.savefig(f"{dataset}_hist_count.png")
+        plt.close()
+
+        plt.hist(idf, bins=len(idf_set))
+        plt.savefig(f"{dataset}_hist_idf.png")
+        plt.close()
+
+        plt.hist(idf_wiki, bins=len(idf_wiki_set))
+        plt.savefig(f"{dataset}_hist_idf_wiki.png")
+        plt.close()
 
         big_counter += Counter(all)
     with open('dict.csv', 'w') as csv_file:
@@ -191,10 +213,8 @@ def test():
             writer.writerow([key, value, label[0], desc[0]])
 
 
-
 if __name__ == '__main__':
     # plot_number_of_edges()
-    # plot_all()
+    plot_all()
     # plot_all("f1_macro")
     # plot_all("f1_micro")
-    test()
