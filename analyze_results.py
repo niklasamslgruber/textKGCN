@@ -1,11 +1,9 @@
-import csv
-import os
-from collections import Counter, OrderedDict
-
+import seaborn as sns
 import matplotlib.pyplot as plt
 from helper import file_utils as file, io_utils as io
 import pandas as pd
 
+sns.set(style='darkgrid', color_codes=True)
 available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
 
 
@@ -21,122 +19,12 @@ def visualize_loss(loss_array, loss):
     plt.close(fig)
 
 
-def analyze_results(dataset):
-    if not os.path.isfile(io.get_eval_log_path(dataset)):
-        return None
-    data = file.get_eval_logs(dataset)
-    window_size = set(data["window_size"].tolist())
-    raw_count = set(data["raw_count"].tolist())
-    threshold = set(data["threshold"].tolist())
-
-    results = []
-    references = []
-
-    for w in window_size:
-        reference = data[(data["wiki_enabled"] == False) & (data["window_size"] == w)].iloc[:, 5:]
-        count = reference.shape[0]
-        references.append([count, False, w, "NaN", "NaN"] + reference.mean().tolist())
-        for t in threshold:
-            for r in raw_count:
-                filtered_data = data[
-                    (data["window_size"] == w) &
-                    (data["threshold"] == t) &
-                    (data["raw_count"] == r) &
-                    (data["wiki_enabled"] == True)
-                    ].iloc[:, 5:]
-                count = filtered_data.shape[0]
-                meta = [count, True, w, r, t]
-                results.append(meta + filtered_data.mean().tolist())
-
-    total = references + results
-    results_df = pd.DataFrame(total)
-    results_df.columns = ["count"] + data.columns[1:].tolist()
-    results_df = results_df.sort_values(by=["window_size", "threshold"]).reset_index(drop=True)
-    results_df = results_df.dropna()
-    return results_df
-
-
-def plot_results(data, ax, metric, dataset):
-    raw_count = set(data["raw_count"].tolist())
-    if "NaN" in raw_count:
-        raw_count.remove("NaN")
-    thresholds = list(set(data["threshold"].tolist()))
-    if "NaN" in thresholds:
-        thresholds.remove("NaN")
-
-    wiki_cond = data["wiki_enabled"] == True
-    window_cond = data["window_size"] == 15
-
-    # Split into separate dataframes based
-    data_dict = {}
-    for r in raw_count:
-        raw_cond = data["raw_count"] == r
-        metric_data = data[raw_cond & window_cond & wiki_cond][[metric, "threshold"]]
-        metric_data = metric_data.set_index("threshold")
-        metric_dict = metric_data.to_dict()[metric]
-        data_dict[r] = metric_dict
-
-    base = data[(data["wiki_enabled"] == False) & window_cond][metric].tolist()
-    assert len(base) <= 1
-    data_dict["no_wiki"] = base
-
-    ax.set_xlabel("threshold")
-    ax.set_ylabel(metric)
-    ax.title.set_text(dataset)
-    ax.set_xticks(thresholds)
-
-    colors = ["g", "b", "y", "m", "g", "c", "o"]
-    print(data_dict, dataset)
-    counter = 0
-    for key in data_dict:
-        if "old" in key and ("r8" in dataset or "r52" in dataset):
-            continue
-        value = data_dict[key]
-        name = key
-        color = colors[counter]
-        if key == "no_wiki":
-            if len(value) > 0:
-                tmp = [value[int(t)] for t in value]
-                assert len(tmp) == 1
-                metrics = tmp * len(thresholds)
-                name = "textGCN"
-                color = "r"
-                labels = thresholds
-        else:
-            labels = list(value.keys())
-            metrics = [value[t] for t in value]
-        assert len(metrics) == len(labels)
-        ax.plot(labels, metrics, color, label=f"{name} ({len(metrics)})", linewidth=2)
-        counter += 1
-
-    ax.legend()
-
-
-def plot_all(metric="accuracy"):
-    number_subplots = len(available_datasets)
-    fig, ax = plt.subplots(number_subplots, figsize=(15, 15))
-    fig.suptitle(f"Results by threshold (metric: accuracy)")
-
-    data_dict = {}
-    for index, dataset in enumerate(available_datasets):
-        results_df = analyze_results(dataset)
-        data_dict[dataset] = results_df
-        if results_df is not None:
-            plot_results(results_df, ax[index], metric, dataset)
-    assert len(data_dict.keys()) == number_subplots
-
-    plt.tight_layout()
-    plt.savefig(f"{io.get_basic_plots_path()}/dataset_results_{metric}.png")
-    plt.close(fig)
-
-
 def get_number_of_edges():
     dataset_length = {}
     for dataset in available_datasets:
         number_of_edges = []
         document_triples = file.get_document_triples_metrics(dataset)
         maximum = document_triples['count'].max()
-        print(f"{dataset} max: {maximum}")
         for t in range(1, maximum + 1):
             num = document_triples[document_triples["count"] > t].shape[0]
             number_of_edges.append(num)
@@ -145,79 +33,70 @@ def get_number_of_edges():
     return dataset_length
 
 
-def plot_number_of_edges():
-    ticks = range(1, 85)
-    dataset_length = get_number_of_edges()
+def plot_edge_numbers():
+    edges = get_number_of_edges()
+    series_array = []
+    for key in edges.keys():
+        for index, count in enumerate(edges[key]):
+            series_array.append([key, count, index + 1])
 
-    fig, ax = plt.subplots(figsize=(30, 15))
-    fig.suptitle(f"Number of doc2doc edges for threshold")
-    plt.xlabel("Threshold")
-    plt.ylabel("Count")
-    plt.xticks(ticks)
-    plt.yscale("log")
-    counter = 0
-    colors = ["r", "g", "b", "y", "c", "m"]
-
-    for key in dataset_length:
-        value = dataset_length[key]
-        plt.plot(range(1, len(value) + 1), value, colors[counter], label=key, linewidth=4)
-        counter += 1
-
-    plt.legend()
+    edge_counts = pd.DataFrame(series_array, columns=["dataset", "count", "threshold"])
+    fig, ax = plt.subplots(1, 1)
+    sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", markers=None)
+    ax.set_yscale('log')
     fig.tight_layout()
-    plt.savefig(f"{io.get_basic_plots_path()}/edge_thresholds.png")
-    plt.close(fig)
+    fig.savefig(f"{io.get_basic_plots_path()}/edge_thresholds.png")
 
-def test():
-    all_rels = file.get_all_relations()
-    filtered = file.get_filtered_relations()
 
-    test = all_rels[all_rels["ID"].isin(filtered)]
+# RESULTS
+def plot_metric(dataset, metric="accuracy"):
+    results = file.get_eval_logs(dataset)
+    base = results[results["wiki_enabled"] == False][metric]
+    base_mean = base.mean()
+    base_min = base.min()
+    base_max = base.max()
 
-    test.to_csv("test.csv")
-    big_counter = Counter()
+    results = results[results["wiki_enabled"] == True]
+    if "r8" in dataset or "r52" in dataset:
+        order = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
+        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order)
+    else:
+        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3)
+    g.map(sns.lineplot, "threshold", metric, ci="sd", err_style="bars", markers=True, dashes=False)
+    g.set_titles(row_template='{row_name}', col_template='{col_name}')
+
+    color = "blue"
+    for x in range(0, len(g.axes)):
+        ax = g.axes[x]
+        ax.axhline(y=base_mean, color=color, linewidth=1, alpha=.3, ls="--")
+        ax.axhline(y=base_max, color=color, linewidth=1, alpha=.3, ls="--")
+        ax.axhline(y=base_min, color=color, linewidth=1, alpha=.3, ls="--")
+        # ax.text(y=base_mean * 1.001, x=2*0.98, s="mean", size=7, alpha=.4, color=color)
+        # ax.text(y=base_min * 1.001, x=2*0.98, s="min", size=7, alpha=.4, color=color)
+        # ax.text(y=base_max * 1.001, x=2*0.98, s="max", size=7, alpha=.4, color=color)
+
+    g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_{metric}.png")
+
+
+def plot_all(metric="accuracy", density=False):
     for dataset in available_datasets:
-        all = []
-        triples = file.get_document_triples_metrics(dataset)
-        triples_n = file.get_document_triples(dataset)
-        relations = triples_n["detail"].tolist()
-        for x in relations:
-            rels = x.split("+")
-            for r in rels:
-                all.append(r)
+        plot_metric(dataset, metric)
+        if density:
+            plot_edge_counts(dataset)
 
-        idf = triples["idf"].tolist()
-        idf_wiki = triples["idf_wiki"].tolist()
-        count = triples["count"].tolist()
 
-        idf_set = list(set(idf))
-        idf_wiki_set = list(set(idf_wiki))
-        count_set = list(set(count))
+def plot_edge_counts(dataset):
+    metrics = file.get_document_triples_metrics(dataset)
 
-        plt.hist(count, bins=len(count_set))
-        plt.savefig(f"{dataset}_hist_count.png")
-        plt.close()
-
-        plt.hist(idf, bins=len(idf_set))
-        plt.savefig(f"{dataset}_hist_idf.png")
-        plt.close()
-
-        plt.hist(idf_wiki, bins=len(idf_wiki_set))
-        plt.savefig(f"{dataset}_hist_idf_wiki.png")
-        plt.close()
-
-        big_counter += Counter(all)
-    with open('dict.csv', 'w') as csv_file:
-        writer = csv.writer(csv_file)
-        for key, value in OrderedDict(big_counter.most_common()).items():
-            desc = all_rels[all_rels["ID"] == key]["description"].tolist()
-            label = all_rels[all_rels["ID"] == key]["label"].tolist()
-            assert len(desc) == 1
-            writer.writerow([key, value, label[0], desc[0]])
+    f, axes = plt.subplots(1, 3)
+    sns.kdeplot(metrics["count"], log_scale=True, ax=axes[0])
+    sns.kdeplot(metrics["idf"], log_scale=True, ax=axes[1])
+    sns.kdeplot(metrics["idf_wiki"], log_scale=True, ax=axes[2])
+    f.tight_layout()
+    f.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density.png")
 
 
 if __name__ == '__main__':
     # plot_number_of_edges()
-    plot_all()
-    # plot_all("f1_macro")
-    # plot_all("f1_micro")
+    # plot_all(density=True)
+    plot_edge_numbers()
