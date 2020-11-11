@@ -1,4 +1,7 @@
+import csv
 import os
+from collections import Counter, OrderedDict
+
 import matplotlib.pyplot as plt
 from helper import file_utils as file, io_utils as io
 import pandas as pd
@@ -32,7 +35,7 @@ def analyze_results(dataset):
     for w in window_size:
         reference = data[(data["wiki_enabled"] == False) & (data["window_size"] == w)].iloc[:, 5:]
         count = reference.shape[0]
-        references.append([count, False, w, "NaN", "NaN"] + reference.max().tolist())
+        references.append([count, False, w, "NaN", "NaN"] + reference.mean().tolist())
         for t in threshold:
             for r in raw_count:
                 filtered_data = data[
@@ -43,7 +46,7 @@ def analyze_results(dataset):
                     ].iloc[:, 5:]
                 count = filtered_data.shape[0]
                 meta = [count, True, w, r, t]
-                results.append(meta + filtered_data.max().tolist())
+                results.append(meta + filtered_data.mean().tolist())
 
     total = references + results
     results_df = pd.DataFrame(total)
@@ -81,11 +84,16 @@ def plot_results(data, ax, metric, dataset):
     ax.set_ylabel(metric)
     ax.title.set_text(dataset)
     ax.set_xticks(thresholds)
-    assert len(data_dict.keys()) == 3
+
+    colors = ["g", "b", "y", "m", "g", "c", "o"]
+    print(data_dict, dataset)
+    counter = 0
     for key in data_dict:
+        if "old" in key and ("r8" in dataset or "r52" in dataset):
+            continue
         value = data_dict[key]
-        name = "Raw" if key else "IDF"
-        color = "b" if key else "g"
+        name = key
+        color = colors[counter]
         if key == "no_wiki":
             if len(value) > 0:
                 tmp = [value[int(t)] for t in value]
@@ -98,7 +106,8 @@ def plot_results(data, ax, metric, dataset):
             labels = list(value.keys())
             metrics = [value[t] for t in value]
         assert len(metrics) == len(labels)
-        ax.plot(labels, metrics, color, label=name, linewidth=2)
+        ax.plot(labels, metrics, color, label=f"{name} ({len(metrics)})", linewidth=2)
+        counter += 1
 
     ax.legend()
 
@@ -159,9 +168,56 @@ def plot_number_of_edges():
     plt.savefig(f"{io.get_basic_plots_path()}/edge_thresholds.png")
     plt.close(fig)
 
+def test():
+    all_rels = file.get_all_relations()
+    filtered = file.get_filtered_relations()
+
+    test = all_rels[all_rels["ID"].isin(filtered)]
+
+    test.to_csv("test.csv")
+    big_counter = Counter()
+    for dataset in available_datasets:
+        all = []
+        triples = file.get_document_triples_metrics(dataset)
+        triples_n = file.get_document_triples(dataset)
+        relations = triples_n["detail"].tolist()
+        for x in relations:
+            rels = x.split("+")
+            for r in rels:
+                all.append(r)
+
+        idf = triples["idf"].tolist()
+        idf_wiki = triples["idf_wiki"].tolist()
+        count = triples["count"].tolist()
+
+        idf_set = list(set(idf))
+        idf_wiki_set = list(set(idf_wiki))
+        count_set = list(set(count))
+
+        plt.hist(count, bins=len(count_set))
+        plt.savefig(f"{dataset}_hist_count.png")
+        plt.close()
+
+        plt.hist(idf, bins=len(idf_set))
+        plt.savefig(f"{dataset}_hist_idf.png")
+        plt.close()
+
+        plt.hist(idf_wiki, bins=len(idf_wiki_set))
+        plt.savefig(f"{dataset}_hist_idf_wiki.png")
+        plt.close()
+
+        big_counter += Counter(all)
+    with open('dict.csv', 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in OrderedDict(big_counter.most_common()).items():
+            desc = all_rels[all_rels["ID"] == key]["description"].tolist()
+            label = all_rels[all_rels["ID"] == key]["label"].tolist()
+            assert len(desc) == 1
+            writer.writerow([key, value, label[0], desc[0]])
+
 
 if __name__ == '__main__':
     # plot_number_of_edges()
     plot_all()
-    plot_all("f1_macro")
-    plot_all("f1_micro")
+    # plot_all("f1_macro")
+    # plot_all("f1_micro")

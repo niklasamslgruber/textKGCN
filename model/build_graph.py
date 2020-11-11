@@ -127,7 +127,7 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
         document_triples = document_triples[document_triples["count"] > FLAGS.threshold]
         print(f"doc2doc edge count threshold ({FLAGS.threshold}) filtered out: {old_size - document_triples.shape[0]}")
 
-        weight_key = "count" if FLAGS.raw_count else "idf"
+        weight_key = FLAGS.method
         row_doc = document_triples["doc1"].tolist()
         col_doc = document_triples["doc2"].tolist()
         weight_doc = document_triples[weight_key].tolist()

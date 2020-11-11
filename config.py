@@ -21,7 +21,10 @@ parser.add_argument('--word_window_size', default=word_window_size, type=int, he
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
 # doc2doc edges weight
-parser.add_argument('--raw_count', default=False, action='store_true', help="use number of relations as doc2doc weight instead of idf")
+available_methods = ["count", "idf", "idf_wiki"]
+parser.add_argument('--method', default=available_methods[0], type=str, help=f"select doc2doc edge weight method ({', '.join(available_methods)})", metavar='')
+
+
 
 # relation threshold
 relation_count_threshold = 2

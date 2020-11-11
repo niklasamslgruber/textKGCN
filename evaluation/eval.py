@@ -21,7 +21,7 @@ def eval(preds, dataset, use_wikidata, test=False, save=False):
     results = {"time": io.get_ts(),
                "wiki_enabled": use_wikidata,
                "window_size": FLAGS.word_window_size,
-               "raw_count": FLAGS.raw_count,
+               "raw_count": FLAGS.method,
                "threshold": FLAGS.threshold,
                "accuracy": accuracy,
                "f1_weighted": f1_weighted,

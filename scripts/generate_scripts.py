@@ -1,5 +1,6 @@
 import shutil
 import os
+import random
 
 available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
 # max = [26, 83, 6, 23, 11]
@@ -26,7 +27,7 @@ def generate_prep_scripts():
         write_script(code, f"{folder_path}/{name}.sh")
         exec_code.append(f"sbatch {name}.sh")
 
-    script = " && ".join(exec_code)
+    script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/prep_all.sh")
 
 
@@ -35,15 +36,17 @@ def generate_train_scripts(n=1):
     clear(folder_path)
 
     windows = ["15"]
-    raw_count = [True, False]
+    method = ["count", "idf", "idf_wiki"]
     exec_code = []
+    specific_code = []
+    partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]
 
     for index, dataset in enumerate(available_datasets):
         threshold = configuration[dataset]
         dataset_exec = []
         for w in windows:
             name = f"no_wiki_w{w}_{dataset}"
-            header = get_header(name)
+            header = get_header(name, random.choice(partitions))
             py_call = f"python main.py --no_wiki --dataset {dataset} --word_window_size {w}"
             code = header + multiply(n, py_call)
 
@@ -52,19 +55,19 @@ def generate_train_scripts(n=1):
             dataset_exec.append(f"sbatch {name}.sh")
 
             for t in threshold:
-                for r in raw_count:
-                    name = f"{'raw' if r else 'idf'}_w{w}_t{t}_{dataset}"
-                    arguments = f"--word_window_size {w} --threshold {t} --dataset {dataset}"
-                    if r:
-                        arguments += " --raw_count"
+                for r in method:
+                    name = f"w{w}_t{t}_{r}_{dataset}"
+                    arguments = f"--word_window_size {w} --threshold {t} --dataset {dataset} --method {r}"
 
-                    header = get_header(name)
+                    header = get_header(name, random.choice(partitions))
                     py_call = f"python main.py --show_eval --plot {arguments}"
                     code = header + multiply(n, py_call)
 
                     write_script(code, f"{folder_path}/{name}.sh")
                     exec_code.append(f"sbatch {name}.sh")
                     dataset_exec.append(f"sbatch {name}.sh")
+                    if r == "idf_wiki":
+                        specific_code.append(f"sbatch {name}.sh")
 
         dataset_script = " && sleep 1 && ".join(dataset_exec)
         if len(dataset_exec) > 25:
@@ -75,8 +78,11 @@ def generate_train_scripts(n=1):
     script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/train_all.sh")
 
+    specific_script = " && sleep 1 && ".join(specific_code)
+    write_script(specific_script, f"{folder_path}/train_all_idf_wiki.sh")
 
-def get_header(name):
+
+def get_header(name, partition="All"):
     code = "#!/bin/bash" \
            f"\n#SBATCH --job-name={name}" \
            "\n#SBATCH --comment='Train model'" \
@@ -84,7 +90,7 @@ def get_header(name):
            "\n#SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'" \
            "\n#SBATCH --ntasks=1" \
            f"\n#SBATCH --output=out/{name}.%j.out" \
-           "\n#SBATCH --partition=All" \
+           f"\n#SBATCH --partition={partition}" \
            "\n" \
            "\nsource ~/miniconda3/bin/activate thesis" \
            "\n" \

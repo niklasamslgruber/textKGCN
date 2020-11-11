@@ -15,7 +15,7 @@ $ python main.py
 * `--plot`: Plots textKGCN embeddings, training curves, recent model performance
 * `--word-window-size`: Specifies the window size used for the model (default: 15)
 * `--use_edge_weights`: Defines whether edge weights should be used 
-* `--raw_count`: Use number of relations as doc2doc edge weight, instead of the idf score
+* `--method`: Select doc2doc edge weighting method (`count`, `idf`, `idf_wiki`)
 * `--threshold`: Filter threshold for doc2doc edges (default: 2)
 * `--no_wiki`: Disable `doc2doc` edges to run the base `textGCN` model
 * `--debug`: Activate debug mode (changes number of epochs)
