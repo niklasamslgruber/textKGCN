@@ -46,7 +46,7 @@ def analyze_results(dataset):
                     ].iloc[:, 5:]
                 count = filtered_data.shape[0]
                 meta = [count, True, w, r, t]
-                results.append(meta + filtered_data.max().tolist())
+                results.append(meta + filtered_data.mean().tolist())
 
     total = references + results
     results_df = pd.DataFrame(total)
@@ -85,9 +85,12 @@ def plot_results(data, ax, metric, dataset):
     ax.title.set_text(dataset)
     ax.set_xticks(thresholds)
 
-    colors = ["g", "b", "y", "m"]
+    colors = ["g", "b", "y", "m", "g", "c", "o"]
+    print(data_dict, dataset)
     counter = 0
     for key in data_dict:
+        if "old" in key and ("r8" in dataset or "r52" in dataset):
+            continue
         value = data_dict[key]
         name = key
         color = colors[counter]
