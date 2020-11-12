@@ -56,7 +56,6 @@ def plot_metric(dataset, metric="accuracy"):
     base_min = base.min()
     base_max = base.max()
     base_std = base.std()
-    print(base_std)
 
     results = results[results["wiki_enabled"] == True]
     if "r8" in dataset or "r52" in dataset:
@@ -122,5 +121,5 @@ def test():
 
 
 if __name__ == '__main__':
-    plot_all(density=True)
+    plot_all(density=False)
     # plot_edge_numbers()
