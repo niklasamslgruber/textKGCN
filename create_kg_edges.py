@@ -111,11 +111,11 @@ def generate_doc2relations():
 
 # Adjacency matrices
 def create_doc2doc_edges():
-    if exists(io.get_document_triples_path()):
-        print("Document triples pickle file adready exists, will not be created again")
-        generate_idf_scores()
-        apply_idf()
-        return
+    # if exists(io.get_document_triples_path()):
+    #     print("Document triples pickle file adready exists, will not be created again")
+    #     generate_idf_scores()
+    #     apply_idf()
+    #     return
     generate_doc2relations()
     generate_idf_scores()
     doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split

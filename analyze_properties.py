@@ -72,7 +72,7 @@ def get_all_properties(threshold=1000):
     relations_df.drop(too_small, inplace=True)
 
     # Filter out relations from manual removement
-    wrong_relations = ["P461", "P460", "P1889", "P180", "P2670", "P1269", "P1382", "P21", "P462", "P509"]
+    wrong_relations = ["P31", "P461", "P527", "P460", "P1889", "P180", "P2670", "P1269", "P1382", "P21", "P462", "P509"]
     irrelevant = relations_df[relations_df["ID"].isin(wrong_relations)].index
     relations_df.drop(irrelevant, inplace=True)
 

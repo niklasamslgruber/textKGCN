@@ -45,16 +45,18 @@ def plot_edge_numbers():
     sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", markers=None)
     ax.set_yscale('log')
     fig.tight_layout()
-    fig.savefig(f"{io.get_basic_plots_path()}/edge_thresholds.png")
+    fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds.png")
 
 
 # RESULTS
 def plot_metric(dataset, metric="accuracy"):
     results = file.get_eval_logs(dataset)
-    base = results[results["wiki_enabled"] == False][metric]
+    base = results[(results["wiki_enabled"] == False) & (results["window_size"] == 15)][metric]
     base_mean = base.mean()
     base_min = base.min()
     base_max = base.max()
+    base_std = base.std()
+    print(base_std)
 
     results = results[results["wiki_enabled"] == True]
     if "r8" in dataset or "r52" in dataset:
@@ -69,8 +71,10 @@ def plot_metric(dataset, metric="accuracy"):
     for x in range(0, len(g.axes)):
         ax = g.axes[x]
         ax.axhline(y=base_mean, color=color, linewidth=1, alpha=.3, ls="--")
-        ax.axhline(y=base_max, color=color, linewidth=1, alpha=.3, ls="--")
-        ax.axhline(y=base_min, color=color, linewidth=1, alpha=.3, ls="--")
+        # ax.axhline(y=base_max, color=color, linewidth=1, alpha=.3, ls="--")
+        # ax.axhline(y=base_min, color=color, linewidth=1, alpha=.3, ls="--")
+        ax.axhline(y=base_mean+base_std, color=color, linewidth=1, alpha=.3, ls="--")
+        ax.axhline(y=base_mean-base_std, color=color, linewidth=1, alpha=.3, ls="--")
         # ax.text(y=base_mean * 1.001, x=2*0.98, s="mean", size=7, alpha=.4, color=color)
         # ax.text(y=base_min * 1.001, x=2*0.98, s="min", size=7, alpha=.4, color=color)
         # ax.text(y=base_max * 1.001, x=2*0.98, s="max", size=7, alpha=.4, color=color)
@@ -82,10 +86,10 @@ def plot_all(metric="accuracy", density=False):
     for dataset in available_datasets:
         plot_metric(dataset, metric)
         if density:
-            plot_edge_counts(dataset)
+            plot_edge_density(dataset)
 
 
-def plot_edge_counts(dataset):
+def plot_edge_density(dataset):
     metrics = file.get_document_triples_metrics(dataset)
 
     f, axes = plt.subplots(1, 3)
@@ -96,7 +100,27 @@ def plot_edge_counts(dataset):
     f.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density.png")
 
 
+def test():
+    eval = file.get_eval_logs("r8")
+    print(eval)
+
+    r8_thresholds = [7, 9, 13, 18, 24]
+    r52_thresholds = [6, 7, 8, 9]
+
+    types = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
+    test = []
+    for t in r8_thresholds:
+        for r in types:
+            eval_filter = eval[(eval["wiki_enabled"] == True) & (eval["window_size"] == 15) & (eval["threshold"] == t) & (eval["raw_count"] == r)]["accuracy"]
+            test.append([t, r, eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
+
+    eval_filter = eval[(eval["wiki_enabled"] == False) & (eval["window_size"] == 15)]["accuracy"]
+    test.append([0, "Base", eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
+    result = pd.DataFrame(test)
+    result.to_csv("r8_result.csv", index=False)
+    print(result)
+
+
 if __name__ == '__main__':
-    # plot_number_of_edges()
-    # plot_all(density=True)
-    plot_edge_numbers()
+    plot_all(density=True)
+    # plot_edge_numbers()
