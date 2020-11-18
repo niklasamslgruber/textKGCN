@@ -53,32 +53,41 @@ def plot_metric(dataset, metric="accuracy"):
     results = file.get_eval_logs(dataset)
     base = results[(results["wiki_enabled"] == False) & (results["window_size"] == 15)][metric]
     base_mean = base.mean()
-    base_min = base.min()
-    base_max = base.max()
     base_std = base.std()
 
     results = results[results["wiki_enabled"] == True]
     if "r8" in dataset or "r52" in dataset:
         order = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
-        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order)
+        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=False)
     else:
-        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3)
-    g.map(sns.lineplot, "threshold", metric, ci="sd", err_style="bars", markers=True, dashes=False)
-    g.set_titles(row_template='{row_name}', col_template='{col_name}')
+        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, sharex=False, sharey=False)
+    g.map(sns.lineplot, "threshold", metric, ci="sd", err_style="bars", markers=True, dashes=False, color="black")
+    g.set_titles(row_template='{row_name}1', col_template='{col_name}')
 
-    color = "blue"
+    color = "black"
     for x in range(0, len(g.axes)):
         ax = g.axes[x]
         ax.axhline(y=base_mean, color=color, linewidth=1, alpha=.3, ls="--")
-        # ax.axhline(y=base_max, color=color, linewidth=1, alpha=.3, ls="--")
-        # ax.axhline(y=base_min, color=color, linewidth=1, alpha=.3, ls="--")
-        ax.axhline(y=base_mean+base_std, color=color, linewidth=1, alpha=.3, ls="--")
-        ax.axhline(y=base_mean-base_std, color=color, linewidth=1, alpha=.3, ls="--")
-        # ax.text(y=base_mean * 1.001, x=2*0.98, s="mean", size=7, alpha=.4, color=color)
-        # ax.text(y=base_min * 1.001, x=2*0.98, s="min", size=7, alpha=.4, color=color)
-        # ax.text(y=base_max * 1.001, x=2*0.98, s="max", size=7, alpha=.4, color=color)
+        ax.axhline(y=base_mean + base_std, color=color, linewidth=1, alpha=.3, ls="--")
+        ax.axhline(y=base_mean - base_std, color=color, linewidth=1, alpha=.3, ls="--")
 
     g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_{metric}.png")
+
+
+def plot_edge_density(dataset):
+    edges = file.get_base_edges(dataset)
+
+    # Plot histogram for each edge type
+    g = sns.FacetGrid(data=edges, col="edge_type", sharey=False, sharex=False)
+    g.map_dataframe(sns.histplot, x="weight", color="black", linewidth=0, discrete=True)
+    g.set_axis_labels("edge weight", "count")
+    g.set_titles(col_template="{col_name}", row_template="{row_name}")
+    for ax in g.fig.get_axes():
+        ax.set_yscale("log")
+    # g.fig.subplots_adjust(top=0.8)
+    # g.fig.suptitle(f"distribution of edge type weights in {dataset}", fontsize=16)
+
+    g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density.png")
 
 
 def plot_all(metric="accuracy", density=False):
@@ -88,35 +97,23 @@ def plot_all(metric="accuracy", density=False):
             plot_edge_density(dataset)
 
 
-def plot_edge_density(dataset):
-    metrics = file.get_document_triples_metrics(dataset)
-
-    f, axes = plt.subplots(1, 3)
-    sns.kdeplot(metrics["count"], log_scale=True, ax=axes[0])
-    sns.kdeplot(metrics["idf"], log_scale=True, ax=axes[1])
-    sns.kdeplot(metrics["idf_wiki"], log_scale=True, ax=axes[2])
-    f.tight_layout()
-    f.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density.png")
-
-
-def test():
-    eval = file.get_eval_logs("r8")
-    print(eval)
-
-    r8_thresholds = [7, 9, 13, 18, 24]
-    r52_thresholds = [6, 7, 8, 9]
+def get_results_statistics(dataset):
+    eval = file.get_eval_logs(dataset)
+    thresholds = set(eval["threshold"].tolist())
 
     types = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
     test = []
-    for t in r8_thresholds:
+    for t in thresholds:
         for r in types:
-            eval_filter = eval[(eval["wiki_enabled"] == True) & (eval["window_size"] == 15) & (eval["threshold"] == t) & (eval["raw_count"] == r)]["accuracy"]
+            eval_filter = eval[
+                (eval["wiki_enabled"] == True) & (eval["window_size"] == 15) & (eval["threshold"] == t) & (
+                            eval["raw_count"] == r)]["accuracy"]
             test.append([t, r, eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
 
     eval_filter = eval[(eval["wiki_enabled"] == False) & (eval["window_size"] == 15)]["accuracy"]
-    test.append([0, "Base", eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
-    result = pd.DataFrame(test)
-    result.to_csv("r8_result.csv", index=False)
+    test.append([0, "base", eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
+    result = pd.DataFrame(test).dropna()
+    result.columns = ["threshold", "type", "max", "min", "mean", "std_dev"]
     print(result)
 
 
