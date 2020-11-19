@@ -140,15 +140,21 @@ def create_doc2doc_edges():
                 relation = row["relations"]
                 entity2 = row["entity2"]
                 pointer = ids[ids["wikiID"] == entity2]["doc"].tolist()
+
                 for doc_id in pointer:
+                    # Ignore doc2doc edges to doc itself
+                    if doc_id == doc_index:
+                        continue
+
                     if doc_id in doc_pointers:
                         doc_pointers[doc_id].append(relation)
                     else:
                         doc_pointers[doc_id] = [relation]
 
-                    # Filter out all docs with length below 2
-                    if len(doc_pointers[doc_id]) > 1:
-                        triples.append([doc_index, doc_id, len(doc_pointers[doc_id]), "+".join(doc_pointers[doc_id])])
+            for key in doc_pointers.keys():
+                # Filter out all docs with length below 2
+                if len(doc_pointers[key]) > 1:
+                    triples.append([doc_index, key, len(doc_pointers[key]), "+".join(doc_pointers[key])])
 
             bar.update(1)
 
