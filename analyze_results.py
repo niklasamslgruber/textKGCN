@@ -108,12 +108,12 @@ def get_results_statistics(dataset, metric="accuracy"):
             eval_filter = eval[
                 (eval["wiki_enabled"] == True) & (eval["window_size"] == 15) & (eval["threshold"] == t) & (
                         eval["raw_count"] == r)][metric]
-            data_array.append([t, r, eval_filter.mean(), eval_filter.std()])
+            data_array.append([t, r, eval_filter.shape[0], eval_filter.mean(), eval_filter.std()])
 
     eval_filter = eval[(eval["wiki_enabled"] == False) & (eval["window_size"] == 15)][metric]
-    data_array.append([0, "base", eval_filter.mean(), eval_filter.std()])
+    data_array.append([0, "base", eval_filter.shape[0], eval_filter.mean(), eval_filter.std()])
     result = pd.DataFrame(data_array).dropna().round(4)
-    result.columns = ["threshold", "edge_type", "mean", "std_dev"]
+    result.columns = ["threshold", "edge_type", "count", "mean", "std_dev"]
 
     # Latex configuration
     data = result.replace(r"_", r"\_", regex=True)
@@ -121,7 +121,7 @@ def get_results_statistics(dataset, metric="accuracy"):
 
     all_values = []
     for index, row in data.iterrows():
-        row_values = [row["threshold"], row["edge_type"], "$" + str(row["mean"]) + " \pm " + str(row["std_dev"]) + "$"]
+        row_values = [row["threshold"], row["edge_type"], row["count"], "$" + str(row["mean"]) + " \pm " + str(row["std_dev"]) + "$"]
         values = " & ".join([str(val) for val in row_values])
         all_values.append(values)
 
@@ -129,7 +129,7 @@ def get_results_statistics(dataset, metric="accuracy"):
     rows_latex = items.join(all_values)
 
     # Return LaTex code for the results dataframe
-    get_latex_code(header, rows_latex, "lll", f"{dataset}_.txt", "Classification accuracy R8 dataset", "Accuracy on text classification for the r8 dataset for differet thresholds and edge types")
+    get_latex_code(header, rows_latex, "llll", f"{dataset}_{metric}_table.txt", "Classification accuracy R8 dataset", "Accuracy on text classification for the r8 dataset for differet thresholds and edge types")
 
 
 def get_latex_code(header, rows, justification, filename, caption="EMPTY CAP", desc="EMPTY DESC"):
@@ -162,9 +162,9 @@ def get_latex_code(header, rows, justification, filename, caption="EMPTY CAP", d
     write_latex_code(code, filename)
 
 
-def write_latex_code(data, path):
-    assert path.endswith(".txt")
-    file = open(f"{io.get_latex_path()}/results.txt", "w")
+def write_latex_code(data, filename):
+    assert filename.endswith(".txt")
+    file = open(f"{io.get_latex_path()}/{filename}", "w")
     file.writelines(data)
     file.close()
 
