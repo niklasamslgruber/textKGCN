@@ -97,26 +97,79 @@ def plot_all(metric="accuracy", density=False):
             plot_edge_density(dataset)
 
 
-def get_results_statistics(dataset):
+def get_results_statistics(dataset, metric="accuracy"):
     eval = file.get_eval_logs(dataset)
     thresholds = set(eval["threshold"].tolist())
 
     types = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
-    test = []
+    data_array = []
     for t in thresholds:
         for r in types:
             eval_filter = eval[
                 (eval["wiki_enabled"] == True) & (eval["window_size"] == 15) & (eval["threshold"] == t) & (
-                            eval["raw_count"] == r)]["accuracy"]
-            test.append([t, r, eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
+                        eval["raw_count"] == r)][metric]
+            data_array.append([t, r, eval_filter.mean(), eval_filter.std()])
 
-    eval_filter = eval[(eval["wiki_enabled"] == False) & (eval["window_size"] == 15)]["accuracy"]
-    test.append([0, "base", eval_filter.max(), eval_filter.min(), eval_filter.mean(), eval_filter.std()])
-    result = pd.DataFrame(test).dropna()
-    result.columns = ["threshold", "type", "max", "min", "mean", "std_dev"]
-    print(result)
+    eval_filter = eval[(eval["wiki_enabled"] == False) & (eval["window_size"] == 15)][metric]
+    data_array.append([0, "base", eval_filter.mean(), eval_filter.std()])
+    result = pd.DataFrame(data_array).dropna().round(4)
+    result.columns = ["threshold", "edge_type", "mean", "std_dev"]
+
+    # Latex configuration
+    data = result.replace(r"_", r"\_", regex=True)
+    header = data.columns[:-1]
+
+    all_values = []
+    for index, row in data.iterrows():
+        row_values = [row["threshold"], row["edge_type"], "$" + str(row["mean"]) + " \pm " + str(row["std_dev"]) + "$"]
+        values = " & ".join([str(val) for val in row_values])
+        all_values.append(values)
+
+    items = r" \\" + "\n   "
+    rows_latex = items.join(all_values)
+
+    # Return LaTex code for the results dataframe
+    get_latex_code(header, rows_latex, "lll", f"{dataset}_.txt", "Classification accuracy R8 dataset", "Accuracy on text classification for the r8 dataset for differet thresholds and edge types")
+
+
+def get_latex_code(header, rows, justification, filename, caption="EMPTY CAP", desc="EMPTY DESC"):
+    assert len(justification) == len(header), f"You must provide the same number of justification symbols {len(justification)} as the header length {len(header)}"
+
+    header = " & ".join(header).replace(r"_", r"\_")
+
+    code = "" \
+           r"\begin{center}" + "\n" \
+           r"\begin{table}[htbp]" + "\n" \
+           "\n" \
+           r"{" + "\n" \
+           r"   \small" + "\n" \
+           r"   \begin{center}" + "\n" \
+           r"   \begin{tabular}[center]{" + f"{justification}" + "}\n" \
+           r"   \toprule" + "\n" \
+           rf"   {header} \\" + "\n\n" \
+           r"   \midrule" + "\n" \
+           rf"   {rows} \\" + "\n\n" \
+           r"   \bottomrule" + "\n" \
+           r"   \end{tabular}" + "\n" \
+           r"   \end{center}" + "\n" \
+           r"}" + "\n\n" \
+           rf"\caption[{caption}]" + "{" + f"{desc}" + "\n" \
+           r"\label{tab:CommonParameterSettings}}" + "\n" \
+           r"\end{table}" + "\n" \
+           r"\end{center}"
+
+    assert filename.endswith(".txt")
+    write_latex_code(code, filename)
+
+
+def write_latex_code(data, path):
+    assert path.endswith(".txt")
+    file = open(f"{io.get_latex_path()}/results.txt", "w")
+    file.writelines(data)
+    file.close()
 
 
 if __name__ == '__main__':
-    plot_all(density=False)
+    # plot_all(density=False)
+    get_results_statistics("r8")
     # plot_edge_numbers()

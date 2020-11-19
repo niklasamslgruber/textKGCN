@@ -40,6 +40,10 @@ def get_basic_plots_path(dataset=FLAGS.dataset):
     return path(join(get_root_path(), f'plots/{dataset}'))
 
 
+def get_latex_path():
+    return path(join(get_root_path(), 'latex'))
+
+
 # Specific directory paths
 def get_kg_base_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), 'triples'))
