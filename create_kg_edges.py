@@ -101,7 +101,11 @@ def generate_doc2relations():
 
         # Graph edges pointing to other entities
         triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
-        all_outgoing_relations = triples_out["relations"].tolist()
+        triples_in = filtered_triples[filtered_triples["entity2"].isin(doc_ids)]
+        triples_in.columns = ["entity2", "relations", "entity1"]
+        triples_total = pd.concat([triples_out, triples_in])
+
+        all_outgoing_relations = triples_total["relations"].tolist()
         if len(all_outgoing_relations) == 0:
             all_outgoing_relations = "-"
         relations_array.append(all_outgoing_relations)
@@ -111,11 +115,11 @@ def generate_doc2relations():
 
 # Adjacency matrices
 def create_doc2doc_edges():
-    if exists(io.get_document_triples_path()):
-        print("Document triples pickle file adready exists, will not be created again")
-        generate_idf_scores()
-        apply_idf()
-        return
+    # if exists(io.get_document_triples_path()):
+    #     print("Document triples pickle file adready exists, will not be created again")
+    #     generate_idf_scores()
+    #     apply_idf()
+    #     return
     generate_doc2relations()
     generate_idf_scores()
     doc_nouns_norm = file.get_normalized_nouns()  # Array with all nouns per doc // must be split
@@ -131,24 +135,38 @@ def create_doc2doc_edges():
 
             # All ID's of the normalized nouns in the current document
             doc_ids = ids[ids["doc"] == doc_index]["wikiID"].tolist()
+            assert len(doc_ids) <= len(doc.split(" ")), f"{len(doc.split(' '))} vs. {len(doc_ids)}"
 
             # Graph edges pointing to other entities
             triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
+            triples_in = filtered_triples[filtered_triples["entity2"].isin(doc_ids)]
+            triples_in.columns = ["entity2", "relations", "entity1"]
+
+            triples_total = pd.concat([triples_out, triples_in])
 
             doc_pointers = {}
-            for index, row in triples_out.iterrows():
+            for index, row in triples_total.iterrows():
+                entity1 = row["entity1"]
                 relation = row["relations"]
                 entity2 = row["entity2"]
+                # Look in which documents entity2 appears
                 pointer = ids[ids["wikiID"] == entity2]["doc"].tolist()
+                assert entity1 in doc_ids
+
                 for doc_id in pointer:
+                    # Ignore doc2doc edges to doc itself
+                    if doc_id <= doc_index:
+                        continue
+
                     if doc_id in doc_pointers:
                         doc_pointers[doc_id].append(relation)
                     else:
                         doc_pointers[doc_id] = [relation]
 
-                    # Filter out all docs with length below 2
-                    if len(doc_pointers[doc_id]) > 1:
-                        triples.append([doc_index, doc_id, len(doc_pointers[doc_id]), "+".join(doc_pointers[doc_id])])
+            for key in doc_pointers.keys():
+                # Filter out all docs with length below 2
+                if len(doc_pointers[key]) > 1:
+                    triples.append([doc_index, key, len(doc_pointers[key]), "+".join(doc_pointers[key])])
 
             bar.update(1)
 

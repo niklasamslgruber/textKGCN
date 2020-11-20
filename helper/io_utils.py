@@ -36,8 +36,12 @@ def get_logs_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), '_logs', get_ts()))
 
 
-def get_basic_plots_path():
-    return path(join(get_root_path(), 'plots'))
+def get_basic_plots_path(dataset=FLAGS.dataset):
+    return path(join(get_root_path(), f'plots/{dataset}'))
+
+
+def get_latex_path(dataset=FLAGS.dataset):
+    return path(join(get_root_path(), f'latex/{dataset}'))
 
 
 # Specific directory paths
@@ -70,15 +74,15 @@ def get_all_word_triples_path(dataset=FLAGS.dataset):
 
 
 def get_filtered_word_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples_new.csv')
+    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples.csv')
 
 
 def get_document_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_new.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples.pickle.bz2')
 
 
 def get_document_triples_metrics_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics_new.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics.pickle.bz2')
 
 
 # Mappings
@@ -91,11 +95,15 @@ def get_doc2id_path(dataset=FLAGS.dataset):
 
 
 def get_doc2relations_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations_new.txt')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations.txt')
 
 
 def get_doc2idf_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf_new.csv')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf.csv')
+
+
+def get_base_edges_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(dataset), f'{dataset}_base_edges.pickle.bz2')
 
 
 def get_vocab_entities_path(dataset=FLAGS.dataset):

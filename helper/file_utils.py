@@ -130,6 +130,14 @@ def save_doc2idf(data, dataset=FLAGS.dataset):
     io.write_csv(io.get_doc2idf_path(dataset), data, sep=",", header=["doc", "relation", "idf", "idf_wiki"])
 
 
+def get_base_edges(dataset=FLAGS.dataset):
+    return io.read_pickle(io.get_base_edges_path(dataset))
+
+
+def save_base_edges(data, dataset=FLAGS.dataset):
+    io.write_pickle(io.get_base_edges_path(dataset), data)
+
+
 def get_vocab_entities(dataset=FLAGS.dataset):
     return io.read_json(io.get_vocab_entities_path(dataset))
 

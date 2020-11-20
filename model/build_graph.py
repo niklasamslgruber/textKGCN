@@ -1,5 +1,7 @@
 from collections import defaultdict
 from math import log
+from os.path import exists
+
 import pandas as pd
 import scipy.sparse as sp
 from tqdm import tqdm
@@ -77,6 +79,7 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
     row = []
     col = []
     weight = []
+    edge_type = []
 
     # pmi as weights
     num_docs = len(doc_list)
@@ -92,6 +95,7 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
         row.append(num_docs + i)
         col.append(num_docs + j)
         weight.append(pmi)
+        edge_type.append("pmi")
 
     # frequency of document word pair
     doc_word_freq = defaultdict(int)
@@ -117,6 +121,15 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
                       word_doc_freq[vocab[word_id]])
             weight.append(freq * idf)
             doc_word_set.add(word)
+            edge_type.append("idf")
+
+    base_edges = pd.DataFrame({
+        "row": row,
+        "col": col,
+        "weight": weight,
+        "edge_type": edge_type
+        })
+    save_edges(base_edges)
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
@@ -141,6 +154,38 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
     adj_mat = sp.csr_matrix((weight, (row, col)), shape=(number_nodes, number_nodes))
     adj = adj_mat + adj_mat.T.multiply(adj_mat.T > adj_mat) - adj_mat.multiply(adj_mat.T > adj_mat)
     return adj
+
+
+def save_edges(base_edges):
+    # if exists(io.get_base_edges_path()):
+    #     print("Edge file already exists")
+    #     return
+    metrics = file.get_document_triples_metrics()
+    edge_types = ["idf", "idf_wiki", "count"]
+    row = metrics["doc1"].tolist()
+    col = metrics["doc2"].tolist()
+
+    dataframes = []
+    for t in edge_types:
+        if t == "idf":
+            key = "idf_doc"
+        else:
+            key = t
+        df = pd.DataFrame({
+            "row": row,
+            "col": col,
+            "weight": metrics[t].tolist(),
+            "edge_type": [key] * len(row)
+            })
+        dataframes.append(df)
+    assert len(dataframes) == len(edge_types)
+    dataframes.append(base_edges)
+    shapes = [x.shape[0] for x in dataframes]
+    all_edges = pd.concat(dataframes)
+    all_edges.columns = ["row", "col", "weight", "edge_type"]
+    assert all_edges.shape[0] == sum(shapes)
+    print(all_edges.shape)
+    file.save_base_edges(all_edges)
 
 
 def get_vocab(text_list):
