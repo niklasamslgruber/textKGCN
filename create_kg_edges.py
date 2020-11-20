@@ -101,7 +101,11 @@ def generate_doc2relations():
 
         # Graph edges pointing to other entities
         triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
-        all_outgoing_relations = triples_out["relations"].tolist()
+        triples_in = filtered_triples[filtered_triples["entity2"].isin(doc_ids)]
+        triples_in.columns = ["entity2", "relations", "entity1"]
+        triples_total = pd.concat([triples_out, triples_in])
+
+        all_outgoing_relations = triples_total["relations"].tolist()
         if len(all_outgoing_relations) == 0:
             all_outgoing_relations = "-"
         relations_array.append(all_outgoing_relations)
@@ -131,19 +135,27 @@ def create_doc2doc_edges():
 
             # All ID's of the normalized nouns in the current document
             doc_ids = ids[ids["doc"] == doc_index]["wikiID"].tolist()
+            assert len(doc_ids) <= len(doc.split(" ")), f"{len(doc.split(' '))} vs. {len(doc_ids)}"
 
             # Graph edges pointing to other entities
             triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
+            triples_in = filtered_triples[filtered_triples["entity2"].isin(doc_ids)]
+            triples_in.columns = ["entity2", "relations", "entity1"]
+
+            triples_total = pd.concat([triples_out, triples_in])
 
             doc_pointers = {}
-            for index, row in triples_out.iterrows():
+            for index, row in triples_total.iterrows():
+                entity1 = row["entity1"]
                 relation = row["relations"]
                 entity2 = row["entity2"]
+                # Look in which documents entity2 appears
                 pointer = ids[ids["wikiID"] == entity2]["doc"].tolist()
+                assert entity1 in doc_ids
 
                 for doc_id in pointer:
                     # Ignore doc2doc edges to doc itself
-                    if doc_id == doc_index:
+                    if doc_id <= doc_index:
                         continue
 
                     if doc_id in doc_pointers:

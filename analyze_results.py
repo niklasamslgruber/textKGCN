@@ -122,20 +122,23 @@ def get_results_statistics(dataset, metric="accuracy"):
     all_values = []
     for index, row in data.iterrows():
         row_values = [row["threshold"], row["edge_type"], row["count"], "$" + str(row["mean"]) + " \pm " + str(row["std_dev"]) + "$"]
-        values = " & ".join([str(val) for val in row_values])
-        all_values.append(values)
-
-    items = r" \\" + "\n   "
-    rows_latex = items.join(all_values)
+        all_values.append(row_values)
 
     # Return LaTex code for the results dataframe
-    get_latex_code(header, rows_latex, "llll", f"{dataset}_{metric}_table.txt", "Classification accuracy R8 dataset", "Accuracy on text classification for the r8 dataset for differet thresholds and edge types")
+    get_latex_code(header, all_values, "llll", f"{dataset}_{metric}_table.txt", dataset, "Classification accuracy R8 dataset", "Accuracy on text classification for the r8 dataset for differet thresholds and edge types")
 
 
-def get_latex_code(header, rows, justification, filename, caption="EMPTY CAP", desc="EMPTY DESC"):
+def get_latex_code(header, rows, justification, filename, dataset, caption="EMPTY CAP", desc="EMPTY DESC"):
     assert len(justification) == len(header), f"You must provide the same number of justification symbols {len(justification)} as the header length {len(header)}"
 
     header = " & ".join(header).replace(r"_", r"\_")
+
+    new_rows = []
+    for row in rows:
+        new_row = " & ".join([str(val) for val in row])
+        new_rows.append(new_row)
+    items = r" \\" + "\n   "
+    rows_latex = items.join(new_rows)
 
     code = "" \
            r"\begin{center}" + "\n" \
@@ -148,7 +151,7 @@ def get_latex_code(header, rows, justification, filename, caption="EMPTY CAP", d
            r"   \toprule" + "\n" \
            rf"   {header} \\" + "\n\n" \
            r"   \midrule" + "\n" \
-           rf"   {rows} \\" + "\n\n" \
+           rf"   {rows_latex} \\" + "\n\n" \
            r"   \bottomrule" + "\n" \
            r"   \end{tabular}" + "\n" \
            r"   \end{center}" + "\n" \
@@ -159,12 +162,12 @@ def get_latex_code(header, rows, justification, filename, caption="EMPTY CAP", d
            r"\end{center}"
 
     assert filename.endswith(".txt")
-    write_latex_code(code, filename)
+    write_latex_code(code, filename, dataset)
 
 
-def write_latex_code(data, filename):
+def write_latex_code(data, filename, dataset):
     assert filename.endswith(".txt")
-    file = open(f"{io.get_latex_path()}/{filename}", "w")
+    file = open(f"{io.get_latex_path(dataset)}/{filename}", "w")
     file.writelines(data)
     file.close()
 
