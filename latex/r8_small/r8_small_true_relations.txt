@@ -24,7 +24,7 @@
    \end{center}
 }
 
-\caption[EMPTY CAP]{Most common WikiData relations between documents with same label
+\caption[EMPTY CAP]{Most common WikiData relations between documents with same label in the r8_small dataset
 \label{tab:CommonParameterSettings}}
 \end{table}
 \end{center}

@@ -1,0 +1,71 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{ll}
+   \toprule
+   relation & count \\
+
+   \midrule
+   P461 & 80017 \\
+   P361 & 74335 \\
+   P527 & 68236 \\
+   P279 & 52296 \\
+   P1889 & 47186 \\
+   P1056 & 17144 \\
+   P460 & 13696 \\
+   P31 & 13347 \\
+   P3095 & 13165 \\
+   P425 & 12180 \\
+   P1382 & 5684 \\
+   P921 & 4152 \\
+   P2670 & 3565 \\
+   P1269 & 3467 \\
+   P927 & 2425 \\
+   P1552 & 2295 \\
+   P155 & 1641 \\
+   P1542 & 1523 \\
+   P828 & 1507 \\
+   P156 & 1328 \\
+   P689 & 1216 \\
+   P366 & 1077 \\
+   P2789 & 726 \\
+   P186 & 530 \\
+   P2079 & 294 \\
+   P2579 & 280 \\
+   P106 & 271 \\
+   P376 & 216 \\
+   P111 & 215 \\
+   P1535 & 117 \\
+   P3730 & 95 \\
+   P3729 & 95 \\
+   P2283 & 75 \\
+   P136 & 58 \\
+   P180 & 47 \\
+   P276 & 40 \\
+   P121 & 33 \\
+   P2578 & 29 \\
+   P703 & 23 \\
+   P1557 & 17 \\
+   P1536 & 9 \\
+   P462 & 9 \\
+   P101 & 9 \\
+   P1995 & 8 \\
+   P1344 & 5 \\
+   P4934 & 4 \\
+   P793 & 3 \\
+   P551 & 1 \\
+   P138 & 1 \\
+   P360 & 1 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between in the mr dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}
