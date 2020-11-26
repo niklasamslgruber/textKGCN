@@ -1,13 +1,14 @@
 from collections import Counter
-
+from tqdm import tqdm
 from analyze_results import get_latex_code
+from config import FLAGS
 from helper import file_utils as file
 import pandas as pd
 
 
-def get_detailed_relations(id1, id2, dataset="r8_small"):
+def get_detailed_relations(id1, id2, dataset):
     filtered_triples = file.get_filtered_triples(dataset)  # Triples
-    all_entities = file.get_entity2id()
+    all_entities = file.get_entity2id(dataset)
     all_relations = file.get_all_relations()
     ids = file.get_doc2id(dataset)
 
@@ -27,8 +28,6 @@ def get_detailed_relations(id1, id2, dataset="r8_small"):
         # All ID's of the normalized nouns in the current document
         doc_ids = ids[ids["doc"] == doc_index]["wikiID"].tolist()
         assert len(doc_ids) <= len(doc.split(" ")), f"{len(doc.split(' '))} vs. {len(doc_ids)}"
-
-        # print(f"Selected doc (ID: {doc_index}): {doc}")
 
         # Graph edges pointing to other entities
         triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
@@ -75,11 +74,10 @@ def get_detailed_relations(id1, id2, dataset="r8_small"):
     check = file.get_document_triples(dataset)
     selected = check[(check["doc1"] == doc1) & (check["doc2"] == doc2)]
 
-    # print(f"Total: {triples}")
     detailed_results = pd.DataFrame(triples_detail, columns=["entity1", "relation", "entity2", "doc1", "doc2"])
 
     assert detailed_results.shape[0] == selected["relations"].tolist()[0]
-    assert detailed_results["relation"].tolist() == selected["detail"].tolist()[0] .split("+")
+    assert detailed_results["relation"].tolist() == selected["detail"].tolist()[0].split("+")
 
     triples_readable = []
     for index, row in detailed_results.iterrows():
@@ -108,13 +106,12 @@ def get_relation_statistics(id1, id2, readable_triples, detailed_triples, datase
     label1 = labels[id1]
     label2 = labels[id2]
 
-    # print(Counter(readable_triples["relation"]))
     relation_stats = Counter(detailed_triples["relation"])
 
     return label1 == label2, relation_stats
 
 
-def analyze_all(n=3, edge_type="count", dataset="r8_small"):
+def analyze_all(n, edge_type, dataset):
     metrics = file.get_document_triples_metrics(dataset)
     largest = metrics.nlargest(n, edge_type)  # Include all with sme count with `keep='all'`
     assert largest.shape[0] <= n
@@ -126,8 +123,7 @@ def analyze_all(n=3, edge_type="count", dataset="r8_small"):
     for index, row in largest.iterrows():
         id1 = int(row["doc1"])
         id2 = int(row["doc2"])
-        # print(id1, id2, row["count"], row["idf"], row["idf_wiki"])
-        is_equal, stats = get_detailed_relations(id1=id1, id2=id2)
+        is_equal, stats = get_detailed_relations(id1=id1, id2=id2, dataset=dataset)
         equality.append(is_equal)
         if is_equal:
             true_dict = sum_counters(true_dict, stats)
@@ -138,16 +134,15 @@ def analyze_all(n=3, edge_type="count", dataset="r8_small"):
     result = Counter(equality)
     total = ((result[True]) / ((result[False]) + (result[True]))) * 100
     print(f"Correct: {total}%")
-    # print(all_stats)
 
     header = ["relation", "count"]
     all_true_rows = [[key, true_dict[key]] for key in true_dict.keys()]
-    get_latex_code(header, all_true_rows, "lc", f"{dataset}_true_relations.txt", dataset,
-                   desc="Most common WikiData relations between documents with same label")
+    get_latex_code(header, all_true_rows, "lc", f"{dataset}_{edge_type}_true_relations.txt", dataset,
+                   desc=f"Most common WikiData relations between documents with same label in the {dataset} dataset")
 
     all_true_rows = [[key, false_dict[key]] for key in false_dict.keys()]
     get_latex_code(header, all_true_rows, "lc", f"{dataset}_{edge_type}_false_relations.txt", dataset,
-                   desc="Most common WikiData relations between documents with different label")
+                   desc=f"Most common WikiData relations between documents with different label in the {dataset} dataset")
 
 
 def sum_counters(dictionary, counter):
@@ -161,7 +156,48 @@ def sum_counters(dictionary, counter):
     return ordered_dict
 
 
+def get_number_of_relations(dataset):
+    triples = file.get_document_triples(dataset)
+
+    all_relations = []
+
+    with tqdm(total=triples.shape[0]) as bar:
+        for index, row in triples.iterrows():
+            [all_relations.append(rel) for rel in row["detail"].split("+")]
+            bar.update(1)
+
+    counter = Counter(all_relations)
+
+    results = pd.DataFrame.from_dict(counter, orient='index').reset_index()
+    results.columns = ["relation", "count"]
+    results = results.sort_values(by="count", ascending=False).reset_index(drop=True)
+
+    header = ["relation", "count"]
+    all_true_rows = [[row["relation"], row["count"]] for index, row in results.iterrows()]
+
+    get_latex_code(header, all_true_rows, "ll", f"{dataset}_top_relations.txt", dataset,
+                   desc=f"Most common WikiData relations between in the {dataset} dataset")
+
+
+def get_dataset_statistics(dataset):
+    docs = file.get_sentences(dataset)
+    labels = file.get_labels(dataset)
+    words = len(file.get_vocab(dataset))
+
+    counter = Counter([t.split("\t")[1] for t in labels])
+    labels = len(set([t.split("\t")[2] for t in labels]))
+
+    entities = file.get_entity2id(dataset)
+    entities = entities[~(entities["wikiID"] == "-1")]
+
+    result = [dataset, len(docs), counter["train"], counter["test"], words, entities.shape[0], labels]
+    result = [str(r) for r in result]
+    print(" & ".join(result))
+
+
 if __name__ == '__main__':
-   analyze_all()
-   # analyze_all(edge_type="idf")
-   # analyze_all(edge_type="idf_wiki")
+    dataset = FLAGS.dataset
+    analyze_all(n=10, edge_type="count", dataset=dataset)
+    analyze_all(n=10, edge_type="idf", dataset=dataset)
+    analyze_all(n=10, edge_type="idf_wiki", dataset=dataset)
+    get_number_of_relations(dataset)
