@@ -114,7 +114,7 @@ Optimization
 """
 FLAGS.lr = 2e-2
 FLAGS.random_seed = 3
-FLAGS.num_epochs = 2 if FLAGS.debug else 400
+FLAGS.num_epochs = 2 if FLAGS.debug else 200
 
 
 """

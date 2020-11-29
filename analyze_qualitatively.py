@@ -27,7 +27,7 @@ def get_detailed_relations(id1, id2, dataset):
 
         # All ID's of the normalized nouns in the current document
         doc_ids = ids[ids["doc"] == doc_index]["wikiID"].tolist()
-        assert len(doc_ids) <= len(doc.split(" ")), f"{len(doc.split(' '))} vs. {len(doc_ids)}"
+        assert len(doc_ids) <= len(doc.split(" ")), f"{len(doc.split(' '))} vs. {len(doc_ids)} in {dataset}"
 
         # Graph edges pointing to other entities
         triples_out = filtered_triples[filtered_triples["entity1"].isin(doc_ids)]
@@ -103,11 +103,11 @@ def get_detailed_relations(id1, id2, dataset):
 
 def get_relation_statistics(id1, id2, readable_triples, detailed_triples, dataset):
     labels = file.get_labels(dataset)
-    label1 = labels[id1]
-    label2 = labels[id2]
+    label1 = labels[id1].split("\t")[2]
+    label2 = labels[id2].split("\t")[2]
 
     relation_stats = Counter(detailed_triples["relation"])
-
+    print(label1, label2)
     return label1 == label2, relation_stats
 
 
@@ -115,6 +115,7 @@ def analyze_all(n, edge_type, dataset):
     metrics = file.get_document_triples_metrics(dataset)
     largest = metrics.nlargest(n, edge_type)  # Include all with sme count with `keep='all'`
     assert largest.shape[0] <= n
+    # docs = file.get_cleaned_sentences(dataset)
 
     true_dict = {}
     false_dict = {}
@@ -123,6 +124,12 @@ def analyze_all(n, edge_type, dataset):
     for index, row in largest.iterrows():
         id1 = int(row["doc1"])
         id2 = int(row["doc2"])
+
+        # print(id1, id2)
+        # print("\n")
+        # print(docs[id1])
+        # print("\n")
+        # print(docs[id2])
         is_equal, stats = get_detailed_relations(id1=id1, id2=id2, dataset=dataset)
         equality.append(is_equal)
         if is_equal:
@@ -133,7 +140,7 @@ def analyze_all(n, edge_type, dataset):
 
     result = Counter(equality)
     total = ((result[True]) / ((result[False]) + (result[True]))) * 100
-    print(f"Correct: {total}%")
+    print(f"Correct for {edge_type}: {total}% of {n}")
 
     header = ["relation", "count"]
     all_true_rows = [[key, true_dict[key]] for key in true_dict.keys()]
@@ -196,7 +203,8 @@ def get_dataset_statistics(dataset):
 
 
 if __name__ == '__main__':
-    dataset = FLAGS.dataset
+    # for dataset in ["20ng", "ohsumed", "r8", "r52", "mr"]:
+    dataset = "r52"
     analyze_all(n=10, edge_type="count", dataset=dataset)
     analyze_all(n=10, edge_type="idf", dataset=dataset)
     analyze_all(n=10, edge_type="idf_wiki", dataset=dataset)
