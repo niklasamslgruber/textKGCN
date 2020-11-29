@@ -9,7 +9,9 @@
    relation & count \\
 
    \midrule
-    \\
+   P106 & 14 \\
+   P31 & 1 \\
+   P279 & 1 \\
 
    \bottomrule
    \end{tabular}

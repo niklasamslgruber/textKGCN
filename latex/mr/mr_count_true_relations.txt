@@ -9,7 +9,13 @@
    relation & count \\
 
    \midrule
-    \\
+   P1889 & 32 \\
+   P460 & 6 \\
+   P366 & 4 \\
+   P279 & 4 \\
+   P921 & 4 \\
+   P461 & 2 \\
+   P31 & 2 \\
 
    \bottomrule
    \end{tabular}
