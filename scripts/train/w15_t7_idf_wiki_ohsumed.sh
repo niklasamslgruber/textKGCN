@@ -11,5 +11,4 @@ source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
 python main.py --show_eval --plot --word_window_size 15 --threshold 7 --dataset ohsumed --method idf_wiki &&
-python main.py --show_eval --plot --word_window_size 15 --threshold 7 --dataset ohsumed --method idf_wiki &&
 python main.py --show_eval --plot --word_window_size 15 --threshold 7 --dataset ohsumed --method idf_wiki

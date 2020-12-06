@@ -5,7 +5,7 @@ import random
 available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
 # max = [26, 83, 6, 23, 11]
 configuration = {
-    "r8": [7, 9, 13, 18, 24],
+    "r8": [1, 2, 3, 4, 5, 6, 7, 8],
     "20ng": [10, 20, 30, 40, 50, 60],
     "mr": [4, 5],
     "ohsumed": [7, 9, 13, 16, 19, 20],
@@ -121,4 +121,4 @@ def multiply(n, code):
 
 if __name__ == '__main__':
     generate_prep_scripts()
-    generate_train_scripts(3)
+    generate_train_scripts(2)

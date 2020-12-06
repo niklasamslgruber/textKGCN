@@ -176,5 +176,5 @@ def write_latex_code(data, filename, dataset):
 
 if __name__ == '__main__':
     # plot_all(density=False)
-    get_results_statistics("r8")
-    # plot_edge_numbers()
+    # get_results_statistics("r8")
+    plot_edge_numbers()
