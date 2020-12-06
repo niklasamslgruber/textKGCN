@@ -1,0 +1,29 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lc}
+   \toprule
+   relation & count \\
+
+   \midrule
+   P279 & 7 \\
+   P31 & 5 \\
+   P527 & 3 \\
+   P461 & 3 \\
+   P361 & 3 \\
+   P1995 & 3 \\
+   P2578 & 1 \\
+   P2579 & 1 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between documents with same label in the ohsumed dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}
