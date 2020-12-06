@@ -24,8 +24,6 @@ parser.add_argument('--use_edge_weights', default=True, action='store_true', hel
 available_methods = ["count", "idf", "idf_wiki"]
 parser.add_argument('--method', default=available_methods[0], type=str, help=f"select doc2doc edge weight method ({', '.join(available_methods)})", metavar='')
 
-
-
 # relation threshold
 relation_count_threshold = 2
 parser.add_argument('--threshold', default=relation_count_threshold, type=int, help=f"set filter threshold for doc2doc edges (default: {relation_count_threshold})", metavar='')
@@ -40,6 +38,12 @@ parser.add_argument('--no_wiki', default=False, action='store_true', help="disab
 # dataset
 available_datasets = ["r8", "r8_small", "20ng", "mr", "ohsumed", "r52"]
 parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
+
+# version
+# unfiltered: All doc2doc edges without any relations filtered out (not supported for 20ng)
+
+versions = ["unfiltered", "manual", "no_populars"]
+parser.add_argument('--version', default=versions[2], type=str, help=f"doc2doc edge version", metavar='')
 
 
 # Set FLAGS from command line

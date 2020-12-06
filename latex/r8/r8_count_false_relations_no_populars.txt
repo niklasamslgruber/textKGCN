@@ -1,0 +1,27 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lc}
+   \toprule
+   relation & count \\
+
+   \midrule
+   P1542 & 6 \\
+   P437 & 4 \\
+   P828 & 4 \\
+   P1382 & 1 \\
+   P156 & 1 \\
+   P155 & 1 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between documents with different label in the r8 dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

@@ -74,15 +74,15 @@ def get_all_word_triples_path(dataset=FLAGS.dataset):
 
 
 def get_filtered_word_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples.csv')
+    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples_{FLAGS.version}.csv')
 
 
 def get_document_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_{FLAGS.version}.pickle.bz2')
 
 
 def get_document_triples_metrics_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics_{FLAGS.version}.pickle.bz2')
 
 
 # Mappings
@@ -95,15 +95,15 @@ def get_doc2id_path(dataset=FLAGS.dataset):
 
 
 def get_doc2relations_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations.txt')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations_{FLAGS.version}.txt')
 
 
 def get_doc2idf_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf.csv')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf_{FLAGS.version}.csv')
 
 
 def get_base_edges_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_base_edges.pickle.bz2')
+    return join(get_kg_data_path(dataset), f'{dataset}_base_edges_{FLAGS.version}.pickle.bz2')
 
 
 def get_vocab_entities_path(dataset=FLAGS.dataset):
@@ -120,7 +120,7 @@ def get_all_wiki_relations_path():
 
 
 def get_filtered_wiki_relations_path():
-    return join(get_kg_relations_path(), 'filtered_wiki_relations.csv')
+    return join(get_kg_relations_path(), f'filtered_wiki_relations_{FLAGS.version}.csv')
 
 
 # Dataset files
@@ -184,7 +184,7 @@ def get_document_embeddings_path(layer, dataset=FLAGS.dataset):
 
 # Evaluation logs
 def get_eval_log_path(dataset=FLAGS.dataset):
-    return join(path(join(get_data_path(), 'results_log')), f'{dataset}_eval_log.csv')
+    return join(path(join(get_data_path(), 'results_log')), f'{dataset}_eval_{FLAGS.version}.csv')
 
 
 def get_result_log_path(dataset=FLAGS.dataset):

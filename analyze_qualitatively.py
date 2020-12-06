@@ -204,7 +204,7 @@ def get_dataset_statistics(dataset):
 
 if __name__ == '__main__':
     # for dataset in ["20ng", "ohsumed", "r8", "r52", "mr"]:
-    dataset = "r52"
+    dataset = "r8"
     analyze_all(n=10, edge_type="count", dataset=dataset)
     analyze_all(n=10, edge_type="idf", dataset=dataset)
     analyze_all(n=10, edge_type="idf_wiki", dataset=dataset)

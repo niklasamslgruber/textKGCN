@@ -1,5 +1,6 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+from config import FLAGS
 from helper import file_utils as file, io_utils as io
 import pandas as pd
 
@@ -162,6 +163,7 @@ def get_latex_code(header, rows, justification, filename, dataset, caption="EMPT
            r"\end{center}"
 
     assert filename.endswith(".txt")
+    filename = filename.replace(".txt", f"_{FLAGS.version}.txt")
     write_latex_code(code, filename, dataset)
 
 
