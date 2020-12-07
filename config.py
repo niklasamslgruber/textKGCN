@@ -103,7 +103,7 @@ Validation
 """
 FLAGS.use_best_val_model_for_inference = True
 FLAGS.validation_window_size = FLAGS.word_window_size
-FLAGS.validation_metric = 'accuracy'  # Choices: ["f1_weighted", "accuracy", "loss"]
+FLAGS.validation_metric = 'loss'  # Choices: ["f1_weighted", "accuracy", "loss"]
 
 
 """
