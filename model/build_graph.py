@@ -157,9 +157,10 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
 
 
 def save_edges(base_edges):
-    # if exists(io.get_base_edges_path()):
-    #     print("Edge file already exists")
-    #     return
+    if exists(io.get_base_edges_path()):
+        print("Edge file already exists")
+        return
+
     metrics = file.get_document_triples_metrics()
     edge_types = ["idf", "idf_wiki", "count"]
     row = metrics["doc1"].tolist()
