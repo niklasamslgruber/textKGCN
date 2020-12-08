@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/no_wiki_mr.%j.out
-#SBATCH --partition=Antarktis
+#SBATCH --partition=Luna
 
 source ~/miniconda3/bin/activate thesis
 
