@@ -3,7 +3,8 @@ import os
 import random
 
 available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
-# max = [26, 83, 6, 23, 11]
+
+# TODO: Update configuration thresholds
 configuration = {
     "r8": [1, 2, 3, 4, 5, 6, 7, 8],
     "20ng": [10, 20, 30, 40, 50, 60],
@@ -35,7 +36,6 @@ def generate_train_scripts(n=1):
     folder_path = "scripts/train"
     clear(folder_path)
 
-    windows = ["15"]
     method = ["count", "idf", "idf_wiki"]
     exec_code = []
     specific_code = []
@@ -44,30 +44,29 @@ def generate_train_scripts(n=1):
     for index, dataset in enumerate(available_datasets):
         threshold = configuration[dataset]
         dataset_exec = []
-        for w in windows:
-            name = f"no_wiki_w{w}_{dataset}"
-            header = get_header(name, random.choice(partitions))
-            py_call = f"python main.py --no_wiki --dataset {dataset} --word_window_size {w}"
-            code = header + multiply(n, py_call)
+        name = f"no_wiki_{dataset}"
+        header = get_header(name, random.choice(partitions))
+        py_call = f"python main.py --no_wiki --dataset {dataset}"
+        code = header + multiply(n, py_call)
 
-            write_script(code, f"{folder_path}/{name}.sh")
-            exec_code.append(f"sbatch {name}.sh")
-            dataset_exec.append(f"sbatch {name}.sh")
+        write_script(code, f"{folder_path}/{name}.sh")
+        exec_code.append(f"sbatch {name}.sh")
+        dataset_exec.append(f"sbatch {name}.sh")
 
-            for t in threshold:
-                for r in method:
-                    name = f"w{w}_t{t}_{r}_{dataset}"
-                    arguments = f"--word_window_size {w} --threshold {t} --dataset {dataset} --method {r}"
+        for t in threshold:
+            for r in method:
+                name = f"t{t}_{r}_{dataset}"
+                arguments = f"--threshold {t} --dataset {dataset} --method {r}"
 
-                    header = get_header(name, random.choice(partitions))
-                    py_call = f"python main.py --show_eval --plot {arguments}"
-                    code = header + multiply(n, py_call)
+                header = get_header(name, random.choice(partitions))
+                py_call = f"python main.py --show_eval --plot {arguments}"
+                code = header + multiply(n, py_call)
 
-                    write_script(code, f"{folder_path}/{name}.sh")
-                    exec_code.append(f"sbatch {name}.sh")
-                    dataset_exec.append(f"sbatch {name}.sh")
-                    if r == "idf_wiki":
-                        specific_code.append(f"sbatch {name}.sh")
+                write_script(code, f"{folder_path}/{name}.sh")
+                exec_code.append(f"sbatch {name}.sh")
+                dataset_exec.append(f"sbatch {name}.sh")
+                if r == "idf_wiki":
+                    specific_code.append(f"sbatch {name}.sh")
 
         dataset_script = " && sleep 1 && ".join(dataset_exec)
         if len(dataset_exec) > 25:

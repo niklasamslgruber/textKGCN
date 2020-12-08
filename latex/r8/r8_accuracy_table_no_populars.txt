@@ -1,0 +1,37 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{llll}
+   \toprule
+   threshold & edge\_type & count & mean \\
+
+   \midrule
+   1 & idf & 4 & $0.955 \pm 0.0023$ \\
+   1 & idf\_wiki & 4 & $0.9389 \pm 0.0058$ \\
+   3 & idf\_wiki & 4 & $0.9598 \pm 0.0019$ \\
+   4 & count & 4 & $0.9665 \pm 0.0016$ \\
+   4 & idf & 4 & $0.9649 \pm 0.0039$ \\
+   5 & count & 4 & $0.9645 \pm 0.0025$ \\
+   5 & idf & 4 & $0.9661 \pm 0.0016$ \\
+   5 & idf\_wiki & 4 & $0.9676 \pm 0.002$ \\
+   6 & count & 4 & $0.9677 \pm 0.001$ \\
+   6 & idf & 4 & $0.966 \pm 0.0016$ \\
+   6 & idf\_wiki & 4 & $0.9669 \pm 0.0017$ \\
+   7 & count & 4 & $0.9663 \pm 0.0008$ \\
+   7 & idf\_wiki & 4 & $0.9672 \pm 0.0024$ \\
+   8 & idf & 2 & $0.9687 \pm 0.0016$ \\
+   8 & idf\_wiki & 4 & $0.9657 \pm 0.0011$ \\
+   0 & base & 4 & $0.9667 \pm 0.0024$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy R8 dataset]{Accuracy on text classification for the r8 dataset for differet thresholds and edge types
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

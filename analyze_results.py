@@ -46,7 +46,7 @@ def plot_edge_numbers():
     sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", markers=None)
     ax.set_yscale('log')
     fig.tight_layout()
-    fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds.png")
+    fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds_{FLAGS.version}.png")
 
 
 # RESULTS
@@ -72,7 +72,7 @@ def plot_metric(dataset, metric="accuracy"):
         ax.axhline(y=base_mean + base_std, color=color, linewidth=1, alpha=.3, ls="--")
         ax.axhline(y=base_mean - base_std, color=color, linewidth=1, alpha=.3, ls="--")
 
-    g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_{metric}.png")
+    g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_{metric}_{FLAGS.version}.png")
 
 
 def plot_edge_density(dataset):
@@ -88,7 +88,7 @@ def plot_edge_density(dataset):
     # g.fig.subplots_adjust(top=0.8)
     # g.fig.suptitle(f"distribution of edge type weights in {dataset}", fontsize=16)
 
-    g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density.png")
+    g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density_{FLAGS.version}.png")
 
 
 def plot_all(metric="accuracy", density=False):
@@ -176,5 +176,8 @@ def write_latex_code(data, filename, dataset):
 
 if __name__ == '__main__':
     # plot_all(density=False)
-    # get_results_statistics("r8")
-    plot_edge_numbers()
+    plot_metric("r8", "accuracy")
+    plot_edge_density("r8")
+
+    get_results_statistics("r8")
+    # plot_edge_numbers()
