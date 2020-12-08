@@ -6,11 +6,11 @@ available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
 
 # TODO: Update configuration thresholds
 configuration = {
-    "r8": [1, 2, 3, 4, 5, 6, 7, 8],
+    "r8": [1, 2, 3, 4, 5, 7, 8],
     "20ng": [10, 20, 30, 40, 50, 60],
-    "mr": [4, 5],
-    "ohsumed": [7, 9, 13, 16, 19, 20],
-    "r52": [6, 7, 8, 9]
+    "mr": [1, 2, 3, 4, 5],
+    "ohsumed": [7, 9, 13, 16, 19, 23],
+    "r52": [1, 2, 4, 6, 8, 9]
     }
 
 
@@ -36,7 +36,7 @@ def generate_train_scripts(n=1):
     folder_path = "scripts/train"
     clear(folder_path)
 
-    method = ["count", "idf", "idf_wiki"]
+    method = ["count", "idf"]
     exec_code = []
     specific_code = []
     partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]

@@ -22,7 +22,7 @@ def visualize_loss(loss_array, loss):
 
 def get_number_of_edges():
     dataset_length = {}
-    for dataset in available_datasets:
+    for dataset in ["r8", "mr", "r52", "ohsumed"]:
         number_of_edges = []
         document_triples = file.get_document_triples_metrics(dataset)
         maximum = document_triples['count'].max()
@@ -176,8 +176,11 @@ def write_latex_code(data, filename, dataset):
 
 if __name__ == '__main__':
     # plot_all(density=False)
-    plot_metric("r8", "accuracy")
+    # plot_metric("r8", "accuracy")
     plot_edge_density("r8")
+    plot_edge_density("r52")
+    plot_edge_density("mr")
 
-    get_results_statistics("r8")
-    # plot_edge_numbers()
+
+    # get_results_statistics("r8")
+    plot_edge_numbers()
