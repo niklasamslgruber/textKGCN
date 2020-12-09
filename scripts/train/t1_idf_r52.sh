@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t1_idf_r52.%j.out
-#SBATCH --partition=Luna
+#SBATCH --partition=Kalahari
 
 source ~/miniconda3/bin/activate thesis
 

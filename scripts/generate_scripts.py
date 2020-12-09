@@ -45,8 +45,12 @@ def generate_train_scripts(n=1):
         threshold = configuration[dataset]
         dataset_exec = []
         name = f"no_wiki_{dataset}"
-        header = get_header(name, random.choice(partitions))
-        py_call = f"python main.py --no_wiki --dataset {dataset}"
+        if "ohsumed" in dataset or "20ng" in dataset:
+            partition = random.choice(partitions)
+        else:
+            partition = "All"
+        header = get_header(name, partition)
+        py_call = f"python main.py --no_wiki --dataset {dataset} --plot"
         code = header + multiply(n, py_call)
 
         write_script(code, f"{folder_path}/{name}.sh")
