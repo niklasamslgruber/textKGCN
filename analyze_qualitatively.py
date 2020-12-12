@@ -1,7 +1,6 @@
 from collections import Counter
 from tqdm import tqdm
 from analyze_results import get_latex_code
-from config import FLAGS
 from helper import file_utils as file
 import pandas as pd
 
@@ -107,49 +106,58 @@ def get_relation_statistics(id1, id2, readable_triples, detailed_triples, datase
     label2 = labels[id2].split("\t")[2]
 
     relation_stats = Counter(detailed_triples["relation"])
-    print(label1, label2)
+    # print(label1, label2)
     return label1 == label2, relation_stats
 
 
 def analyze_all(n, edge_type, dataset):
     metrics = file.get_document_triples_metrics(dataset)
-    largest = metrics.nlargest(n, edge_type)  # Include all with sme count with `keep='all'`
-    assert largest.shape[0] <= n
-    # docs = file.get_cleaned_sentences(dataset)
+    subset = metrics.nlargest(500, edge_type)  # Include all with sme count with `keep='all'`
+    largest = subset.sort_values(by=[edge_type], ascending=False)
 
     true_dict = {}
     false_dict = {}
     equality = []
     all_stats = []
+    true_counter = 0
+    false_counter = 0
     for index, row in largest.iterrows():
         id1 = int(row["doc1"])
         id2 = int(row["doc2"])
 
-        # print(id1, id2)
-        # print("\n")
-        # print(docs[id1])
-        # print("\n")
-        # print(docs[id2])
         is_equal, stats = get_detailed_relations(id1=id1, id2=id2, dataset=dataset)
-        equality.append(is_equal)
-        if is_equal:
+        if is_equal and true_counter < n:
             true_dict = sum_counters(true_dict, stats)
-        else:
+            equality.append(is_equal)
+            true_counter += 1
+
+        elif not is_equal and false_counter < n:
             false_dict = sum_counters(false_dict, stats)
+            equality.append(is_equal)
+            false_counter += 1
+
+        elif true_counter == n and false_counter == n:
+            break
+        else:
+            continue
         all_stats.append([is_equal, stats])
 
+    assert true_counter == n and false_counter == n, f"True:{true_counter}, False: {false_counter}"
+    assert len(equality) == 2*n
     result = Counter(equality)
     total = ((result[True]) / ((result[False]) + (result[True]))) * 100
-    print(f"Correct for {edge_type}: {total}% of {n}")
+    print(f"Correct for {edge_type} in {dataset}: {total}% of {(result[False]) + (result[True])}")
 
     header = ["relation", "count"]
     all_true_rows = [[key, true_dict[key]] for key in true_dict.keys()]
     get_latex_code(header, all_true_rows, "lc", f"{dataset}_{edge_type}_true_relations.txt", dataset,
                    desc=f"Most common WikiData relations between documents with same label in the {dataset} dataset")
 
-    all_true_rows = [[key, false_dict[key]] for key in false_dict.keys()]
-    get_latex_code(header, all_true_rows, "lc", f"{dataset}_{edge_type}_false_relations.txt", dataset,
+    all_false_rows = [[key, false_dict[key]] for key in false_dict.keys()]
+    get_latex_code(header, all_false_rows, "lc", f"{dataset}_{edge_type}_false_relations.txt", dataset,
                    desc=f"Most common WikiData relations between documents with different label in the {dataset} dataset")
+
+    return all_true_rows, all_false_rows
 
 
 def sum_counters(dictionary, counter):
@@ -202,10 +210,67 @@ def get_dataset_statistics(dataset):
     print(" & ".join(result))
 
 
-if __name__ == '__main__':
-    # for dataset in ["20ng", "ohsumed", "r8", "r52", "mr"]:
-    dataset = "r8"
-    analyze_all(n=10, edge_type="count", dataset=dataset)
-    analyze_all(n=10, edge_type="idf", dataset=dataset)
-    analyze_all(n=10, edge_type="idf_wiki", dataset=dataset)
+result_dict = {}
+
+
+def perform_all(dataset, n=20):
+    global result_dict
+    true_count, false_count = analyze_all(n=n, edge_type="count", dataset=dataset)
+    true_idf, false_idf = analyze_all(n=n, edge_type="idf", dataset=dataset)
+    true_idf_wiki, false_idf_wiki = analyze_all(n=n, edge_type="idf_wiki", dataset=dataset)
+    tmp_dict = {
+        "count": {True: true_count, False: false_count},
+        "idf": {True: true_idf, False: false_idf},
+        "idf_wiki": {True: true_idf_wiki, False: false_idf_wiki}
+        }
+    result_dict[dataset] = tmp_dict
     get_number_of_relations(dataset)
+
+
+def analyze_results_dict():
+    global result_dict
+    edge_types = ["count", "idf", "idf_wiki"]
+    all_commons = []
+    all = []
+    for dataset in result_dict.keys():
+
+        filtered_true = list(filter(lambda x: x[1] > 1, result_dict[dataset][edge_types[0]][True]))
+        filtered_false = list(filter(lambda x: x[1] > 1, result_dict[dataset][edge_types[0]][False]))
+
+        type_true = set([x[0] for x in filtered_true])
+        type_false = set([y[0] for y in filtered_false])
+
+        commons = list(type_true.intersection(type_false))
+        print(commons)
+        all_commons.append(commons)
+        [all.append(x) for x in commons]
+
+    print(list(set(all_commons[0]).intersection(all_commons[1], all_commons[2])))
+    print(Counter(all))
+
+
+def strip_accents(text):
+    accented_string = u'Málaga'
+    # accented_string is of type 'unicode'
+    import unidecode
+    unaccented_string = unidecode.unidecode(accented_string)
+    # unaccented_string contains 'Malaga'and is of type 'str'
+    
+
+s = strip_accents('àéêöhello')
+
+
+if __name__ == '__main__':
+    # for dataset in ["r52", "r8", "mr", "ohsumed"]:
+    #     perform_all(dataset)
+    #
+    # analyze_results_dict()
+
+    test = file.get_sentences("mr")
+    print(len(test))
+    all = []
+    for x in test:
+        [all.append(y) for y in x]
+
+    print(len(all))
+    print(all[4000:4200])

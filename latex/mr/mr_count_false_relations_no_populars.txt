@@ -9,16 +9,19 @@
    relation & count \\
 
    \midrule
-   P530 & 20 \\
-   P186 & 2 \\
-   P2670 & 2 \\
+   P1366 & 8 \\
+   P2184 & 8 \\
+   P1365 & 8 \\
+   P138 & 8 \\
+   P156 & 6 \\
+   P155 & 6 \\
 
    \bottomrule
    \end{tabular}
    \end{center}
 }
 
-\caption[EMPTY CAP]{Most common WikiData relations between documents with different label in the r8 dataset
+\caption[EMPTY CAP]{Most common WikiData relations between documents with different label in the mr dataset
 \label{tab:CommonParameterSettings}}
 \end{table}
 \end{center}
