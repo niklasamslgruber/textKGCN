@@ -139,8 +139,6 @@ effect
 end
 lifestyle
 time
-andr
-turpin
 air
 american
 flash
@@ -872,7 +870,7 @@ feeling
 moviemaking
 bromide
 channel
-clich
+cliche
 d
 photography
 process
@@ -954,6 +952,7 @@ hedonist
 invitation
 wind
 elling
+nae
 b
 finale
 shelf
@@ -1075,7 +1074,6 @@ urbanity
 ley
 napoleon
 rebirth
-cliche
 lapse
 logic
 manual
@@ -1347,6 +1345,7 @@ exploration
 paranoia
 limit
 street
+chateau
 difference
 kitten
 poem
@@ -1404,7 +1403,6 @@ laptop
 phone
 plan
 myth
-chateau
 venture
 album
 ecstasy
@@ -1537,7 +1535,7 @@ cinematography
 detail
 squalor
 intermingling
-naivet
+naivete
 sophistication
 bjorkness
 cyber
@@ -1662,7 +1660,6 @@ title
 plotless
 proportion
 shapeless
-sorprender
 radio
 soundtrack
 walken
@@ -1902,7 +1899,6 @@ slack
 velocity
 fore
 nonsense
-talanc
 bedfellow
 charge
 screenwriter
@@ -1962,6 +1958,7 @@ sexualization
 stimulation
 motherland
 shortcoming
+interacoe
 dramaturgy
 rapid
 surge
@@ -2097,7 +2094,6 @@ grind
 bickering
 byplay
 cortez
-e
 partir
 dench
 dysfunction
@@ -2290,7 +2286,6 @@ heady
 barrage
 blacklight
 rhetoric
-moll
 rhame
 snipe
 wesley
@@ -2459,7 +2454,6 @@ childhood
 working
 fantasma
 benjamin
-guzm
 bang
 dynamite
 configuration
@@ -2618,7 +2612,6 @@ trenchant
 infamy
 maid
 attic
-pianista
 foreground
 forest
 tree
@@ -2852,7 +2845,6 @@ tar
 descent
 bettany
 strut
-nero
 austerity
 fairy
 adjective
@@ -3058,7 +3050,7 @@ dispatching
 convert
 com
 diretor
-perd
+perdao
 ethic
 retold
 disposition
@@ -3139,7 +3131,7 @@ blaxploitation
 downplay
 outrageousness
 spoof
-exist
+inquestionavel
 saudade
 desmond
 eagle
@@ -3205,6 +3197,7 @@ powder
 tunis
 white
 widow
+beart
 moral
 comradeship
 isle
@@ -3277,7 +3270,6 @@ ignorance
 rumination
 apology
 authenticity
-expo
 clockstopper
 welcome
 condition
@@ -3326,10 +3318,7 @@ lynching
 meeropol
 reel
 prognosis
-ao
 funcionar
-ganha
-m
 grumble
 cassette
 favourite
@@ -3338,8 +3327,8 @@ get
 glow
 humankind
 liberating
+minutewith
 snicker
-trimming
 base
 muckraking
 intacto
@@ -3398,6 +3387,7 @@ brainpower
 wattage
 demeo
 wannabe
+observacion
 revelacione
 sin
 bump
@@ -3652,7 +3642,6 @@ exchange
 flatula
 parrot
 updating
-complementare
 fascinante
 lowbrow
 mothball
@@ -3700,7 +3689,6 @@ horrid
 filmgoing
 regret
 infomercial
-dea
 21st
 bill
 inch
@@ -3809,7 +3797,7 @@ drinker
 playwright
 ski
 click
-lan
+elan
 scotch
 cogent
 extravaganzas
@@ -3946,6 +3934,7 @@ piffle
 buzz
 quarter
 celebratory
+movieif
 creed
 nonbeliever
 skeptic
@@ -4090,7 +4079,6 @@ exploitation
 playbook
 crassness
 op
-por
 shoot
 goth
 loose
@@ -4325,6 +4313,8 @@ condensation
 spin
 unwillingness
 miscalculation
+artistico
+de
 template
 mouthed
 exposition
@@ -4334,6 +4324,7 @@ drawback
 heyday
 imitating
 calculus
+m
 temerity
 reviewer
 preview
@@ -4469,7 +4460,6 @@ vim
 disguise
 assistant
 gross
-vet
 population
 suey
 crank
@@ -4485,6 +4475,7 @@ cedric
 entertainer
 perry
 advice
+naif
 dreck
 pause
 30
@@ -4576,12 +4567,13 @@ schnieder
 tummy
 wrist
 cohesion
+filmit
 val
 ugliness
 salesmanship
 hostess
 impetuousness
-caf
+cafe
 something
 enigma
 riddle
@@ -4591,7 +4583,7 @@ afterschool
 bog
 backstage
 byte
-tier
+metier
 rumbling
 humidity
 sleeping
@@ -4602,6 +4594,7 @@ uniqueness
 boring
 bathtub
 charlie
+que
 intelligibility
 tad
 opacity
@@ -4665,6 +4658,7 @@ pooper
 scooper
 matrix
 pony
+moviesor
 empowering
 retread
 beck
@@ -4782,6 +4776,7 @@ zucker
 putty
 thrift
 trekkie
+projecao
 gnat
 racehorse
 easter
@@ -4792,6 +4787,7 @@ wretchedness
 downside
 paucity
 christophe
+honore
 partway
 compromise
 moratorium
@@ -4806,7 +4802,7 @@ cliffsnote
 servitude
 spear
 copout
-souffl
+souffle
 oration
 mention
 persecution
@@ -4837,6 +4833,7 @@ convenience
 telegraphs
 diss
 directionless
+humorit
 outburst
 quiet
 bash
@@ -4856,6 +4853,7 @@ iditarod
 boosterism
 ageism
 drek
+pere
 rainwear
 seattle
 euphemism
@@ -5017,6 +5015,7 @@ dunce
 yawn
 deafening
 swamp
+problemit
 pot
 derivativeness
 convolution
@@ -5145,7 +5144,6 @@ ballpoint
 knockaround
 grainy
 contenido
-ning
 hoity
 medal
 steadfast
@@ -5215,6 +5213,7 @@ sportsmanship
 hothouse
 longevity
 teendom
+realshe
 simone
 can
 sprinkling
@@ -5598,7 +5597,6 @@ walker
 amiability
 personifie
 hayseed
-convence
 gelo
 mild
 untidy
@@ -5795,7 +5793,7 @@ homework
 revisionist
 doggedness
 practitioner
-ttner
+buttner
 pearce
 nuttgen
 copenhagen
@@ -5819,7 +5817,6 @@ weaver
 inject
 melrose
 south
-var
 categorisation
 fascinate
 horrifie
@@ -5837,6 +5834,7 @@ composer
 violinist
 beaut
 probe
+trimming
 backmasking
 courting
 ilk
@@ -5856,8 +5854,7 @@ camareras
 danese
 italiana
 profesore
-incoloro
-quido
+vital
 eudora
 welty
 collie
@@ -5865,7 +5862,6 @@ husky
 classification
 moodiness
 hush
-cafe
 roadside
 nut
 closeness
@@ -5874,7 +5870,6 @@ unreality
 nazism
 epilogue
 swill
-vai
 parlor
 swashbuckling
 royal
@@ -5940,7 +5935,6 @@ relation
 stump
 wrenching
 combatant
-anim
 idiom
 picpus
 shudder
@@ -5955,7 +5949,6 @@ recapitulation
 tashlin
 colonic
 diciness
-outr
 appraisal
 poignance
 helluva
@@ -6012,6 +6005,7 @@ perkiness
 slowness
 cadence
 shortage
+naess
 petter
 womanhood
 barrier
@@ -6224,7 +6218,6 @@ pixar
 dustbin
 warlord
 colosal
-digno
 gate
 disquieting
 graphic
@@ -6358,6 +6351,8 @@ carion
 hum
 monotone
 amistad
+compasion
+comprension
 persistence
 replete
 think
@@ -6407,7 +6402,6 @@ slob
 our
 firebrand
 elaborateness
-elan
 tomcat
 hobby
 jelinek
@@ -6424,9 +6418,10 @@ bugsy
 caterer
 stir
 corresponde
-inconformidad
+sensacion
 mine
 expulsion
+e
 showing
 shamble
 anderson
@@ -6488,7 +6483,6 @@ inquisition
 haphazard
 scouse
 acontecimento
-explicados
 trama
 nettelbeck
 knowingness
@@ -6584,10 +6578,12 @@ shallow
 bait
 omission
 climb
+retrospective
 snack
 bloodsucker
 dreaminess
 laurel
+presque
 jarring
 overtone
 disquisition
@@ -6635,7 +6631,7 @@ recruitment
 sellout
 ballerina
 hippopotamus
-hmmm
+hmmmmight
 sharpener
 lemon
 knockoff
@@ -6695,10 +6691,9 @@ psychiatrist
 mpaa
 uproar
 redeeming
-aquele
 dia
 este
-tamb
+tambem
 lapdance
 naturalness
 pass
@@ -6804,6 +6799,7 @@ schedule
 inconsequentiality
 porcelain
 sidewalk
+tier
 achieve
 malnutrition
 fistfight
@@ -6823,7 +6819,6 @@ racy
 obscenity
 rag
 latter
-luis
 twinkly
 east
 humiliation
@@ -6898,7 +6893,7 @@ nowheresville
 tuneless
 dubbing
 meyer
-lange
+pureed
 wankery
 globetrotter
 playoff

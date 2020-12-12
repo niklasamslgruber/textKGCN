@@ -140,8 +140,6 @@ effect,Q252022
 end,Q16220058
 lifestyle,Q346799
 time,Q11471
-andr,-1
-turpin,Q289485
 air,Q3230
 american,Q463180
 flash,Q210040
@@ -873,7 +871,7 @@ feeling,Q205555
 moviemaking,Q932586
 bromide,Q422423
 channel,Q425520
-clich,-1
+cliche,Q156351
 d,Q9884
 photography,Q11633
 process,Q229289
@@ -955,6 +953,7 @@ hedonist,Q7064
 invitation,Q4120725
 wind,Q8094
 elling,Q303312
+nae,Q6958062
 b,Q9705
 finale,Q345391
 shelf,Q1175677
@@ -1076,7 +1075,6 @@ urbanity,Q381532
 ley,Q6537946
 napoleon,Q517
 rebirth,Q299101
-cliche,Q156351
 lapse,Q29644076
 logic,Q8078
 manual,Q393899
@@ -1348,6 +1346,7 @@ exploration,Q6502154
 paranoia,Q1229994
 limit,Q246639
 street,Q79007
+chateau,Q751876
 difference,Q75101527
 kitten,Q147
 poem,Q482
@@ -1405,7 +1404,6 @@ laptop,Q3962
 phone,Q11035
 plan,Q1371819
 myth,Q12827256
-chateau,Q751876
 venture,Q2513043
 album,Q482994
 ecstasy,Q346034
@@ -1538,7 +1536,7 @@ cinematography,Q590870
 detail,Q1184933
 squalor,Q7581924
 intermingling,Q16909621
-naivet,-1
+naivete,Q1642590
 sophistication,Q991663
 bjorkness,-1
 cyber,Q4855486
@@ -1663,7 +1661,6 @@ title,Q216353
 plotless,-1
 proportion,Q402870
 shapeless,Q7489252
-sorprender,-1
 radio,Q872
 soundtrack,Q217199
 walken,Q2542380
@@ -1903,7 +1900,6 @@ slack,Q1904950
 velocity,Q11465
 fore,Q1791873
 nonsense,Q600499
-talanc,-1
 bedfellow,-1
 charge,Q77076
 screenwriter,Q28389
@@ -1963,6 +1959,7 @@ sexualization,Q1467001
 stimulation,Q4114622
 motherland,Q16513600
 shortcoming,Q7502129
+interacoe,-1
 dramaturgy,Q492537
 rapid,Q695793
 surge,Q404057
@@ -2098,7 +2095,6 @@ grind,Q638274
 bickering,-1
 byplay,-1
 cortez,Q402354
-e,Q9907
 partir,Q1210944
 dench,Q21475255
 dysfunction,Q947048
@@ -2291,7 +2287,6 @@ heady,Q5690128
 barrage,Q1171439
 blacklight,Q961734
 rhetoric,Q81009
-moll,Q417998
 rhame,Q2315769
 snipe,Q3469018
 wesley,Q233193
@@ -2460,7 +2455,6 @@ childhood,Q276258
 working,Q8034885
 fantasma,Q10280020
 benjamin,Q460763
-guzm,-1
 bang,Q293583
 dynamite,Q80728
 configuration,Q292434
@@ -2619,7 +2613,6 @@ trenchant,Q1259186
 infamy,Q1324654
 maid,Q833860
 attic,Q244490
-pianista,Q399364
 foreground,Q16782464
 forest,Q4421
 tree,Q10884
@@ -2853,7 +2846,6 @@ tar,Q186209
 descent,Q439988
 bettany,Q4898380
 strut,Q2039332
-nero,Q1413
 austerity,Q2814650
 fairy,Q8028
 adjective,Q34698
@@ -3059,7 +3051,7 @@ dispatching,Q4175004
 convert,Q235969
 com,Q218136
 diretor,-1
-perd,-1
+perdao,-1
 ethic,Q9465
 retold,-1
 disposition,Q1149305
@@ -3140,7 +3132,7 @@ blaxploitation,Q883179
 downplay,Q5303249
 outrageousness,-1
 spoof,Q1183796
-exist,Q5420343
+inquestionavel,-1
 saudade,Q1338509
 desmond,Q509425
 eagle,Q2092297
@@ -3206,6 +3198,7 @@ powder,Q2908004
 tunis,Q3572
 white,Q23444
 widow,Q179115
+beart,Q1019359
 moral,Q235282
 comradeship,Q5157673
 isle,Q451014
@@ -3278,7 +3271,6 @@ ignorance,Q815577
 rumination,Q1907743
 apology,Q346947
 authenticity,Q1919362
-expo,Q356967
 clockstopper,-1
 welcome,Q13109234
 condition,Q417488
@@ -3327,10 +3319,7 @@ lynching,Q486775
 meeropol,Q48979714
 reel,Q1420806
 prognosis,Q592442
-ao,Q223855
 funcionar,-1
-ganha,-1
-m,Q9933
 grumble,Q48446
 cassette,Q233654
 favourite,Q1996375
@@ -3339,8 +3328,8 @@ get,Q406629
 glow,Q350102
 humankind,Q5
 liberating,Q394847
+minutewith,-1
 snicker,Q170579
-trimming,Q341782
 base,Q575724
 muckraking,Q1474197
 intacto,Q386611
@@ -3399,6 +3388,7 @@ brainpower,Q2198957
 wattage,Q27137
 demeo,-1
 wannabe,Q418833
+observacion,-1
 revelacione,-1
 sin,Q60227
 bump,Q1004858
@@ -3653,7 +3643,6 @@ exchange,Q416020
 flatula,-1
 parrot,Q31431
 updating,-1
-complementare,-1
 fascinante,-1
 lowbrow,Q6693068
 mothball,Q910044
@@ -3701,7 +3690,6 @@ horrid,-1
 filmgoing,-1
 regret,Q4729246
 infomercial,Q1662452
-dea,Q41888542
 21st,Q712477
 bill,Q257022
 inch,Q218593
@@ -3810,7 +3798,7 @@ drinker,Q1210446
 playwright,Q214917
 ski,Q172226
 click,Q256528
-lan,Q225339
+elan,Q294353
 scotch,Q443098
 cogent,Q5141093
 extravaganzas,Q17073982
@@ -3947,6 +3935,7 @@ piffle,Q16879054
 buzz,Q247419
 quarter,Q1437134
 celebratory,-1
+movieif,-1
 creed,Q247179
 nonbeliever,Q1587978
 skeptic,Q1395219
@@ -4091,7 +4080,6 @@ exploitation,Q396068
 playbook,Q7203195
 crassness,-1
 op,Q226362
-por,Q7016728
 shoot,Q220869
 goth,Q1482910
 loose,Q356104
@@ -4326,6 +4314,8 @@ condensation,Q166583
 spin,Q229949
 unwillingness,-1
 miscalculation,-1
+artistico,-1
+de,Q219328
 template,Q438331
 mouthed,-1
 exposition,Q346571
@@ -4335,6 +4325,7 @@ drawback,Q3715176
 heyday,Q5749668
 imitating,Q1131737
 calculus,Q149972
+m,Q9933
 temerity,Q7698086
 reviewer,Q265158
 preview,Q7242413
@@ -4470,7 +4461,6 @@ vim,Q181174
 disguise,Q6497468
 assistant,Q361991
 gross,Q299064
-vet,Q7923534
 population,Q2625603
 suey,-1
 crank,Q413376
@@ -4486,6 +4476,7 @@ cedric,Q1385122
 entertainer,Q55619322
 perry,Q2047030
 advice,Q4686783
+naif,Q4117483
 dreck,Q8053530
 pause,Q422953
 30,Q1166771
@@ -4577,12 +4568,13 @@ schnieder,Q11703653
 tummy,Q9597
 wrist,Q185706
 cohesion,Q294876
+filmit,-1
 val,Q227715
 ugliness,Q1415055
 salesmanship,Q194189
 hostess,Q5909381
 impetuousness,-1
-caf,Q226942
+cafe,Q30022
 something,Q2650699
 enigma,Q672356
 riddle,Q47054
@@ -4592,7 +4584,7 @@ afterschool,Q2060752
 bog,Q1681353
 backstage,Q798513
 byte,Q8799
-tier,Q344230
+metier,Q6950135
 rumbling,Q397797
 humidity,Q180600
 sleeping,Q35831
@@ -4603,6 +4595,7 @@ uniqueness,Q22976830
 boring,Q351256
 bathtub,Q152095
 charlie,Q398635
+que,Q397136
 intelligibility,Q6044168
 tad,Q560791
 opacity,Q397970
@@ -4666,6 +4659,7 @@ pooper,-1
 scooper,Q1510260
 matrix,Q190069
 pony,Q188828
+moviesor,-1
 empowering,-1
 retread,Q920920
 beck,Q11901
@@ -4783,6 +4777,7 @@ zucker,Q227786
 putty,Q1337073
 thrift,Q2429543
 trekkie,Q1412961
+projecao,-1
 gnat,Q2998701
 racehorse,Q187916
 easter,Q21196
@@ -4793,6 +4788,7 @@ wretchedness,-1
 downside,Q5303277
 paucity,Q815758
 christophe,Q13372362
+honore,Q21450414
 partway,-1
 compromise,Q726686
 moratorium,Q4302358
@@ -4807,7 +4803,7 @@ cliffsnote,-1
 servitude,Q532270
 spear,Q44475
 copout,Q3690053
-souffl,-1
+souffle,Q846376
 oration,Q18342738
 mention,Q1603129
 persecution,Q851824
@@ -4838,6 +4834,7 @@ convenience,Q5166129
 telegraphs,Q7696269
 diss,Q1229288
 directionless,-1
+humorit,-1
 outburst,Q7111887
 quiet,Q7271844
 bash,Q403422
@@ -4857,6 +4854,7 @@ iditarod,Q1415139
 boosterism,Q2910544
 ageism,Q438946
 drek,Q1258317
+pere,Q2070351
 rainwear,Q2018769
 seattle,Q5083
 euphemism,Q83464
@@ -5018,6 +5016,7 @@ dunce,Q5314690
 yawn,Q182180
 deafening,Q27792548
 swamp,Q166735
+problemit,-1
 pot,Q2095727
 derivativeness,-1
 convolution,Q210857
@@ -5146,7 +5145,6 @@ ballpoint,Q160137
 knockaround,-1
 grainy,-1
 contenido,Q28155400
-ning,Q1040556
 hoity,-1
 medal,Q131647
 steadfast,Q16875689
@@ -5216,6 +5214,7 @@ sportsmanship,Q995616
 hothouse,Q1562088
 longevity,Q1066907
 teendom,-1
+realshe,-1
 simone,Q398988
 can,Q1174923
 sprinkling,Q7581294
@@ -5599,7 +5598,6 @@ walker,Q223941
 amiability,-1
 personifie,-1
 hayseed,Q16784415
-convence,-1
 gelo,Q468608
 mild,Q1934511
 untidy,Q92867044
@@ -5796,7 +5794,7 @@ homework,Q753877
 revisionist,Q1248702
 doggedness,-1
 practitioner,Q7237369
-ttner,-1
+buttner,Q23045915
 pearce,Q409551
 nuttgen,-1
 copenhagen,Q1748
@@ -5820,7 +5818,6 @@ weaver,Q141535
 inject,Q226329
 melrose,Q347296
 south,Q667
-var,Q225734
 categorisation,Q912550
 fascinate,Q5436650
 horrifie,-1
@@ -5838,6 +5835,7 @@ composer,Q36834
 violinist,Q13452551
 beaut,Q7242
 probe,Q123722
+trimming,Q341782
 backmasking,Q1062629
 courting,Q376596
 ilk,Q1096391
@@ -5857,8 +5855,7 @@ camareras,-1
 danese,Q57951310
 italiana,Q11286699
 profesore,-1
-incoloro,-1
-quido,Q7271821
+vital,Q1320884
 eudora,Q352294
 welty,Q21510021
 collie,Q1196071
@@ -5866,7 +5863,6 @@ husky,Q3244349
 classification,Q1744625
 moodiness,-1
 hush,Q526675
-cafe,Q30022
 roadside,Q7339666
 nut,Q1265417
 closeness,Q5135361
@@ -5875,7 +5871,6 @@ unreality,Q1199997
 nazism,Q7310
 epilogue,Q1771692
 swill,Q17048144
-vai,Q368479
 parlor,Q10550521
 swashbuckling,Q6194437
 royal,Q240845
@@ -5941,7 +5936,6 @@ relation,Q230259
 stump,Q1902383
 wrenching,-1
 combatant,Q1414937
-anim,Q4764705
 idiom,Q184511
 picpus,Q1205128
 shudder,Q28122151
@@ -5956,7 +5950,6 @@ recapitulation,Q2349179
 tashlin,Q48981692
 colonic,Q1110546
 diciness,-1
-outr,-1
 appraisal,Q4781689
 poignance,-1
 helluva,Q28197077
@@ -6013,6 +6006,7 @@ perkiness,-1
 slowness,Q3711325
 cadence,Q14088448
 shortage,Q1337691
+naess,Q56244407
 petter,Q2081224
 womanhood,Q467
 barrier,Q406977
@@ -6225,7 +6219,6 @@ pixar,Q127552
 dustbin,Q216530
 warlord,Q220098
 colosal,-1
-digno,-1
 gate,Q53060
 disquieting,-1
 graphic,Q1027879
@@ -6359,6 +6352,8 @@ carion,Q202994
 hum,Q295814
 monotone,Q234936
 amistad,Q355129
+compasion,-1
+comprension,-1
 persistence,Q185499
 replete,Q1627122
 think,Q9420
@@ -6408,7 +6403,6 @@ slob,Q7541122
 our,Q356553
 firebrand,Q3072828
 elaborateness,-1
-elan,Q294353
 tomcat,Q234010
 hobby,Q47728
 jelinek,Q48337126
@@ -6425,9 +6419,10 @@ bugsy,Q241085
 caterer,Q777754
 stir,Q16883855
 corresponde,-1
-inconformidad,-1
+sensacion,-1
 mine,Q256955
 expulsion,Q27831654
+e,Q9907
 showing,-1
 shamble,-1
 anderson,Q491431
@@ -6489,7 +6484,6 @@ inquisition,Q43173
 haphazard,Q16784299
 scouse,Q1804441
 acontecimento,-1
-explicados,-1
 trama,Q529236
 nettelbeck,Q65072802
 knowingness,-1
@@ -6585,10 +6579,12 @@ shallow,Q18710401
 bait,Q402308
 omission,Q7090216
 climb,Q5133663
+retrospective,Q1399118
 snack,Q749316
 bloodsucker,Q939099
 dreaminess,-1
 laurel,Q366554
+presque,-1
 jarring,Q843389
 overtone,Q261967
 disquisition,-1
@@ -6636,7 +6632,7 @@ recruitment,Q899277
 sellout,Q3309433
 ballerina,Q805221
 hippopotamus,Q34505
-hmmm,Q2922301
+hmmmmight,-1
 sharpener,Q7490393
 lemon,Q500
 knockoff,Q1191988
@@ -6696,10 +6692,9 @@ psychiatrist,Q211346
 mpaa,Q676222
 uproar,Q16872574
 redeeming,Q125331
-aquele,-1
 dia,Q226771
 este,Q416581
-tamb,-1
+tambem,-1
 lapdance,Q3826989
 naturalness,Q43389689
 pass,Q420230
@@ -6805,6 +6800,7 @@ schedule,Q7271585
 inconsequentiality,-1
 porcelain,Q130693
 sidewalk,Q177749
+tier,Q344230
 achieve,Q4673667
 malnutrition,Q12167
 fistfight,Q32112
@@ -6824,7 +6820,6 @@ racy,Q15948096
 obscenity,Q31110
 rag,Q5456966
 latter,-1
-luis,Q2598693
 twinkly,-1
 east,Q684
 humiliation,Q1136859
@@ -6899,7 +6894,7 @@ nowheresville,Q3545101
 tuneless,-1
 dubbing,Q949630
 meyer,Q225858
-lange,Q1804908
+pureed,Q636056
 wankery,-1
 globetrotter,Q1364669
 playoff,Q868291

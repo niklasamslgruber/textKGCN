@@ -249,17 +249,6 @@ def analyze_results_dict():
     print(Counter(all))
 
 
-def strip_accents(text):
-    accented_string = u'Málaga'
-    # accented_string is of type 'unicode'
-    import unidecode
-    unaccented_string = unidecode.unidecode(accented_string)
-    # unaccented_string contains 'Malaga'and is of type 'str'
-    
-
-s = strip_accents('àéêöhello')
-
-
 if __name__ == '__main__':
     # for dataset in ["r52", "r8", "mr", "ohsumed"]:
     #     perform_all(dataset)

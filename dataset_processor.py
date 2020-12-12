@@ -52,8 +52,8 @@ def load_ohsumed():
 
 
 def load_mr():
-    path = io.get_root_path() + "/data/mr.txt"
-    text_file = io.get_root_path() + "/data/mr/text_all.txt"
+    path = io.get_root_path() + "/mr_dataset/mr.txt"
+    text_file = io.get_root_path() + "/mr_dataset/mr/text_all.txt"
     files = io.read_txt(path)
     labels = []
     sents = []
@@ -67,12 +67,19 @@ def load_mr():
         cats = x.split("\t")
 
         sentences = all_sents[index].replace("\n", " ").replace("\t", " ")
-
+        sentences = strip_accents(sentences)
         labels.append("\t".join([str(index), cats[1], cats[2]]))
         sents.append(sentences)
 
     file.save_labels(labels, "mr")
     file.save_sentences(sents, "mr")
+
+
+def strip_accents(text):
+    import unidecode
+    unaccented_string = unidecode.unidecode(text)
+    return unaccented_string
+
 
 def load_r52():
     path = io.get_root_path() + "/data/R52.txt"
@@ -108,23 +115,12 @@ def load_r52():
     f.close()
 
     all_test = [x.split(" ", maxsplit=1)[1] for x in all_test]
-    print(all_test)
-
-
 
     all_docs = all_train + all_test
-
-
-
-
     file.save_labels(all_labels, "r52")
     file.save_sentences(all_docs, "r52")
 
 
-
-
-
-
 if __name__ == '__main__':
-    load_r52()
+    load_mr()
 

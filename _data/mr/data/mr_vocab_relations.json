@@ -22995,81 +22995,6 @@
         "aliases": [],
         "relations": {}
     },
-    "P2358": {
-        "searchword": "P2358",
-        "id": "P2358",
-        "title": "Property:P2358",
-        "wikiId": "P2358",
-        "labels": "Roman praenomen",
-        "descriptions": "standard part of the name of a Roman, link to items for specific Roman praenomen only.",
-        "aliases": [
-            "praenomen"
-        ],
-        "relations": {}
-    },
-    "P2359": {
-        "searchword": "P2359",
-        "id": "P2359",
-        "title": "Property:P2359",
-        "wikiId": "P2359",
-        "labels": "Roman nomen gentilicium",
-        "descriptions": "standard part of the name of a Roman, link to items about the Roman gens only",
-        "aliases": [
-            "nomen gentilicium"
-        ],
-        "relations": {}
-    },
-    "P5025": {
-        "searchword": "P5025",
-        "id": "P5025",
-        "title": "Property:P5025",
-        "wikiId": "P5025",
-        "labels": "gens",
-        "descriptions": "a group of families from Ancient Rome who shared the same nomen",
-        "aliases": [],
-        "relations": {}
-    },
-    "P3716": {
-        "searchword": "P3716",
-        "id": "P3716",
-        "title": "Property:P3716",
-        "wikiId": "P3716",
-        "labels": "social classification",
-        "descriptions": "social class as recognized in traditional or state law",
-        "aliases": [
-            "social class",
-            "social status"
-        ],
-        "relations": {}
-    },
-    "P6060": {
-        "searchword": "P6060",
-        "id": "P6060",
-        "title": "Property:P6060",
-        "wikiId": "P6060",
-        "labels": "MoEML ID",
-        "descriptions": "ID for a place, person, organisation, or work at the Map of Early Modern London project of the University of Victoria, Canada",
-        "aliases": [
-            "Map of Early Modern London ID"
-        ],
-        "relations": {}
-    },
-    "P97": {
-        "searchword": "P97",
-        "id": "P97",
-        "title": "Property:P97",
-        "wikiId": "P97",
-        "labels": "noble title",
-        "descriptions": "titles held by the person",
-        "aliases": [
-            "peerage",
-            "title (hereditary)",
-            "hereditary title",
-            "royal title",
-            "royal and noble ranks"
-        ],
-        "relations": {}
-    },
     "P3459": {
         "searchword": "P3459",
         "id": "P3459",
@@ -23411,6 +23336,18 @@
         "descriptions": "ID of a developer at MobyGames",
         "aliases": [
             "mobygames.com developer ID"
+        ],
+        "relations": {}
+    },
+    "P6060": {
+        "searchword": "P6060",
+        "id": "P6060",
+        "title": "Property:P6060",
+        "wikiId": "P6060",
+        "labels": "MoEML ID",
+        "descriptions": "ID for a place, person, organisation, or work at the Map of Early Modern London project of the University of Victoria, Canada",
+        "aliases": [
+            "Map of Early Modern London ID"
         ],
         "relations": {}
     },
