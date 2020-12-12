@@ -10,4 +10,4 @@
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python python analyze_qualitatively.py
+python analyze_qualitatively.py
