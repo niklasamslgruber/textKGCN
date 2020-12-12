@@ -1,7 +1,8 @@
 from collections import Counter
+from os.path import exists
 from tqdm import tqdm
 from analyze_results import get_latex_code
-from helper import file_utils as file
+from helper import file_utils as file, io_utils as io
 import pandas as pd
 
 
@@ -111,9 +112,15 @@ def get_relation_statistics(id1, id2, readable_triples, detailed_triples, datase
 
 
 def analyze_all(n, edge_type, dataset):
-    metrics = file.get_document_triples_metrics(dataset)
-    subset = metrics.nlargest(500, edge_type)  # Include all with sme count with `keep='all'`
-    largest = subset.sort_values(by=[edge_type], ascending=False)
+    # metrics = file.get_document_triples_metrics(dataset)
+    # subset = metrics.nlargest(1000, edge_type)  # Include all with sme count with `keep='all'`
+    # largest = subset.sort_values(by=[edge_type], ascending=False)
+
+    if not exists(io.get_ordered_document_triples_metrics_path(edge_type, dataset)):
+        save_ordered_file(dataset, edge_type)
+        print("Ordered file created")
+
+    largest = file.get_ordered_document_triples_metrics(edge_type, dataset)
 
     true_dict = {}
     false_dict = {}
@@ -126,6 +133,7 @@ def analyze_all(n, edge_type, dataset):
         id2 = int(row["doc2"])
 
         is_equal, stats = get_detailed_relations(id1=id1, id2=id2, dataset=dataset)
+
         if is_equal and true_counter < n:
             true_dict = sum_counters(true_dict, stats)
             equality.append(is_equal)
@@ -140,6 +148,7 @@ def analyze_all(n, edge_type, dataset):
             break
         else:
             continue
+
         all_stats.append([is_equal, stats])
 
     assert true_counter == n and false_counter == n, f"True:{true_counter}, False: {false_counter}"
@@ -249,17 +258,17 @@ def analyze_results_dict():
     print(Counter(all))
 
 
+def save_ordered_file(dataset, edge_type):
+    metrics = file.get_document_triples_metrics(dataset)
+    subset = metrics.nlargest(5000, edge_type)  # Include all with sme count with `keep='all'`
+    file.save_ordered_document_triples_metrics(subset, edge_type, dataset)
+
+
+
+
 if __name__ == '__main__':
-    # for dataset in ["r52", "r8", "mr", "ohsumed"]:
-    #     perform_all(dataset)
-    #
-    # analyze_results_dict()
+    # save_ordered_file("mr", "count")
+    for dataset in ["r52", "r8", "mr", "ohsumed"]:
+        perform_all(dataset)
 
-    test = file.get_sentences("mr")
-    print(len(test))
-    all = []
-    for x in test:
-        [all.append(y) for y in x]
-
-    print(len(all))
-    print(all[4000:4200])
+    analyze_results_dict()

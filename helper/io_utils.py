@@ -44,6 +44,10 @@ def get_latex_path(dataset=FLAGS.dataset):
     return path(join(get_root_path(), f'latex/{dataset}'))
 
 
+def get_ordered_path(dataset=FLAGS.dataset):
+    return path(join(get_root_path(), f'ordered/{dataset}'))
+
+
 # Specific directory paths
 def get_kg_base_path(dataset=FLAGS.dataset):
     return path(join(get_dataset_path(dataset), 'triples'))
@@ -83,6 +87,10 @@ def get_document_triples_path(dataset=FLAGS.dataset):
 
 def get_document_triples_metrics_path(dataset=FLAGS.dataset):
     return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics_{FLAGS.version}.pickle.bz2')
+
+
+def get_ordered_document_triples_metrics_path(edge_type, dataset=FLAGS.dataset):
+    return join(get_ordered_path(dataset), f'{dataset}_ordered_document_triples_{edge_type}_{FLAGS.version}.csv')
 
 
 # Mappings

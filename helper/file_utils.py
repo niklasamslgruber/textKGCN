@@ -212,6 +212,17 @@ def get_document_triples_metrics(dataset=FLAGS.dataset):
     return io.read_pickle(path)
 
 
+def save_ordered_document_triples_metrics(data, edge_type, dataset=FLAGS.dataset):
+    path = io.get_ordered_document_triples_metrics_path(edge_type, dataset)
+    io.write_csv(path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki"])
+
+
+def get_ordered_document_triples_metrics(edge_type, dataset=FLAGS.dataset):
+    path = io.get_ordered_document_triples_metrics_path(edge_type, dataset)
+    exist(path, "Ordered document triples metrics do not exist yet.")
+    return io.read_csv(path, sep=",")
+
+
 def save_document_triples_metrics(data, dataset=FLAGS.dataset):
     path = io.get_document_triples_metrics_path(dataset)
     io.write_pickle(path, data)
