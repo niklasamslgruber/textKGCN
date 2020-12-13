@@ -63,8 +63,11 @@ def generate_train_scripts(n=1):
             for r in method:
                 name = f"t{t}_{r}_{dataset}"
                 arguments = f"--threshold {t} --dataset {dataset} --method {r}"
-
-                header = get_header(name, random.choice(partitions))
+                if "ohsumed" in dataset or "20ng" in dataset:
+                    partition = random.choice(partitions)
+                else:
+                    partition = "All"
+                header = get_header(name, partition)
                 py_call = f"python main.py --show_eval --plot {arguments}"
                 code = header + multiply(n, py_call)
 

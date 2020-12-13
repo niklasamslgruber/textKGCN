@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t1_idf_norm_mr.%j.out
-#SBATCH --partition=Gobi
+#SBATCH --partition=All
 
 source ~/miniconda3/bin/activate thesis
 
