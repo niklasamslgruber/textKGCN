@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t2_idf_mr.%j.out
-#SBATCH --partition=Sibirien
+#SBATCH --partition=Gobi
 
 source ~/miniconda3/bin/activate thesis
 

@@ -36,7 +36,7 @@ def generate_train_scripts(n=1):
     folder_path = "scripts/train"
     clear(folder_path)
 
-    method = ["count", "idf"]
+    method = ["count", "idf", "idf_wiki"]
     exec_code = []
     specific_code = []
     partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]

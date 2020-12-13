@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t8_idf_r8.%j.out
-#SBATCH --partition=Gobi
+#SBATCH --partition=Antarktis
 
 source ~/miniconda3/bin/activate thesis
 

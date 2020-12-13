@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t19_idf_ohsumed.%j.out
-#SBATCH --partition=Kalahari
+#SBATCH --partition=Antarktis
 
 source ~/miniconda3/bin/activate thesis
 
