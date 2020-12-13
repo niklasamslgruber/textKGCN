@@ -21,7 +21,7 @@ parser.add_argument('--word_window_size', default=word_window_size, type=int, he
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
 # doc2doc edges weight
-available_methods = ["count", "idf", "idf_wiki"]
+available_methods = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
 parser.add_argument('--method', default=available_methods[0], type=str, help=f"select doc2doc edge weight method ({', '.join(available_methods)})", metavar='')
 
 # relation threshold
@@ -40,9 +40,11 @@ available_datasets = ["r8", "r8_small", "20ng", "mr", "ohsumed", "r52"]
 parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
 
 # version
-# unfiltered: All doc2doc edges without any relations filtered out (not supported for 20ng)
-
-versions = ["unfiltered", "manual", "no_populars"]
+# - unfiltered: All doc2doc edges without any relations filtered out (not supported for 20ng)
+# - manual: Manual filtering
+# - no_populars: without popular relations
+# - filtered: without more popular relations
+versions = ["unfiltered", "manual", "no_populars", "filtered"]
 parser.add_argument('--version', default=versions[2], type=str, help=f"doc2doc edge version", metavar='')
 
 

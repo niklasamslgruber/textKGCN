@@ -2,7 +2,8 @@ import shutil
 import os
 import random
 
-available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
+# available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
+available_datasets = ["mr"]
 
 # TODO: Update configuration thresholds
 configuration = {
@@ -36,7 +37,8 @@ def generate_train_scripts(n=1):
     folder_path = "scripts/train"
     clear(folder_path)
 
-    method = ["count", "idf", "idf_wiki"]
+    # method = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
+    method = ["idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
     exec_code = []
     specific_code = []
     partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]
