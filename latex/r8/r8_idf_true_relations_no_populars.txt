@@ -9,9 +9,15 @@
    relation & count \\
 
    \midrule
-   P530 & 20 \\
+   P530 & 36 \\
+   P4934 & 6 \\
+   P186 & 4 \\
    P47 & 2 \\
    P2670 & 2 \\
+   P1382 & 2 \\
+   P156 & 1 \\
+   P155 & 1 \\
+   P2868 & 1 \\
 
    \bottomrule
    \end{tabular}

@@ -9,10 +9,10 @@
    relation & count \\
 
    \midrule
-   P2175 & 67 \\
-   P2176 & 67 \\
+   P2175 & 127 \\
+   P2176 & 127 \\
    P2789 & 8 \\
-   P703 & 3 \\
+   P703 & 6 \\
 
    \bottomrule
    \end{tabular}
