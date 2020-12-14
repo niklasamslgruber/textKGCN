@@ -227,7 +227,8 @@ def save_document_triples_metrics(data, dataset=FLAGS.dataset):
     path = io.get_document_triples_metrics_path(dataset)
     io.write_pickle(path, data)
     csv_path = path.replace(".pickle.bz2", ".csv")
-    io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki"])
+
+    io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"])
 
 
 # Evaluation logger

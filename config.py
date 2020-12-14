@@ -45,7 +45,7 @@ parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f
 # - no_populars: without popular relations
 # - filtered: without more popular relations
 versions = ["unfiltered", "manual", "no_populars", "filtered"]
-parser.add_argument('--version', default=versions[2], type=str, help=f"doc2doc edge version", metavar='')
+parser.add_argument('--version', default=versions[3], type=str, help=f"doc2doc edge version", metavar='')
 
 
 # Set FLAGS from command line

@@ -57,7 +57,7 @@ def plot_metric(dataset, metric="accuracy"):
     base_std = base.std()
 
     results = results[results["wiki_enabled"] == True]
-    if "r8" in dataset or "r52" in dataset:
+    if ("unfiltered" in FLAGS.version or "manual") in FLAGS.version and ("r8" in dataset or "r52" in dataset):
         order = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
         g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=False)
     else:
@@ -89,13 +89,6 @@ def plot_edge_density(dataset):
     # g.fig.suptitle(f"distribution of edge type weights in {dataset}", fontsize=16)
 
     g.savefig(f"{io.get_basic_plots_path(dataset)}/{dataset}_density_{FLAGS.version}.png")
-
-
-def plot_all(metric="accuracy", density=False):
-    for dataset in available_datasets:
-        plot_metric(dataset, metric)
-        if density:
-            plot_edge_density(dataset)
 
 
 def get_results_statistics(dataset, metric="accuracy"):
@@ -174,13 +167,18 @@ def write_latex_code(data, filename, dataset):
     file.close()
 
 
+def plot_all(metric="accuracy", density=False):
+    for dataset in available_datasets:
+        if "20ng" in dataset:
+            continue
+        plot_metric(dataset, metric)
+        if density:
+            plot_edge_density(dataset)
+
+
 if __name__ == '__main__':
-    # plot_all(density=False)
-    # plot_metric("r8", "accuracy")
-    plot_edge_density("r8")
-    plot_edge_density("r52")
-    plot_edge_density("mr")
+    plot_all(density=True)
 
 
     # get_results_statistics("r8")
-    plot_edge_numbers()
+    # plot_edge_numbers()

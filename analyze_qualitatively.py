@@ -116,9 +116,9 @@ def analyze_all(n, edge_type, dataset):
     # subset = metrics.nlargest(1000, edge_type)  # Include all with sme count with `keep='all'`
     # largest = subset.sort_values(by=[edge_type], ascending=False)
 
-    if not exists(io.get_ordered_document_triples_metrics_path(edge_type, dataset)):
-        save_ordered_file(dataset, edge_type)
-        print("Ordered file created")
+    # if not exists(io.get_ordered_document_triples_metrics_path(edge_type, dataset)):
+    save_ordered_file(dataset, edge_type)
+        # print("Ordered file created")
 
     largest = file.get_ordered_document_triples_metrics(edge_type, dataset)
 

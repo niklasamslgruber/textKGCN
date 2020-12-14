@@ -255,8 +255,114 @@ def apply_idf():
 
     dataframe = pd.DataFrame(data)
     dataframe.columns = ["doc1", "doc2", "count", "idf", "idf_wiki"]
-    file.save_document_triples_metrics(dataframe)
+    normalize(dataframe)
 
+
+def normalize(data):
+    base_edges = file.get_base_edges()
+    pmi_factor = base_edges[base_edges["edge_type"] == "pmi"]["weight"].max()
+    idf_factor = base_edges[base_edges["edge_type"] == "idf"]["weight"].max()
+
+    idf_max = data["idf"].max()
+    idf_min = data["idf"].min()
+
+    idf_wiki_max = data["idf_wiki"].max()
+    idf_wiki_min = data["idf_wiki"].min()
+
+    count_max = data["count"].max()
+    count_min = data["count"].min()
+
+    all = []
+    for index, row in data.iterrows():
+        doc1 = row["doc1"]
+        doc2 = row["doc2"]
+        count = row["count"]
+        idf_score = row["idf"]
+        idf_wiki_score = row["idf_wiki"]
+        count_norm = apply_normalization(count, count_min, count_max, idf_factor)
+        count_norm_pmi = apply_normalization(count, count_min, count_max, pmi_factor)
+        idf_norm = apply_normalization(idf_score, idf_min, idf_max, idf_factor)
+        idf_wiki_norm = apply_normalization(idf_wiki_score, idf_wiki_min, idf_wiki_max, idf_factor)
+        idf_norm_pmi = apply_normalization(idf_score, idf_min, idf_max, pmi_factor)
+        idf_wiki_norm_pmi = apply_normalization(idf_wiki_score, idf_wiki_min, idf_wiki_max, pmi_factor)
+
+        result = [doc1, doc2, count, idf_score, idf_wiki_score, count_norm, count_norm_pmi, idf_norm, idf_wiki_norm, idf_norm_pmi, idf_wiki_norm_pmi]
+        all.append(result)
+
+    df = pd.DataFrame(all)
+    df.columns = ["doc1", "doc2", "count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
+    file.save_document_triples_metrics(df)
+
+
+def apply_normalization(value, min, max, factor):
+    return ((value - min) / (max - min)) * factor
+
+
+# windows_relation = []
+# windows_document = []
+#
+#
+# def windows_relation_base(cond_index=-1, window_size=15):
+#     global windows_relation
+#     triples = file.get_document_triples("mr")
+#     tmp = []
+#     for index, row in triples.iterrows():
+#         if index > 20:
+#             break
+#         if index <= cond_index:
+#             continue
+#         relations = row["detail"].split("+")
+#         doc_length = len(relations)
+#         if doc_length <= window_size:
+#             [tmp.append(r) for r in relations]
+#         else:
+#             assert False
+#
+#         if len(tmp) >= window_size:
+#             windows_relation.append(tmp)
+#             tmp = []
+#             windows_relation_base(cond_index+1)
+#
+#
+# def windows_document_base(cond_index=-1, window_size=15):
+#     global windows_document
+#     triples = file.get_document_triples("mr")
+#     tmp = []
+#     counter = 0
+#     for index, row in triples.iterrows():
+#         if index > 20:
+#             break
+#         if index <= cond_index:
+#             continue
+#         relations = row["detail"].split("+")
+#
+#         if counter < window_size:
+#             [tmp.append(r) for r in relations]
+#
+#         elif counter == window_size:
+#             windows_document.append(tmp)
+#             windows_document_base(cond_index+1)
+#             break
+#
+#         elif index == triples.shape[0] - window_size
+#
+#         counter += 1
+#
+# def generate_pmi(windows):
+#     number_sliding_windows = len(windows)  #W
+#     counter = {}
+#     for window in windows:
+#         for relation in window:
+#             for x in windows:
+#                 contained = relation in x
+#                 if contained:
+#                     if relation in counter:
+#                         counter[relation] += 1
+#                     else:
+#                         counter[relation] = 1
+#     print(counter)
+#
+#
 
 if __name__ == '__main__':
     create_doc2doc_edges()
