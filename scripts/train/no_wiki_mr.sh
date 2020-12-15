@@ -10,5 +10,8 @@
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --no_wiki --dataset mr --plot &&
-python main.py --no_wiki --dataset mr --plot
+python main.py --no_wiki --dataset mr &&
+python main.py --no_wiki --dataset mr &&
+python main.py --no_wiki --dataset mr &&
+python main.py --no_wiki --dataset mr &&
+python main.py --no_wiki --dataset mr

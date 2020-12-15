@@ -37,10 +37,9 @@ def generate_train_scripts(n=1):
     folder_path = "scripts/train"
     clear(folder_path)
 
-    # method = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
-    method = ["idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
+    method = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
+    # method = ["idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
     exec_code = []
-    specific_code = []
     partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]
 
     for index, dataset in enumerate(available_datasets):
@@ -52,7 +51,7 @@ def generate_train_scripts(n=1):
         else:
             partition = "All"
         header = get_header(name, partition)
-        py_call = f"python main.py --no_wiki --dataset {dataset} --plot"
+        py_call = f"python main.py --no_wiki --dataset {dataset}"
         code = header + multiply(n, py_call)
 
         write_script(code, f"{folder_path}/{name}.sh")
@@ -60,22 +59,23 @@ def generate_train_scripts(n=1):
         dataset_exec.append(f"sbatch {name}.sh")
 
         for t in threshold:
-            for r in method:
-                name = f"t{t}_{r}_{dataset}"
-                arguments = f"--threshold {t} --dataset {dataset} --method {r}"
-                if "ohsumed" in dataset or "20ng" in dataset:
-                    partition = random.choice(partitions)
-                else:
-                    partition = "All"
-                header = get_header(name, partition)
-                py_call = f"python main.py --show_eval --plot {arguments}"
-                code = header + multiply(n, py_call)
+            all_types = []
+            if "ohsumed" in dataset or "20ng" in dataset:
+                partition = random.choice(partitions)
+            else:
+                partition = "All"
+            header = get_header(name, partition)
 
-                write_script(code, f"{folder_path}/{name}.sh")
-                exec_code.append(f"sbatch {name}.sh")
-                dataset_exec.append(f"sbatch {name}.sh")
-                if r == "idf_wiki":
-                    specific_code.append(f"sbatch {name}.sh")
+            for r in method:
+                name = f"t{t}_{dataset}"
+                arguments = f"--threshold {t} --dataset {dataset} --method {r}"
+                py_call = f"python main.py {arguments}"
+                all_types.append(py_call)
+
+            code = header + concat_code(all_types)
+            write_script(code, f"{folder_path}/{name}.sh")
+            exec_code.append(f"sbatch {name}.sh")
+            dataset_exec.append(f"sbatch {name}.sh")
 
         dataset_script = " && sleep 1 && ".join(dataset_exec)
         if len(dataset_exec) > 25:
@@ -85,10 +85,6 @@ def generate_train_scripts(n=1):
 
     script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/train_all.sh")
-
-    specific_script = " && sleep 1 && ".join(specific_code)
-    write_script(specific_script, f"{folder_path}/train_all_idf_wiki.sh")
-
 
 def get_header(name, partition="All"):
     code = "#!/bin/bash" \
@@ -126,7 +122,10 @@ def multiply(n, code):
     stmt += code
     return stmt
 
+def concat_code(code_array):
+    return " &&\n".join(code_array)
+
 
 if __name__ == '__main__':
     generate_prep_scripts()
-    generate_train_scripts(2)
+    generate_train_scripts(5)

@@ -5,10 +5,13 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/no_wiki_ohsumed.%j.out
-#SBATCH --partition=Gobi
+#SBATCH --partition=Antarktis
 
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --no_wiki --dataset ohsumed --plot &&
-python main.py --no_wiki --dataset ohsumed --plot
+python main.py --no_wiki --dataset ohsumed &&
+python main.py --no_wiki --dataset ohsumed &&
+python main.py --no_wiki --dataset ohsumed &&
+python main.py --no_wiki --dataset ohsumed &&
+python main.py --no_wiki --dataset ohsumed
