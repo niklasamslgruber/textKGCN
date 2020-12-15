@@ -1,8 +1,6 @@
 from collections import defaultdict
 from math import log
 from os.path import exists
-
-import pandas as pd
 import scipy.sparse as sp
 from tqdm import tqdm
 from config import FLAGS
@@ -160,6 +158,7 @@ def save_edges(base_edges):
     # if exists(io.get_base_edges_path()):
     #     print("Edge file already exists")
     #     return
+    file.save_original_edges(base_edges)
 
     metrics = file.get_document_triples_metrics()
     edge_types = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]

@@ -114,6 +114,10 @@ def get_base_edges_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_base_edges_{FLAGS.version}.pickle.bz2')
 
 
+def get_original_edges_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(dataset), f'{dataset}_original_edges.pickle.bz2')
+
+
 def get_vocab_entities_path(dataset=FLAGS.dataset):
     return join(get_kg_data_path(dataset), f'{dataset}_vocab_entities.json')
 

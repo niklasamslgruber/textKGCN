@@ -138,6 +138,14 @@ def save_base_edges(data, dataset=FLAGS.dataset):
     io.write_pickle(io.get_base_edges_path(dataset), data)
 
 
+def get_original_edges(dataset=FLAGS.dataset):
+    return io.read_pickle(io.get_original_edges_path(dataset))
+
+
+def save_original_edges(data, dataset=FLAGS.dataset):
+    io.write_pickle(io.get_original_edges_path(dataset), data)
+
+
 def get_vocab_entities(dataset=FLAGS.dataset):
     return io.read_json(io.get_vocab_entities_path(dataset))
 

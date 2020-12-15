@@ -259,7 +259,7 @@ def apply_idf():
 
 
 def normalize(data):
-    base_edges = file.get_base_edges()
+    base_edges = file.get_original_edges()
     pmi_factor = base_edges[base_edges["edge_type"] == "pmi"]["weight"].max()
     idf_factor = base_edges[base_edges["edge_type"] == "idf"]["weight"].max()
 
