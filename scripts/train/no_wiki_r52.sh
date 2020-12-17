@@ -10,8 +10,8 @@
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --no_wiki --dataset r52 &&
-python main.py --no_wiki --dataset r52 &&
-python main.py --no_wiki --dataset r52 &&
-python main.py --no_wiki --dataset r52 &&
-python main.py --no_wiki --dataset r52
+python main.py --no_wiki --plot --dataset r52 &&
+python main.py --no_wiki --plot --dataset r52 &&
+python main.py --no_wiki --plot --dataset r52 &&
+python main.py --no_wiki --plot --dataset r52 &&
+python main.py --no_wiki --plot --dataset r52

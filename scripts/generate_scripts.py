@@ -51,7 +51,7 @@ def generate_train_scripts(n=1):
         else:
             partition = "All"
         header = get_header(name, partition)
-        py_call = f"python main.py --no_wiki --dataset {dataset}"
+        py_call = f"python main.py --no_wiki --plot --dataset {dataset}"
         code = header + multiply(n, py_call)
 
         write_script(code, f"{folder_path}/{name}.sh")
@@ -68,7 +68,7 @@ def generate_train_scripts(n=1):
 
             for r in method:
                 name = f"t{t}_{dataset}"
-                arguments = f"--threshold {t} --dataset {dataset} --method {r}"
+                arguments = f"--threshold {t} --dataset {dataset} --plot --method {r}"
                 py_call = f"python main.py {arguments}"
                 all_types.append(py_call)
 
