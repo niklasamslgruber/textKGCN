@@ -219,9 +219,10 @@ def generate_idf_scores():
             row.append(i)
             col.append(rel)
             idf = log(1.0 * num_docs / relation_doc_freq[rel])
+
             # TODO: Query current number of entities on WikiData
             # Source: https://www.wikidata.org/wiki/Wikidata:Statistics on 30.10.2020 at 11:41
-            idf_wiki = log(1.0 * 90450399 / relation_doc_freq[rel])
+            idf_wiki = log(1.0 * 90450399 / relation_doc_freq_wiki[rel])
 
             weight.append(freq * idf)
             weight_wiki.append(freq * idf_wiki)
