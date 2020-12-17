@@ -79,7 +79,9 @@ def plot_edge_density(dataset):
     edges = file.get_base_edges(dataset)
 
     # Plot histogram for each edge type
-    g = sns.FacetGrid(data=edges, col="edge_type", sharey=False, sharex=False)
+    order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",  "idf_wiki_norm", "idf_wiki_norm_pmi"]
+
+    g = sns.FacetGrid(data=edges, col="edge_type", sharey=False, sharex=False, col_wrap=3, col_order=order)
     g.map_dataframe(sns.histplot, x="weight", color="black", linewidth=0, discrete=True)
     g.set_axis_labels("edge weight", "count")
     g.set_titles(col_template="{col_name}", row_template="{row_name}")

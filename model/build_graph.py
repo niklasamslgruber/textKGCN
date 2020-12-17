@@ -131,7 +131,10 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
-        document_triples = file.get_document_triples_metrics()
+        if FLAGS.drop_out:
+            document_triples = drop_out(10)
+        else:
+            document_triples = file.get_document_triples_metrics()
         old_size = document_triples.shape[0]
 
         # Filter all relations with number of relations below threshold
@@ -210,3 +213,12 @@ def build_word_doc_edges(doc_list):
         word_doc_freq[word] = len(doc_list)
 
     return words_in_docs, word_doc_freq
+
+
+def drop_out(ratio=10):
+    document_triples = file.get_document_triples_metrics()
+    old_size = document_triples.shape[0]
+    fraction = document_triples.sample(frac=1-ratio/100)
+
+    assert int(round(old_size * (1-ratio/100), 0)) == fraction.shape[0]
+    return fraction

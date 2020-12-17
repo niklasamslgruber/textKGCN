@@ -19,6 +19,8 @@ $ python main.py
 * `--threshold`: Filter threshold for doc2doc edges (default: 2)
 * `--no_wiki`: Disable `doc2doc` edges to run the base `textGCN` model
 * `--debug`: Activate debug mode (changes number of epochs)
+* `--version`: Specify the version of filtered relations
+* `--drop_out`: Perform random drop-out on the doc2doc edges
 
 Other configuration options can be set in `config.py`.
 

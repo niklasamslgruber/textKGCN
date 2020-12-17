@@ -48,6 +48,10 @@ versions = ["unfiltered", "manual", "no_populars", "filtered"]
 parser.add_argument('--version', default=versions[3], type=str, help=f"doc2doc edge version", metavar='')
 
 
+# drop-out
+parser.add_argument('--drop_out', default=False, action='store_true', help="perform random drop out")
+
+
 # Set FLAGS from command line
 FLAGS = parser.parse_args()
 assert FLAGS.dataset in available_datasets, "Dataset not available"
