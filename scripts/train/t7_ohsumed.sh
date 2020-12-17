@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/no_wiki_ohsumed.%j.out
-#SBATCH --partition=Sibirien
+#SBATCH --partition=Antarktis
 
 source ~/miniconda3/bin/activate thesis
 

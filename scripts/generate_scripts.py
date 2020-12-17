@@ -2,8 +2,8 @@ import shutil
 import os
 import random
 
-available_datasets = ["r8", "20ng", "mr", "ohsumed", "r52"]
-# available_datasets = ["mr"]
+# TODO: Add 20ng
+available_datasets = ["r8", "mr", "ohsumed", "r52"]
 
 # TODO: Update configuration thresholds
 configuration = {

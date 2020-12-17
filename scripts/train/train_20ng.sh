@@ -1,1 +1,0 @@
-sbatch no_wiki_20ng.sh && sleep 1 && sbatch t10_20ng.sh && sleep 1 && sbatch t20_20ng.sh && sleep 1 && sbatch t30_20ng.sh && sleep 1 && sbatch t40_20ng.sh && sleep 1 && sbatch t50_20ng.sh && sleep 1 && sbatch t60_20ng.sh
