@@ -57,7 +57,8 @@ def download_all_properties():
 
 
 def get_all_properties(threshold=1000):
-    download_all_properties()
+    # Last downloaded on 17.12.2020 at 12:20
+    # download_all_properties()
 
     relations_df = file.get_all_relations()
     initial_size = relations_df.shape[0]
