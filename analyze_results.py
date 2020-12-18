@@ -171,7 +171,7 @@ def write_latex_code(data, filename, dataset):
 
 def plot_all(metric="accuracy", density=False):
     for dataset in available_datasets:
-        if "20ng" in dataset or "ohsumed" in dataset or "r52" in dataset:
+        if "20ng" in dataset:
             continue
         plot_metric(dataset, metric)
         if density:

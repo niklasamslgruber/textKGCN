@@ -264,10 +264,7 @@ def save_ordered_file(dataset, edge_type):
     file.save_ordered_document_triples_metrics(subset, edge_type, dataset)
 
 
-
-
 if __name__ == '__main__':
-    # save_ordered_file("mr", "count")
     for dataset in ["r52", "r8", "mr", "ohsumed"]:
         perform_all(dataset)
 
