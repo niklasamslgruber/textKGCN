@@ -25,7 +25,7 @@ def get_number_of_edges():
     for dataset in ["r8", "mr", "r52", "ohsumed"]:
         number_of_edges = []
         document_triples = file.get_document_triples_metrics(dataset)
-        maximum = document_triples['count'].max()
+        maximum = int(document_triples['count'].max())
         for t in range(1, maximum + 1):
             num = document_triples[document_triples["count"] > t].shape[0]
             number_of_edges.append(num)
@@ -43,8 +43,9 @@ def plot_edge_numbers():
 
     edge_counts = pd.DataFrame(series_array, columns=["dataset", "count", "threshold"])
     fig, ax = plt.subplots(1, 1)
-    sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", markers=None)
-    ax.set_yscale('log')
+    sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", marker="o", dashes=False)
+    ax.set_yscale('symlog')
+    ax.set_xticks(range(25))
     fig.tight_layout()
     fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds_{FLAGS.version}.png")
 
@@ -173,14 +174,40 @@ def plot_all(metric="accuracy", density=False):
     for dataset in available_datasets:
         if "20ng" in dataset:
             continue
+        count_model_runs(dataset)
         plot_metric(dataset, metric)
         if density:
             plot_edge_density(dataset)
 
 
+def count_model_runs(dataset):
+    results = file.get_eval_logs(dataset)
+
+    count_dict = {}
+
+    for index, row in results.iterrows():
+        name = f"{row['wiki_enabled']}_{row['window_size']}_{row['raw_count']}_{row['threshold']}"
+        if name in count_dict:
+            count_dict[name] += 1
+        else:
+            count_dict[name] = 1
+
+    counts = []
+    for key in count_dict:
+        counts.append(count_dict[key])
+    print(counts)
+
+
+def get_number_of_entities(dataset):
+    entities = file.get_entity2id(dataset)
+    counter = 0
+    for index, row in entities.iterrows():
+        if not(row["wikiID"] == "-1"):
+            counter += 1
+
+    print(f"{dataset}: {counter}")
+
+
 if __name__ == '__main__':
     plot_all(density=True)
-
-
-    # get_results_statistics("r8")
-    # plot_edge_numbers()
+    plot_edge_numbers()
