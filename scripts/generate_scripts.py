@@ -3,7 +3,7 @@ import os
 import random
 
 # TODO: Add 20ng
-available_datasets = ["r8", "mr", "ohsumed", "r52"]
+available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
 
 # TODO: Update configuration thresholds
 configuration = {
