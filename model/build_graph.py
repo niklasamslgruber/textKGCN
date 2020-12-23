@@ -127,7 +127,7 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
         "weight": weight,
         "edge_type": edge_type
         })
-    save_edges(base_edges)
+    # save_edges(base_edges)
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
