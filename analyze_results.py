@@ -195,7 +195,6 @@ def count_model_runs(dataset):
     counts = []
     for key in count_dict:
         counts.append(count_dict[key])
-    print(counts)
 
 
 def get_number_of_entities(dataset):
