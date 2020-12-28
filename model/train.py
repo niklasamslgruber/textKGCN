@@ -43,8 +43,8 @@ def train(train_data, val_data, saver):
 
             eval_res_val["loss"] = val_loss
 
-            # if len(moving_avg.results) == 0 or moving_avg.best_result(eval_res_val[FLAGS.validation_metric]):
-            #    saver.save_trained_model(model, epoch + 1)
+            if len(moving_avg.results) == 0 or moving_avg.best_result(eval_res_val[FLAGS.validation_metric]):
+               saver.save_trained_model(model, epoch + 1)
 
             # Accuracy is used for the moving average
             moving_avg.add_to_moving_avg(eval_res_val[FLAGS.validation_metric])
