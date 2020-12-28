@@ -3,7 +3,7 @@ import os
 import random
 
 # TODO: Add 20ng
-available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
+available_datasets = ["r8", "mr", "ohsumed", "r52"]
 
 # TODO: Update configuration thresholds
 configuration = {
@@ -38,7 +38,6 @@ def generate_train_scripts(n=1):
     clear(folder_path)
 
     method = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
-    # method = ["idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
     exec_code = []
     partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]
 
@@ -53,10 +52,10 @@ def generate_train_scripts(n=1):
         header = get_header(name, partition)
         py_call = f"python main.py --no_wiki --plot --dataset {dataset}"
         code = header + multiply(n, py_call)
-
-        write_script(code, f"{folder_path}/{name}.sh")
-        exec_code.append(f"sbatch {name}.sh")
-        dataset_exec.append(f"sbatch {name}.sh")
+        if "ohsumed" in dataset:
+            write_script(code, f"{folder_path}/{name}.sh")
+            exec_code.append(f"sbatch {name}.sh")
+            dataset_exec.append(f"sbatch {name}.sh")
 
         for t in threshold:
             all_types = []

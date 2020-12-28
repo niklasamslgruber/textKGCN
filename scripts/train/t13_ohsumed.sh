@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t9_ohsumed.%j.out
-#SBATCH --partition=Antarktis
+#SBATCH --partition=Sibirien
 
 source ~/miniconda3/bin/activate thesis
 

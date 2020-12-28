@@ -1,1 +1,1 @@
-sbatch no_wiki_mr.sh && sleep 1 && sbatch t1_mr.sh && sleep 1 && sbatch t2_mr.sh && sleep 1 && sbatch t3_mr.sh && sleep 1 && sbatch t4_mr.sh && sleep 1 && sbatch t5_mr.sh
+sbatch t1_mr.sh && sleep 1 && sbatch t2_mr.sh && sleep 1 && sbatch t3_mr.sh && sleep 1 && sbatch t4_mr.sh && sleep 1 && sbatch t5_mr.sh
