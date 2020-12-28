@@ -196,6 +196,8 @@ def count_model_runs(dataset):
     for key in count_dict:
         counts.append(count_dict[key])
 
+    print(f"{dataset}: {counts}")
+
 
 def get_number_of_entities(dataset):
     entities = file.get_entity2id(dataset)
@@ -207,6 +209,22 @@ def get_number_of_entities(dataset):
     print(f"{dataset}: {counter}")
 
 
+def delete_biggest(dataset):
+    results_log = file.get_eval_logs(dataset)
+    baseline = results_log[results_log["wiki_enabled"] == False]
+    baseline_count = baseline.shape[0]
+    to_delete = baseline_count - 10
+    largest = baseline.nlargest(to_delete, columns="accuracy").index
+    results_log.drop(largest, inplace=True)
+
+    file.save_eval_logs(results_log, dataset)
+
+
 if __name__ == '__main__':
     plot_all(density=True)
     plot_edge_numbers()
+
+    for dataset in available_datasets:
+        if "20ng" in dataset:
+            continue
+        count_model_runs(dataset)
