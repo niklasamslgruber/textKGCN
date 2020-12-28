@@ -118,7 +118,6 @@ def analyze_all(n, edge_type, dataset):
 
     # if not exists(io.get_ordered_document_triples_metrics_path(edge_type, dataset)):
     save_ordered_file(dataset, edge_type)
-        # print("Ordered file created")
 
     largest = file.get_ordered_document_triples_metrics(edge_type, dataset)
 
