@@ -47,25 +47,25 @@ def generate_train_scripts(n=1):
         threshold = configuration[dataset]
         dataset_exec = []
         name = f"no_wiki_{dataset}"
-        if "ohsumed" in dataset or "20ng" in dataset:
-            partition = random.choice(partitions)
-        else:
-            partition = "All"
-        header = get_header(name, partition)
+        # if "ohsumed" in dataset or "20ng" in dataset:
+        #     partition = random.choice(partitions)
+        # else:
+        #     partition = "All"
+        header = get_header(name, random.choice(partitions))
         py_call = f"python main.py --no_wiki --plot --dataset {dataset}"
         code = header + multiply(n, py_call)
-        if "ohsumed" in dataset:
+        if "20ng" in dataset:
             write_script(code, f"{folder_path}/{name}.sh")
             exec_code.append(f"sbatch {name}.sh")
             dataset_exec.append(f"sbatch {name}.sh")
 
         for t in threshold:
             all_types = []
-            if "ohsumed" in dataset or "20ng" in dataset:
-                partition = random.choice(partitions)
-            else:
-                partition = "All"
-            header = get_header(name, partition)
+            # if "ohsumed" in dataset or "20ng" in dataset:
+            #     partition = random.choice(partitions)
+            # else:
+            #     partition = "All"
+            header = get_header(name, random.choice(partitions))
 
             for r in method:
                 name = f"t{t}_{dataset}"

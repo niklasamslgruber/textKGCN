@@ -1,1 +1,1 @@
-sbatch no_wiki_ohsumed.sh && sleep 1 && sbatch t7_ohsumed.sh && sleep 1 && sbatch t9_ohsumed.sh && sleep 1 && sbatch t13_ohsumed.sh && sleep 1 && sbatch t16_ohsumed.sh && sleep 1 && sbatch t19_ohsumed.sh && sleep 1 && sbatch t23_ohsumed.sh
+sbatch t7_ohsumed.sh && sleep 1 && sbatch t9_ohsumed.sh && sleep 1 && sbatch t13_ohsumed.sh && sleep 1 && sbatch t16_ohsumed.sh && sleep 1 && sbatch t19_ohsumed.sh && sleep 1 && sbatch t23_ohsumed.sh
