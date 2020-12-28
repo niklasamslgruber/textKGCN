@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=no_wiki_ohsumed
+#SBATCH --job-name=t7_ohsumed
 #SBATCH --comment='Train model'
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
-#SBATCH --output=out/no_wiki_ohsumed.%j.out
-#SBATCH --partition=Antarktis
+#SBATCH --output=out/t7_ohsumed.%j.out
+#SBATCH --partition=Kalahari
 
 source ~/miniconda3/bin/activate thesis
 

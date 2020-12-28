@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=t1_r8
+#SBATCH --job-name=t2_r8
 #SBATCH --comment='Train model'
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
-#SBATCH --output=out/t1_r8.%j.out
-#SBATCH --partition=Luna
+#SBATCH --output=out/t2_r8.%j.out
+#SBATCH --partition=Kalahari
 
 source ~/miniconda3/bin/activate thesis
 

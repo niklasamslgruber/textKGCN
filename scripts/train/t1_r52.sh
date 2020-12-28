@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=no_wiki_r52
+#SBATCH --job-name=t1_r52
 #SBATCH --comment='Train model'
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
-#SBATCH --output=out/no_wiki_r52.%j.out
+#SBATCH --output=out/t1_r52.%j.out
 #SBATCH --partition=Luna
 
 source ~/miniconda3/bin/activate thesis

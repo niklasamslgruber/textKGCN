@@ -65,10 +65,10 @@ def generate_train_scripts(n=1):
             #     partition = random.choice(partitions)
             # else:
             #     partition = "All"
-            header = get_header(name, random.choice(partitions))
 
             for r in method:
                 name = f"t{t}_{dataset}"
+                header = get_header(name, random.choice(partitions))
                 arguments = f"--threshold {t} --dataset {dataset} --plot --method {r}"
                 py_call = f"python main.py {arguments}"
                 all_types.append(py_call)

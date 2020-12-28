@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=t19_ohsumed
+#SBATCH --job-name=t23_ohsumed
 #SBATCH --comment='Train model'
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
-#SBATCH --output=out/t19_ohsumed.%j.out
-#SBATCH --partition=Luna
+#SBATCH --output=out/t23_ohsumed.%j.out
+#SBATCH --partition=Sibirien
 
 source ~/miniconda3/bin/activate thesis
 
