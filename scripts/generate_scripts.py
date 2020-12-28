@@ -3,7 +3,7 @@ import os
 import random
 
 # TODO: Add 20ng
-available_datasets = ["r8", "mr", "ohsumed", "r52"]
+available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
 
 # TODO: Update configuration thresholds
 configuration = {
@@ -42,6 +42,8 @@ def generate_train_scripts(n=1):
     partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]
 
     for index, dataset in enumerate(available_datasets):
+        if "20ng" in dataset:
+            continue
         threshold = configuration[dataset]
         dataset_exec = []
         name = f"no_wiki_{dataset}"
