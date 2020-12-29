@@ -3,9 +3,11 @@ import matplotlib.pyplot as plt
 from config import FLAGS
 from helper import file_utils as file, io_utils as io
 import pandas as pd
+from scipy import stats
 
 sns.set(style='darkgrid', color_codes=True)
 available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
+number_of_logs = 10
 
 
 def visualize_loss(loss_array, loss):
@@ -174,7 +176,8 @@ def plot_all(metric="accuracy", density=False):
     for dataset in available_datasets:
         if "20ng" in dataset:
             continue
-        count_model_runs(dataset)
+        count_dict = count_model_runs(dataset)
+        perform_ttest(dataset, count_dict)
         plot_metric(dataset, metric)
         if density:
             plot_edge_density(dataset)
@@ -186,7 +189,7 @@ def count_model_runs(dataset):
     count_dict = {}
 
     for index, row in results.iterrows():
-        name = f"{row['wiki_enabled']}_{row['window_size']}_{row['raw_count']}_{row['threshold']}"
+        name = f"{row['wiki_enabled']}:{row['window_size']}:{row['raw_count']}:{row['threshold']}"
         if name in count_dict:
             count_dict[name] += 1
         else:
@@ -197,6 +200,7 @@ def count_model_runs(dataset):
         counts.append(count_dict[key])
 
     print(f"{dataset}: {counts}")
+    return count_dict
 
 
 def get_number_of_entities(dataset):
@@ -213,18 +217,67 @@ def delete_biggest(dataset):
     results_log = file.get_eval_logs(dataset)
     baseline = results_log[results_log["wiki_enabled"] == False]
     baseline_count = baseline.shape[0]
-    to_delete = baseline_count - 10
+    to_delete = baseline_count - number_of_logs
     largest = baseline.nlargest(to_delete, columns="accuracy").index
     results_log.drop(largest, inplace=True)
 
     file.save_eval_logs(results_log, dataset)
 
 
+def delete_smallest(dataset, edge_type, threshold):
+    results_log = file.get_eval_logs(dataset)
+    baseline = results_log[(results_log["raw_count"] == edge_type) & (results_log["threshold"] == threshold) & (results_log["wiki_enabled"] == True)]
+    baseline_count = baseline.shape[0]
+    to_delete = baseline_count - number_of_logs
+    largest = baseline.nsmallest(to_delete, columns="accuracy")
+    results_log.drop(largest.index, inplace=True)
+
+    file.save_eval_logs(results_log, dataset)
+
+
+def optimize_logs(dataset, count_dict):
+    for key in count_dict.keys():
+        value = count_dict[key]
+        if value > number_of_logs:
+            params = key.split(":")
+            wiki_enabled = params[0] == "True"
+            edge_type = str(params[2])
+            threshold = int(params[3])
+
+            if not wiki_enabled:
+                delete_biggest(dataset)
+            else:
+                delete_smallest(dataset, edge_type, threshold)
+
+
+def perform_ttest(dataset, count_dict):
+    desired_p_val = 0.05
+    results_log = file.get_eval_logs(dataset)
+    baseline = results_log[results_log["wiki_enabled"] == False].nlargest(10, columns="accuracy")
+    base_accuracies = baseline["accuracy"].tolist()
+    for key in count_dict.keys():
+        value = count_dict[key]
+        params = key.split(":")
+        wiki_enabled = params[0] == "True"
+        edge_type = str(params[2])
+        threshold = int(params[3])
+
+        if wiki_enabled and value >= 10:
+            test = results_log[(results_log["raw_count"] == edge_type) & (results_log["threshold"] == threshold) & (
+                        results_log["wiki_enabled"] == True)]
+            test_accuracies = test["accuracy"].tolist()
+            assert len(base_accuracies) == len(test_accuracies), f"{len(base_accuracies)} != {len(test_accuracies)}"
+            # Independent-samples t tests compare scores on the same variable but for two different groups of cases
+            t_stat_ind, p_val_ind = stats.ttest_ind(test_accuracies, base_accuracies)
+            # Paired t-tests compare scores on two different variables but for the same group of cases
+            t_stat_rel, p_val_rel = stats.ttest_rel(test_accuracies, base_accuracies)
+            print(f"{edge_type} | {threshold} significance: (ind, {p_val_ind < desired_p_val}) / (rel, {p_val_rel < desired_p_val})")
+
+
+
+
 if __name__ == '__main__':
     plot_all(density=True)
     plot_edge_numbers()
 
-    for dataset in available_datasets:
-        if "20ng" in dataset:
-            continue
-        count_model_runs(dataset)
+    # TODO: Call optimize_logs() when training is done with 10 runs each
