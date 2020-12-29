@@ -1,1 +1,1 @@
-sbatch t1_r52.sh && sleep 1 && sbatch t2_r52.sh && sleep 1 && sbatch t4_r52.sh && sleep 1 && sbatch t6_r52.sh && sleep 1 && sbatch t8_r52.sh && sleep 1 && sbatch t9_r52.sh
+sbatch t1_r52.sh && sleep 1 && sbatch t2_r52.sh && sleep 1 && sbatch t3_r52.sh && sleep 1 && sbatch t4_r52.sh && sleep 1 && sbatch t5_r52.sh && sleep 1 && sbatch t6_r52.sh && sleep 1 && sbatch t7_r52.sh

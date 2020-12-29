@@ -7,11 +7,11 @@ available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
 
 # TODO: Update configuration thresholds
 configuration = {
-    "r8": [1, 2, 3, 4, 5, 7, 8],
+    "r8": [1, 2, 3, 4, 5, 6, 7],
     "20ng": [10, 20, 30, 40, 50, 60],
-    "mr": [1, 2, 3, 4, 5],
-    "ohsumed": [7, 9, 13, 16, 19, 23],
-    "r52": [1, 2, 4, 6, 8, 9]
+    "mr": [1, 2, 3],
+    "ohsumed": [7, 9, 13, 16, 19, 22],
+    "r52": [1, 2, 3, 4, 5, 6, 7]
     }
 
 
