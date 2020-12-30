@@ -5,7 +5,7 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t1_r52.%j.out
-#SBATCH --partition=Luna
+#SBATCH --partition=Kalahari
 
 source ~/miniconda3/bin/activate thesis
 
@@ -48,8 +48,6 @@ python main.py --threshold 1 --dataset r52 --plot --method idf_norm_pmi &&
 python main.py --threshold 1 --dataset r52 --plot --method idf_norm_pmi &&
 python main.py --threshold 1 --dataset r52 --plot --method idf_norm_pmi &&
 python main.py --threshold 1 --dataset r52 --plot --method idf_norm_pmi &&
-python main.py --threshold 1 --dataset r52 --plot --method idf_norm_pmi &&
-python main.py --threshold 1 --dataset r52 --plot --method idf_wiki_norm_pmi &&
 python main.py --threshold 1 --dataset r52 --plot --method idf_wiki_norm_pmi &&
 python main.py --threshold 1 --dataset r52 --plot --method idf_wiki_norm_pmi &&
 python main.py --threshold 1 --dataset r52 --plot --method idf_wiki_norm_pmi &&

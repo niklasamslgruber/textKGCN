@@ -1,5 +1,5 @@
 {
-    "False:0:empty:0": 21,
+    "False:0:empty:0": 89,
     "True:15:count:1": 10,
     "True:15:idf:1": 9,
     "True:15:idf_wiki:1": 9,
@@ -51,16 +51,7 @@
     "True:15:idf_norm_pmi:4": 8,
     "True:15:idf_wiki_norm_pmi:5": 9,
     "True:15:idf_wiki_norm:7": 9,
-    "True:15:count:8": 10,
     "True:15:idf_wiki_norm_pmi:4": 7,
-    "True:15:idf:8": 9,
     "True:15:idf_norm_pmi:7": 9,
-    "True:15:idf_wiki:8": 7,
-    "True:15:count_norm:8": 7,
-    "True:15:count_norm_pmi:8": 7,
-    "True:15:idf_norm:8": 7,
-    "True:15:idf_wiki_norm:8": 7,
-    "True:15:idf_norm_pmi:8": 7,
-    "True:15:idf_wiki_norm_pmi:7": 8,
-    "True:15:idf_wiki_norm_pmi:8": 7
+    "True:15:idf_wiki_norm_pmi:7": 8
 }

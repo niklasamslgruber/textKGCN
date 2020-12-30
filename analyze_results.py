@@ -193,9 +193,9 @@ def plot_all(metric="accuracy", density=False):
             continue
         count_dict = count_model_runs(dataset)
         # perform_ttest(dataset, count_dict)
-        # plot_metric(dataset, metric)
-        # if density:
-        #     plot_edge_density(dataset)
+        plot_metric(dataset, metric)
+        if density:
+            plot_edge_density(dataset)
 
 
 def count_model_runs(dataset):
@@ -303,7 +303,7 @@ def remove_wrongs(edges):
 
 
 if __name__ == '__main__':
-    # plot_edge_numbers()
+    plot_edge_numbers()
     plot_all(density=True)
 
     # TODO: Call optimize_logs() when training is done with 10 runs each

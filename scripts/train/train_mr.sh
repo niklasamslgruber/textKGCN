@@ -1,1 +1,1 @@
-sbatch t1_mr.sh && sleep 1 && sbatch t2_mr.sh && sleep 1 && sbatch t3_mr.sh
+sbatch t1_mr.sh && sleep 1 && sbatch t2_mr.sh
