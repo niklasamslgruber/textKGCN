@@ -10,7 +10,6 @@
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --threshold 5 --dataset r8 --plot --method count &&
 python main.py --threshold 5 --dataset r8 --plot --method idf &&
 python main.py --threshold 5 --dataset r8 --plot --method idf_wiki &&
 python main.py --threshold 5 --dataset r8 --plot --method count_norm &&

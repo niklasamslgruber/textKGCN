@@ -5,12 +5,11 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t1_r8.%j.out
-#SBATCH --partition=Kalahari
+#SBATCH --partition=Antarktis
 
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --threshold 1 --dataset r8 --plot --method count &&
 python main.py --threshold 1 --dataset r8 --plot --method idf &&
 python main.py --threshold 1 --dataset r8 --plot --method idf_wiki &&
 python main.py --threshold 1 --dataset r8 --plot --method count_norm &&

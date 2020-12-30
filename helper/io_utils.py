@@ -203,6 +203,10 @@ def get_result_log_path(dataset=FLAGS.dataset):
     return join(get_logs_path(dataset), f'{dataset}_result.json')
 
 
+def get_eval_count_path(dataset=FLAGS.dataset):
+    return join(path(join(get_data_path(), 'results_log/counts')), f'{dataset}_eval_counts_{FLAGS.version}.json')
+
+
 # JSON
 def read_json(path):
     assert path.endswith('.json')

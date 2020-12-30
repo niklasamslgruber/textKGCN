@@ -1,8 +1,9 @@
 import shutil
 import os
 import random
+from helper import file_utils
+from analyze_results import number_of_logs
 
-# TODO: Add 20ng
 available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
 
 # TODO: Update configuration thresholds
@@ -47,6 +48,7 @@ def generate_train_scripts(n=1):
         threshold = configuration[dataset]
         dataset_exec = []
         name = f"no_wiki_{dataset}"
+        config = create_needed_scripts(dataset)
         # if "ohsumed" in dataset or "20ng" in dataset:
         #     partition = random.choice(partitions)
         # else:
@@ -67,16 +69,20 @@ def generate_train_scripts(n=1):
             #     partition = "All"
 
             for r in method:
-                name = f"t{t}_{dataset}"
-                header = get_header(name, random.choice(partitions))
-                arguments = f"--threshold {t} --dataset {dataset} --plot --method {r}"
-                py_call = f"python main.py {arguments}"
-                all_types.append(py_call)
+                needed, count = is_needed(config, True, t, r)
+                if needed:
+                    name = f"t{t}_{dataset}"
+                    header = get_header(name, random.choice(partitions))
+                    arguments = f"--threshold {t} --dataset {dataset} --plot --method {r}"
+                    py_call = f"python main.py {arguments}"
+                    py_call = multiply(number_of_logs - count, py_call)
+                    all_types.append(py_call)
 
-            code = header + concat_code(all_types)
-            write_script(code, f"{folder_path}/{name}.sh")
-            exec_code.append(f"sbatch {name}.sh")
-            dataset_exec.append(f"sbatch {name}.sh")
+            if len(all_types) > 0:
+                code = header + concat_code(all_types)
+                write_script(code, f"{folder_path}/{name}.sh")
+                exec_code.append(f"sbatch {name}.sh")
+                dataset_exec.append(f"sbatch {name}.sh")
 
         dataset_script = " && sleep 1 && ".join(dataset_exec)
         if len(dataset_exec) > 25:
@@ -86,6 +92,7 @@ def generate_train_scripts(n=1):
 
     script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/train_all.sh")
+
 
 def get_header(name, partition="All"):
     code = "#!/bin/bash" \
@@ -123,8 +130,28 @@ def multiply(n, code):
     stmt += code
     return stmt
 
+
 def concat_code(code_array):
     return " &&\n".join(code_array)
+
+
+def create_needed_scripts(dataset):
+    counts = file_utils.get_result_log_counts(dataset)
+    needed = {}
+    for key in counts.keys():
+        count = counts[key]
+        if count < number_of_logs:
+            needed[key] = count
+
+    return needed
+
+
+def is_needed(config, wiki_enabled, threshold, edge_type):
+    key = f"{wiki_enabled}:15:{edge_type}:{threshold}"
+    if key in config:
+        return True, config[key]
+    else:
+        return False, 0
 
 
 if __name__ == '__main__':

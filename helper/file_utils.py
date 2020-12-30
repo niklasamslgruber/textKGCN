@@ -255,6 +255,14 @@ def save_result_log(data, dataset=FLAGS.dataset):
     io.write_json(io.get_result_log_path(dataset), data)
 
 
+def save_result_log_counts(data, dataset=FLAGS.dataset):
+    io.write_json(io.get_eval_count_path(dataset), data)
+
+
+def get_result_log_counts(dataset=FLAGS.dataset):
+    return io.read_json(io.get_eval_count_path(dataset))
+
+
 # Helper
 def exist(path, error):
     if not exists(path):

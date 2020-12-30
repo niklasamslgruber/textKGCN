@@ -38,6 +38,7 @@ def get_number_of_edges():
 
 def plot_edge_numbers():
     edges = get_number_of_edges()
+    remove_wrongs(edges)
     series_array = []
     for key in edges.keys():
         for index, count in enumerate(edges[key]):
@@ -60,17 +61,27 @@ def plot_metric(dataset, metric="accuracy"):
     base_std = base.std()
 
     results = results[results["wiki_enabled"] == True]
+
     if ("unfiltered" in FLAGS.version or "manual") in FLAGS.version and ("r8" in dataset or "r52" in dataset):
         order = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
-        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=False)
     else:
-        g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, sharex=False, sharey=False)
+        order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",
+                 "idf_wiki_norm", "idf_wiki_norm_pmi"]
+
+    g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=False)
     g.map(sns.lineplot, "threshold", metric, ci="sd", err_style="bars", markers=True, dashes=False, color="black")
-    g.set_titles(row_template='{row_name}1', col_template='{col_name}')
+    g.set_titles(row_template='{row_name}', col_template='{col_name}')
+    max_threshold = results["threshold"].max() + 1
+    # g.set_xticklabels(rotation=30)
+    g.fig.set_figwidth(15)
+    g.set_axis_labels("Threshold", "Accuracy")
 
     color = "black"
     for x in range(0, len(g.axes)):
         ax = g.axes[x]
+        title = ax.get_title().upper().replace("_", "-")
+        ax.set_title(title)
+        ax.set_xticks(range(1, max_threshold))
         ax.axhline(y=base_mean, color=color, linewidth=1, alpha=.3, ls="--")
         ax.axhline(y=base_mean + base_std, color=color, linewidth=1, alpha=.3, ls="--")
         ax.axhline(y=base_mean - base_std, color=color, linewidth=1, alpha=.3, ls="--")
@@ -80,16 +91,20 @@ def plot_metric(dataset, metric="accuracy"):
 
 def plot_edge_density(dataset):
     edges = file.get_base_edges(dataset)
-
     # Plot histogram for each edge type
-    order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",  "idf_wiki_norm", "idf_wiki_norm_pmi"]
+    order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",  "idf_wiki_norm", "idf_wiki_norm_pmi", "", "idf_doc", "pmi"]
 
     g = sns.FacetGrid(data=edges, col="edge_type", sharey=False, sharex=False, col_wrap=3, col_order=order)
-    g.map_dataframe(sns.histplot, x="weight", color="black", linewidth=0, discrete=True)
-    g.set_axis_labels("edge weight", "count")
+    g.map_dataframe(sns.histplot, x="weight", color="black", linewidth=0, discrete=False)
+    g.set_axis_labels("Edge Weight", "Count")
     g.set_titles(col_template="{col_name}", row_template="{row_name}")
+    g.fig.set_figwidth(15)
     for ax in g.fig.get_axes():
         ax.set_yscale("log")
+        title = ax.get_title()
+        new_title = title.upper().replace("_", "-")
+        ax.set_title(new_title)
+
     # g.fig.subplots_adjust(top=0.8)
     # g.fig.suptitle(f"distribution of edge type weights in {dataset}", fontsize=16)
 
@@ -177,10 +192,10 @@ def plot_all(metric="accuracy", density=False):
         if "20ng" in dataset:
             continue
         count_dict = count_model_runs(dataset)
-        perform_ttest(dataset, count_dict)
-        plot_metric(dataset, metric)
-        if density:
-            plot_edge_density(dataset)
+        # perform_ttest(dataset, count_dict)
+        # plot_metric(dataset, metric)
+        # if density:
+        #     plot_edge_density(dataset)
 
 
 def count_model_runs(dataset):
@@ -189,7 +204,10 @@ def count_model_runs(dataset):
     count_dict = {}
 
     for index, row in results.iterrows():
-        name = f"{row['wiki_enabled']}:{row['window_size']}:{row['raw_count']}:{row['threshold']}"
+        if not row["wiki_enabled"]:
+            name = f"{row['wiki_enabled']}:0:empty:0"
+        else:
+            name = f"{row['wiki_enabled']}:{row['window_size']}:{row['raw_count']}:{row['threshold']}"
         if name in count_dict:
             count_dict[name] += 1
         else:
@@ -199,7 +217,7 @@ def count_model_runs(dataset):
     for key in count_dict:
         counts.append(count_dict[key])
 
-    print(f"{dataset}: {counts}")
+    file.save_result_log_counts(count_dict, dataset)
     return count_dict
 
 
@@ -274,10 +292,18 @@ def perform_ttest(dataset, count_dict):
             print(f"{edge_type} | {threshold} significance: (ind, {p_val_ind < desired_p_val}) / (rel, {p_val_rel < desired_p_val})")
 
 
+def remove_wrongs(edges):
+    for dataset in edges.keys():
+        counts = edges[dataset]
+        max_nonzero = len(counts) - 1
+        results_log = file.get_eval_logs(dataset)
+        indices = results_log[results_log["threshold"] > max_nonzero].index
+        results_log.loc[indices, 'wiki_enabled'] = False
+        file.save_eval_logs(results_log, dataset)
 
 
 if __name__ == '__main__':
+    # plot_edge_numbers()
     plot_all(density=True)
-    plot_edge_numbers()
 
     # TODO: Call optimize_logs() when training is done with 10 runs each
