@@ -8,11 +8,11 @@ available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
 
 # TODO: Update configuration thresholds
 configuration = {
-    "r8": [1, 2, 3, 4, 5, 6, 7],
+    "r8": range(1, 7),
     "20ng": [10, 20, 30, 40, 50, 60],
-    "mr": [1, 2, 3],
-    "ohsumed": [7, 9, 13, 16, 19, 22],
-    "r52": [1, 2, 3, 4, 5, 6, 7]
+    "mr": range(1, 3),
+    "ohsumed": range(1, 22),
+    "r52": range(1, 7)
     }
 
 
@@ -63,10 +63,8 @@ def generate_train_scripts(n=1):
 
         for t in threshold:
             all_types = []
-            # if "ohsumed" in dataset or "20ng" in dataset:
-            #     partition = random.choice(partitions)
-            # else:
-            #     partition = "All"
+            if "ohsumed" in dataset and t > 16:
+                continue
 
             for r in method:
                 needed, count = is_needed(config, True, t, r)
@@ -87,8 +85,8 @@ def generate_train_scripts(n=1):
         dataset_script = " && sleep 1 && ".join(dataset_exec)
         if len(dataset_exec) > 25:
             print(f"WARNING: Too many scripts for {dataset}")
-
-        write_script(dataset_script, f"{folder_path}/train_{dataset}.sh")
+        if len(dataset_exec) > 0:
+            write_script(dataset_script, f"{folder_path}/train_{dataset}.sh")
 
     script = " && sleep 1 && ".join(exec_code)
     write_script(script, f"{folder_path}/train_all.sh")
@@ -140,8 +138,7 @@ def create_needed_scripts(dataset):
     needed = {}
     for key in counts.keys():
         count = counts[key]
-        if count < number_of_logs:
-            needed[key] = count
+        needed[key] = count
 
     return needed
 
@@ -149,9 +146,12 @@ def create_needed_scripts(dataset):
 def is_needed(config, wiki_enabled, threshold, edge_type):
     key = f"{wiki_enabled}:15:{edge_type}:{threshold}"
     if key in config:
-        return True, config[key]
+        if config[key] >= number_of_logs:
+            return False, config[key]
+        else:
+            return True, config[key]
     else:
-        return False, 0
+        return True, 0
 
 
 if __name__ == '__main__':

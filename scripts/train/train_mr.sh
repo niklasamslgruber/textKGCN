@@ -1,1 +1,0 @@
-sbatch t1_mr.sh && sleep 1 && sbatch t2_mr.sh
