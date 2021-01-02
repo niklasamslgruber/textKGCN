@@ -232,7 +232,6 @@ def perform_all(dataset, n=20):
         "idf_wiki": {True: true_idf_wiki, False: false_idf_wiki}
         }
     result_dict[dataset] = tmp_dict
-    get_number_of_relations(dataset)
 
 
 def analyze_results_dict():
@@ -266,5 +265,6 @@ def save_ordered_file(dataset, edge_type):
 if __name__ == '__main__':
     for dataset in ["r52", "r8", "mr", "ohsumed"]:
         perform_all(dataset)
+        get_number_of_relations(dataset)
 
-    analyze_results_dict()
+    # analyze_results_dict()

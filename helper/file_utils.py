@@ -222,7 +222,7 @@ def get_document_triples_metrics(dataset=FLAGS.dataset):
 
 def save_ordered_document_triples_metrics(data, edge_type, dataset=FLAGS.dataset):
     path = io.get_ordered_document_triples_metrics_path(edge_type, dataset)
-    io.write_csv(path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki"])
+    io.write_csv(path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"])
 
 
 def get_ordered_document_triples_metrics(edge_type, dataset=FLAGS.dataset):
