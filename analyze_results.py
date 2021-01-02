@@ -340,7 +340,6 @@ def optimize_logs(dataset, count_dict):
 
 
 def perform_ttest(dataset, count_dict):
-    print(f"{dataset} t-Tests")
     desired_p_val = 0.05
     results_log = file.get_eval_logs(dataset)
     baseline = results_log[results_log["wiki_enabled"] == False].nlargest(10, columns="accuracy")
