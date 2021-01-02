@@ -1,0 +1,56 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{c|lcr}
+   \toprule
+   Threshold & Edge Type & \#Runs & Mean \\
+
+   \midrule
+   \multirow{9}{*}{1}
+   & Count & 10 & $0.7539 \pm 0.0023$ \\
+   & Count-Norm & 10 & $0.7559 \pm 0.0024$ \\
+   & Count-Norm-PMI & 10 & $0.7573 \pm 0.0019$ \\
+   & IDF & 10 & $0.7446 \pm 0.0028$ \\
+   & IDF-Norm & 10 & $0.7562 \pm 0.0024$ \\
+   & IDF-Norm-PMI & 10 & $0.7558 \pm 0.0019$ \\
+   & IDF-Wiki & 10 & $0.7412 \pm 0.0029$ \\
+   & IDF-Wiki-Norm & 10 & $0.7521 \pm 0.0034^*$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.7544 \pm 0.0034$ \\
+   \hline\hline
+   \multirow{9}{*}{2}
+   & Count & 10 & $0.755 \pm 0.0028$ \\
+   & Count-Norm & 10 & $0.7552 \pm 0.0017$ \\
+   & Count-Norm-PMI & 10 & $0.7578 \pm 0.0023$ \\
+   & IDF & 10 & $0.7541 \pm 0.0021$ \\
+   & IDF-Norm & 10 & $0.7559 \pm 0.002$ \\
+   & IDF-Norm-PMI & 10 & $0.7562 \pm 0.0025$ \\
+   & IDF-Wiki & 10 & $0.7554 \pm 0.0017$ \\
+   & IDF-Wiki-Norm & 10 & $0.7554 \pm 0.0016$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.7563 \pm 0.0019$ \\
+   \hline\hline
+   \multirow{9}{*}{3}
+   & Count & 10 & $0.7566 \pm 0.0019$ \\
+   & Count-Norm & 10 & $0.7553 \pm 0.0018$ \\
+   & Count-Norm-PMI & 10 & $\mathbf{0.7583 \pm 0.0024}$ \\
+   & IDF & 10 & $0.7563 \pm 0.0021$ \\
+   & IDF-Norm & 10 & $0.7569 \pm 0.0024$ \\
+   & IDF-Norm-PMI & 10 & $0.7566 \pm 0.0024$ \\
+   & IDF-Wiki & 10 & $0.7569 \pm 0.002$ \\
+   & IDF-Wiki-Norm & 10 & $0.7566 \pm 0.0024$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.7562 \pm 0.0029$ \\
+   \hline\hline
+   \multirow{9}{*}{\-}
+   & textKGCN (none) & 10 & $0.7514 \pm 0.0022$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy MR dataset]{Text classification accuracy of the MR dataset for different thresholds and edge types. Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

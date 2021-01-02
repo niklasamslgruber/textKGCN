@@ -1,0 +1,89 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{c|lcr}
+   \toprule
+   Threshold & Edge Type & \#Runs & Mean \\
+
+   \midrule
+   \multirow{9}{*}{1}
+   & Count & 10 & $0.9622 \pm 0.0019^*$ \\
+   & Count-Norm & 10 & $0.961 \pm 0.0013$ \\
+   & Count-Norm-PMI & 10 & $0.9654 \pm 0.0014$ \\
+   & IDF & 10 & $0.9576 \pm 0.0021$ \\
+   & IDF-Norm & 10 & $0.9588 \pm 0.0031$ \\
+   & IDF-Norm-PMI & 10 & $0.9656 \pm 0.0016$ \\
+   & IDF-Wiki & 10 & $0.9413 \pm 0.0032$ \\
+   & IDF-Wiki-Norm & 10 & $0.9557 \pm 0.0031$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.9646 \pm 0.0011$ \\
+   \hline\hline
+   \multirow{9}{*}{2}
+   & Count & 10 & $0.9656 \pm 0.0031^*$ \\
+   & Count-Norm & 10 & $0.9605 \pm 0.0021$ \\
+   & Count-Norm-PMI & 10 & $0.9663 \pm 0.0014$ \\
+   & IDF & 10 & $0.9625 \pm 0.0023^*$ \\
+   & IDF-Norm & 10 & $0.9632 \pm 0.0018^*$ \\
+   & IDF-Norm-PMI & 10 & $0.9669 \pm 0.0018$ \\
+   & IDF-Wiki & 10 & $0.9581 \pm 0.0025$ \\
+   & IDF-Wiki-Norm & 10 & $0.9614 \pm 0.0016$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.9655 \pm 0.002$ \\
+   \hline\hline
+   \multirow{9}{*}{3}
+   & Count & 10 & $\mathbf{0.9678 \pm 0.002}$ \\
+   & Count-Norm & 10 & $0.9633 \pm 0.0027^*$ \\
+   & Count-Norm-PMI & 10 & $0.9658 \pm 0.0015$ \\
+   & IDF & 10 & $0.9636 \pm 0.0026^*$ \\
+   & IDF-Norm & 10 & $0.9643 \pm 0.0017^*$ \\
+   & IDF-Norm-PMI & 10 & $0.9664 \pm 0.0019$ \\
+   & IDF-Wiki & 10 & $0.9611 \pm 0.0021$ \\
+   & IDF-Wiki-Norm & 10 & $0.9621 \pm 0.0014$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.9661 \pm 0.0014$ \\
+   \hline\hline
+   \multirow{9}{*}{4}
+   & Count & 10 & $0.9667 \pm 0.0019$ \\
+   & Count-Norm & 10 & $0.9643 \pm 0.0021^*$ \\
+   & Count-Norm-PMI & 10 & $0.9668 \pm 0.0012$ \\
+   & IDF & 10 & $0.9665 \pm 0.0017$ \\
+   & IDF-Norm & 10 & $0.9664 \pm 0.0015$ \\
+   & IDF-Norm-PMI & 10 & $0.9667 \pm 0.0019$ \\
+   & IDF-Wiki & 10 & $0.9644 \pm 0.0012^*$ \\
+   & IDF-Wiki-Norm & 10 & $0.9674 \pm 0.0021$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.9667 \pm 0.0021$ \\
+   \hline\hline
+   \multirow{9}{*}{5}
+   & Count & 10 & $0.9669 \pm 0.0014$ \\
+   & Count-Norm & 10 & $0.9666 \pm 0.0025$ \\
+   & Count-Norm-PMI & 10 & $0.9662 \pm 0.0018$ \\
+   & IDF & 10 & $0.9665 \pm 0.0022$ \\
+   & IDF-Norm & 10 & $0.966 \pm 0.0016$ \\
+   & IDF-Norm-PMI & 10 & $0.9666 \pm 0.0015$ \\
+   & IDF-Wiki & 10 & $0.9661 \pm 0.0027$ \\
+   & IDF-Wiki-Norm & 10 & $0.9673 \pm 0.0022$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.9666 \pm 0.0024$ \\
+   \hline\hline
+   \multirow{9}{*}{7}
+   & Count & 10 & $0.9671 \pm 0.0021$ \\
+   & Count-Norm & 10 & $0.9667 \pm 0.0022$ \\
+   & Count-Norm-PMI & 10 & $0.9665 \pm 0.0022$ \\
+   & IDF & 10 & $0.9667 \pm 0.0023$ \\
+   & IDF-Norm & 10 & $0.9668 \pm 0.0018$ \\
+   & IDF-Norm-PMI & 10 & $0.9669 \pm 0.0023$ \\
+   & IDF-Wiki & 10 & $0.9661 \pm 0.0023$ \\
+   & IDF-Wiki-Norm & 10 & $0.9671 \pm 0.0017$ \\
+   & IDF-Wiki-Norm-PMI & 10 & $0.9665 \pm 0.0019$ \\
+   \hline\hline
+   \multirow{9}{*}{\-}
+   & textKGCN (none) & 10 & $0.9635 \pm 0.0008$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy R8 dataset]{Text classification accuracy of the R8 dataset for different thresholds and edge types. Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}
