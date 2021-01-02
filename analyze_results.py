@@ -48,7 +48,7 @@ def plot_edge_numbers():
     fig, ax = plt.subplots(1, 1)
     sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", marker="o", dashes=False)
     ax.set_yscale('symlog')
-    ax.set_xticks(range(25))
+    ax.set_xticks(range(1, 25))
     fig.tight_layout()
     fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds_{FLAGS.version}.png")
 
@@ -304,6 +304,6 @@ def remove_wrongs(edges):
 
 if __name__ == '__main__':
     plot_edge_numbers()
-    plot_all(density=True)
+    # plot_all(density=True)
 
     # TODO: Call optimize_logs() when training is done with 10 runs each
