@@ -240,15 +240,15 @@ def save_document_triples_metrics(data, dataset=FLAGS.dataset):
 
 
 # Evaluation logger
-def get_eval_logs(dataset=FLAGS.dataset):
-    path = io.get_eval_log_path(dataset)
+def get_eval_logs(dataset=FLAGS.dataset, version=FLAGS.version):
+    path = io.get_eval_log_path(dataset, version)
     if not exists(path):
         return None
     return io.read_csv(path, sep=';')
 
 
-def save_eval_logs(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_eval_log_path(dataset), data, sep=';')
+def save_eval_logs(data, dataset=FLAGS.dataset, version=FLAGS.version):
+    io.write_csv(io.get_eval_log_path(dataset, version), data, sep=';')
 
 
 def save_result_log(data, dataset=FLAGS.dataset):

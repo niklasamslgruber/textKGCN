@@ -4,46 +4,15 @@
 {
    \small
    \begin{center}
-   \begin{tabular}[center]{c|lcr}
+   \begin{tabular}[center]{c|ccc|ccc|ccc}
    \toprule
-   Threshold & Edge Type & \#Runs & Mean \\
+   Threshold & Count & Count-Norm & Count-Norm-PMI & TF-IDF & TF-IDF-Norm & TF-IDF-Norm-PMI & TF-IDF-Wiki & TF-IDF-Wiki-Norm & TF-IDF-Wiki-Norm-PMI \\
 
    \midrule
-   \multirow{9}{*}{1}
-   & Count & 10 & $0.7539 \pm 0.0023$ \\
-   & Count-Norm & 10 & $0.7559 \pm 0.0024$ \\
-   & Count-Norm-PMI & 10 & $0.7573 \pm 0.0019$ \\
-   & IDF & 10 & $0.7446 \pm 0.0028$ \\
-   & IDF-Norm & 10 & $0.7562 \pm 0.0024$ \\
-   & IDF-Norm-PMI & 10 & $0.7558 \pm 0.0019$ \\
-   & IDF-Wiki & 10 & $0.7412 \pm 0.0029$ \\
-   & IDF-Wiki-Norm & 10 & $0.7521 \pm 0.0034^*$ \\
-   & IDF-Wiki-Norm-PMI & 10 & $0.7544 \pm 0.0034$ \\
-   \hline\hline
-   \multirow{9}{*}{2}
-   & Count & 10 & $0.755 \pm 0.0028$ \\
-   & Count-Norm & 10 & $0.7552 \pm 0.0017$ \\
-   & Count-Norm-PMI & 10 & $0.7578 \pm 0.0023$ \\
-   & IDF & 10 & $0.7541 \pm 0.0021$ \\
-   & IDF-Norm & 10 & $0.7559 \pm 0.002$ \\
-   & IDF-Norm-PMI & 10 & $0.7562 \pm 0.0025$ \\
-   & IDF-Wiki & 10 & $0.7554 \pm 0.0017$ \\
-   & IDF-Wiki-Norm & 10 & $0.7554 \pm 0.0016$ \\
-   & IDF-Wiki-Norm-PMI & 10 & $0.7563 \pm 0.0019$ \\
-   \hline\hline
-   \multirow{9}{*}{3}
-   & Count & 10 & $0.7566 \pm 0.0019$ \\
-   & Count-Norm & 10 & $0.7553 \pm 0.0018$ \\
-   & Count-Norm-PMI & 10 & $\mathbf{0.7583 \pm 0.0024}$ \\
-   & IDF & 10 & $0.7563 \pm 0.0021$ \\
-   & IDF-Norm & 10 & $0.7569 \pm 0.0024$ \\
-   & IDF-Norm-PMI & 10 & $0.7566 \pm 0.0024$ \\
-   & IDF-Wiki & 10 & $0.7569 \pm 0.002$ \\
-   & IDF-Wiki-Norm & 10 & $0.7566 \pm 0.0024$ \\
-   & IDF-Wiki-Norm-PMI & 10 & $0.7562 \pm 0.0029$ \\
-   \hline\hline
-   \multirow{9}{*}{\-}
-   & textKGCN (none) & 10 & $0.7514 \pm 0.0022$ \\
+   1 & $0.7541 \pm 0.0020$ & $0.7559 \pm 0.0024$ & $0.7573 \pm 0.0019$ & $0.7460 \pm 0.0017$ & $0.7579 \pm 0.0020$ & $0.7577 \pm 0.0019$ & $0.7412 \pm 0.0029$ & $0.7535 \pm 0.0023$ & $0.7566 \pm 0.0018$ \\
+   2 & $0.7575 \pm 0.0015$ & $0.7552 \pm 0.0017$ & $0.7578 \pm 0.0023$ & $0.7546 \pm 0.0016$ & $0.7577 \pm 0.0013$ & $0.7574 \pm 0.0015$ & $0.7554 \pm 0.0017$ & $0.7570 \pm 0.0017$ & $0.7570 \pm 0.0013$ \\
+   3 & $\mathbf{0.7610 \pm 0.0022}$ & $0.7553 \pm 0.0018$ & $0.7583 \pm 0.0024$ & $0.7577 \pm 0.0014$ & $0.7580 \pm 0.0015$ & $0.7571 \pm 0.0017$ & $0.7569 \pm 0.0020$ & $0.7575 \pm 0.0015$ & $0.7584 \pm 0.0015$ \\
+   textKGCN (none) & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ & $0.7503 \pm 0.0020$ \\
 
    \bottomrule
    \end{tabular}

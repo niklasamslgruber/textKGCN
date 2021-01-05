@@ -195,8 +195,8 @@ def get_document_embeddings_path(layer, dataset=FLAGS.dataset):
 
 
 # Evaluation logs
-def get_eval_log_path(dataset=FLAGS.dataset):
-    return join(path(join(get_data_path(), 'results_log')), f'{dataset}_eval_{FLAGS.version}.csv')
+def get_eval_log_path(dataset=FLAGS.dataset, version=FLAGS.version):
+    return join(path(join(get_data_path(), 'results_log')), f'{dataset}_eval_{version}.csv')
 
 
 def get_result_log_path(dataset=FLAGS.dataset):
