@@ -1,0 +1,1 @@
+sbatch no_wiki_r8_unfiltered.sh && sleep 1 && sbatch t1_r8_unfiltered.sh && sleep 1 && sbatch t2_r8_unfiltered.sh && sleep 1 && sbatch t3_r8_unfiltered.sh && sleep 1 && sbatch t4_r8_unfiltered.sh && sleep 1 && sbatch t5_r8_unfiltered.sh && sleep 1 && sbatch t6_r8_unfiltered.sh

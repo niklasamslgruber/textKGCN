@@ -1,0 +1,1 @@
+sbatch no_wiki_r52_unfiltered.sh && sleep 1 && sbatch t1_r52_unfiltered.sh && sleep 1 && sbatch t2_r52_unfiltered.sh && sleep 1 && sbatch t3_r52_unfiltered.sh && sleep 1 && sbatch t4_r52_unfiltered.sh && sleep 1 && sbatch t5_r52_unfiltered.sh && sleep 1 && sbatch t6_r52_unfiltered.sh
