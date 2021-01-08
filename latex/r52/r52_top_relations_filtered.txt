@@ -4,79 +4,26 @@
 {
    \small
    \begin{center}
-   \begin{tabular}[center]{ll}
+   \begin{tabular}[center]{lll}
    \toprule
-   relation & count \\
+   Relation & Description & Count \\
 
    \midrule
-   P828 & 55391 \\
-   P1382 & 50561 \\
-   P2670 & 40022 \\
-   P1542 & 19488 \\
-   P1056 & 16895 \\
-   P437 & 15228 \\
-   P4934 & 13445 \\
-   P2079 & 7931 \\
-   P186 & 7911 \\
-   P111 & 5196 \\
-   P2868 & 4114 \\
-   P2578 & 3815 \\
-   P2579 & 3653 \\
-   P2959 & 2591 \\
-   P530 & 1650 \\
-   P2389 & 1458 \\
-   P618 & 1419 \\
-   P2922 & 1393 \\
-   P3712 & 681 \\
-   P129 & 653 \\
-   P1557 & 571 \\
-   P121 & 428 \\
-   P452 & 388 \\
-   P101 & 370 \\
-   P1672 & 358 \\
-   P1582 & 348 \\
-   P106 & 327 \\
-   P2283 & 302 \\
-   P462 & 241 \\
-   P3730 & 224 \\
-   P3729 & 224 \\
-   P47 & 166 \\
-   P138 & 94 \\
-   P2789 & 78 \\
-   P710 & 72 \\
-   P495 & 55 \\
-   P397 & 44 \\
-   P17 & 43 \\
-   P398 & 41 \\
-   P703 & 40 \\
-   P150 & 39 \\
-   P190 & 38 \\
-   P39 & 35 \\
-   P276 & 25 \\
-   P463 & 20 \\
-   P459 & 20 \\
-   P176 & 18 \\
-   P38 & 13 \\
-   P376 & 12 \\
-   P927 & 10 \\
-   P2851 & 5 \\
-   P1001 & 4 \\
-   P1376 & 4 \\
-   P1419 & 4 \\
-   P36 & 4 \\
-   P27 & 4 \\
-   P355 & 3 \\
-   P749 & 3 \\
-   P205 & 3 \\
-   P199 & 3 \\
-   P206 & 2 \\
-   P131 & 2 \\
-   P35 & 2 \\
-   P21 & 1 \\
-   P122 & 1 \\
-   P706 & 1 \\
-   P421 & 1 \\
-   P735 & 1 \\
+   P828 & Has Cause & 55,391 \\
+   P1382 & Partially Coincident With & 50,561 \\
+   P2670 & Has Parts Of The Class & 40,022 \\
+   P1542 & Has Effect & 19,488 \\
+   P1056 & Product Or Material Produced & 16,895 \\
+   P437 & Distribution Format & 15,228 \\
+   P4934 & Calculated From & 13,445 \\
+   P2079 & Fabrication Method & 7,931 \\
+   P186 & Material Used & 7,911 \\
+   P111 & Measured Physical Quantity & 5,196 \\
+   P2868 & Subject Has Role & 4,114 \\
+   P2578 & Studies & 3,815 \\
+   P2579 & Studied By & 3,653 \\
+   P2959 & Permanent Duplicated Item & 2,591 \\
+   P530 & Diplomatic Relation & 1,650 \\
 
    \bottomrule
    \end{tabular}

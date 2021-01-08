@@ -4,83 +4,26 @@
 {
    \small
    \begin{center}
-   \begin{tabular}[center]{ll}
+   \begin{tabular}[center]{lll}
    \toprule
-   relation & count \\
+   Relation & Description & Count \\
 
    \midrule
-   P1056 & 20042 \\
-   P1382 & 7020 \\
-   P2789 & 2888 \\
-   P1542 & 2077 \\
-   P828 & 2069 \\
-   P927 & 1344 \\
-   P2670 & 1333 \\
-   P106 & 618 \\
-   P136 & 290 \\
-   P3729 & 288 \\
-   P3730 & 288 \\
-   P689 & 227 \\
-   P186 & 199 \\
-   P2579 & 197 \\
-   P2578 & 174 \\
-   P111 & 169 \\
-   P703 & 162 \\
-   P397 & 144 \\
-   P398 & 144 \\
-   P530 & 56 \\
-   P101 & 54 \\
-   P2283 & 47 \\
-   P138 & 30 \\
-   P2184 & 27 \\
-   P1365 & 27 \\
-   P1366 & 27 \\
-   P1582 & 25 \\
-   P1672 & 25 \\
-   P1995 & 22 \\
-   P127 & 21 \\
-   P1830 & 21 \\
-   P355 & 21 \\
-   P1557 & 19 \\
-   P162 & 12 \\
-   P161 & 12 \\
-   P57 & 12 \\
-   P17 & 10 \\
-   P3712 & 8 \\
-   P800 & 8 \\
-   P40 & 6 \\
-   P25 & 6 \\
-   P4934 & 6 \\
-   P26 & 6 \\
-   P793 & 5 \\
-   P1536 & 5 \\
-   P86 & 5 \\
-   P462 & 4 \\
-   P360 & 4 \\
-   P38 & 4 \\
-   P50 & 4 \\
-   P47 & 4 \\
-   P641 & 4 \\
-   P135 & 4 \\
-   P1142 & 4 \\
-   P121 & 3 \\
-   P2176 & 3 \\
-   P2175 & 3 \\
-   P495 & 3 \\
-   P179 & 2 \\
-   P1196 & 2 \\
-   P2936 & 2 \\
-   P512 & 2 \\
-   P1478 & 2 \\
-   P1344 & 1 \\
-   P205 & 1 \\
-   P452 & 1 \\
-   P7937 & 1 \\
-   P437 & 1 \\
-   P19 & 1 \\
-   P20 & 1 \\
-   P551 & 1 \\
-   P2650 & 1 \\
+   P1056 & Product Or Material Produced & 20,042 \\
+   P1382 & Partially Coincident With & 7,020 \\
+   P2789 & Connects With & 2,888 \\
+   P1542 & Has Effect & 2,077 \\
+   P828 & Has Cause & 2,069 \\
+   P927 & Anatomical Location & 1,344 \\
+   P2670 & Has Parts Of The Class & 1,333 \\
+   P106 & Occupation & 618 \\
+   P136 & Genre & 290 \\
+   P3729 & Next Lower Rank & 288 \\
+   P3730 & Next Higher Rank & 288 \\
+   P689 & Afflicts & 227 \\
+   P186 & Material Used & 199 \\
+   P2579 & Studied By & 197 \\
+   P2578 & Studies & 174 \\
 
    \bottomrule
    \end{tabular}

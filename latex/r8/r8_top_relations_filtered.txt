@@ -4,67 +4,26 @@
 {
    \small
    \begin{center}
-   \begin{tabular}[center]{ll}
+   \begin{tabular}[center]{lll}
    \toprule
-   relation & count \\
+   Relation & Description & Count \\
 
    \midrule
-   P1382 & 39420 \\
-   P828 & 29606 \\
-   P2670 & 22252 \\
-   P1056 & 8579 \\
-   P4934 & 6554 \\
-   P1542 & 5401 \\
-   P186 & 4654 \\
-   P2079 & 3991 \\
-   P437 & 2816 \\
-   P2868 & 2774 \\
-   P2959 & 2559 \\
-   P2578 & 1795 \\
-   P2579 & 1765 \\
-   P111 & 1227 \\
-   P2389 & 1159 \\
-   P129 & 588 \\
-   P2922 & 584 \\
-   P3712 & 579 \\
-   P1454 & 539 \\
-   P452 & 512 \\
-   P618 & 387 \\
-   P530 & 384 \\
-   P1830 & 351 \\
-   P127 & 351 \\
-   P106 & 234 \\
-   P121 & 206 \\
-   P101 & 133 \\
-   P3730 & 100 \\
-   P3729 & 100 \\
-   P710 & 100 \\
-   P2283 & 93 \\
-   P1557 & 31 \\
-   P39 & 30 \\
-   P47 & 26 \\
-   P462 & 24 \\
-   P17 & 22 \\
-   P276 & 17 \\
-   P150 & 16 \\
-   P1071 & 12 \\
-   P463 & 10 \\
-   P138 & 8 \\
-   P190 & 8 \\
-   P703 & 7 \\
-   P2851 & 5 \\
-   P205 & 3 \\
-   P1419 & 2 \\
-   P199 & 2 \\
-   P355 & 2 \\
-   P749 & 2 \\
-   P495 & 2 \\
-   P27 & 2 \\
-   P206 & 1 \\
-   P706 & 1 \\
-   P421 & 1 \\
-   P735 & 1 \\
-   P35 & 1 \\
+   P1382 & Partially Coincident With & 39,420 \\
+   P828 & Has Cause & 29,606 \\
+   P2670 & Has Parts Of The Class & 22,252 \\
+   P1056 & Product Or Material Produced & 8,579 \\
+   P4934 & Calculated From & 6,554 \\
+   P1542 & Has Effect & 5,401 \\
+   P186 & Material Used & 4,654 \\
+   P2079 & Fabrication Method & 3,991 \\
+   P437 & Distribution Format & 2,816 \\
+   P2868 & Subject Has Role & 2,774 \\
+   P2959 & Permanent Duplicated Item & 2,559 \\
+   P2578 & Studies & 1,795 \\
+   P2579 & Studied By & 1,765 \\
+   P111 & Measured Physical Quantity & 1,227 \\
+   P2389 & Organization Directed By The Office Or Person & 1,159 \\
 
    \bottomrule
    \end{tabular}
