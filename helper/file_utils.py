@@ -255,12 +255,12 @@ def save_result_log(data, dataset=FLAGS.dataset):
     io.write_json(io.get_result_log_path(dataset), data)
 
 
-def save_result_log_counts(data, dataset=FLAGS.dataset):
-    io.write_json(io.get_eval_count_path(dataset), data)
+def save_result_log_counts(data, dataset=FLAGS.dataset, version=FLAGS.version):
+    io.write_json(io.get_eval_count_path(dataset, version), data)
 
 
-def get_result_log_counts(dataset=FLAGS.dataset):
-    return io.read_json(io.get_eval_count_path(dataset))
+def get_result_log_counts(dataset=FLAGS.dataset, version=FLAGS.version):
+    return io.read_json(io.get_eval_count_path(dataset, version))
 
 
 # Helper
