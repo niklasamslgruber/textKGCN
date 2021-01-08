@@ -4,12 +4,10 @@ import random
 from helper import file_utils
 from analyze_results import number_of_logs
 
-available_datasets = ["r8", "mr", "ohsumed", "r52", "20ng"]
+available_datasets = ["r8", "mr", "ohsumed", "r52"]
 
-# TODO: Update configuration thresholds
 configuration = {
     "r8": range(1, 7),
-    "20ng": [10, 20, 30, 40, 50, 60],
     "mr": range(1, 3),
     "ohsumed": range(1, 22),
     "r52": range(1, 7)
@@ -40,7 +38,7 @@ def generate_train_scripts(n=1):
 
     method = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
     exec_code = []
-    partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien"]
+    partitions = ["Antarktis", "Gobi", "Kalahari", "Luna", "Sibirien", "All"]
 
     for index, dataset in enumerate(available_datasets):
         if "20ng" in dataset:
@@ -155,5 +153,5 @@ def is_needed(config, wiki_enabled, threshold, edge_type):
 
 
 if __name__ == '__main__':
-    generate_prep_scripts()
+    # generate_prep_scripts()
     generate_train_scripts(5)

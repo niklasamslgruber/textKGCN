@@ -38,7 +38,6 @@ def get_number_of_edges():
 
 def plot_edge_numbers():
     edges = get_number_of_edges()
-    remove_wrongs(edges)
     series_array = []
     for key in edges.keys():
         for index, count in enumerate(edges[key]):
@@ -49,26 +48,28 @@ def plot_edge_numbers():
     sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", marker="o", dashes=False)
     ax.set_yscale('symlog')
     ax.set_xticks(range(1, 25))
+    ax.set_xlabel("Threshold")
+    ax.set_ylabel("Number of doc2doc edges")
     fig.tight_layout()
     fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds_{FLAGS.version}.png")
 
 
 # RESULTS
 def plot_metric(dataset, metric="accuracy"):
-    results = file.get_eval_logs(dataset)
+    results = file.get_eval_logs(dataset=dataset)
     base = results[(results["wiki_enabled"] == False) & (results["window_size"] == 15)][metric]
     base_mean = base.mean()
     base_std = base.std()
 
     results = results[results["wiki_enabled"] == True]
 
-    if ("unfiltered" in FLAGS.version or "manual") in FLAGS.version and ("r8" in dataset or "r52" in dataset):
+    if ("unfiltered" in FLAGS.version) or ("manual" in FLAGS.version) and ("r8" in dataset or "r52" in dataset):
         order = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
     else:
         order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",
                  "idf_wiki_norm", "idf_wiki_norm_pmi"]
 
-    g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=False)
+    g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=True)
     g.map(sns.lineplot, "threshold", metric, ci="sd", err_style="bars", markers=True, dashes=False, color="black")
     g.set_titles(row_template='{row_name}', col_template='{col_name}')
     max_threshold = results["threshold"].max() + 1
@@ -78,7 +79,7 @@ def plot_metric(dataset, metric="accuracy"):
     color = "black"
     for x in range(0, len(g.axes)):
         ax = g.axes[x]
-        title = ax.get_title().upper().replace("_", "-")
+        title = ax.get_title().title().replace("_", "-").replace("Idf", "TF-IDF").replace("Pmi", "PMI")
         ax.set_title(title)
         ax.set_xticks(range(1, max_threshold))
         # ax.text(x=1, y=base_mean, s='textGCN average', alpha=0.7, color=color)
@@ -92,7 +93,7 @@ def plot_metric(dataset, metric="accuracy"):
 def plot_edge_density(dataset):
     edges = file.get_base_edges(dataset)
     # Plot histogram for each edge type
-    order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",  "idf_wiki_norm", "idf_wiki_norm_pmi", "", "idf_doc", "pmi"]
+    order = ["count", "count_norm", "count_norm_pmi", "idf_doc", "idf_norm", "idf_norm_pmi", "idf_wiki",  "idf_wiki_norm", "idf_wiki_norm_pmi", "idf", "pmi"]
 
     g = sns.FacetGrid(data=edges, col="edge_type", sharey=False, sharex=False, col_wrap=3, col_order=order)
     g.map_dataframe(sns.histplot, x="weight", color="black", linewidth=0, discrete=False)
@@ -102,7 +103,14 @@ def plot_edge_density(dataset):
     for ax in g.fig.get_axes():
         ax.set_yscale("log")
         title = ax.get_title()
-        new_title = title.upper().replace("_", "-")
+        new_title = title.title().replace("_", "-").replace("Idf", "TF-IDF").replace("Pmi", "PMI")
+        if "PMI" == new_title:
+            new_title = "Word2Word"
+        if "TF-IDF" == new_title:
+            new_title = "Doc2Word"
+        if "TF-IDF-Doc" == new_title:
+            new_title = "TF-IDF"
+
         ax.set_title(new_title)
 
     # g.fig.subplots_adjust(top=0.8)
@@ -112,56 +120,65 @@ def plot_edge_density(dataset):
 
 
 def get_results_statistics(dataset, metric="accuracy"):
-    eval = file.get_eval_logs(dataset)
-    thresholds = set(eval["threshold"].tolist())
-
+    results_log = file.get_eval_logs(dataset=dataset)
+    thresholds = set(results_log[results_log["wiki_enabled"]]["threshold"].tolist())
     types = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki", "idf_wiki_norm", "idf_wiki_norm_pmi"]
-    data_array = []
+    t_vals = io.read_json(f"{io.get_latex_path(dataset)}/{dataset}_ttest.json")
+
+    max_mean = 0
+    max_key = ""
     for t in thresholds:
         for r in types:
-            eval_filter = eval[
-                (eval["wiki_enabled"] == True) & (eval["window_size"] == 15) & (eval["threshold"] == t) & (
-                        eval["raw_count"] == r)][metric]
-            r_normalized = r.replace("_", "-").title().replace("Idf", "IDF").replace("Pmi", "PMI")
-            data_array.append([t, r_normalized, eval_filter.shape[0], eval_filter.mean(), eval_filter.std()])
+            mean = results_log[(results_log["wiki_enabled"] == True) & (results_log["window_size"] == 15) & (results_log["threshold"] == t) & (
+                    results_log["raw_count"] == r)][metric].mean()
+            if mean > max_mean:
+                max_mean = mean
+                max_key = f"{r.lower().replace('-', '_')}:{t}"
 
-    max = 0
-    max_row = []
-    for value in data_array:
-        if value[3] > max:
-            max = value[3]
-            max_row = value
 
-    eval_filter = eval[(eval["wiki_enabled"] == False) & (eval["window_size"] == 15)][metric]
-    data_array.append(["\-", "textKGCN (none)", eval_filter.shape[0], eval_filter.mean(), eval_filter.std()])
-    result = pd.DataFrame(data_array).dropna().round(4)
-    result.columns = ["threshold", "edge_type", "count", "mean", "std_dev"]
+    results_dict = {}
+    for t in thresholds:
+        averages = []
+        for r in types:
+            t_results = results_log[(results_log["wiki_enabled"] == True) & (results_log["window_size"] == 15) & (results_log["threshold"] == t) & (results_log["raw_count"] == r)][metric]
+            average = "%.4f" % round(t_results.mean(), 4)
 
-    # Latex configuration
-    data = result.replace(r"_", r"\_", regex=True)
-    header = data.columns[:-1].tolist()
-    header[2] = "\#Runs"
+            std_dev = "%.4f" % round(t_results.std(), 4)
+            key = f"{r.lower().replace('-', '_')}:{t}"
+            if key in t_vals:
+                is_significant = t_vals[key]["rel"][1] == "True"
+            else:
+                is_significant = True
+            is_max = key == max_key
+            if is_max:
+                averages.append("$\mathbf{" + average + " \pm " + std_dev + f"{'' if is_significant else '^*'}" + "}$")
+            else:
+                averages.append("$" + average + " \pm " + std_dev + f"{'' if is_significant else '^*'}" + "$")
+        results_dict[t] = averages
 
-    all_values = []
-    t_vals = io.read_json(f"{io.get_latex_path(dataset)}/{dataset}_ttest.json")
-    for index, row in data.iterrows():
-        key = f"{row['edge_type'].lower().replace('-', '_')}:{row['threshold']}"
-        if key in t_vals:
-            is_significant = t_vals[key]["rel"][1] == "True"
-        else:
-            is_significant = True
-        if row["threshold"] == max_row[0] and row["edge_type"] == max_row[1]:
-            row_values = [row["threshold"], row["edge_type"], row["count"], "$\mathbf{" + str(row["mean"]) + " \pm " + str(row["std_dev"]) + f"{'' if is_significant else '^*'}" + "}$"]
-        else:
-            row_values = [row["threshold"], row["edge_type"], row["count"], "$" + str(row["mean"]) + " \pm " + str(row["std_dev"]) + f"{'' if is_significant else '^*'}$"]
-        all_values.append(row_values)
+    rows = []
+    for threshold in results_dict.keys():
+        tmp = []
+        tmp.append(threshold)
+        [tmp.append(value) for value in results_dict[threshold]]
+        rows.append(tmp)
 
-    # Return LaTex code for the results dataframe
-    get_latex_code_header(header, 9, all_values, "c|lcr", f"{dataset}_{metric}_table.txt", dataset, f"Classification accuracy {dataset.upper()} dataset", f"Text classification accuracy of the {dataset.upper()} dataset for different thresholds and edge types. " + "Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).")
+    base_avg = "%.4f" % round(results_log[results_log["wiki_enabled"] == False][metric].mean(), 4)
+    base_std = "%.4f" % round(results_log[results_log["wiki_enabled"] == False][metric].std(), 4)
+
+    base = ["textKGCN (none)"]
+    for x in range(0, 9):
+        base.append(f"${base_avg} \pm {base_std}$")
+    rows.append(base)
+
+    header = ["Threshold"]
+    [header.append(t.title().replace("_", "-").replace("Idf", "TF-IDF").replace("Pmi", "PMI")) for t in types]
+
+    get_latex_code(header, rows, "c|ccc|ccc|ccc", f"{dataset}_{metric}_table.txt", dataset, f"Classification accuracy {dataset.upper()} dataset", f"Text classification accuracy of the {dataset.upper()} dataset for different thresholds and edge types. " + "Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).")
 
 
 def get_latex_code(header, rows, justification, filename, dataset, caption="EMPTY CAP", desc="EMPTY DESC"):
-    assert len(justification) == len(header), f"You must provide the same number of justification symbols {len(justification)} as the header length {len(header)}"
+    assert len(justification) >= len(header), f"You must provide the same number of justification symbols {len(justification)} as the header length {len(header)}"
 
     header = " & ".join(header).replace(r"_", r"\_")
 
@@ -261,16 +278,16 @@ def plot_all(metric="accuracy", density=False):
         if "20ng" in dataset:
             continue
         count_dict = count_model_runs(dataset)
-        optimize_logs(dataset, count_dict)
-        perform_ttest(dataset, count_dict)
+        # optimize_logs(dataset, count_dict)
+        # perform_ttest(dataset, count_dict)
         get_results_statistics(dataset)
-        # plot_metric(dataset, metric)
-        # if density:
-        #     plot_edge_density(dataset)
+        plot_metric(dataset, metric)
+        if density:
+            plot_edge_density(dataset)
 
 
 def count_model_runs(dataset):
-    results = file.get_eval_logs(dataset)
+    results = file.get_eval_logs(dataset=dataset)
 
     count_dict = {}
 
@@ -303,25 +320,25 @@ def get_number_of_entities(dataset):
 
 
 def delete_biggest(dataset):
-    results_log = file.get_eval_logs(dataset)
+    results_log = file.get_eval_logs(dataset=dataset)
     baseline = results_log[results_log["wiki_enabled"] == False]
     baseline_count = baseline.shape[0]
     to_delete = baseline_count - number_of_logs
     largest = baseline.nlargest(to_delete, columns="accuracy").index
     results_log.drop(largest, inplace=True)
 
-    file.save_eval_logs(results_log, dataset)
+    file.save_eval_logs(results_log, dataset=dataset)
 
 
 def delete_smallest(dataset, edge_type, threshold):
-    results_log = file.get_eval_logs(dataset)
+    results_log = file.get_eval_logs(dataset=dataset)
     baseline = results_log[(results_log["raw_count"] == edge_type) & (results_log["threshold"] == threshold) & (results_log["wiki_enabled"] == True)]
     baseline_count = baseline.shape[0]
     to_delete = baseline_count - number_of_logs
     largest = baseline.nsmallest(to_delete, columns="accuracy")
     results_log.drop(largest.index, inplace=True)
 
-    file.save_eval_logs(results_log, dataset)
+    file.save_eval_logs(results_log, dataset=dataset)
 
 
 def optimize_logs(dataset, count_dict):
@@ -341,7 +358,7 @@ def optimize_logs(dataset, count_dict):
 
 def perform_ttest(dataset, count_dict):
     desired_p_val = 0.05
-    results_log = file.get_eval_logs(dataset)
+    results_log = file.get_eval_logs(dataset=dataset)
     baseline = results_log[results_log["wiki_enabled"] == False].nlargest(10, columns="accuracy")
     base_accuracies = baseline["accuracy"].tolist()
     t_dict = {}
@@ -366,14 +383,24 @@ def perform_ttest(dataset, count_dict):
             io.write_json(f"{io.get_latex_path(dataset)}/{dataset}_ttest.json", t_dict)
 
 
-def remove_wrongs(edges):
-    for dataset in edges.keys():
-        counts = edges[dataset]
-        max_nonzero = len(counts) - 1
-        results_log = file.get_eval_logs(dataset)
-        indices = results_log[results_log["threshold"] > max_nonzero].index
-        results_log.loc[indices, 'wiki_enabled'] = False
-        file.save_eval_logs(results_log, dataset)
+def analyze(results_log):
+    thresholds = set(results_log[results_log["wiki_enabled"]]["threshold"].tolist())
+    types = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki", "idf_wiki_norm",
+             "idf_wiki_norm_pmi"]
+
+    results = {}
+    for t in thresholds:
+        for r in types:
+            key = f"{t}:{r}"
+            mean = results_log[
+                (results_log["wiki_enabled"] == True) & (results_log["window_size"] == 15) & (
+                            results_log["threshold"] == t) & (
+                        results_log["raw_count"] == r)]["accuracy"].mean()
+            results[key] = mean
+
+    base_mean = results_log[(results_log["wiki_enabled"] == False)]["accuracy"].mean()
+    results["base"] = base_mean
+    return results
 
 
 if __name__ == '__main__':
