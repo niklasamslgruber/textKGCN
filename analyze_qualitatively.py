@@ -1,8 +1,7 @@
 from collections import Counter
-from os.path import exists
 from tqdm import tqdm
 from analyze_results import get_latex_code
-from helper import file_utils as file, io_utils as io
+from helper import file_utils as file
 import pandas as pd
 
 
@@ -181,6 +180,7 @@ def sum_counters(dictionary, counter):
 
 def get_number_of_relations(dataset):
     triples = file.get_document_triples(dataset)
+    all_properties = file.get_all_relations()
 
     all_relations = []
 
@@ -193,13 +193,21 @@ def get_number_of_relations(dataset):
 
     results = pd.DataFrame.from_dict(counter, orient='index').reset_index()
     results.columns = ["relation", "count"]
-    results = results.sort_values(by="count", ascending=False).reset_index(drop=True)
 
-    header = ["relation", "count"]
-    all_true_rows = [[row["relation"], row["count"]] for index, row in results.iterrows()]
+    descriptions = []
+    for index, row in results.iterrows():
+        desc = all_properties[all_properties["ID"] == row["relation"]]["label"].tolist()
+        assert len(desc) == 1
+        descriptions.append(desc[0].title())
 
-    get_latex_code(header, all_true_rows, "ll", f"{dataset}_top_relations.txt", dataset,
+    results["description"] = descriptions
+    results = results.sort_values(by="count", ascending=False).reset_index(drop=True).nlargest(15, columns="count")
+    header = ["Relation", "Description", "Count"]
+    results["count"] = results["count"].apply(lambda x: "{:,}".format(x))
+    all_true_rows = [[row["relation"], row["description"], row["count"]] for index, row in results.iterrows()]
+    get_latex_code(header, all_true_rows, "lll", f"{dataset}_top_relations.txt", dataset,
                    desc=f"Most common WikiData relations between in the {dataset} dataset")
+    return all_true_rows
 
 
 def get_dataset_statistics(dataset):
@@ -264,7 +272,8 @@ def save_ordered_file(dataset, edge_type):
 
 if __name__ == '__main__':
     for dataset in ["r52", "r8", "mr", "ohsumed"]:
-        perform_all(dataset)
+        # perform_all(dataset)
         get_number_of_relations(dataset)
 
     # analyze_results_dict()
+

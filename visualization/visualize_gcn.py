@@ -38,9 +38,9 @@ def plot_embeddings(embeddings, labels, path):
     visualize(reduced_emb, filename=path, labels=labels)
 
 
-def generate_doc_labels(embeddings):
+def generate_doc_labels(embeddings, dataset=FLAGS.dataset):
     # Labels based on the "_labels.txt" file
-    labels = file.get_labels()[0:len(embeddings)]
+    labels = file.get_labels(dataset)[0:len(embeddings)]
     label_index = 0 if "small" in FLAGS.dataset else 2
     doc_labels = list(map(lambda label: label.split(sep="\t")[label_index], labels))
     return doc_labels
