@@ -5,23 +5,11 @@
 #SBATCH --mail-user='niklas.amslgruber@campus.lmu.de'
 #SBATCH --ntasks=1
 #SBATCH --output=out/t6_ohsumed.%j.out
-#SBATCH --partition=Gobi
+#SBATCH --partition=Antarktis
 
 source ~/miniconda3/bin/activate thesis
 
 cd ~/Desktop/textKGCN
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method count &&
-python main.py --threshold 6 --dataset ohsumed --plot --method idf &&
-python main.py --threshold 6 --dataset ohsumed --plot --method idf &&
 python main.py --threshold 6 --dataset ohsumed --plot --method idf &&
 python main.py --threshold 6 --dataset ohsumed --plot --method idf &&
 python main.py --threshold 6 --dataset ohsumed --plot --method idf &&

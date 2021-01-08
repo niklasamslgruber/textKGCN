@@ -1,1 +1,1 @@
-sbatch t3_r52.sh && sleep 1 && sbatch t5_r52.sh
+sbatch t3_r52.sh
