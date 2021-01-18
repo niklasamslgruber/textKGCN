@@ -1,0 +1,27 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{c|ccc|ccc|ccc}
+   \toprule
+   Threshold & Count & Count-Norm & Count-Norm-PMI & TF-IDF & TF-IDF-Norm & TF-IDF-Norm-PMI & TF-IDF-Wiki & TF-IDF-Wiki-Norm & TF-IDF-Wiki-Norm-PMI \\
+
+   \midrule
+   1 & $0.7529 \pm 0.0021$ & $0.7560 \pm 0.0016$ & $0.7567 \pm 0.0037$ & $0.7451 \pm 0.0020$ & $0.7556 \pm 0.0019$ & $0.7566 \pm 0.0010$ & $0.7411 \pm 0.0017$ & $0.7502 \pm 0.0023$ & $0.7551 \pm 0.0058$ \\
+   2 & $0.7539 \pm 0.0027$ & $0.7545 \pm 0.0028$ & $0.7570 \pm 0.0022$ & $0.7564 \pm 0.0016$ & $0.7555 \pm 0.0033$ & $\mathbf{0.7572 \pm 0.0020}$ & $0.7539 \pm 0.0008$ & $0.7570 \pm 0.0022$ & $0.7563 \pm 0.0010$ \\
+   3 & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ & $nan \pm nan$ \\
+   4 & $0.7520 \pm 0.0025$ & $nan \pm nan$ & $nan \pm nan$ & $0.7518 \pm 0.0036$ & $nan \pm nan$ & $nan \pm nan$ & $0.7498 \pm 0.0012$ & $nan \pm nan$ & $nan \pm nan$ \\
+   5 & $0.7536 \pm 0.0012$ & $nan \pm nan$ & $nan \pm nan$ & $0.7530 \pm 0.0038$ & $nan \pm nan$ & $nan \pm nan$ & $0.7522 \pm 0.0009$ & $nan \pm nan$ & $nan \pm nan$ \\
+   textKGCN (none) & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ & $0.7524 \pm 0.0031$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy MR dataset]{Text classification accuracy of the MR dataset for different thresholds and edge types. Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}
