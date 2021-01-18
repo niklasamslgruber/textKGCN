@@ -40,6 +40,10 @@ def get_basic_plots_path(dataset=FLAGS.dataset):
     return path(join(get_root_path(), f'plots/{dataset}'))
 
 
+def get_basic_embeddings_plots_path(dataset=FLAGS.dataset):
+    return path(join(get_root_path(), f'plots/embeddings/{dataset}'))
+
+
 def get_latex_path(dataset=FLAGS.dataset):
     return path(join(get_root_path(), f'latex/{dataset}'))
 

@@ -48,7 +48,7 @@ def plot_edge_numbers():
     sns.lineplot(y="count", x="threshold", data=edge_counts, hue="dataset", marker="o", dashes=False)
     ax.set_yscale('symlog')
     ax.set_xticks(range(1, 25))
-    ax.set_xlabel("Threshold")
+    ax.set_xlabel("Minimum Relation Count Threshold")
     ax.set_ylabel("Number of doc2doc edges")
     fig.tight_layout()
     fig.savefig(f"{io.get_root_path()}/plots/edge_thresholds_{FLAGS.version}.png")
@@ -63,10 +63,12 @@ def plot_metric(dataset, metric="accuracy"):
 
     results = results[results["wiki_enabled"] == True]
 
-    if ("unfiltered" in FLAGS.version) or ("manual" in FLAGS.version) and ("r8" in dataset or "r52" in dataset):
-        order = ["count", "idf", "idf_wiki", "count_old", "idf_old", "idf_old_wiki"]
-    else:
-        order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",
+    if FLAGS.version == "unfiltered":
+        base_results = file.get_eval_logs(dataset=dataset, version="filtered")
+        base_results = base_results[base_results["wiki_enabled"] == False]
+        base_mean = base_results[metric].mean()
+
+    order = ["count", "count_norm", "count_norm_pmi", "idf", "idf_norm", "idf_norm_pmi", "idf_wiki",
                  "idf_wiki_norm", "idf_wiki_norm_pmi"]
 
     g = sns.FacetGrid(data=results, col="raw_count", col_wrap=3, col_order=order, sharex=False, sharey=True)
@@ -74,7 +76,7 @@ def plot_metric(dataset, metric="accuracy"):
     g.set_titles(row_template='{row_name}', col_template='{col_name}')
     max_threshold = results["threshold"].max() + 1
     g.fig.set_figwidth(15)
-    g.set_axis_labels("Threshold", "Accuracy")
+    g.set_axis_labels("Minimum Relation Count Threshold", "Accuracy")
 
     color = "black"
     for x in range(0, len(g.axes)):
@@ -404,6 +406,6 @@ def analyze(results_log):
 
 
 if __name__ == '__main__':
-    plot_edge_numbers()
-    plot_all(density=True)
+    # plot_edge_numbers()
+    plot_all(density=False)
 
