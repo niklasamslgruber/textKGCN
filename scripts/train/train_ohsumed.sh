@@ -1,1 +1,0 @@
-sbatch t3_ohsumed.sh && sleep 1 && sbatch t6_ohsumed.sh && sleep 1 && sbatch t10_ohsumed.sh && sleep 1 && sbatch t14_ohsumed.sh && sleep 1 && sbatch t15_ohsumed.sh

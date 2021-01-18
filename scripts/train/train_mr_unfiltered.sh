@@ -1,1 +1,0 @@
-sbatch no_wiki_mr_unfiltered.sh && sleep 1 && sbatch t1_mr_unfiltered.sh && sleep 1 && sbatch t2_mr_unfiltered.sh

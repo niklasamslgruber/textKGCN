@@ -1,10 +1,12 @@
 import shutil
 import os
 import random
+
+from config import FLAGS
 from helper import file_utils
 
 available_datasets = ["r8", "mr", "ohsumed", "r52"]
-number_of_logs = 3
+number_of_logs = 10
 
 configuration = {
     "r8": range(1, 7),
@@ -33,7 +35,7 @@ def generate_prep_scripts():
 
 
 def generate_train_scripts(version):
-    folder_path = "scripts/train"
+    folder_path = f"scripts/train_{version}"
     clear(folder_path)
 
     method = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
@@ -46,11 +48,12 @@ def generate_train_scripts(version):
         name = f"no_wiki_{dataset}"
         config = create_needed_scripts(dataset, version)
         header = get_header(name, random.choice(partitions))
-        py_call = f"python main.py --no_wiki --plot --dataset {dataset} --version {version}"
-        code = header + multiply(number_of_logs, py_call)
-        write_script(code, f"{folder_path}/{name}_{version}.sh")
-        exec_code.append(f"sbatch {name}_{version}.sh")
-        dataset_exec.append(f"sbatch {name}_{version}.sh")
+        if not is_needed(config, False, 0, 0):
+            py_call = f"python main.py --no_wiki --plot --dataset {dataset} --version {version}"
+            code = header + multiply(number_of_logs, py_call)
+            write_script(code, f"{folder_path}/{name}_{version}.sh")
+            exec_code.append(f"sbatch {name}_{version}.sh")
+            dataset_exec.append(f"sbatch {name}_{version}.sh")
 
         for t in threshold:
             all_types = []
@@ -135,7 +138,11 @@ def create_needed_scripts(dataset, version):
 
 
 def is_needed(config, wiki_enabled, threshold, edge_type):
-    key = f"{wiki_enabled}:15:{edge_type}:{threshold}"
+    if wiki_enabled:
+        key = f"{wiki_enabled}:15:{edge_type}:{threshold}"
+    else:
+        key = f"{wiki_enabled}:0:empty:0"
+
     if key in config:
         if config[key] >= number_of_logs:
             return False, config[key]
@@ -147,4 +154,4 @@ def is_needed(config, wiki_enabled, threshold, edge_type):
 
 if __name__ == '__main__':
     # generate_prep_scripts()
-    generate_train_scripts("unfiltered")
+    generate_train_scripts(FLAGS.version)
