@@ -6,7 +6,7 @@ from config import FLAGS
 from helper import file_utils
 
 available_datasets = ["r8", "mr", "ohsumed", "r52"]
-number_of_logs = 10
+number_of_logs = 3
 
 configuration = {
     "r8": range(1, 7),
