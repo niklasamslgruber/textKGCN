@@ -1,1 +1,0 @@
-sbatch t3_r52_filtered.sh && sleep 1 && sbatch t3_r52_filtered_2.sh && sleep 1 && sbatch t3_r52_filtered_3.sh && sleep 1 && sbatch t3_r52_filtered_4.sh && sleep 1 && sbatch t3_r52_filtered_5.sh && sleep 1 && sbatch t3_r52_filtered_6.sh

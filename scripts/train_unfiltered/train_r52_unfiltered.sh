@@ -1,1 +1,1 @@
-sbatch t5_r52_unfiltered.sh && sleep 1 && sbatch t5_r52_unfiltered_2.sh && sleep 1 && sbatch t5_r52_unfiltered_3.sh && sleep 1 && sbatch t5_r52_unfiltered_4.sh && sleep 1 && sbatch t5_r52_unfiltered_5.sh && sleep 1 && sbatch t5_r52_unfiltered_6.sh
+sbatch t5_r52_unfiltered.sh
