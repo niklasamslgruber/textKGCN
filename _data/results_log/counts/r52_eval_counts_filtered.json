@@ -50,5 +50,8 @@
     "True:15:idf_wiki:3": 10,
     "True:15:count_norm:3": 10,
     "True:15:count_norm_pmi:3": 10,
-    "True:15:idf_norm:3": 2
+    "True:15:idf_norm:3": 12,
+    "True:15:idf_wiki_norm:3": 10,
+    "True:15:idf_norm_pmi:3": 10,
+    "True:15:idf_wiki_norm_pmi:3": 10
 }
