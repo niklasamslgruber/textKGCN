@@ -69,5 +69,14 @@
     "True:15:idf_norm:2": 3,
     "True:15:idf_wiki_norm:2": 3,
     "True:15:idf_norm_pmi:2": 3,
-    "True:15:idf_wiki_norm_pmi:2": 3
+    "True:15:idf_wiki_norm_pmi:2": 3,
+    "True:15:count:5": 6,
+    "True:15:idf:5": 3,
+    "True:15:idf_wiki:5": 3,
+    "True:15:count_norm:5": 3,
+    "True:15:count_norm_pmi:5": 3,
+    "True:15:idf_norm:5": 3,
+    "True:15:idf_wiki_norm:5": 3,
+    "True:15:idf_norm_pmi:5": 3,
+    "True:15:idf_wiki_norm_pmi:5": 3
 }
