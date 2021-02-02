@@ -1,5 +1,7 @@
 from os.path import exists
 import seaborn as sns
+
+from analyze_results import get_number_of_edges
 from helper import file_utils as file, io_utils as io
 import pandas as pd
 import numpy as np
@@ -294,17 +296,15 @@ if __name__ == '__main__':
     # get_highest(dataset, "idf", 1)
     # get_highest(dataset, "idf_wiki", 1)
     # analyze_relations("ohsumed", 158, 175)
-    plot_all()
+    # plot_all()
     # print(top_words_dict)
     # io.write_json("test.json", top_words_dict)
 
-    # for dataset in available_datasets:
-    #     if "20ng" in dataset:
-    #         continue
-    #     # TODO: Don't run that twice otherwise the "no_populars" version will always be attached
-    #     merge_evals(dataset)
-    #     edges = get_number_of_edges()
-    #     remove_wrongs(edges)
+    for dataset in ["mr", "r8", "r52", "ohsumed"]:
+        # TODO: Don't run that twice otherwise the "no_populars" version will always be attached
+        # merge_evals(dataset)
+        edges = get_number_of_edges()
+        remove_wrongs(edges)
 
     # analyze_doc_embeddings("ohsumed", f"{io.get_dataset_path('ohsumed')}/_logs/30-12-2020-T20-15-24.085156/plots/gcn_embeddings/ohsumed_doc_embeddings_layer1.csv", 1, 2, "abc.png")
     # analyze_doc_embeddings("ohsumed", "30-12-2020-T20-15-24.085156", id1=158, id2=175, filename="best_ohsumed.png", layer=1)
