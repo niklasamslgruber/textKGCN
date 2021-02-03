@@ -74,7 +74,6 @@ def get_all_properties(threshold=1000):
 
     # Filter out relations from manual removement
     # wrong_relations = ["P31", "P461", "P527", "P460", "P1889", "P180", "P2670", "P1269", "P1382", "P21", "P462", "P509"] # version: manual
-    # wrong_relations = ["P31", "P279", "P361", "P461", "P527", "P1889", "P460", "P366", "P921", "P180", "P1269", "P1535", "P1552", "P3095", "P425"] # version: no_populars
     wrong_relations = ["P31", "P279", "P361", "P461", "P527", "P1889", "P460", "P366", "P921", "P180", "P1269", "P1535", "P1552", "P3095", "P425", "P155", "P156"] # version: filtered
 
     irrelevant = relations_df[relations_df["ID"].isin(wrong_relations)].index

@@ -113,17 +113,6 @@ def remove_wrongs(edges):
         file.save_eval_logs(results_log, dataset=dataset)
 
 
-def merge_evals(dataset):
-    results_log_filtered = file.get_eval_logs(dataset=dataset, version="filtered")
-    results_log_no_populars = file.get_eval_logs(dataset=dataset, version="no_populars")
-
-    merged_logs = pd.concat([results_log_filtered, results_log_no_populars])
-    merged_logs.sort_values(by="time", inplace=True)
-    assert merged_logs.shape[0] == results_log_no_populars.shape[0] + results_log_filtered.shape[0]
-
-    file.save_eval_logs(merged_logs, dataset=dataset, version="filtered")
-
-
 def get_graph_details(dataset):
     base_edges = file.get_base_edges(dataset)
     types = set(base_edges["edge_type"].tolist())
@@ -292,8 +281,5 @@ def plot_all():
 
 
 if __name__ == '__main__':
-    # for dataset in ["mr", "r8", "r52", "ohsumed"]:
-        # TODO: Don't run that twice otherwise the "no_populars" version will always be attached
-        # merge_evals(dataset)
     edges = get_number_of_edges()
     remove_wrongs(edges)
