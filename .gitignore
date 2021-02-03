@@ -135,8 +135,8 @@ _logs/
 _cache/
 
 script/out/
-**/*_document_triples.csv
-**/*_document_triples_metrics.csv
-**/*_document_triples_new.csv
-**/*_document_triples_metrics_new.csv
+**/*_document_triples**.csv
+**/*_document_triples_metrics**.csv
+**/Old
+**/20ng_original_edges.pickle.bz2
 

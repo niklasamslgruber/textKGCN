@@ -1,1 +1,1 @@
-sbatch r8_prep.sh && sleep 1 && sbatch 20ng_prep.sh && sleep 1 && sbatch mr_prep.sh && sleep 1 && sbatch ohsumed_prep.sh && sleep 1 && sbatch r52_prep.sh
+sbatch r8_prep.sh && sleep 1 && sbatch ohsumed_prep.sh && sleep 1 && sbatch r52_prep.sh

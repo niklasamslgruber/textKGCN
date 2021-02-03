@@ -1,0 +1,28 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{c|ccc|ccc|ccc}
+   \toprule
+   Threshold & Count & Count-Norm & Count-Norm-PMI & TF-IDF & TF-IDF-Norm & TF-IDF-Norm-PMI & TF-IDF-Wiki & TF-IDF-Wiki-Norm & TF-IDF-Wiki-Norm-PMI \\
+
+   \midrule
+   1 & $0.8910 \pm 0.0049$ & $0.8817 \pm 0.0044$ & $0.8971 \pm 0.0026$ & $0.8636 \pm 0.0049$ & $0.8861 \pm 0.0060$ & $0.9088 \pm 0.0058$ & $0.8218 \pm 0.0051$ & $0.8638 \pm 0.0040$ & $0.9044 \pm 0.0045$ \\
+   2 & $0.8954 \pm 0.0046$ & $0.8788 \pm 0.0095$ & $0.9029 \pm 0.0063$ & $0.8797 \pm 0.0035$ & $0.8897 \pm 0.0049$ & $0.9047 \pm 0.0049$ & $0.8719 \pm 0.0037$ & $0.8921 \pm 0.0062$ & $0.8995 \pm 0.0070$ \\
+   3 & $0.9034 \pm 0.0060$ & $0.8952 \pm 0.0059$ & $0.9054 \pm 0.0050$ & $0.8996 \pm 0.0044$ & $0.9026 \pm 0.0054$ & $0.9055 \pm 0.0069$ & $0.8905 \pm 0.0029$ & $0.9002 \pm 0.0034$ & $0.9033 \pm 0.0048$ \\
+   4 & $0.9027 \pm 0.0040$ & $0.9038 \pm 0.0052$ & $0.9076 \pm 0.0067$ & $0.9055 \pm 0.0059$ & $0.9039 \pm 0.0075$ & $0.9075 \pm 0.0022$ & $0.9018 \pm 0.0038$ & $0.9034 \pm 0.0037$ & $0.9076 \pm 0.0048$ \\
+   5 & $0.9039 \pm 0.0048$ & $0.9043 \pm 0.0086$ & $0.9055 \pm 0.0043$ & $0.9029 \pm 0.0027$ & $0.9033 \pm 0.0039$ & $\mathbf{0.9090 \pm 0.0053}$ & $0.9013 \pm 0.0036$ & $0.9052 \pm 0.0070$ & $0.9089 \pm 0.0095$ \\
+   6 & $0.9066 \pm 0.0046$ & $0.9076 \pm 0.0039$ & $0.9071 \pm 0.0065$ & $0.9043 \pm 0.0049$ & $0.9060 \pm 0.0076$ & $0.9073 \pm 0.0044$ & $0.9005 \pm 0.0065$ & $0.9038 \pm 0.0039$ & $0.9064 \pm 0.0042$ \\
+   textKGCN (none) & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ & $0.8962 \pm 0.0018$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy R52 dataset]{Text classification accuracy of the R52 dataset for different thresholds and edge types. Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

@@ -1,0 +1,36 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lll}
+   \toprule
+   Relation & Description & Count \\
+
+   \midrule
+   P1056 & Product Or Material Produced & 20,042 \\
+   P1382 & Partially Coincident With & 7,020 \\
+   P2789 & Connects With & 2,888 \\
+   P1542 & Has Effect & 2,077 \\
+   P828 & Has Cause & 2,069 \\
+   P927 & Anatomical Location & 1,344 \\
+   P2670 & Has Parts Of The Class & 1,333 \\
+   P106 & Occupation & 618 \\
+   P136 & Genre & 290 \\
+   P3729 & Next Lower Rank & 288 \\
+   P3730 & Next Higher Rank & 288 \\
+   P689 & Afflicts & 227 \\
+   P186 & Material Used & 199 \\
+   P2579 & Studied By & 197 \\
+   P2578 & Studies & 174 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between in the mr dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

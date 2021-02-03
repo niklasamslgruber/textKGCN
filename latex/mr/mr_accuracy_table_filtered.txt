@@ -1,0 +1,24 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{c|ccc|ccc|ccc}
+   \toprule
+   Threshold & Count & Count-Norm & Count-Norm-PMI & TF-IDF & TF-IDF-Norm & TF-IDF-Norm-PMI & TF-IDF-Wiki & TF-IDF-Wiki-Norm & TF-IDF-Wiki-Norm-PMI \\
+
+   \midrule
+   1 & $0.7541 \pm 0.0020$ & $0.7559 \pm 0.0024$ & $0.7573 \pm 0.0019$ & $0.7455 \pm 0.0020$ & $0.7568 \pm 0.0023$ & $0.7566 \pm 0.0018$ & $0.7412 \pm 0.0029$ & $0.7529 \pm 0.0028^*$ & $0.7555 \pm 0.0027$ \\
+   2 & $0.7561 \pm 0.0023$ & $0.7552 \pm 0.0017$ & $\mathbf{0.7578 \pm 0.0023}$ & $0.7545 \pm 0.0017$ & $0.7568 \pm 0.0016$ & $0.7566 \pm 0.0022$ & $0.7554 \pm 0.0017$ & $0.7560 \pm 0.0017$ & $0.7567 \pm 0.0015$ \\
+   textKGCN (none) & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ & $0.7510 \pm 0.0022$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy MR dataset]{Text classification accuracy of the MR dataset for different thresholds and edge types. Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

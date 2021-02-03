@@ -21,10 +21,8 @@ parser.add_argument('--word_window_size', default=word_window_size, type=int, he
 parser.add_argument('--use_edge_weights', default=True, action='store_true', help="use edge weights for model")
 
 # doc2doc edges weight
-available_methods = ["count", "idf", "idf_wiki"]
+available_methods = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
 parser.add_argument('--method', default=available_methods[0], type=str, help=f"select doc2doc edge weight method ({', '.join(available_methods)})", metavar='')
-
-
 
 # relation threshold
 relation_count_threshold = 2
@@ -41,6 +39,15 @@ parser.add_argument('--no_wiki', default=False, action='store_true', help="disab
 available_datasets = ["r8", "r8_small", "20ng", "mr", "ohsumed", "r52"]
 parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f"select dataset ({', '.join(available_datasets)})", metavar='')
 
+# version
+# - unfiltered: All doc2doc edges without any relations filtered out (not supported for 20ng)
+# - manual: Manual filtering
+# - filtered: without more popular relations
+versions = ["unfiltered", "manual", "filtered"]
+parser.add_argument('--version', default=versions[2], type=str, help=f"doc2doc edge version", metavar='')
+
+# drop-out
+parser.add_argument('--drop_out', default=False, action='store_true', help="perform random drop out")
 
 # Set FLAGS from command line
 FLAGS = parser.parse_args()
@@ -99,7 +106,7 @@ Validation
 """
 FLAGS.use_best_val_model_for_inference = True
 FLAGS.validation_window_size = FLAGS.word_window_size
-FLAGS.validation_metric = 'accuracy'  # Choices: ["f1_weighted", "accuracy", "loss"]
+FLAGS.validation_metric = 'loss'  # Choices: ["f1_weighted", "accuracy", "loss"]
 
 
 """
@@ -114,7 +121,7 @@ Optimization
 """
 FLAGS.lr = 2e-2
 FLAGS.random_seed = 3
-FLAGS.num_epochs = 2 if FLAGS.debug else 400
+FLAGS.num_epochs = 2 if FLAGS.debug else 200
 
 
 """

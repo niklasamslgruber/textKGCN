@@ -1,0 +1,36 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lll}
+   \toprule
+   Relation & Description & Count \\
+
+   \midrule
+   P828 & Has Cause & 55,391 \\
+   P1382 & Partially Coincident With & 50,561 \\
+   P2670 & Has Parts Of The Class & 40,022 \\
+   P1542 & Has Effect & 19,488 \\
+   P1056 & Product Or Material Produced & 16,895 \\
+   P437 & Distribution Format & 15,228 \\
+   P4934 & Calculated From & 13,445 \\
+   P2079 & Fabrication Method & 7,931 \\
+   P186 & Material Used & 7,911 \\
+   P111 & Measured Physical Quantity & 5,196 \\
+   P2868 & Subject Has Role & 4,114 \\
+   P2578 & Studies & 3,815 \\
+   P2579 & Studied By & 3,653 \\
+   P2959 & Permanent Duplicated Item & 2,591 \\
+   P530 & Diplomatic Relation & 1,650 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between in the r52 dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

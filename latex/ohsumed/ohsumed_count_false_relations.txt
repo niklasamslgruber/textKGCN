@@ -1,0 +1,40 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lc}
+   \toprule
+   relation & count \\
+
+   \midrule
+   P31 & 82 \\
+   P279 & 54 \\
+   P1552 & 23 \\
+   P461 & 20 \\
+   P1557 & 20 \\
+   P1889 & 12 \\
+   P361 & 8 \\
+   P527 & 7 \\
+   P1269 & 4 \\
+   P2578 & 3 \\
+   P2579 & 3 \\
+   P2670 & 2 \\
+   P2176 & 2 \\
+   P1542 & 2 \\
+   P2175 & 2 \\
+   P4934 & 1 \\
+   P3095 & 1 \\
+   P425 & 1 \\
+   P276 & 1 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between documents with different label in the ohsumed dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

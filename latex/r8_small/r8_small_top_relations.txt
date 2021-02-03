@@ -1,0 +1,38 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{ll}
+   \toprule
+   relation & count \\
+
+   \midrule
+   P460 & 3380 \\
+   P361 & 3020 \\
+   P527 & 2405 \\
+   P279 & 663 \\
+   P2670 & 219 \\
+   P1382 & 179 \\
+   P31 & 151 \\
+   P425 & 147 \\
+   P461 & 132 \\
+   P3095 & 118 \\
+   P1889 & 96 \\
+   P1269 & 72 \\
+   P180 & 48 \\
+   P366 & 28 \\
+   P186 & 17 \\
+   P1552 & 12 \\
+   P2389 & 2 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between in the r8_small dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

@@ -1,0 +1,21 @@
+{
+    "True:15:idf:2": 10,
+    "True:15:count:2": 10,
+    "False:0:empty:0": 10,
+    "True:15:count:1": 10,
+    "True:15:idf:1": 10,
+    "True:15:idf_norm:1": 10,
+    "True:15:idf_wiki_norm:1": 10,
+    "True:15:idf_norm_pmi:1": 10,
+    "True:15:idf_wiki_norm_pmi:1": 10,
+    "True:15:idf_norm:2": 10,
+    "True:15:idf_wiki_norm:2": 10,
+    "True:15:idf_norm_pmi:2": 10,
+    "True:15:idf_wiki_norm_pmi:2": 10,
+    "True:15:idf_wiki:1": 10,
+    "True:15:count_norm:1": 10,
+    "True:15:count_norm_pmi:1": 10,
+    "True:15:idf_wiki:2": 10,
+    "True:15:count_norm:2": 10,
+    "True:15:count_norm_pmi:2": 10
+}

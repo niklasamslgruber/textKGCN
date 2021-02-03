@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.manifold import TSNE
+import pandas as pd
+import seaborn as sns
 
 
 def reduce_dimensions(embeddings, fraction=None):
@@ -18,7 +20,7 @@ def reduce_dimensions(embeddings, fraction=None):
         print(f'Number of embeddings: {len(x)}')
 
     # Perform 2D t-SNE dimensionality reduction
-    x_embedded = TSNE(n_components=2).fit_transform(x)
+    x_embedded = TSNE(n_components=2, random_state=1).fit_transform(x)
     print(f't-SNE object was trained with {x.shape[0]} items')
 
     return x_embedded
@@ -55,7 +57,7 @@ def visualize(embeddings, filename=None, labels=None):
             ax.scatter(x, y, s=150, color=colors[i], label=lab, alpha=0.5, edgecolors='none')
 
         if show_legend:
-            plt.legend()
+            plt.legend(loc=0, fontsize=10)
 
     else:
         plt.figure(figsize=(15, 15))
@@ -68,3 +70,40 @@ def visualize(embeddings, filename=None, labels=None):
         plt.show()
     else:
         plt.savefig(filename)
+
+
+def visualize_highlight(embeddings, id1, id2, label, filename=None, labels=None, colors=None):
+        # Generate random colors for each label
+        if colors is None:
+            colors = np.random.rand(len(set(labels)), 3)
+
+        label_map = {}
+        for i, l in enumerate(labels):
+            if l not in label_map:
+                label_map[l] = []
+            label_map[l].append(i)
+        fig, ax = plt.subplots(figsize=(15, 15))
+
+        # Layout
+        fig.suptitle(f'Number of labels: {len(set(labels))}')
+        fig.tight_layout()
+        df_array = []
+        for i, lab in enumerate(label_map.keys()):
+            idx = label_map[lab]
+
+            x = list(embeddings[idx, 0])
+            y = list(embeddings[idx, 1])
+            assert len(x) == len(y)
+            for index, emb in enumerate(x):
+                df_array.append([lab, x[index], y[index]])
+
+        print(colors)
+        dataframe = pd.DataFrame(df_array)
+        dataframe.columns = ["label", "x", "y"]
+        fig, ax = plt.subplots(1, 1)
+        sns.scatterplot(data=dataframe, x="x", y="y", hue="label", legend="brief", alpha=0.5, palette=colors)
+        ax.set_ylabel("")
+        ax.set_xlabel("")
+        plt.legend(fontsize=5, title_fontsize=5, ncol=2)
+        fig.tight_layout()
+        fig.savefig(filename)

@@ -138,6 +138,14 @@ def save_base_edges(data, dataset=FLAGS.dataset):
     io.write_pickle(io.get_base_edges_path(dataset), data)
 
 
+def get_original_edges(dataset=FLAGS.dataset):
+    return io.read_pickle(io.get_original_edges_path(dataset))
+
+
+def save_original_edges(data, dataset=FLAGS.dataset):
+    io.write_pickle(io.get_original_edges_path(dataset), data)
+
+
 def get_vocab_entities(dataset=FLAGS.dataset):
     return io.read_json(io.get_vocab_entities_path(dataset))
 
@@ -212,27 +220,47 @@ def get_document_triples_metrics(dataset=FLAGS.dataset):
     return io.read_pickle(path)
 
 
+def save_ordered_document_triples_metrics(data, edge_type, dataset=FLAGS.dataset):
+    path = io.get_ordered_document_triples_metrics_path(edge_type, dataset)
+    io.write_csv(path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"])
+
+
+def get_ordered_document_triples_metrics(edge_type, dataset=FLAGS.dataset):
+    path = io.get_ordered_document_triples_metrics_path(edge_type, dataset)
+    exist(path, "Ordered document triples metrics do not exist yet.")
+    return io.read_csv(path, sep=",")
+
+
 def save_document_triples_metrics(data, dataset=FLAGS.dataset):
     path = io.get_document_triples_metrics_path(dataset)
     io.write_pickle(path, data)
     csv_path = path.replace(".pickle.bz2", ".csv")
-    io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki"])
+
+    io.write_csv(csv_path, data, sep=",", header=["doc1", "doc2", "count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"])
 
 
 # Evaluation logger
-def get_eval_logs(dataset=FLAGS.dataset):
-    path = io.get_eval_log_path(dataset)
+def get_eval_logs(dataset=FLAGS.dataset, version=FLAGS.version):
+    path = io.get_eval_log_path(dataset, version)
     if not exists(path):
         return None
     return io.read_csv(path, sep=';')
 
 
-def save_eval_logs(data, dataset=FLAGS.dataset):
-    io.write_csv(io.get_eval_log_path(dataset), data, sep=';')
+def save_eval_logs(data, dataset=FLAGS.dataset, version=FLAGS.version):
+    io.write_csv(io.get_eval_log_path(dataset, version), data, sep=';')
 
 
 def save_result_log(data, dataset=FLAGS.dataset):
     io.write_json(io.get_result_log_path(dataset), data)
+
+
+def save_result_log_counts(data, dataset=FLAGS.dataset, version=FLAGS.version):
+    io.write_json(io.get_eval_count_path(dataset, version), data)
+
+
+def get_result_log_counts(dataset=FLAGS.dataset, version=FLAGS.version):
+    return io.read_json(io.get_eval_count_path(dataset, version))
 
 
 # Helper

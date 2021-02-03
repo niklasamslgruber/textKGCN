@@ -1,3 +1,6 @@
+import glob
+import os
+import shutil
 import time
 from pprint import pprint
 import torch
@@ -39,6 +42,14 @@ def main():
     if FLAGS.show_eval:
         print("Test...")
         pprint(eval_res)
+
+    all_saved_models = glob.glob(f"{saver.logdir}/*.pt")
+    # Iterate over the list of filepaths & remove each file.
+    for filePath in all_saved_models:
+        try:
+            os.remove(filePath)
+        except:
+            print("Error while deleting file : ", filePath)
 
 
 if __name__ == "__main__":

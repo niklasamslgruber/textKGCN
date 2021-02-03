@@ -1,0 +1,36 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lll}
+   \toprule
+   Relation & Description & Count \\
+
+   \midrule
+   P2789 & Connects With & 773,976 \\
+   P2176 & Drug Used For Treatment & 175,467 \\
+   P2175 & Medical Condition Treated & 171,709 \\
+   P1542 & Has Effect & 154,392 \\
+   P1382 & Partially Coincident With & 149,354 \\
+   P828 & Has Cause & 144,819 \\
+   P1557 & Manifestation Of & 136,821 \\
+   P4934 & Calculated From & 102,469 \\
+   P2579 & Studied By & 89,380 \\
+   P2670 & Has Parts Of The Class & 87,125 \\
+   P1995 & Health Specialty & 75,608 \\
+   P703 & Found In Taxon & 59,716 \\
+   P2578 & Studies & 52,834 \\
+   P138 & Named After & 30,264 \\
+   P111 & Measured Physical Quantity & 25,823 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between in the ohsumed dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

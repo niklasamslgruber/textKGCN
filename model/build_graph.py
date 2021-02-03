@@ -1,8 +1,6 @@
 from collections import defaultdict
 from math import log
 from os.path import exists
-
-import pandas as pd
 import scipy.sparse as sp
 from tqdm import tqdm
 from config import FLAGS
@@ -129,11 +127,14 @@ def build_edges(doc_list, word_id_map, vocab, word_doc_freq, window_size=20):
         "weight": weight,
         "edge_type": edge_type
         })
-    save_edges(base_edges)
+    # save_edges(base_edges)
 
     if FLAGS.use_wikidata:
         # Append doc2doc edges
-        document_triples = file.get_document_triples_metrics()
+        if FLAGS.drop_out:
+            document_triples = drop_out(10)
+        else:
+            document_triples = file.get_document_triples_metrics()
         old_size = document_triples.shape[0]
 
         # Filter all relations with number of relations below threshold
@@ -160,8 +161,10 @@ def save_edges(base_edges):
     # if exists(io.get_base_edges_path()):
     #     print("Edge file already exists")
     #     return
+    file.save_original_edges(base_edges)
+
     metrics = file.get_document_triples_metrics()
-    edge_types = ["idf", "idf_wiki", "count"]
+    edge_types = ["count", "idf", "idf_wiki", "count_norm", "count_norm_pmi", "idf_norm", "idf_wiki_norm", "idf_norm_pmi", "idf_wiki_norm_pmi"]
     row = metrics["doc1"].tolist()
     col = metrics["doc2"].tolist()
 
@@ -210,3 +213,12 @@ def build_word_doc_edges(doc_list):
         word_doc_freq[word] = len(doc_list)
 
     return words_in_docs, word_doc_freq
+
+
+def drop_out(ratio=10):
+    document_triples = file.get_document_triples_metrics()
+    old_size = document_triples.shape[0]
+    fraction = document_triples.sample(frac=1-ratio/100)
+
+    assert int(round(old_size * (1-ratio/100), 0)) == fraction.shape[0]
+    return fraction

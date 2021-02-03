@@ -40,8 +40,16 @@ def get_basic_plots_path(dataset=FLAGS.dataset):
     return path(join(get_root_path(), f'plots/{dataset}'))
 
 
+def get_basic_embeddings_plots_path(dataset=FLAGS.dataset):
+    return path(join(get_root_path(), f'plots/embeddings/{dataset}'))
+
+
 def get_latex_path(dataset=FLAGS.dataset):
     return path(join(get_root_path(), f'latex/{dataset}'))
+
+
+def get_ordered_path(dataset=FLAGS.dataset):
+    return path(join(get_root_path(), f'ordered/{dataset}'))
 
 
 # Specific directory paths
@@ -74,15 +82,19 @@ def get_all_word_triples_path(dataset=FLAGS.dataset):
 
 
 def get_filtered_word_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples.csv')
+    return join(get_kg_triples_path(dataset), f'{dataset}_filtered_triples_{FLAGS.version}.csv')
 
 
 def get_document_triples_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_{FLAGS.version}.pickle.bz2')
 
 
 def get_document_triples_metrics_path(dataset=FLAGS.dataset):
-    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics.pickle.bz2')
+    return join(get_kg_triples_path(dataset), f'{dataset}_document_triples_metrics_{FLAGS.version}.pickle.bz2')
+
+
+def get_ordered_document_triples_metrics_path(edge_type, dataset=FLAGS.dataset):
+    return join(get_ordered_path(dataset), f'{dataset}_ordered_document_triples_{edge_type}_{FLAGS.version}.csv')
 
 
 # Mappings
@@ -95,15 +107,19 @@ def get_doc2id_path(dataset=FLAGS.dataset):
 
 
 def get_doc2relations_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations.txt')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2relations_{FLAGS.version}.txt')
 
 
 def get_doc2idf_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf.csv')
+    return join(get_kg_data_path(dataset), f'{dataset}_doc2idf_{FLAGS.version}.csv')
 
 
 def get_base_edges_path(dataset=FLAGS.dataset):
-    return join(get_kg_data_path(dataset), f'{dataset}_base_edges.pickle.bz2')
+    return join(get_kg_data_path(dataset), f'{dataset}_base_edges_{FLAGS.version}.pickle.bz2')
+
+
+def get_original_edges_path(dataset=FLAGS.dataset):
+    return join(get_kg_data_path(dataset), f'{dataset}_original_edges.pickle.bz2')
 
 
 def get_vocab_entities_path(dataset=FLAGS.dataset):
@@ -120,7 +136,7 @@ def get_all_wiki_relations_path():
 
 
 def get_filtered_wiki_relations_path():
-    return join(get_kg_relations_path(), 'filtered_wiki_relations.csv')
+    return join(get_kg_relations_path(), f'filtered_wiki_relations_{FLAGS.version}.csv')
 
 
 # Dataset files
@@ -183,12 +199,16 @@ def get_document_embeddings_path(layer, dataset=FLAGS.dataset):
 
 
 # Evaluation logs
-def get_eval_log_path(dataset=FLAGS.dataset):
-    return join(path(join(get_data_path(), 'results_log')), f'{dataset}_eval_log.csv')
+def get_eval_log_path(dataset=FLAGS.dataset, version=FLAGS.version):
+    return join(path(join(get_data_path(), 'results_log')), f'{dataset}_eval_{version}.csv')
 
 
 def get_result_log_path(dataset=FLAGS.dataset):
     return join(get_logs_path(dataset), f'{dataset}_result.json')
+
+
+def get_eval_count_path(dataset=FLAGS.dataset, version=FLAGS.version):
+    return join(path(join(get_data_path(), 'results_log/counts')), f'{dataset}_eval_counts_{version}.json')
 
 
 # JSON

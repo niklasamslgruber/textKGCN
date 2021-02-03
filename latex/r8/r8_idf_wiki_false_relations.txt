@@ -1,0 +1,38 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{lc}
+   \toprule
+   relation & count \\
+
+   \midrule
+   P279 & 93 \\
+   P361 & 67 \\
+   P460 & 66 \\
+   P527 & 31 \\
+   P31 & 17 \\
+   P1889 & 15 \\
+   P366 & 13 \\
+   P1269 & 7 \\
+   P180 & 4 \\
+   P4934 & 3 \\
+   P425 & 3 \\
+   P461 & 2 \\
+   P921 & 2 \\
+   P2079 & 2 \\
+   P1382 & 2 \\
+   P3095 & 2 \\
+   P1542 & 1 \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[EMPTY CAP]{Most common WikiData relations between documents with different label in the r8 dataset
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}

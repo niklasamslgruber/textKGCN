@@ -1,0 +1,28 @@
+\begin{center}
+\begin{table}[htbp]
+
+{
+   \small
+   \begin{center}
+   \begin{tabular}[center]{c|ccc|ccc|ccc}
+   \toprule
+   Threshold & Count & Count-Norm & Count-Norm-PMI & TF-IDF & TF-IDF-Norm & TF-IDF-Norm-PMI & TF-IDF-Wiki & TF-IDF-Wiki-Norm & TF-IDF-Wiki-Norm-PMI \\
+
+   \midrule
+   1 & $0.9622 \pm 0.0019^*$ & $0.9610 \pm 0.0013$ & $0.9654 \pm 0.0014$ & $0.9581 \pm 0.0014$ & $0.9588 \pm 0.0031$ & $0.9656 \pm 0.0016$ & $0.9425 \pm 0.0029$ & $0.9557 \pm 0.0031$ & $0.9646 \pm 0.0011$ \\
+   2 & $0.9668 \pm 0.0014$ & $0.9605 \pm 0.0021$ & $0.9663 \pm 0.0014$ & $0.9636 \pm 0.0010^*$ & $0.9632 \pm 0.0018^*$ & $0.9669 \pm 0.0018$ & $0.9581 \pm 0.0025$ & $0.9614 \pm 0.0016$ & $0.9655 \pm 0.0020$ \\
+   3 & $0.9678 \pm 0.0020$ & $0.9633 \pm 0.0027^*$ & $0.9658 \pm 0.0015$ & $0.9636 \pm 0.0026^*$ & $0.9643 \pm 0.0017^*$ & $0.9664 \pm 0.0019$ & $0.9617 \pm 0.0014$ & $0.9621 \pm 0.0014^*$ & $0.9661 \pm 0.0014$ \\
+   4 & $0.9674 \pm 0.0015$ & $0.9643 \pm 0.0021^*$ & $0.9668 \pm 0.0012$ & $0.9672 \pm 0.0017$ & $0.9664 \pm 0.0015$ & $0.9667 \pm 0.0019$ & $0.9651 \pm 0.0011$ & $0.9674 \pm 0.0021$ & $0.9667 \pm 0.0021$ \\
+   5 & $0.9672 \pm 0.0011$ & $0.9666 \pm 0.0025$ & $0.9662 \pm 0.0018$ & $0.9672 \pm 0.0016$ & $0.9660 \pm 0.0016$ & $0.9666 \pm 0.0015$ & $0.9678 \pm 0.0015$ & $0.9673 \pm 0.0022$ & $0.9666 \pm 0.0024$ \\
+   6 & $\mathbf{0.9684 \pm 0.0004}$ & $0.9666 \pm 0.0020$ & $0.9658 \pm 0.0025$ & $0.9682 \pm 0.0012$ & $0.9667 \pm 0.0020$ & $0.9663 \pm 0.0022$ & $0.9673 \pm 0.0012$ & $0.9669 \pm 0.0016$ & $0.9665 \pm 0.0018$ \\
+   textKGCN (none) & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ & $0.9629 \pm 0.0006$ \\
+
+   \bottomrule
+   \end{tabular}
+   \end{center}
+}
+
+\caption[Classification accuracy R8 dataset]{Text classification accuracy of the R8 dataset for different thresholds and edge types. Values marked with $^*$ did not outperform \emph{textKGCN (none)} significantly based on student t-test (p < 0.05).
+\label{tab:CommonParameterSettings}}
+\end{table}
+\end{center}
