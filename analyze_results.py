@@ -76,6 +76,8 @@ def plot_metric(dataset, metric="accuracy"):
     g.map(sns.lineplot, "threshold", metric, ci="sd", err_style="bars", markers=True, dashes=False, color="black")
     g.set_titles(row_template='{row_name}', col_template='{col_name}')
     max_threshold = results["threshold"].max() + 1
+    if dataset == "ohsumed":
+        max_threshold = 17
     g.fig.set_figwidth(15)
     g.set_axis_labels("Minimum Relation Count Threshold", "Accuracy")
 
@@ -282,7 +284,6 @@ def plot_all(metric="accuracy", density=False):
         if "20ng" in dataset:
             continue
         count_dict = count_model_runs(dataset)
-        optimize_logs(dataset, count_dict)
         perform_ttest(dataset, count_dict)
         get_results_statistics(dataset)
         plot_metric(dataset, metric)
@@ -321,43 +322,6 @@ def get_number_of_entities(dataset):
             counter += 1
 
     print(f"{dataset}: {counter}")
-
-
-def delete_biggest(dataset):
-    results_log = file.get_eval_logs(dataset=dataset)
-    baseline = results_log[results_log["wiki_enabled"] == False]
-    baseline_count = baseline.shape[0]
-    to_delete = baseline_count - number_of_logs
-    largest = baseline.nlargest(to_delete, columns="accuracy").index
-    results_log.drop(largest, inplace=True)
-
-    file.save_eval_logs(results_log, dataset=dataset)
-
-
-def delete_smallest(dataset, edge_type, threshold):
-    results_log = file.get_eval_logs(dataset=dataset)
-    baseline = results_log[(results_log["raw_count"] == edge_type) & (results_log["threshold"] == threshold) & (results_log["wiki_enabled"] == True)]
-    baseline_count = baseline.shape[0]
-    to_delete = baseline_count - number_of_logs
-    largest = baseline.nsmallest(to_delete, columns="accuracy")
-    results_log.drop(largest.index, inplace=True)
-
-    file.save_eval_logs(results_log, dataset=dataset)
-
-
-def optimize_logs(dataset, count_dict):
-    for key in count_dict.keys():
-        value = count_dict[key]
-        if value > number_of_logs:
-            params = key.split(":")
-            wiki_enabled = params[0] == "True"
-            edge_type = str(params[2])
-            threshold = int(params[3])
-
-            if not wiki_enabled:
-                delete_biggest(dataset)
-            else:
-                delete_smallest(dataset, edge_type, threshold)
 
 
 def perform_ttest(dataset, count_dict):

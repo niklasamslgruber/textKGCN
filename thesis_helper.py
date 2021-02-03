@@ -25,9 +25,6 @@ def analyze_relations(dataset, id1, id2):
 
     doc1 = docs[id1]
     doc2 = docs[id2]
-    # print(doc1)
-    # print("DOC 2\n")
-    # print(doc2)
 
     doc1_ids = doc2id[doc2id["doc"] == id1]["wikiID"].tolist()
     doc2_ids = doc2id[doc2id["doc"] == id2]["wikiID"].tolist()
@@ -69,7 +66,6 @@ def analyze_relations(dataset, id1, id2):
     print("\n\n\n")
     print(doc2)
 
-    # print(count1, count2)
     print(entities_doc1)
     print(merged_results)
 
