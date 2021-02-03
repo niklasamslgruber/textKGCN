@@ -57,7 +57,8 @@ def plot_edge_numbers():
 # RESULTS
 def plot_metric(dataset, metric="accuracy"):
     results = file.get_eval_logs(dataset=dataset)
-    base = results[(results["wiki_enabled"] == False) & (results["window_size"] == 15)][metric]
+    results_filtered = file.get_eval_logs(dataset=dataset, version="filtered")
+    base = results_filtered[(results_filtered["wiki_enabled"] == False) & (results_filtered["window_size"] == 15)][metric]
     base_mean = base.mean()
     base_std = base.std()
 
@@ -165,8 +166,9 @@ def get_results_statistics(dataset, metric="accuracy"):
         [tmp.append(value) for value in results_dict[threshold]]
         rows.append(tmp)
 
-    base_avg = "%.4f" % round(results_log[results_log["wiki_enabled"] == False][metric].mean(), 4)
-    base_std = "%.4f" % round(results_log[results_log["wiki_enabled"] == False][metric].std(), 4)
+    filtered_results = file.get_eval_logs(dataset=dataset, version="filtered")
+    base_avg = "%.4f" % round(filtered_results[filtered_results["wiki_enabled"] == False][metric].mean(), 4)
+    base_std = "%.4f" % round(filtered_results[filtered_results["wiki_enabled"] == False][metric].std(), 4)
 
     base = ["textKGCN (none)"]
     for x in range(0, 9):
@@ -280,8 +282,8 @@ def plot_all(metric="accuracy", density=False):
         if "20ng" in dataset:
             continue
         count_dict = count_model_runs(dataset)
-        # optimize_logs(dataset, count_dict)
-        # perform_ttest(dataset, count_dict)
+        optimize_logs(dataset, count_dict)
+        perform_ttest(dataset, count_dict)
         get_results_statistics(dataset)
         plot_metric(dataset, metric)
         if density:

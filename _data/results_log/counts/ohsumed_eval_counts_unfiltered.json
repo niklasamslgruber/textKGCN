@@ -1,8 +1,8 @@
 {
-    "False:0:empty:0": 15,
     "True:15:count_old:5": 3,
     "True:15:count_old:4": 3,
     "True:15:idf_old:3": 3,
+    "False:0:empty:0": 10,
     "True:15:idf_old:5": 3,
     "True:15:idf_old:4": 3,
     "True:15:count_old:3": 3,

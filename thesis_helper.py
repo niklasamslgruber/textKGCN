@@ -106,7 +106,7 @@ def get_base_lowest(dataset, n=5):
 def remove_wrongs(edges):
     for dataset in edges.keys():
         counts = edges[dataset]
-        max_nonzero = len(counts) - 1
+        max_nonzero = len(counts) - 2
         results_log = file.get_eval_logs(dataset=dataset)
         indices = results_log[results_log["threshold"] > max_nonzero].index
         results_log.loc[indices, 'wiki_enabled'] = False
@@ -292,24 +292,8 @@ def plot_all():
 
 
 if __name__ == '__main__':
-    dataset = "ohsumed"
-    # get_highest(dataset, "idf", 1)
-    # get_highest(dataset, "idf_wiki", 1)
-    # analyze_relations("ohsumed", 158, 175)
-    # plot_all()
-    # print(top_words_dict)
-    # io.write_json("test.json", top_words_dict)
-
-    for dataset in ["mr", "r8", "r52", "ohsumed"]:
+    # for dataset in ["mr", "r8", "r52", "ohsumed"]:
         # TODO: Don't run that twice otherwise the "no_populars" version will always be attached
         # merge_evals(dataset)
-        edges = get_number_of_edges()
-        remove_wrongs(edges)
-
-    # analyze_doc_embeddings("ohsumed", f"{io.get_dataset_path('ohsumed')}/_logs/30-12-2020-T20-15-24.085156/plots/gcn_embeddings/ohsumed_doc_embeddings_layer1.csv", 1, 2, "abc.png")
-    # analyze_doc_embeddings("ohsumed", "30-12-2020-T20-15-24.085156", id1=158, id2=175, filename="best_ohsumed.png", layer=1)
-
-    # analyze_doc_embeddings("ohsumed", "30-12-2020-T12-00-28.483200", id1=158, id2=175, filename="base_ohsumed.png", layer=2)
-
-    # analyze_word_embeddings("r8", "29-12-2020-T08-45-45.234370", layer=1)
-    # analyze_word_embeddings("r8", "29-12-2020-T19-28-12.334928", layer=1)
+    edges = get_number_of_edges()
+    remove_wrongs(edges)
