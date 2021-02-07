@@ -41,10 +41,9 @@ parser.add_argument('--dataset', default=available_datasets[0], type=str, help=f
 
 # version
 # - unfiltered: All doc2doc edges without any relations filtered out (not supported for 20ng)
-# - manual: Manual filtering
 # - filtered: without more popular relations
-versions = ["unfiltered", "manual", "filtered"]
-parser.add_argument('--version', default=versions[2], type=str, help=f"doc2doc edge version", metavar='')
+versions = ["unfiltered", "filtered"]
+parser.add_argument('--version', default=versions[1], type=str, help=f"doc2doc edge version", metavar='')
 
 # drop-out
 parser.add_argument('--drop_out', default=False, action='store_true', help="perform random drop out")
